@@ -1,0 +1,38 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class ManagerCivilization : MonoBehaviour {
+
+	public GameObject Mountain;
+	public GameObject Grass;
+	public GameObject Water;
+	int x;
+	int z;
+	float offset;
+	public int xAmount;
+	public int zAmount;
+
+	void Start () {
+		offset = Random.Range (-100f, 100f);
+		x = -xAmount * 10;
+		z = -zAmount * 10;
+		while (x < (xAmount * 10) + 10) {
+			while (z < (zAmount * 10) + 10) {
+				if (Mathf.PerlinNoise((offset + ((x + (float)(-xAmount * 10))/(5f * xAmount))), (offset + ((z + (float)(-zAmount * 10))/(5f * zAmount)))) < 0.5f) {
+					Instantiate (Water, new Vector3 (x, -1f, z), Quaternion.identity);
+				} else {
+					if(Mathf.PerlinNoise((offset + ((x + (float)(-xAmount * 10))/(5f * xAmount))), (offset + ((z + (float)(-zAmount * 10))/(5f * zAmount)))) < 0.825f){
+						Instantiate (Grass, new Vector3 (x, -1f, z), Quaternion.identity);
+					} else {
+						Instantiate (Mountain, new Vector3 (x, 1, z), Quaternion.identity);
+					}
+
+				}
+				z += 10;
+			}
+			z = -xAmount * 10;
+			x += 10;
+		}
+	}
+}
