@@ -220,7 +220,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SpawningObject: 0
-  HouseHologram: {fileID: 1927370119301970, guid: 6aea7553b3d4328488b1e6452aea67ab,
+  HouseHologram: {fileID: 1737629289441798, guid: 6aea7553b3d4328488b1e6452aea67ab,
     type: 2}
   FarmHologram: {fileID: 1458765667956030, guid: ff5d933d17768ed4c889f9720551f325,
     type: 2}
