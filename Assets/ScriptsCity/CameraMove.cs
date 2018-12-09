@@ -24,13 +24,13 @@ public class CameraMove : MonoBehaviour {
 		}
 		transform.Translate ((Input.GetAxis("Horizontal") * Time.deltaTime * 10) * control, 0, (Input.GetAxis("Vertical") * Time.deltaTime * 10) * control);
 		if(Input.GetKey("space")){
-			transform.position = new Vector3 (transform.position.x, (transform.position.y + (Time.deltaTime * 10)) * control, transform.position.z);
+			transform.position = new Vector3 (transform.position.x, (transform.position.y + (Time.deltaTime * 10  * control)), transform.position.z);
 		}
 		if (transform.position.y > maxHeight) {
 			transform.position = new Vector3 (transform.position.x, maxHeight, transform.position.z);
 		}
 		if(Input.GetKey(KeyCode.LeftShift)){
-			transform.position = new Vector3 (transform.position.x, (transform.position.y - (Time.deltaTime * 10)) * control, transform.position.z);
+			transform.position = new Vector3 (transform.position.x, (transform.position.y - (Time.deltaTime * 10  * control)), transform.position.z);
 		}
 		if(transform.position.y < 0){
 			transform.position = new Vector3 (transform.position.x, 0, transform.position.z);

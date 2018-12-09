@@ -4,4 +4,8 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/Civilization.unity
+    guid: ab49fee177f54824b86fcaf440b9ba2c
+  m_configObjects: {}

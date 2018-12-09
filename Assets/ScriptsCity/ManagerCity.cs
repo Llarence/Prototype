@@ -20,8 +20,10 @@ public class ManagerCity : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		StartCoroutine (Tick());
+		
 	}
 
+	
 	// Update is called once per frame
 	void Update(){
 		if(Input.GetKeyDown("r") && TickTime != Mathf.Infinity){
@@ -64,4 +66,4 @@ public class ManagerCity : MonoBehaviour {
 		print (People.Length);
 		StartCoroutine (Tick());
 	}
-}
+}	
