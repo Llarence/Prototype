@@ -14,7 +14,6 @@ public class ManagerCivilization : MonoBehaviour {
 	public int xAmount;
 	public int zAmount;
 	bool NoPlayerCity = true;
-
 	void Start () {
 		offset = Random.Range (-100f, 100f);
 		x = -xAmount * 10;
@@ -43,6 +42,12 @@ public class ManagerCivilization : MonoBehaviour {
 				Instantiate (City, new Vector3(x, 2f, z), Quaternion.identity);
 				NoPlayerCity = false;
 			}
+		}
+	}
+
+	void Update(){
+		if(Input.GetMouseButton(0) || Input.GetMouseButton(1)){
+			Camera.main.GetComponent<AudioSource>().Play(0);
 		}
 	}
 }
