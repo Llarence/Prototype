@@ -8,6 +8,7 @@ public class ManagerCivilization : MonoBehaviour {
 	public GameObject Grass;
 	public GameObject Water;
 	public GameObject City;
+	public GameObject Warrior;
 	int x;
 	int z;
 	float offset;
@@ -40,6 +41,7 @@ public class ManagerCivilization : MonoBehaviour {
 			z = Random.Range (-zAmount, zAmount + 1) * 10;
 			if(Mathf.PerlinNoise((offset + ((x + (float)(-xAmount * 10))/(5f * xAmount))), (offset + ((z + (float)(-zAmount * 10))/(5f * zAmount)))) < 0.825f && Mathf.PerlinNoise((offset + ((x + (float)(-xAmount * 10))/(5f * xAmount))), (offset + ((z + (float)(-zAmount * 10))/(5f * zAmount)))) > 0.5f){
 				Instantiate (City, new Vector3(x, 2f, z), Quaternion.identity);
+				Instantiate (Warrior, new Vector3(x, 2f, z), Quaternion.identity);
 				NoPlayerCity = false;
 			}
 		}
