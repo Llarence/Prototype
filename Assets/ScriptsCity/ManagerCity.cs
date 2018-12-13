@@ -66,7 +66,6 @@ public class ManagerCity : MonoBehaviour {
 			Destroy (GameObject.FindGameObjectWithTag ("Person"));
 			People = GameObject.FindGameObjectsWithTag ("Person");
 		}
-		print (People.Length);
 		StartCoroutine (Tick());
 	}
 }	
