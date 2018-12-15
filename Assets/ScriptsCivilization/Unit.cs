@@ -28,5 +28,21 @@ public class Unit : MonoBehaviour {
 				}
 			}
 		}
+		if(Input.GetMouseButtonDown(1)){
+			if(Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out Hit)){
+				if (transform.position.x - Hit.point.x > 4 && transform.position.z - Hit.point.z > -4 && transform.position.z - Hit.point.z < 4) {
+					transform.Translate (-10, 0, 0);
+				}
+				if (transform.position.x - Hit.point.x < -4 && transform.position.z - Hit.point.z > -4 && transform.position.z - Hit.point.z < 4) {
+					transform.Translate (10, 0, 0);
+				}
+				if (transform.position.z - Hit.point.z > 4 && transform.position.x - Hit.point.x > -4 && transform.position.x - Hit.point.x < 4) {
+					transform.Translate (0, 0, -10);
+				}
+				if (transform.position.z - Hit.point.z < -4 && transform.position.x - Hit.point.x > -4 && transform.position.x - Hit.point.x < 4) {
+					transform.Translate (0, 0, 10);
+				}
+			}
+		}
 	}
 }

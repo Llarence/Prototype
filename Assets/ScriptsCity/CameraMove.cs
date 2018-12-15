@@ -6,18 +6,19 @@ public class CameraMove : MonoBehaviour {
 
 	float pitch;
 	float yaw;
-	int control = 1;
+	int control;
+	public int controlMax;
 	public int maxHeight;
 
 	// Use this for initialization
 	void Start () {
-		
+		control = 1;
 	}
 	
 	// Update is called once per frame
 	void FixedUpdate () {
 		if (Input.GetKeyDown (KeyCode.LeftControl)) {
-			control = 5;
+			control = controlMax;
 		}
 		if(Input.GetKeyUp(KeyCode.LeftControl)){
 			control = 1;
