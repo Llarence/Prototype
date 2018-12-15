@@ -33,20 +33,40 @@ public class Unit : MonoBehaviour {
 				if (transform.position.x - Hit.point.x > 4 && transform.position.z - Hit.point.z > -4 && transform.position.z - Hit.point.z < 4) {
 					transform.eulerAngles = new Vector3 (0, 0, 0);
 					transform.Translate (-10, 0, 0);
+					if(Physics.Raycast(transform.position, Vector3.down, out Hit)){
+						if(Hit.collider.gameObject.tag != "Grass"){
+							transform.Translate (10, 0, 0);
+						}
+					}
 				}
 				if (transform.position.x - Hit.point.x < -4 && transform.position.z - Hit.point.z > -4 && transform.position.z - Hit.point.z < 4) {
 					transform.eulerAngles = new Vector3 (0, 0, 0);
 					transform.Translate (10, 0, 0);
+					if(Physics.Raycast(transform.position, Vector3.down, out Hit)){
+						if(Hit.collider.gameObject.tag != "Grass"){
+							transform.Translate (-10, 0, 0);
+						}
+					}
 					transform.eulerAngles = new Vector3 (0, 180, 0);
 				}
 				if (transform.position.z - Hit.point.z > 4 && transform.position.x - Hit.point.x > -4 && transform.position.x - Hit.point.x < 4) {
 					transform.eulerAngles = new Vector3 (0, 0, 0);
 					transform.Translate (0, 0, -10);
+					if(Physics.Raycast(transform.position, Vector3.down, out Hit)){
+						if(Hit.collider.gameObject.tag != "Grass"){
+							transform.Translate (0, 0, 10);
+						}
+					}
 					transform.eulerAngles = new Vector3 (0, 270, 0);
 				}
 				if (transform.position.z - Hit.point.z < -4 && transform.position.x - Hit.point.x > -4 && transform.position.x - Hit.point.x < 4) {
 					transform.eulerAngles = new Vector3 (0, 0, 0);
 					transform.Translate (0, 0, 10);
+					if(Physics.Raycast(transform.position, Vector3.down, out Hit)){
+						if(Hit.collider.gameObject.tag != "Grass"){
+							transform.Translate (0, 0, -10);
+						}
+					}
 					transform.eulerAngles = new Vector3 (0, 90, 0);
 				}
 			}

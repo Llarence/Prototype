@@ -9,6 +9,9 @@ TagManager:
   - GoldMine
   - Storage
   - Person
+  - Grass
+  - Water
+  - Mountain
   layers:
   - Default
   - TransparentFX
