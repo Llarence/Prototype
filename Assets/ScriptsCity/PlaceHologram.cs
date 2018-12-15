@@ -9,10 +9,14 @@ public class PlaceHologram : MonoBehaviour {
 	public LayerMask HitLayers;
 	int Colliding;
 	public float SpawnHeight;
+	public Color Red;
+	public Color Green;
 
 	// Use this for initialization
 	void Start () {
-
+		if(Physics.Raycast (Camera.main.ScreenPointToRay(Input.mousePosition), out hit, Mathf.Infinity, HitLayers)){
+			transform.position = new Vector3(hit.point.x, SpawnHeight, hit.point.z);
+		}
 	}
 
 	// Update is called once per frame
@@ -24,6 +28,12 @@ public class PlaceHologram : MonoBehaviour {
 			Instantiate (SpawnObject, transform.position, Quaternion.identity);
 			GameObject.Find ("MainCamera").GetComponent<Place> ().SpawningObject = false;
 			Destroy (gameObject);
+		}
+		if(Colliding == 0){
+			GetComponent<MeshRenderer>().material.color = Green;
+		}
+		if(Colliding > 0){
+			GetComponent<MeshRenderer>().material.color = Red;
 		}
 	}
 
