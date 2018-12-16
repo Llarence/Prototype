@@ -12,6 +12,7 @@ TagManager:
   - Grass
   - Water
   - Mountain
+  - City
   layers:
   - Default
   - TransparentFX

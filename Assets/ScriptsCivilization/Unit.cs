@@ -34,7 +34,7 @@ public class Unit : MonoBehaviour {
 					transform.eulerAngles = new Vector3 (0, 0, 0);
 					transform.Translate (-10, 0, 0);
 					if(Physics.Raycast(transform.position, Vector3.down, out Hit)){
-						if(Hit.collider.gameObject.tag != "Grass"){
+						if(Hit.collider.gameObject.tag != "Grass" && Hit.collider.gameObject.tag != "City"){
 							transform.Translate (10, 0, 0);
 						}
 					}
@@ -43,7 +43,7 @@ public class Unit : MonoBehaviour {
 					transform.eulerAngles = new Vector3 (0, 0, 0);
 					transform.Translate (10, 0, 0);
 					if(Physics.Raycast(transform.position, Vector3.down, out Hit)){
-						if(Hit.collider.gameObject.tag != "Grass"){
+						if(Hit.collider.gameObject.tag != "Grass" && Hit.collider.gameObject.tag != "City"){
 							transform.Translate (-10, 0, 0);
 						}
 					}
@@ -53,7 +53,7 @@ public class Unit : MonoBehaviour {
 					transform.eulerAngles = new Vector3 (0, 0, 0);
 					transform.Translate (0, 0, -10);
 					if(Physics.Raycast(transform.position, Vector3.down, out Hit)){
-						if(Hit.collider.gameObject.tag != "Grass"){
+						if(Hit.collider.gameObject.tag != "Grass" && Hit.collider.gameObject.tag != "City"){
 							transform.Translate (0, 0, 10);
 						}
 					}
@@ -63,7 +63,7 @@ public class Unit : MonoBehaviour {
 					transform.eulerAngles = new Vector3 (0, 0, 0);
 					transform.Translate (0, 0, 10);
 					if(Physics.Raycast(transform.position, Vector3.down, out Hit)){
-						if(Hit.collider.gameObject.tag != "Grass"){
+						if(Hit.collider.gameObject.tag != "Grass" && Hit.collider.gameObject.tag != "City"){
 							transform.Translate (0, 0, -10);
 						}
 					}
