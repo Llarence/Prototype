@@ -5,6 +5,7 @@ using UnityEngine;
 public class Unit : MonoBehaviour {
 	
 	RaycastHit Hit;
+	GameObject Collider;
 	public Color NotClicked;
 	public Color Clicked;
 
@@ -28,46 +29,58 @@ public class Unit : MonoBehaviour {
 				}
 			}
 		}
-		if(Input.GetMouseButtonDown(1)){
+		if(Input.GetMouseButtonDown(1) && GetComponent<MeshRenderer>().material.color == Clicked){
 			if(Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out Hit)){
 				if (transform.position.x - Hit.point.x > 4 && transform.position.z - Hit.point.z > -4 && transform.position.z - Hit.point.z < 4) {
 					transform.eulerAngles = new Vector3 (0, 0, 0);
 					transform.Translate (-10, 0, 0);
-					if(Physics.Raycast(transform.position, Vector3.down, out Hit)){
-						if(Hit.collider.gameObject.tag != "Grass" && Hit.collider.gameObject.tag != "City"){
+					gameObject.layer = 2;
+					if(Physics.Raycast(transform.position + Vector3.up * 5, Vector3.down, out Hit)){
+						if(Hit.collider.gameObject.tag != "Grass" && Hit.collider.gameObject.tag != "City" || Hit.collider.gameObject.tag == "Unit"){
 							transform.Translate (10, 0, 0);
 						}
 					}
+					transform.eulerAngles = new Vector3 (0, 0, 0);
+					gameObject.layer = 0;
 				}
 				if (transform.position.x - Hit.point.x < -4 && transform.position.z - Hit.point.z > -4 && transform.position.z - Hit.point.z < 4) {
 					transform.eulerAngles = new Vector3 (0, 0, 0);
 					transform.Translate (10, 0, 0);
-					if(Physics.Raycast(transform.position, Vector3.down, out Hit)){
-						if(Hit.collider.gameObject.tag != "Grass" && Hit.collider.gameObject.tag != "City"){
+					gameObject.layer = 2;
+					if(Physics.Raycast(transform.position + Vector3.up * 5, Vector3.down, out Hit)){
+						print (Hit.collider.gameObject.tag);
+						if(Hit.collider.gameObject.tag != "Grass" && Hit.collider.gameObject.tag != "City" || Hit.collider.gameObject.tag == "Unit"){
 							transform.Translate (-10, 0, 0);
 						}
 					}
 					transform.eulerAngles = new Vector3 (0, 180, 0);
+					gameObject.layer = 0;
 				}
 				if (transform.position.z - Hit.point.z > 4 && transform.position.x - Hit.point.x > -4 && transform.position.x - Hit.point.x < 4) {
 					transform.eulerAngles = new Vector3 (0, 0, 0);
 					transform.Translate (0, 0, -10);
-					if(Physics.Raycast(transform.position, Vector3.down, out Hit)){
-						if(Hit.collider.gameObject.tag != "Grass" && Hit.collider.gameObject.tag != "City"){
+					gameObject.layer = 2;
+					if(Physics.Raycast(transform.position + Vector3.up * 5, Vector3.down, out Hit)){
+						print (Hit.collider.gameObject.tag);
+						if(Hit.collider.gameObject.tag != "Grass" && Hit.collider.gameObject.tag != "City" || Hit.collider.gameObject.tag == "Unit"){
 							transform.Translate (0, 0, 10);
 						}
 					}
 					transform.eulerAngles = new Vector3 (0, 270, 0);
+					gameObject.layer = 0;
 				}
 				if (transform.position.z - Hit.point.z < -4 && transform.position.x - Hit.point.x > -4 && transform.position.x - Hit.point.x < 4) {
 					transform.eulerAngles = new Vector3 (0, 0, 0);
 					transform.Translate (0, 0, 10);
-					if(Physics.Raycast(transform.position, Vector3.down, out Hit)){
-						if(Hit.collider.gameObject.tag != "Grass" && Hit.collider.gameObject.tag != "City"){
+					gameObject.layer = 2;
+					if(Physics.Raycast(transform.position + Vector3.up * 5, Vector3.down, out Hit)){
+						print (Hit.collider.gameObject.tag);
+						if(Hit.collider.gameObject.tag != "Grass" && Hit.collider.gameObject.tag != "City" || Hit.collider.gameObject.tag == "Unit"){
 							transform.Translate (0, 0, -10);
 						}
 					}
 					transform.eulerAngles = new Vector3 (0, 90, 0);
+					gameObject.layer = 0;
 				}
 			}
 		}

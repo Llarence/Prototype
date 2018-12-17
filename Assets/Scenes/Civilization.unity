@@ -157,7 +157,7 @@ MonoBehaviour:
   Grass: {fileID: 1886334014106876, guid: bc3719f8ef3618845ba64aa6b54e0785, type: 2}
   Water: {fileID: 1253534998859838, guid: 13cded6a17286474c90c812a2a3e6d1a, type: 2}
   City: {fileID: 1898350982209666, guid: 44fbf82325d29d7448492b6cfb193b85, type: 2}
-  Warrior: {fileID: 1837600598602744, guid: 138b69b5befc1d144acab75a9003664b, type: 2}
+  Warrior: {fileID: 1879644018245312, guid: 913f00b08c4c5444789900f4d92f1635, type: 2}
   xAmount: 50
   zAmount: 50
 --- !u!1 &1801773562
@@ -279,7 +279,7 @@ AudioSource:
   SpatializePostEffects: 0
   Priority: 128
   DopplerLevel: 1
-  MinDistance: 1
+  MinDistance: 0.6553674
   MaxDistance: 500
   Pan2D: 0
   rolloffMode: 0
