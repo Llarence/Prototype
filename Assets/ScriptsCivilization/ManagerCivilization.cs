@@ -29,7 +29,7 @@ public class ManagerCivilization : MonoBehaviour {
 					if(Mathf.PerlinNoise((offset + ((x + (float)(-xAmount * 10))/(5f * xAmount))), (offset + ((z + (float)(-zAmount * 10))/(5f * zAmount)))) < 0.825f){
 						Instantiate (Grass, new Vector3 (x, -1f, z), Quaternion.identity);
 					} else {
-						Instantiate (Mountain, new Vector3 (x, 1, z), Quaternion.identity);
+						Instantiate (Mountain, new Vector3 (x, -0.5f, z), Quaternion.identity);
 					}
 
 				}
