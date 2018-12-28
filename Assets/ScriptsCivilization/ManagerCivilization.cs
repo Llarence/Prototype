@@ -15,6 +15,7 @@ public class ManagerCivilization : MonoBehaviour {
 	public int xAmount;
 	public int zAmount;
 	bool NoPlayerCity = true;
+	public int Turn;
 
 
 	void Start () {
@@ -57,5 +58,9 @@ public class ManagerCivilization : MonoBehaviour {
 		if(Input.GetMouseButton(0) || Input.GetMouseButton(1)){
 			Camera.main.GetComponent<AudioSource>().Play(0);
 		}
+	}
+
+	public void NextTurn (){
+		Turn++;
 	}
 }
