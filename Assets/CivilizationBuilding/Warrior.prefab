@@ -158,3 +158,4 @@ MonoBehaviour:
   NotClicked: {r: 0.4314835, g: 0.43137255, b: 1, a: 0}
   Clicked: {r: 0, g: 0, b: 1, a: 0}
   CanSettle: 0
+  City: {fileID: 0}

@@ -64,7 +64,6 @@ public class Unit : MonoBehaviour {
 					gameObject.layer = 2;
 					DoneForTurn = true;
 					if (Physics.Raycast (transform.position + Vector3.up * 5, Vector3.down, out Hit)) {
-						print (Hit.collider.gameObject.tag);
 						if (Hit.collider.gameObject.tag != "Grass" && Hit.collider.gameObject.tag != "City" || Hit.collider.gameObject.tag == "Unit") {
 							transform.Translate (-10, 0, 0);
 							DoneForTurn = false;
@@ -93,7 +92,6 @@ public class Unit : MonoBehaviour {
 					gameObject.layer = 2;
 					DoneForTurn = true;
 					if (Physics.Raycast (transform.position + Vector3.up * 5, Vector3.down, out Hit)) {
-						print (Hit.collider.gameObject.tag);
 						if (Hit.collider.gameObject.tag != "Grass" && Hit.collider.gameObject.tag != "City" || Hit.collider.gameObject.tag == "Unit") {
 							transform.Translate (0, 0, -10);
 							DoneForTurn = false;
@@ -106,14 +104,10 @@ public class Unit : MonoBehaviour {
 		}
 	}
 
-	public void CallSettle (){
-		Settle ();
-	}
-
-	void Settle (){
+	public void Settle (){
+		print ("H");
 		if(CanSettle == true && GetComponent<MeshRenderer>().material.color == Clicked){
 			Instantiate (City, transform.position, Quaternion.identity);
-			Destroy (gameObject.transform.parent.gameObject);
 			Destroy (gameObject);
 		}
 	}

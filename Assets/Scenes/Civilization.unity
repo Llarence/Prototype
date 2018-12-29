@@ -159,8 +159,8 @@ MonoBehaviour:
   City: {fileID: 1898350982209666, guid: 44fbf82325d29d7448492b6cfb193b85, type: 2}
   Warrior: {fileID: 1445357711600342, guid: 913f00b08c4c5444789900f4d92f1635, type: 2}
   Settler: {fileID: 1088820800338938, guid: 6517a9e7393004047a8183aee5332c91, type: 2}
-  xAmount: 50
-  zAmount: 50
+  xAmount: 100
+  zAmount: 100
   Turn: 0
 --- !u!1 &629720050
 GameObject:
@@ -238,8 +238,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1345886045672372, guid: 6517a9e7393004047a8183aee5332c91,
-          type: 2}
+      - m_Target: {fileID: 567940031}
         m_MethodName: 
         m_Mode: 1
         m_Arguments:

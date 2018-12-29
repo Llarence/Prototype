@@ -17,6 +17,7 @@ public class ManagerCivilization : MonoBehaviour {
 	public int zAmount;
 	bool NoPlayerCity = true;
 	public int Turn;
+	GameObject[] Units;
 
 	void Start () {
 		offset = Random.Range (-100f, 100f);
@@ -55,6 +56,7 @@ public class ManagerCivilization : MonoBehaviour {
 	}
 
 	void Update(){
+		Units = GameObject.FindGameObjectsWithTag("Unit");
 		if(Input.GetMouseButton(0) || Input.GetMouseButton(1)){
 			Camera.main.GetComponent<AudioSource>().Play(0);
 		}
@@ -62,5 +64,11 @@ public class ManagerCivilization : MonoBehaviour {
 
 	public void NextTurn (){
 		Turn++;
+	}
+		
+	public void CallSettle (){
+		foreach (GameObject Unit in Units) {
+			Unit.GetComponent<Unit> ().Settle ();
+		}
 	}
 }
