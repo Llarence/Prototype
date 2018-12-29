@@ -14,7 +14,7 @@ public class SunMove : MonoBehaviour {
 		if(transform.eulerAngles.x < 180){
 			transform.Rotate(-Time.deltaTime * 1, 0, 0);
 		}
-		if(transform.eulerAngles.x > 180){
+		if(transform.eulerAngles.x >= 180){
 			transform.Rotate(-Time.deltaTime * 25, 0, 0);
 		}
 	}
