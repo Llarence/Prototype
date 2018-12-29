@@ -11,8 +11,8 @@ public class TileBobbing : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		Manager = GameObject.Find ("Manager");
-		offset = transform.position.x/(Manager.GetComponent<ManagerCivilization>().xAmount * 2 + 1);
-		offset2 = transform.position.z/(Manager.GetComponent<ManagerCivilization>().zAmount * 2 + 1);
+		offset = transform.position.x / (Manager.GetComponent<ManagerCivilization>().xAmount * 2 + 1);
+		offset2 = transform.position.z / (Manager.GetComponent<ManagerCivilization>().zAmount * 2 + 1);
 	}
 	
 	// Update is called once per frame
