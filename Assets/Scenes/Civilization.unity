@@ -238,8 +238,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 567940031}
-        m_MethodName: 
+      - m_Target: {fileID: 567940033}
+        m_MethodName: CallSettle
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

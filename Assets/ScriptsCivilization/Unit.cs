@@ -105,9 +105,8 @@ public class Unit : MonoBehaviour {
 	}
 
 	public void Settle (){
-		print ("H");
-		if(CanSettle == true && GetComponent<MeshRenderer>().material.color == Clicked){
-			Instantiate (City, transform.position, Quaternion.identity);
+		if(CanSettle == true){
+			Instantiate (City, new Vector3(transform.position.x, 2, transform.position.z), Quaternion.identity);
 			Destroy (gameObject);
 		}
 	}
