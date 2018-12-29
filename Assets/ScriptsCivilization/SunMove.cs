@@ -11,6 +11,11 @@ public class SunMove : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		transform.Rotate(-Time.deltaTime * 5, 0, 0);
+		if(transform.eulerAngles.x < 180){
+			transform.Rotate(-Time.deltaTime * 1, 0, 0);
+		}
+		if(transform.eulerAngles.x > 180){
+			transform.Rotate(-Time.deltaTime * 25, 0, 0);
+		}
 	}
 }
