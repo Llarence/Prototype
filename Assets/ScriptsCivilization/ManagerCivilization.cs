@@ -18,7 +18,6 @@ public class ManagerCivilization : MonoBehaviour {
 	bool NoPlayerCity = true;
 	public int Turn;
 
-
 	void Start () {
 		offset = Random.Range (-100f, 100f);
 		x = -xAmount * 10;

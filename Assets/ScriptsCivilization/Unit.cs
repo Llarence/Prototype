@@ -30,9 +30,11 @@ public class Unit : MonoBehaviour {
 					if (GetComponent<MeshRenderer>().material.color == NotClicked) {
 						GetComponent<MeshRenderer>().material.color = Clicked;
 						if (CanSettle == true) {
+							GameObject.Find ("Settle").GetComponent<RectTransform>().eulerAngles = new Vector3 (0, 0, 0);
 						}
 					} else {
 						GetComponent<MeshRenderer>().material.color = NotClicked;
+						GameObject.Find ("Settle").GetComponent<RectTransform>().eulerAngles = new Vector3 (0, 90, 0);
 					}
 				}else{
 					GetComponent<MeshRenderer>().material.color = NotClicked;
