@@ -12,6 +12,7 @@ public class Unit : MonoBehaviour {
 	bool DoneForTurn;
 	int MyTurn;
 	public bool CanSettle;
+	public GameObject City;
 
 	// Use this for initialization
 	void Start () {
@@ -105,9 +106,15 @@ public class Unit : MonoBehaviour {
 		}
 	}
 
-	public void Settle (){
+	public void CallSettle (){
+		Settle ();
+	}
+
+	void Settle (){
 		if(CanSettle == true && GetComponent<MeshRenderer>().material.color == Clicked){
-			
+			Instantiate (City, transform.position, Quaternion.identity);
+			Destroy (gameObject.transform.parent.gameObject);
+			Destroy (gameObject);
 		}
 	}
 }
