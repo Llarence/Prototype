@@ -18,15 +18,21 @@ public class SaveCivilizaton : MonoBehaviour {
 	public float[] Position;
 	FileStream Stream;
 	gameState GameState = new gameState();
+	string json_data = "";
 
 	public void Save (string SaveName) {
 		Path = Application.persistentDataPath + "/Player.Save";
 		GameObjects = FindObjectsOfType<GameObject>();
-		foreach (GameObject CurrentObject in GameObjects){
-			GameState.x = CurrentObject.transform.position.x;
-			GameState.y = CurrentObject.transform.position.y;
-			GameState.z = CurrentObject.transform.position.z;
-			File.WriteAllText (Path, JsonUtility.ToJson (GameState));
+		foreach (GameObject CurrentObject in GameObjects) {
+			//GameState.x = CurrentObject.transform.position.x;
+			//GameState.y = CurrentObject.transform.position.y;
+			//GameState.z = CurrentObject.transform.position.z;
+			json_data = json_data + JsonUtility.ToJson(GameState);
+			json_data = json_data + JsonUtility.ToJson(CurrentObject);
 		}
+		print ("starting write");
+		File.WriteAllText (Path, json_data);
+		print ("done write");
 	}
+
 }
