@@ -27,6 +27,8 @@ public class SaveLoadCivilizaton : MonoBehaviour {
 	public int xAmount2;
 	public int zAmount2;
 	float offset2;
+	int I;
+	int I2;
 
 	public void Save (string SaveName) {
 		GameObjects = FindObjectsOfType<GameObject>();
@@ -44,7 +46,6 @@ public class SaveLoadCivilizaton : MonoBehaviour {
 
 	public void Load (){
 		Data = File.ReadAllText (Application.persistentDataPath + "/Player.Save");
-		print (Data);
 		offset2 = float.Parse (Data.Split ('/') [0]);
 		x = -xAmount2 * 10;
 		z = -zAmount2 * 10;
@@ -64,6 +65,15 @@ public class SaveLoadCivilizaton : MonoBehaviour {
 			}
 			z = -xAmount2 * 10;
 			x += 10;
+		}
+		I = 0;
+		while ((Data.Split ('/') [1]).Split('}')[I] != ""){
+			I2 = 0;
+			while (I2 > 4) {
+				
+				I2++;
+			}
+			I++;
 		}
 	}
 }
