@@ -65,9 +65,10 @@ public class SaveLoadCivilizaton : MonoBehaviour {
 			z = -xAmount2 * 10;
 			x += 10;
 		}
-		I = 0;
-		while ((Data.Split ('/') [1]).Split('}')[I] != ""){
-			JsonUtility.FromJson (Data.Split ('/') [1]).Split('}')[I]);
+		I = 1;
+		while ((Data.Split ('/') [1]).Split('|')[I] != null){
+			print (JsonUtility.FromJson<gameState>((Data.Split ('/') [1]).Split('|')[I]).Name.Split ('(') [0]));
+			//Instantiate(Resources.Load(JsonUtility.FromJson<gameState>((Data.Split ('/') [1]).Split('|')[I]).Name.Split ('(') [0]), new Vector3(0,0,0), Quaternion.identity);
 			I++;
 		}
 	}
