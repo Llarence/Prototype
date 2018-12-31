@@ -67,8 +67,7 @@ public class SaveLoadCivilizaton : MonoBehaviour {
 		}
 		I = 0;
 		while ((Data.Split ('/') [1]).Split('}')[I] != ""){
-			Data.Split ('/') [1]).Split('}')[I]
-			Instantiate();
+			JsonUtility.FromJson (Data.Split ('/') [1]).Split('}')[I]);
 			I++;
 		}
 	}
