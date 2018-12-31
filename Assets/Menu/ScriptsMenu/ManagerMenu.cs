@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class ManagerMenu : MonoBehaviour {
 
@@ -20,7 +21,9 @@ public class ManagerMenu : MonoBehaviour {
 	}
 
 	public void Settings () {
-		
+		GameObject.Find ("Play").GetComponent<RectTransform> ().Translate (0, 100000, 0);
+		GameObject.Find ("Settings/Tutorial").GetComponent<RectTransform> ().Translate (0, 100000, 0);
+		GameObject.Find ("Quit").GetComponent<RectTransform> ().Translate (0, 100000, 0);
 	}
 
 	public void Quit () {
