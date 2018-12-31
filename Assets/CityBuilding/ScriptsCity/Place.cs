@@ -28,25 +28,25 @@ public class Place : MonoBehaviour {
 	public void SpawnHouseHologram(){
 		Destroy (ObjectSpawning);
 		SpawningObject = true;
-		ObjectSpawning = Instantiate (HouseHologram, transform.position, Quaternion.identity);
+		ObjectSpawning = Instantiate (HouseHologram, new Vector3(0, -1000, 0), Quaternion.identity);
 		return;
 	}
 	public void SpawnFarmHologram(){
 		Destroy (ObjectSpawning);
 		SpawningObject = true;
-		ObjectSpawning = Instantiate (FarmHologram, transform.position, Quaternion.identity);
+		ObjectSpawning = Instantiate (FarmHologram, new Vector3(0, -1000, 0), Quaternion.identity);
 		return;
 	}
 	public void SpawnGoldMineHologram(){
 		Destroy (ObjectSpawning);
 		SpawningObject = true;
-		ObjectSpawning = Instantiate (GoldMineHologram, transform.position, Quaternion.identity);
+		ObjectSpawning = Instantiate (GoldMineHologram, new Vector3(0, -1000, 0), Quaternion.identity);
 		return;
 	}
 	public void SpawnStorageHologram(){
 		Destroy (ObjectSpawning);
 		SpawningObject = true;
-		ObjectSpawning = Instantiate (StorageHologram, transform.position, Quaternion.identity);
+		ObjectSpawning = Instantiate (StorageHologram, new Vector3(0, -1000, 0), Quaternion.identity);
 		return;
 	}
 }
