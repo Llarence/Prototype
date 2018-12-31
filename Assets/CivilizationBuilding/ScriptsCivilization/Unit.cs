@@ -32,13 +32,16 @@ public class Unit : MonoBehaviour {
 						if (GetComponent<MeshRenderer> ().material.color == NotClicked) {
 							GetComponent<MeshRenderer> ().material.color = Clicked;
 							if (CanSettle == true) {
-								GameObject.Find ("Settle").GetComponent<RectTransform> ().eulerAngles = new Vector3 (0, 0, 0);
+								StartCoroutine (ShowSettleButton());
 							}
 						} else {
 							GetComponent<MeshRenderer> ().material.color = NotClicked;
 							GameObject.Find ("Settle").GetComponent<RectTransform> ().eulerAngles = new Vector3 (0, 90, 0);
 						}
 					} else {
+						if(GetComponent<MeshRenderer> ().material.color == Clicked){
+							GameObject.Find ("Settle").GetComponent<RectTransform> ().eulerAngles = new Vector3 (0, 90, 0);
+						}
 						GetComponent<MeshRenderer> ().material.color = NotClicked;
 					}
 				}
@@ -112,5 +115,10 @@ public class Unit : MonoBehaviour {
 			Instantiate (City, new Vector3(transform.position.x, 2, transform.position.z), Quaternion.identity);
 			Destroy (gameObject);
 		}
+	}
+
+	public IEnumerator ShowSettleButton (){
+		yield return new WaitForSeconds (Time.deltaTime * 2 + 0.1f);
+		GameObject.Find ("Settle").GetComponent<RectTransform> ().eulerAngles = new Vector3 (0, 0, 0);
 	}
 }
