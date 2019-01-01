@@ -11,9 +11,9 @@ public class ManagerCity : MonoBehaviour {
 	GameObject[] Storages;
 	public GameObject[] People;
 	public GameObject Person;
-	int Food;
+	public int Food;
 	public int Population;
-	int Gold;
+	public int Gold;
 	public Text Text;
 	float TickTime;
 
