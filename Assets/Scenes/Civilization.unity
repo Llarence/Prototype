@@ -154,9 +154,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea7ca2553adbdac4989d4a11d7915b05, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Mountain: {fileID: 0}
-  Grass: {fileID: 0}
-  Water: {fileID: 0}
+  Mountain: {fileID: 1109757292673606, guid: c17752786e7b2be45b357d164f5d6a1c, type: 2}
+  Grass: {fileID: 1886334014106876, guid: bc3719f8ef3618845ba64aa6b54e0785, type: 2}
+  Water: {fileID: 1253534998859838, guid: 13cded6a17286474c90c812a2a3e6d1a, type: 2}
   City: {fileID: 1898350982209666, guid: 44fbf82325d29d7448492b6cfb193b85, type: 2}
   Warrior: {fileID: 1445357711600342, guid: 913f00b08c4c5444789900f4d92f1635, type: 2}
   Settler: {fileID: 1088820800338938, guid: 6517a9e7393004047a8183aee5332c91, type: 2}
