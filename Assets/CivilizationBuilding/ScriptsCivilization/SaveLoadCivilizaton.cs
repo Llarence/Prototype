@@ -34,7 +34,7 @@ public class SaveLoadCivilizaton : MonoBehaviour {
 	public void Save (string SaveName) {
 		GameObjects = FindObjectsOfType<GameObject>();
 		foreach (GameObject CurrentObject in GameObjects) {
-			if(CurrentObject.name != "Grass(Clone)" && CurrentObject.name != "Water(Clone)" && CurrentObject.name != "Mountain(Clone)" && CurrentObject.name != "EventSystem" && CurrentObject.name != "Manager" && CurrentObject.name != "Directional Light"  && CurrentObject.name != "Main Camera" && CurrentObject.tag != "Unit" && CurrentObject.layer != 5){
+			if(CurrentObject.name != "Grass(Clone)" && CurrentObject.name != "Water(Clone)" && CurrentObject.name != "Mountain(Clone)" && CurrentObject.name != "EventSystem" && CurrentObject.name != "Manager" && CurrentObject.name != "Directional Light"  && CurrentObject.name != "Main Camera" && CurrentObject.layer != 5){
 				GameState.x = CurrentObject.transform.position.x;
 				GameState.y = CurrentObject.transform.position.y;
 				GameState.z = CurrentObject.transform.position.z;
