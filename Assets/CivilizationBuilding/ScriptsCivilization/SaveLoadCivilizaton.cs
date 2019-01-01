@@ -39,7 +39,7 @@ public class SaveLoadCivilizaton : MonoBehaviour {
 				GameState.y = CurrentObject.transform.position.y;
 				GameState.z = CurrentObject.transform.position.z;
 				GameState.Name = CurrentObject.name;
-				json_data = json_data + JsonUtility.ToJson(GameState);
+				json_data = json_data + "|" + JsonUtility.ToJson(GameState);
 			}
 		}
 		File.WriteAllText (Application.persistentDataPath + "/Player.Save", GetComponent<ManagerCivilization>().offset + "/" + json_data);
@@ -71,7 +71,7 @@ public class SaveLoadCivilizaton : MonoBehaviour {
 		}
 		I = 1;
 		while ((Data.Split ('/') [1]).Split('|')[I] != null){
-				Instantiate(Resources.Load(JsonUtility.FromJson<gameState>((Data.Split ('/') [1]).Split('|')[I]).Name.Split ('(') [0]), new Vector3(float.Parse ((Data.Split ('/') [1]).Split('|')[I].Split(':')[1].Split(',')[0]), float.Parse ((Data.Split ('/') [1]).Split('|')[I].Split(':')[2].Split(',')[0]), float.Parse ((Data.Split ('/') [1]).Split('|')[I].Split(':')[3].Split(',')[0])), Quaternion.identity);
+			Instantiate(Resources.Load(JsonUtility.FromJson<gameState>((Data.Split ('/') [1]).Split('|')[I]).Name.Split ('(') [0]), new Vector3(float.Parse ((Data.Split ('/') [1]).Split('|')[I].Split(':')[1].Split(',')[0]), float.Parse ((Data.Split ('/') [1]).Split('|')[I].Split(':')[2].Split(',')[0]), float.Parse ((Data.Split ('/') [1]).Split('|')[I].Split(':')[3].Split(',')[0])), Quaternion.identity);
 			I++;
 		}
 	}
