@@ -12,7 +12,7 @@ public class ManagerCivilization : MonoBehaviour {
 	public GameObject Settler;
 	int x;
 	int z;
-	float offset;
+	public float offset;
 	public int xAmount;
 	public int zAmount;
 	bool NoPlayerCity = true;
