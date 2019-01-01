@@ -17,7 +17,7 @@ public class SaveLoadCity : MonoBehaviour {
 	public float[] Position;
 	FileStream Stream;
 	gameState2 GameState = new gameState2();
-	string json_data = "";
+	string json_data;
 	string Data;
 	int x;
 	int z;
@@ -25,6 +25,7 @@ public class SaveLoadCity : MonoBehaviour {
 	int I;
 
 	public void Save2 (string SaveName) {
+		json_data = "";
 		GameObjects = FindObjectsOfType<GameObject>();
 		foreach (GameObject CurrentObject in GameObjects) {
 			if(CurrentObject.name != "Ground" && CurrentObject.name != "EventSystem" && CurrentObject.name != "Manager" && CurrentObject.name != "Directional Light"  && CurrentObject.name != "MainCamera" && CurrentObject.tag != "Person" && CurrentObject.layer!= 5 && CurrentObject.layer != 2){
