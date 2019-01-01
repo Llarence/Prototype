@@ -39,7 +39,7 @@ public class SaveLoadCity : MonoBehaviour {
 	}
 
 	public void Load2 (){
-		print (Data.Split ('/') [0]);
+		Data = File.ReadAllText (Application.persistentDataPath + "/Player.SaveCity");
 		GetComponent<ManagerCity>().Gold = int.Parse (Data.Split ('/') [0]);
 		GetComponent<ManagerCity>().Gold = int.Parse (Data.Split ('/') [1]);
 		GetComponent<ManagerCity>().Gold = int.Parse (Data.Split ('/') [2]);
