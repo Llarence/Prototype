@@ -28,6 +28,8 @@ public class SaveLoadCivilizaton : MonoBehaviour {
 	public int zAmount2;
 	float offset2;
 	int I;
+	public GameObject Text;
+	public GameObject Text2;
 
 	public void Save (string SaveName) {
 		GameObjects = FindObjectsOfType<GameObject>();
@@ -44,6 +46,8 @@ public class SaveLoadCivilizaton : MonoBehaviour {
 	}
 
 	public void Load (){
+		Destroy (Text);
+		Destroy (Text2);
 		Data = File.ReadAllText (Application.persistentDataPath + "/Player.Save");
 		offset2 = float.Parse (Data.Split ('/') [0]);
 		x = -xAmount2 * 10;

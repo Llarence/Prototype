@@ -18,8 +18,12 @@ public class ManagerCivilization : MonoBehaviour {
 	bool NoPlayerCity = true;
 	public int Turn;
 	GameObject[] Units;
+	public GameObject Text;
+	public GameObject Text2;
 
 	public void GenerateMap () {
+		Destroy (Text);
+		Destroy (Text2);
 		offset = Random.Range (-100f, 100f);
 		x = -xAmount * 10;
 		z = -zAmount * 10;

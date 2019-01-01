@@ -164,6 +164,8 @@ MonoBehaviour:
   xAmount: 50
   zAmount: 50
   Turn: 0
+  Text: {fileID: 1420131749}
+  Text2: {fileID: 861055306}
 --- !u!114 &567940034
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -181,6 +183,8 @@ MonoBehaviour:
   Position: []
   xAmount2: 50
   zAmount2: 50
+  Text: {fileID: 1420131749}
+  Text2: {fileID: 861055306}
 --- !u!1 &629720050
 GameObject:
   m_ObjectHideFlags: 0
