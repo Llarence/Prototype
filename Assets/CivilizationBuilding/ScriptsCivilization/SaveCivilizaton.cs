@@ -9,7 +9,6 @@ public class gameState {
 	public float y;
 	public float z;
 	public string Name;
-	public float Offset;
 }
 
 public class SaveCivilizaton : MonoBehaviour {
@@ -35,7 +34,7 @@ public class SaveCivilizaton : MonoBehaviour {
 			}
 		}
 		print ("starting write a");
-		File.WriteAllText (Path, JsonUtility.ToJson(GameState.Offset) + json_data);
+		File.WriteAllText (Path, GetComponent<ManagerCivilization>().offset + json_data);
 		print ("done write");
 		Load ();
 	}
