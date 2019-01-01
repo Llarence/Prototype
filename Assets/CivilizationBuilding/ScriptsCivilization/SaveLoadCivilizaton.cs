@@ -16,7 +16,6 @@ public class SaveLoadCivilizaton : MonoBehaviour {
 	public GameObject Mountain2;
 	public GameObject Grass2;
 	public GameObject Water2;
-	string Path;
 	GameObject[] GameObjects;
 	public float[] Position;
 	FileStream Stream;
@@ -30,7 +29,6 @@ public class SaveLoadCivilizaton : MonoBehaviour {
 	float offset2;
 
 	public void Save (string SaveName) {
-		Path = Application.persistentDataPath + "/Player.Save";
 		GameObjects = FindObjectsOfType<GameObject>();
 		foreach (GameObject CurrentObject in GameObjects) {
 			if(CurrentObject.name != "Grass(Clone)" && CurrentObject.name != "Water(Clone)" && CurrentObject.name != "Mountain(Clone)" && CurrentObject.name != "EventSystem" && CurrentObject.name != "Manager" && CurrentObject.name != "Directional Light" && CurrentObject.tag != "Unit" && CurrentObject.layer != 5){
@@ -41,13 +39,13 @@ public class SaveLoadCivilizaton : MonoBehaviour {
 				json_data = json_data + JsonUtility.ToJson(GameState);
 			}
 		}
-		print ("starting write a");
-		File.WriteAllText (Path, GetComponent<ManagerCivilization>().offset + json_data);
-		print ("done write");
+		File.WriteAllText (Application.persistentDataPath + "/Player.Save", GetComponent<ManagerCivilization>().offset + "/" + json_data);
 	}
 
 	public void Load (){
-		Data = File.ReadAllText (Path);
+		Data = File.ReadAllText (Application.persistentDataPath + "/Player.Save");
+		print (Data);
+		offset2 = float.Parse (Data.Split ('/') [0]);
 		x = -xAmount2 * 10;
 		z = -zAmount2 * 10;
 		while (x < (xAmount2 * 10) + 10) {
@@ -67,6 +65,5 @@ public class SaveLoadCivilizaton : MonoBehaviour {
 			z = -xAmount2 * 10;
 			x += 10;
 		}
-		print (Data);
 	}
 }
