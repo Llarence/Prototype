@@ -13,9 +13,9 @@ public class gameState {
 
 public class SaveLoadCivilizaton : MonoBehaviour {
 
-	public GameObject Mountain;
-	public GameObject Grass;
-	public GameObject Water;
+	public GameObject Mountain2;
+	public GameObject Grass2;
+	public GameObject Water2;
 	string Path;
 	GameObject[] GameObjects;
 	public float[] Position;
@@ -53,12 +53,12 @@ public class SaveLoadCivilizaton : MonoBehaviour {
 		while (x < (xAmount2 * 10) + 10) {
 			while (z < (zAmount2 * 10) + 10) {
 				if (Mathf.PerlinNoise((offset2 + ((x + (float)(-xAmount2 * 10))/(5f * xAmount2))), (offset2 + ((z + (float)(-zAmount2 * 10))/(5f * zAmount2)))) < 0.5f) {
-					Instantiate (Water, new Vector3 (x, -1f, z), Quaternion.identity);
+					Instantiate (Water2, new Vector3 (x, -1f, z), Quaternion.identity);
 				} else {
 					if(Mathf.PerlinNoise((offset2 + ((x + (float)(-xAmount2 * 10))/(5f * xAmount2))), (offset2 + ((z + (float)(-zAmount2 * 10))/(5f * zAmount2)))) < 0.825f){
-						Instantiate (Grass, new Vector3 (x, -4.5f, z), Quaternion.identity);
+						Instantiate (Grass2, new Vector3 (x, -4.5f, z), Quaternion.identity);
 					} else {
-						Instantiate (Mountain, new Vector3 (x, -0.5f, z), Quaternion.identity);
+						Instantiate (Mountain2, new Vector3 (x, -0.5f, z), Quaternion.identity);
 					}
 
 				}
