@@ -27,7 +27,7 @@ public class SaveLoadCity : MonoBehaviour {
 	public void Save2 (string SaveName) {
 		GameObjects = FindObjectsOfType<GameObject>();
 		foreach (GameObject CurrentObject in GameObjects) {
-			if(CurrentObject.name != "Ground" && CurrentObject.name != "EventSystem" && CurrentObject.name != "Manager" && CurrentObject.name != "Directional Light"  && CurrentObject.name != "Main Camera" && CurrentObject.tag != "UI"){
+			if(CurrentObject.name != "Ground" && CurrentObject.name != "EventSystem" && CurrentObject.name != "Manager" && CurrentObject.name != "Directional Light"  && CurrentObject.name != "MainCamera" && CurrentObject.tag != "Person" && CurrentObject.layer!= 5 && CurrentObject.layer != 2){
 				GameState.x2 = CurrentObject.transform.position.x;
 				GameState.y2 = CurrentObject.transform.position.y;
 				GameState.z2 = CurrentObject.transform.position.z;
@@ -35,17 +35,17 @@ public class SaveLoadCity : MonoBehaviour {
 				json_data = json_data + "|" + JsonUtility.ToJson(GameState);
 			}
 		}
-		File.WriteAllText (Application.persistentDataPath + "/Player.SaveCity", GetComponent<ManagerCity>().Gold + "/" + GetComponent<ManagerCity>().Gold + "/" + GetComponent<ManagerCity>().Gold + "/"  + json_data);
+		File.WriteAllText (Application.persistentDataPath + "/Player.SaveCity", GetComponent<ManagerCity>().Gold + "/" + GetComponent<ManagerCity>().Food + "/" + GetComponent<ManagerCity>().Population + "/"  + json_data);
 	}
 
 	public void Load2 (){
 		Data = File.ReadAllText (Application.persistentDataPath + "/Player.SaveCity");
 		GetComponent<ManagerCity>().Gold = int.Parse (Data.Split ('/') [0]);
-		GetComponent<ManagerCity>().Gold = int.Parse (Data.Split ('/') [1]);
-		GetComponent<ManagerCity>().Gold = int.Parse (Data.Split ('/') [2]);
+		GetComponent<ManagerCity>().Food = int.Parse (Data.Split ('/') [1]);
+		GetComponent<ManagerCity>().Population = int.Parse (Data.Split ('/') [2]);
 		I = 1;
-		while ((Data.Split ('/') [1]).Split('|')[I] != null){
-			Instantiate(Resources.Load(JsonUtility.FromJson<gameState2>((Data.Split ('/') [1]).Split('|')[I]).Name2.Split ('(') [0]), new Vector3(float.Parse ((Data.Split ('/') [1]).Split('|')[I].Split(':')[1].Split(',')[0]), float.Parse ((Data.Split ('/') [1]).Split('|')[I].Split(':')[2].Split(',')[0]), float.Parse ((Data.Split ('/') [1]).Split('|')[I].Split(':')[3].Split(',')[0])), Quaternion.identity);
+		while ((Data.Split ('/') [3]).Split('|')[I] != null){
+			Instantiate(Resources.Load(JsonUtility.FromJson<gameState2>((Data.Split ('/') [3]).Split('|')[I]).Name2.Split ('(') [0]), new Vector3(float.Parse ((Data.Split ('/') [3]).Split('|')[I].Split(':')[1].Split(',')[0]), float.Parse ((Data.Split ('/') [3]).Split('|')[I].Split(':')[2].Split(',')[0]), float.Parse ((Data.Split ('/') [3]).Split('|')[I].Split(':')[3].Split(',')[0])), Quaternion.identity);
 			I++;
 		}
 	}
