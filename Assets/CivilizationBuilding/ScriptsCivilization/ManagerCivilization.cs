@@ -19,7 +19,7 @@ public class ManagerCivilization : MonoBehaviour {
 	public int Turn;
 	GameObject[] Units;
 
-	void Start () {
+	public void GenerateMap () {
 		offset = Random.Range (-100f, 100f);
 		x = -xAmount * 10;
 		z = -zAmount * 10;
