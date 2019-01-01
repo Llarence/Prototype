@@ -32,7 +32,7 @@ public class SaveLoadCivilizaton : MonoBehaviour {
 	public void Save (string SaveName) {
 		GameObjects = FindObjectsOfType<GameObject>();
 		foreach (GameObject CurrentObject in GameObjects) {
-			if(CurrentObject.name != "Grass(Clone)" && CurrentObject.name != "Water(Clone)" && CurrentObject.name != "Mountain(Clone)" && CurrentObject.name != "EventSystem" && CurrentObject.name != "Manager" && CurrentObject.name != "Directional Light" && CurrentObject.tag != "Unit" && CurrentObject.layer != 5){
+			if(CurrentObject.name != "Grass(Clone)" && CurrentObject.name != "Water(Clone)" && CurrentObject.name != "Mountain(Clone)" && CurrentObject.name != "EventSystem" && CurrentObject.name != "Manager" && CurrentObject.name != "Directional Light"  && CurrentObject.name != "Main Camera" && CurrentObject.tag != "Unit" && CurrentObject.layer != 5){
 				GameState.x = CurrentObject.transform.position.x;
 				GameState.y = CurrentObject.transform.position.y;
 				GameState.z = CurrentObject.transform.position.z;
@@ -67,9 +67,7 @@ public class SaveLoadCivilizaton : MonoBehaviour {
 		}
 		I = 1;
 		while ((Data.Split ('/') [1]).Split('|')[I] != null){
-			if(JsonUtility.FromJson<gameState>((Data.Split ('/') [1]).Split('|')[I]).Name.Split ('(') [0] != "Main Camera"){
 				Instantiate(Resources.Load(JsonUtility.FromJson<gameState>((Data.Split ('/') [1]).Split('|')[I]).Name.Split ('(') [0]), new Vector3(float.Parse ((Data.Split ('/') [1]).Split('|')[I].Split(':')[1].Split(',')[0]), float.Parse ((Data.Split ('/') [1]).Split('|')[I].Split(':')[2].Split(',')[0]), float.Parse ((Data.Split ('/') [1]).Split('|')[I].Split(':')[3].Split(',')[0])), Quaternion.identity);
-			}
 			I++;
 		}
 	}
