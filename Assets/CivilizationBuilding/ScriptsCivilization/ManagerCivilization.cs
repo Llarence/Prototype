@@ -7,6 +7,7 @@ public class ManagerCivilization : MonoBehaviour {
 	public GameObject Mountain;
 	public GameObject Grass;
 	public GameObject Water;
+	public GameObject Beach;
 	public GameObject City;
 	public GameObject Warrior;
 	public GameObject Settler;
@@ -24,7 +25,7 @@ public class ManagerCivilization : MonoBehaviour {
 	public void GenerateMap () {
 		Destroy (Text);
 		Destroy (Text2);
-		offset = Random.Range (-100f, 100f);
+		offset = Random.Range (-1000f, 1000f);
 		x = -xAmount * 10;
 		z = -zAmount * 10;
 		while (x < (xAmount * 10) + 10) {
@@ -32,12 +33,15 @@ public class ManagerCivilization : MonoBehaviour {
 				if (Mathf.PerlinNoise((offset + ((x + (float)(-xAmount * 10))/(5f * xAmount))), (offset + ((z + (float)(-zAmount * 10))/(5f * zAmount)))) < 0.5f) {
 					Instantiate (Water, new Vector3 (x, -1f, z), Quaternion.identity);
 				} else {
-					if(Mathf.PerlinNoise((offset + ((x + (float)(-xAmount * 10))/(5f * xAmount))), (offset + ((z + (float)(-zAmount * 10))/(5f * zAmount)))) < 0.825f){
-						Instantiate (Grass, new Vector3 (x, -4.5f, z), Quaternion.identity);
+					if (Mathf.PerlinNoise ((offset + ((x + (float)(-xAmount * 10)) / (5f * xAmount))), (offset + ((z + (float)(-zAmount * 10)) / (5f * zAmount)))) < 0.55f) {
+						Instantiate (Beach, new Vector3 (x, -4.5f, z), Quaternion.identity);
 					} else {
-						Instantiate (Mountain, new Vector3 (x, -0.5f, z), Quaternion.identity);
+						if (Mathf.PerlinNoise ((offset + ((x + (float)(-xAmount * 10)) / (5f * xAmount))), (offset + ((z + (float)(-zAmount * 10)) / (5f * zAmount)))) < 0.825f) {
+							Instantiate (Grass, new Vector3 (x, -4.5f, z), Quaternion.identity);
+						} else {
+							Instantiate (Mountain, new Vector3 (x, -0.5f, z), Quaternion.identity);
+						}
 					}
-
 				}
 				z += 10;
 			}
@@ -58,6 +62,7 @@ public class ManagerCivilization : MonoBehaviour {
 			}
 		}
 	}
+
 
 	void Update(){
 		Units = GameObject.FindGameObjectsWithTag("Unit");
