@@ -34,10 +34,8 @@ public class ManagerCity : MonoBehaviour {
 		}
 		TickTime = Mathf.Clamp (TickTime, 0.5f, Mathf.Infinity);
 		Text.text = ("Population: " + Population + ", Food: " + Food + ", Gold: " + Gold + ", TickTime: " + TickTime);
-		if(Input.GetMouseButton(0) || Input.GetMouseButton(1)){
-			Camera.main.GetComponent<AudioSource>().Play(0);
+
 		}
-	}
 
 	IEnumerator Tick () {
 		yield return new WaitForSeconds (TickTime);
@@ -67,5 +65,7 @@ public class ManagerCity : MonoBehaviour {
 			People = GameObject.FindGameObjectsWithTag ("Person");
 		}
 		StartCoroutine (Tick());
-	}
-}	
+	}	
+}
+
+	

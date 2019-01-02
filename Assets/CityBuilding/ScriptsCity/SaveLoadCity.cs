@@ -37,9 +37,11 @@ public class SaveLoadCity : MonoBehaviour {
 			}
 		}
 		File.WriteAllText (Application.persistentDataPath + "/Player.SaveCity", GetComponent<ManagerCity>().Gold + "/" + GetComponent<ManagerCity>().Food + "/" + GetComponent<ManagerCity>().Population + "/"  + json_data);
+		Camera.main.GetComponent<AudioSource>().Play(0);
 	}
 
 	public void Load2 (){
+		Camera.main.GetComponent<AudioSource>().Play(0);
 		Data = File.ReadAllText (Application.persistentDataPath + "/Player.SaveCity");
 		GetComponent<ManagerCity>().Gold = int.Parse (Data.Split ('/') [0]);
 		GetComponent<ManagerCity>().Food = int.Parse (Data.Split ('/') [1]);

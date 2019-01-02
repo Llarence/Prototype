@@ -27,6 +27,7 @@ public class PlaceHologram : MonoBehaviour {
 		if (Input.GetMouseButtonDown (1) && Colliding == 0) {
 			Instantiate (SpawnObject, transform.position, Quaternion.identity);
 			GameObject.Find ("MainCamera").GetComponent<Place> ().SpawningObject = false;
+			Camera.main.GetComponent<AudioSource>().Play(0);
 			Destroy (gameObject);
 		}
 		if(Colliding == 0){

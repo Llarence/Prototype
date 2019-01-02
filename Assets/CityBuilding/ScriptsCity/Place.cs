@@ -29,24 +29,28 @@ public class Place : MonoBehaviour {
 		Destroy (ObjectSpawning);
 		SpawningObject = true;
 		ObjectSpawning = Instantiate (HouseHologram, new Vector3(0, -1000, 0), Quaternion.identity);
+		Camera.main.GetComponent<AudioSource>().Play(0);
 		return;
 	}
 	public void SpawnFarmHologram(){
 		Destroy (ObjectSpawning);
 		SpawningObject = true;
 		ObjectSpawning = Instantiate (FarmHologram, new Vector3(0, -1000, 0), Quaternion.identity);
+		Camera.main.GetComponent<AudioSource>().Play(0);
 		return;
 	}
 	public void SpawnGoldMineHologram(){
 		Destroy (ObjectSpawning);
 		SpawningObject = true;
 		ObjectSpawning = Instantiate (GoldMineHologram, new Vector3(0, -1000, 0), Quaternion.identity);
+		Camera.main.GetComponent<AudioSource>().Play(0);
 		return;
 	}
 	public void SpawnStorageHologram(){
 		Destroy (ObjectSpawning);
 		SpawningObject = true;
 		ObjectSpawning = Instantiate (StorageHologram, new Vector3(0, -1000, 0), Quaternion.identity);
+		Camera.main.GetComponent<AudioSource>().Play(0);
 		return;
 	}
 }
