@@ -23,6 +23,9 @@ public class Place : MonoBehaviour {
 			Destroy(ObjectSpawning);
 			return;
 		}
+		if (Input.GetKeyDown (KeyCode.R)) {
+			ObjectSpawning.transform.Rotate (0, 90, 0);
+		}
 	}
 
 	public void SpawnHouseHologram(){
