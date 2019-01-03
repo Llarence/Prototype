@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Place : MonoBehaviour {
 
+	public float rotation;
 	public bool SpawningObject = false;
 	public GameObject HouseHologram;
 	public GameObject FarmHologram;
@@ -25,6 +26,7 @@ public class Place : MonoBehaviour {
 		}
 		if (Input.GetKeyDown (KeyCode.R)) {
 			ObjectSpawning.transform.Rotate (0, 90, 0);
+			rotation = rotation + 90;
 		}
 	}
 

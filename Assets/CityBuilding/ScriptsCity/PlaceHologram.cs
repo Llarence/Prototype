@@ -9,6 +9,7 @@ public class PlaceHologram : MonoBehaviour {
 	public LayerMask HitLayers;
 	int Colliding;
 	public float SpawnHeight;
+	public float Rotation;
 	public Color Red;
 	public Color Green;
 
@@ -25,17 +26,21 @@ public class PlaceHologram : MonoBehaviour {
 			transform.position = new Vector3(hit.point.x, SpawnHeight, hit.point.z);
 		}
 		if (Input.GetMouseButtonDown (1) && Colliding == 0) {
+			SpawnObject.transform.Rotate (0, Rotation, 0);
 			Instantiate (SpawnObject, transform.position, Quaternion.identity);
 			GameObject.Find ("MainCamera").GetComponent<Place> ().SpawningObject = false;
 			Camera.main.GetComponent<AudioSource>().Play(0);
 			Destroy (gameObject);
 		}
+
 		if(Colliding == 0){
 			GetComponent<MeshRenderer>().material.color = Green;
 		}
 		if(Colliding > 0){
 			GetComponent<MeshRenderer>().material.color = Red;
 		}
+		Rotation = GameObject.Find ("MainCamera").GetComponent<Place> ().rotation;
+		print ("Rotation = " + Rotation);
 	}
 
 	void OnTriggerEnter (Collider Col){
