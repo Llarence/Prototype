@@ -21,7 +21,7 @@ public class SaveLoadCivilizaton : MonoBehaviour {
 	public float[] Position;
 	FileStream Stream;
 	gameState GameState = new gameState();
-	string json_data = "";
+	string json_data;
 	string Data;
 	int x;
 	int z;
@@ -50,6 +50,7 @@ public class SaveLoadCivilizaton : MonoBehaviour {
 	public void Load (){
 		Destroy (Text);
 		Destroy (Text2);
+		GameObject.Find ("Main Camera").GetComponent<Camera> ().clearFlags = CameraClearFlags.Skybox;
 		Data = File.ReadAllText (Application.persistentDataPath + "/Player.Save");
 		offset2 = float.Parse (Data.Split ('/') [0]);
 		x = -xAmount2 * 10;
