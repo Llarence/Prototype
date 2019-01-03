@@ -51,6 +51,7 @@ public class SaveLoadCivilizaton : MonoBehaviour {
 		Destroy (Text);
 		Destroy (Text2);
 		GameObject.Find ("Main Camera").GetComponent<Camera> ().clearFlags = CameraClearFlags.Skybox;
+		GameObject.Find ("NextTurn").GetComponent<RectTransform> ().rotation.eulerAngles = Vector3.zero;
 		Data = File.ReadAllText (Application.persistentDataPath + "/Player.Save");
 		offset2 = float.Parse (Data.Split ('/') [0]);
 		x = -xAmount2 * 10;
