@@ -8,7 +8,6 @@ public class CityCivilization : MonoBehaviour {
 	GameObject Manager;
 	RaycastHit Hit;
 	float ClickTime;
-	bool HasBeenCalled;
 
 	// Use this for initialization
 	void Start () {
