@@ -31,6 +31,7 @@ public class SaveLoadCivilizaton : MonoBehaviour {
 	int I;
 	public GameObject Text;
 	public GameObject Text2;
+	public bool IsSaving;
 
 	public void Save (string SaveName) {
 		json_data = "";
