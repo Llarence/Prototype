@@ -24,9 +24,25 @@ public class ManagerMenu : MonoBehaviour {
 		GameObject.Find ("Play").GetComponent<RectTransform> ().Translate (0, 100000, 0);
 		GameObject.Find ("Settings/Tutorial").GetComponent<RectTransform> ().Translate (0, 100000, 0);
 		GameObject.Find ("Quit").GetComponent<RectTransform> ().Translate (0, 100000, 0);
+		GameObject.Find ("Tutorial").GetComponent<RectTransform> ().Translate (0, -100000, 0);
+		GameObject.Find ("Back").GetComponent<RectTransform> ().Translate (0, -100030, 0);
 	}
 
 	public void Quit () {
 		Application.Quit();
+	}
+
+	public void Tutorial (){
+		GameObject.Find ("Back").GetComponent<RectTransform> ().Translate (0, 100030, 0);
+		GameObject.Find ("Tutorial").GetComponent<RectTransform> ().Translate (0, 100000, 0);
+		SceneManager.LoadScene ("Tutorial");
+	}
+
+	public void Back () {
+		GameObject.Find ("Play").GetComponent<RectTransform> ().Translate (0, -100000, 0);
+		GameObject.Find ("Settings/Tutorial").GetComponent<RectTransform> ().Translate (0, -100000, 0);
+		GameObject.Find ("Quit").GetComponent<RectTransform> ().Translate (0, -100000, 0);
+		GameObject.Find ("Tutorial").GetComponent<RectTransform> ().Translate (0, 100000, 0);
+		GameObject.Find ("Back").GetComponent<RectTransform> ().Translate (0, 100030, 0);
 	}
 }

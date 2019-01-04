@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Civilization.unity
     guid: ab49fee177f54824b86fcaf440b9ba2c
+  - enabled: 1
+    path: Assets/Scenes/Tutorial.unity
+    guid: 236095634d310d74494a16cf6ebcb4c3
   m_configObjects: {}
