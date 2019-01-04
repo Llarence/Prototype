@@ -8,7 +8,6 @@ public class CityCivilization : MonoBehaviour {
 	GameObject Manager;
 	RaycastHit Hit;
 	float ClickTime;
-	public bool HasBeenCalled;
 
 	// Use this for initialization
 	void Start () {
@@ -21,7 +20,7 @@ public class CityCivilization : MonoBehaviour {
 			if (Physics.Raycast (Camera.main.ScreenPointToRay (Input.mousePosition), out Hit)) {
 				if (Hit.collider.gameObject == gameObject) {
 					ClickTime = ClickTime + Time.deltaTime;
-					if(ClickTime >= 1 && HasBeenCalled == false){
+					if(ClickTime >= 1){
 						Manager.GetComponent<SaveLoadCivilizaton> ().Save ("");
 						SceneManager.LoadScene ("CityBuilding");
 					}
