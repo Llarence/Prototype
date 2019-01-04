@@ -27,6 +27,7 @@ public class Unit : MonoBehaviour {
 		}
 		if (Input.mousePosition.x < Screen.width - 350) {
 			if (Input.GetMouseButtonDown (0)) {
+				Camera.main.GetComponent<AudioSource>().Play(0);
 				if (Physics.Raycast (Camera.main.ScreenPointToRay (Input.mousePosition), out Hit)) {
 					if (Hit.collider.gameObject == gameObject) {
 						if (GetComponent<MeshRenderer> ().material.color == NotClicked) {
