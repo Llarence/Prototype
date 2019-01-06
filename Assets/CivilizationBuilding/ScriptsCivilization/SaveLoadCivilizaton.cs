@@ -53,6 +53,7 @@ public class SaveLoadCivilizaton : MonoBehaviour {
 	}
 
 	public void Load (){
+		print (Path.GetFileName(Application.persistentDataPath + "/Civilization."));
 		GetComponent<ManagerCivilization> ().GameName = Text.transform.GetChild (1).transform.GetChild(2).GetComponent<Text>().text;
 		LoadName = GetComponent<ManagerCivilization> ().GameName;
 		Destroy (Text);
