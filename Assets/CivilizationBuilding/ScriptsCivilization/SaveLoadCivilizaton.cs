@@ -34,10 +34,10 @@ public class SaveLoadCivilizaton : MonoBehaviour {
 	public GameObject Text2;
 	public bool IsSaving;
 	string SaveName;
+	string LoadName;
 
 	public void Save () {
 		SaveName = GetComponent<ManagerCivilization> ().GameName;
-		print (SaveName);
 		json_data = "";
 		GameObjects = FindObjectsOfType<GameObject>();
 		foreach (GameObject CurrentObject in GameObjects) {
@@ -49,16 +49,17 @@ public class SaveLoadCivilizaton : MonoBehaviour {
 				json_data = json_data + "|" + JsonUtility.ToJson(GameState);
 			}
 		}
-		File.WriteAllText (Application.persistentDataPath + "/Player." + SaveName, GetComponent<ManagerCivilization>().offset + "/" + json_data);
+		File.WriteAllText (Application.persistentDataPath + "/Civilization." + SaveName, GetComponent<ManagerCivilization>().offset + "/" + json_data);
 	}
 
 	public void Load (){
 		GetComponent<ManagerCivilization> ().GameName = Text.transform.GetChild (1).transform.GetChild(2).GetComponent<Text>().text;
+		LoadName = GetComponent<ManagerCivilization> ().GameName;
 		Destroy (Text);
 		Destroy (Text2);
 		GameObject.Find ("Main Camera").GetComponent<Camera> ().clearFlags = CameraClearFlags.Skybox;
 		GameObject.Find ("NextTurn").GetComponent<RectTransform> ().Rotate(0, -90, 0);
-		Data = File.ReadAllText (Application.persistentDataPath + "/Player.Save");
+		Data = File.ReadAllText (Application.persistentDataPath + "/Civilization." + LoadName);
 		offset2 = float.Parse (Data.Split ('/') [0]);
 		x = -xAmount2 * 10;
 		z = -zAmount2 * 10;
