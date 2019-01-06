@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
+using UnityEngine.UI;
 
 [System.Serializable]
 public class gameState {
@@ -32,8 +33,11 @@ public class SaveLoadCivilizaton : MonoBehaviour {
 	public GameObject Text;
 	public GameObject Text2;
 	public bool IsSaving;
+	string SaveName;
 
-	public void Save (string SaveName) {
+	public void Save () {
+		SaveName = GetComponent<ManagerCivilization> ().GameName;
+		print (SaveName);
 		json_data = "";
 		GameObjects = FindObjectsOfType<GameObject>();
 		foreach (GameObject CurrentObject in GameObjects) {
@@ -45,10 +49,11 @@ public class SaveLoadCivilizaton : MonoBehaviour {
 				json_data = json_data + "|" + JsonUtility.ToJson(GameState);
 			}
 		}
-		File.WriteAllText (Application.persistentDataPath + "/Player.Save", GetComponent<ManagerCivilization>().offset + "/" + json_data);
+		File.WriteAllText (Application.persistentDataPath + "/Player." + SaveName, GetComponent<ManagerCivilization>().offset + "/" + json_data);
 	}
 
 	public void Load (){
+		GetComponent<ManagerCivilization> ().GameName = Text.transform.GetChild (1).transform.GetChild(2).GetComponent<Text>().text;
 		Destroy (Text);
 		Destroy (Text2);
 		GameObject.Find ("Main Camera").GetComponent<Camera> ().clearFlags = CameraClearFlags.Skybox;

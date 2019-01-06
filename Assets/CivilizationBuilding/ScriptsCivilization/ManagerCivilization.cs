@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ManagerCivilization : MonoBehaviour {
 
@@ -21,8 +22,10 @@ public class ManagerCivilization : MonoBehaviour {
 	GameObject[] Units;
 	public GameObject Text;
 	public GameObject Text2;
+	public string GameName;
 
 	public void GenerateMap () {
+		GameName = Text.transform.GetChild (1).transform.GetChild(2).GetComponent<Text>().text;
 		Destroy (Text);
 		Destroy (Text2);
 		GameObject.Find ("Main Camera").GetComponent<Camera> ().clearFlags = CameraClearFlags.Skybox;
@@ -67,6 +70,7 @@ public class ManagerCivilization : MonoBehaviour {
 
 
 	void Update(){
+		
 		Units = GameObject.FindGameObjectsWithTag("Unit");
 		if(Input.GetMouseButton(0) || Input.GetMouseButton(1)){
 			Camera.main.GetComponent<AudioSource>().Play(0);

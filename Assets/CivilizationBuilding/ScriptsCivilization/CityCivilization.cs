@@ -21,7 +21,7 @@ public class CityCivilization : MonoBehaviour {
 				if (Hit.collider.gameObject == gameObject) {
 					ClickTime = ClickTime + Time.deltaTime;
 					if(ClickTime >= 1){
-						Manager.GetComponent<SaveLoadCivilizaton> ().Save ("");
+						Manager.GetComponent<SaveLoadCivilizaton> ().Save ();
 						SceneManager.LoadScene ("CityBuilding");
 					}
 				}
