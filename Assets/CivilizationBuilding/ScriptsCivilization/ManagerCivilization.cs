@@ -70,7 +70,6 @@ public class ManagerCivilization : MonoBehaviour {
 
 
 	void Update(){
-		
 		Units = GameObject.FindGameObjectsWithTag("Unit");
 		if(Input.GetMouseButton(0) || Input.GetMouseButton(1)){
 			Camera.main.GetComponent<AudioSource>().Play(0);
