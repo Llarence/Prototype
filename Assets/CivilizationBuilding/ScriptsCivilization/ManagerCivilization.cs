@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class ManagerCivilization : MonoBehaviour {
 
@@ -78,5 +79,7 @@ public class ManagerCivilization : MonoBehaviour {
 		foreach (GameObject Unit in Units) {
 			Unit.GetComponent<Unit> ().Settle ();
 		}
+		SceneManager.LoadScene ("CityBuilding");
+		DontDestroyOnLoad (GameObject.Find );
 	}
 }
