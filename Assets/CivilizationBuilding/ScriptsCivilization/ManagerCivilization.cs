@@ -26,6 +26,7 @@ public class ManagerCivilization : MonoBehaviour {
 	public string GameName;
 	List<string> files;
 	public GameObject newText;
+	GameObject text;
 	int loops;
 
 	void Start (){
@@ -39,10 +40,10 @@ public class ManagerCivilization : MonoBehaviour {
 		}
 		foreach (string file in files){
 			loops++;
-			newText = Instantiate (newText, Vector3.zero, Quaternion.identity);
-			newText.transform.SetParent (GameObject.Find("Canvas").transform);
-			newText.GetComponent<RectTransform>().localPosition = new Vector3 (60 * (loops - (files.Count/2f)), -60, 0);
-			newText.GetComponent<Text>().text = file;
+			text = Instantiate (newText, Vector3.zero, Quaternion.identity);
+			text.transform.SetParent (GameObject.Find("Canvas").transform);
+			text.GetComponent<RectTransform>().localPosition = new Vector3 ((320 * ((loops) - (files.Count/2f))) - 160, -60, 0);
+			text.GetComponent<Text>().text = file;
 		}
 	}
 
