@@ -41,7 +41,7 @@ public class ManagerCivilization : MonoBehaviour {
 			loops++;
 			newText = Instantiate (newText, Vector3.zero, Quaternion.identity);
 			newText.transform.SetParent (GameObject.Find("Canvas").transform);
-			newText.transform.position = new Vector3 (60 * (loops - (files.Count/2)), -60, 0);
+			newText.GetComponent<RectTransform>().localPosition = new Vector3 (60 * (loops - (files.Count/2f)), -60, 0);
 			newText.GetComponent<Text>().text = file;
 		}
 	}
