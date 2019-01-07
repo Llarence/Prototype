@@ -17,6 +17,7 @@ public class ManagerMenu : MonoBehaviour {
 	}
 
 	public void Play () {
+		DontDestroyOnLoad (GameObject.Find ("GameStats"));
 		SceneManager.LoadScene ("Civilization");
 	}
 
@@ -33,6 +34,7 @@ public class ManagerMenu : MonoBehaviour {
 	}
 
 	public void Tutorial (){
+		DontDestroyOnLoad (GameObject.Find ("GameStats"));
 		GameObject.Find ("Back").GetComponent<RectTransform> ().Translate (0, 100000, 0);
 		GameObject.Find ("Tutorial").GetComponent<RectTransform> ().Translate (0, 100000, 0);
 		SceneManager.LoadScene ("Tutorial");

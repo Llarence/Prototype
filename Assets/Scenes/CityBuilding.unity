@@ -225,7 +225,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 12c3778e7bc27e649a7d03412c4a28a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rotation: 0
   SpawningObject: 0
   HouseHologram: {fileID: 1737629289441798, guid: 6aea7553b3d4328488b1e6452aea67ab,
     type: 2}

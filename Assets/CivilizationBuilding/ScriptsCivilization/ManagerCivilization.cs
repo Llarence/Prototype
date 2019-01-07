@@ -80,6 +80,7 @@ public class ManagerCivilization : MonoBehaviour {
 			Unit.GetComponent<Unit> ().Settle ();
 		}
 		SceneManager.LoadScene ("CityBuilding");
-		DontDestroyOnLoad (GameObject.Find );
+		DontDestroyOnLoad (GameObject.Find ("GameStats"));
+		//This will make it so we can access the GameStats Game Object throughout the different scenes
 	}
 }
