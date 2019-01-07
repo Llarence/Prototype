@@ -51,6 +51,9 @@ public class ManagerCivilization : MonoBehaviour {
 		GameName = Text.transform.GetChild (1).transform.GetChild(2).GetComponent<Text>().text;
 		Destroy (Text);
 		Destroy (Text2);
+		while (GameObject.Find("GameNames(Clone)") != null){
+			Destroy (GameObject.Find("GameNames(Clone)"));
+		}
 		GameObject.Find ("Main Camera").GetComponent<Camera> ().clearFlags = CameraClearFlags.Skybox;
 		GameObject.Find ("NextTurn").GetComponent<RectTransform> ().Rotate(0, -90, 0);
 		offset = Random.Range (-1000f, 1000f);
