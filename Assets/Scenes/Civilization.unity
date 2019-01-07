@@ -502,6 +502,7 @@ MonoBehaviour:
   Text2: {fileID: 282637209}
   GameName: 
   newText: {fileID: 1588952278026000, guid: 5d94fb877925ada4a96edf709059eeac, type: 2}
+  texts: []
 --- !u!114 &567940034
 MonoBehaviour:
   m_ObjectHideFlags: 0
