@@ -512,16 +512,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6fdb50f463ce31b4d9cd151df6e3d602, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Mountain2: {fileID: 1109757292673606, guid: c17752786e7b2be45b357d164f5d6a1c, type: 2}
-  Grass2: {fileID: 1886334014106876, guid: bc3719f8ef3618845ba64aa6b54e0785, type: 2}
-  Water2: {fileID: 1253534998859838, guid: 13cded6a17286474c90c812a2a3e6d1a, type: 2}
-  Beach2: {fileID: 1914847747313352, guid: 4244edef98f42bf4c8d12e43541e4b4d, type: 2}
-  Position: []
+  mountain2: {fileID: 1109757292673606, guid: c17752786e7b2be45b357d164f5d6a1c, type: 2}
+  grass2: {fileID: 1886334014106876, guid: bc3719f8ef3618845ba64aa6b54e0785, type: 2}
+  water2: {fileID: 1253534998859838, guid: 13cded6a17286474c90c812a2a3e6d1a, type: 2}
+  beach2: {fileID: 1914847747313352, guid: 4244edef98f42bf4c8d12e43541e4b4d, type: 2}
+  position: []
   xAmount2: 50
   zAmount2: 50
-  Text: {fileID: 1303141131}
-  Text2: {fileID: 282637209}
-  IsSaving: 0
+  text: {fileID: 1303141131}
+  text2: {fileID: 282637209}
+  isSaving: 0
 --- !u!1 &629720050
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -23,6 +24,27 @@ public class ManagerCivilization : MonoBehaviour {
 	public GameObject Text;
 	public GameObject Text2;
 	public string GameName;
+	List<string> files;
+	public GameObject newText;
+	int loops;
+
+	void Start (){
+		files = new List<string> ();
+		foreach (string file in System.IO.Directory.GetFiles(Application.persistentDataPath)){
+			if (file.Split ('~').Length > 1) {
+				if ((file.Split ('~') [1]).Split ('.') [0] == "Civilization") {
+					files.Add((file.Split ('~') [1]).Split ('.') [1]);
+				}
+			}
+		}
+		foreach (string file in files){
+			loops++;
+			newText = Instantiate (newText, Vector3.zero, Quaternion.identity);
+			newText.transform.SetParent (GameObject.Find("Canvas").transform);
+			newText.transform.position = new Vector3 (60 * (loops - (files.Count/2)), -60, 0);
+			newText.GetComponent<Text>().text = file;
+		}
+	}
 
 	public void GenerateMap () {
 		GameName = Text.transform.GetChild (1).transform.GetChild(2).GetComponent<Text>().text;

@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 [System.Serializable]
-public class gameState {
+public class GameState {
 	public float x;
 	public float y;
 	public float z;
@@ -14,75 +14,67 @@ public class gameState {
 
 public class SaveLoadCivilizaton : MonoBehaviour {
 
-	public GameObject Mountain2;
-	public GameObject Grass2;
-	public GameObject Water2;
-	public GameObject Beach2;
-	GameObject[] GameObjects;
-	public float[] Position;
-	FileStream Stream;
-	gameState GameState = new gameState();
+	public GameObject mountain2;
+	public GameObject grass2;
+	public GameObject water2;
+	public GameObject beach2;
+	GameObject[] gameObjects;
+	public float[] position;
+	FileStream stream;
+	GameState gameState = new GameState();
 	string json_data;
-	string Data;
+	string data;
 	int x;
 	int z;
 	public int xAmount2;
 	public int zAmount2;
 	float offset2;
-	int I;
-	public GameObject Text;
-	public GameObject Text2;
-	public bool IsSaving;
-	string SaveName;
-	string LoadName;
+	int i;
+	public GameObject text;
+	public GameObject text2;
+	public bool isSaving;
+	string saveName;
+	string loadName;
 
 	public void Save () {
-		SaveName = GetComponent<ManagerCivilization> ().GameName;
+		saveName = GetComponent<ManagerCivilization> ().GameName;
 		json_data = "";
-		GameObjects = FindObjectsOfType<GameObject>();
-		foreach (GameObject CurrentObject in GameObjects) {
+		gameObjects = FindObjectsOfType<GameObject>();
+		foreach (GameObject CurrentObject in gameObjects) {
 			if(CurrentObject.name != "Grass(Clone)" && CurrentObject.name != "Water(Clone)" && CurrentObject.name != "Mountain(Clone)" && CurrentObject.name != "Beach(Clone)"  && CurrentObject.name != "EventSystem" && CurrentObject.name != "Manager" && CurrentObject.name != "Directional Light"  && CurrentObject.name != "Main Camera" && CurrentObject.layer != 5){
-				GameState.x = CurrentObject.transform.position.x;
-				GameState.y = CurrentObject.transform.position.y;
-				GameState.z = CurrentObject.transform.position.z;
-				GameState.Name = CurrentObject.name;
-				json_data = json_data + "|" + JsonUtility.ToJson(GameState);
+				gameState.x = CurrentObject.transform.position.x;
+				gameState.y = CurrentObject.transform.position.y;
+				gameState.z = CurrentObject.transform.position.z;
+				gameState.Name = CurrentObject.name;
+				json_data = json_data + "|" + JsonUtility.ToJson(gameState);
 			}
 		}
-		File.WriteAllText (Application.persistentDataPath + "/~Civilization." + SaveName, GetComponent<ManagerCivilization>().offset + "/" + json_data);
+		File.WriteAllText (Application.persistentDataPath + "/~Civilization." + saveName, GetComponent<ManagerCivilization>().offset + "/" + json_data);
 	}
 
 	public void Load (){
-		foreach (string file in System.IO.Directory.GetFiles(Application.persistentDataPath)){
-			print (file.Split ('~').Length);
-			if (file.Split ('~').Length > 1) {
-				if ((file.Split ('~') [1]).Split ('.') [0] == "Civilization") {
-					print (file);
-				}
-			}
-		}
-		GetComponent<ManagerCivilization> ().GameName = Text.transform.GetChild (1).transform.GetChild(2).GetComponent<Text>().text;
-		LoadName = GetComponent<ManagerCivilization> ().GameName;
-		Destroy (Text);
-		Destroy (Text2);
+		GetComponent<ManagerCivilization> ().GameName = text.transform.GetChild (1).transform.GetChild(2).GetComponent<Text>().text;
+		loadName = GetComponent<ManagerCivilization> ().GameName;
+		Destroy (text);
+		Destroy (text2);
 		GameObject.Find ("Main Camera").GetComponent<Camera> ().clearFlags = CameraClearFlags.Skybox;
 		GameObject.Find ("NextTurn").GetComponent<RectTransform> ().Rotate(0, -90, 0);
-		Data = File.ReadAllText (Application.persistentDataPath + "/~Civilization." + LoadName);
-		offset2 = float.Parse (Data.Split ('/') [0]);
+		data = File.ReadAllText (Application.persistentDataPath + "/~Civilization." + loadName);
+		offset2 = float.Parse (data.Split ('/') [0]);
 		x = -xAmount2 * 10;
 		z = -zAmount2 * 10;
 		while (x < (xAmount2 * 10) + 10) {
 			while (z < (zAmount2 * 10) + 10) {
 				if (Mathf.PerlinNoise ((offset2 + ((x + (float)(-xAmount2 * 10)) / (5f * xAmount2))), (offset2 + ((z + (float)(-zAmount2 * 10)) / (5f * zAmount2)))) < 0.5f) {
-					Instantiate (Water2, new Vector3 (x, -1f, z), Quaternion.identity);
+					Instantiate (water2, new Vector3 (x, -1f, z), Quaternion.identity);
 				} else {
 					if (Mathf.PerlinNoise ((offset2 + ((x + (float)(-xAmount2 * 10)) / (5f * xAmount2))), (offset2 + ((z + (float)(-zAmount2 * 10)) / (5f * zAmount2)))) < 0.5275f) {
-						Instantiate (Beach2, new Vector3 (x, -4.5f, z), Quaternion.identity);
+						Instantiate (beach2, new Vector3 (x, -4.5f, z), Quaternion.identity);
 					} else {
 						if (Mathf.PerlinNoise ((offset2 + ((x + (float)(-xAmount2 * 10)) / (5f * xAmount2))), (offset2 + ((z + (float)(-zAmount2 * 10)) / (5f * zAmount2)))) < 0.825f) {
-							Instantiate (Grass2, new Vector3 (x, -4.5f, z), Quaternion.identity);
+							Instantiate (grass2, new Vector3 (x, -4.5f, z), Quaternion.identity);
 						} else {
-							Instantiate (Mountain2, new Vector3 (x, -0.5f, z), Quaternion.identity);
+							Instantiate (mountain2, new Vector3 (x, -0.5f, z), Quaternion.identity);
 						}
 
 					}
@@ -92,10 +84,10 @@ public class SaveLoadCivilizaton : MonoBehaviour {
 			z = -xAmount2 * 10;
 			x += 10;
 		}
-		I = 1;
-		while ((Data.Split ('/') [1]).Split('|')[I] != null){
-			Instantiate(Resources.Load(JsonUtility.FromJson<gameState>((Data.Split ('/') [1]).Split('|')[I]).Name.Split ('(') [0]), new Vector3(float.Parse ((Data.Split ('/') [1]).Split('|')[I].Split(':')[1].Split(',')[0]), float.Parse ((Data.Split ('/') [1]).Split('|')[I].Split(':')[2].Split(',')[0]), float.Parse ((Data.Split ('/') [1]).Split('|')[I].Split(':')[3].Split(',')[0])), Quaternion.identity);
-			I++;
+		i = 1;
+		while ((data.Split ('/') [1]).Split('|')[i] != null){
+			Instantiate(Resources.Load(JsonUtility.FromJson<GameState>((data.Split ('/') [1]).Split('|')[i]).Name.Split ('(') [0]), new Vector3(float.Parse ((data.Split ('/') [1]).Split('|')[i].Split(':')[1].Split(',')[0]), float.Parse ((data.Split ('/') [1]).Split('|')[i].Split(':')[2].Split(',')[0]), float.Parse ((data.Split ('/') [1]).Split('|')[i].Split(':')[3].Split(',')[0])), Quaternion.identity);
+			i++;
 		}
 	}
 }
