@@ -49,18 +49,25 @@ public class SaveLoadCivilizaton : MonoBehaviour {
 				json_data = json_data + "|" + JsonUtility.ToJson(GameState);
 			}
 		}
-		File.WriteAllText (Application.persistentDataPath + "/Civilization." + SaveName, GetComponent<ManagerCivilization>().offset + "/" + json_data);
+		File.WriteAllText (Application.persistentDataPath + "/~Civilization." + SaveName, GetComponent<ManagerCivilization>().offset + "/" + json_data);
 	}
 
 	public void Load (){
-		print (Path.GetFileName(Application.persistentDataPath + "/Civilization."));
+		foreach (string file in System.IO.Directory.GetFiles(Application.persistentDataPath)){
+			print (file.Split ('~').Length);
+			if (file.Split ('~').Length > 1) {
+				if ((file.Split ('~') [1]).Split ('.') [0] == "Civilization") {
+					print (file);
+				}
+			}
+		}
 		GetComponent<ManagerCivilization> ().GameName = Text.transform.GetChild (1).transform.GetChild(2).GetComponent<Text>().text;
 		LoadName = GetComponent<ManagerCivilization> ().GameName;
 		Destroy (Text);
 		Destroy (Text2);
 		GameObject.Find ("Main Camera").GetComponent<Camera> ().clearFlags = CameraClearFlags.Skybox;
 		GameObject.Find ("NextTurn").GetComponent<RectTransform> ().Rotate(0, -90, 0);
-		Data = File.ReadAllText (Application.persistentDataPath + "/Civilization." + LoadName);
+		Data = File.ReadAllText (Application.persistentDataPath + "/~Civilization." + LoadName);
 		offset2 = float.Parse (Data.Split ('/') [0]);
 		x = -xAmount2 * 10;
 		z = -zAmount2 * 10;
