@@ -27,9 +27,11 @@ public class ManagerCivilization : MonoBehaviour {
 	List<string> files;
 	public GameObject newText;
 	GameObject text;
+	public List<GameObject> texts;
 	int loops;
 
 	void Start (){
+		texts = new List<GameObject>();
 		files = new List<string> ();
 		foreach (string file in System.IO.Directory.GetFiles(Application.persistentDataPath)){
 			if (file.Split ('~').Length > 1) {
@@ -44,6 +46,7 @@ public class ManagerCivilization : MonoBehaviour {
 			text.transform.SetParent (GameObject.Find("Canvas").transform);
 			text.GetComponent<RectTransform>().localPosition = new Vector3 ((320 * ((loops) - (files.Count/2f))) - 160, -60, 0);
 			text.GetComponent<Text>().text = file;
+			texts.Add (text);
 		}
 	}
 
@@ -51,8 +54,8 @@ public class ManagerCivilization : MonoBehaviour {
 		GameName = Text.transform.GetChild (1).transform.GetChild(2).GetComponent<Text>().text;
 		Destroy (Text);
 		Destroy (Text2);
-		while (GameObject.Find("GameNames(Clone)") != null){
-			Destroy (GameObject.Find("GameNames(Clone)"));
+		foreach(GameObject name in texts){
+			Destroy (name);
 		}
 		GameObject.Find ("Main Camera").GetComponent<Camera> ().clearFlags = CameraClearFlags.Skybox;
 		GameObject.Find ("NextTurn").GetComponent<RectTransform> ().Rotate(0, -90, 0);

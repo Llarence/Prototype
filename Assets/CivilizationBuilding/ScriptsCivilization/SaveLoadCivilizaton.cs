@@ -57,6 +57,9 @@ public class SaveLoadCivilizaton : MonoBehaviour {
 		loadName = GetComponent<ManagerCivilization> ().GameName;
 		Destroy (text);
 		Destroy (text2);
+		foreach(GameObject name in GetComponent<ManagerCivilization>().texts){
+			Destroy (name);
+		}
 		GameObject.Find ("Main Camera").GetComponent<Camera> ().clearFlags = CameraClearFlags.Skybox;
 		GameObject.Find ("NextTurn").GetComponent<RectTransform> ().Rotate(0, -90, 0);
 		data = File.ReadAllText (Application.persistentDataPath + "/~Civilization." + loadName);
