@@ -5,12 +5,18 @@ using UnityEngine.UI;
 
 public class StatsManager : MonoBehaviour {
 
-	public Text Gold;
-	public Text Food;
+	public Text GoldText;
+	public Text FoodText;
+	public float Gold;
+	public float Food;
 
 	// Use this for initialization
 	void Start () {
 		moveStatsUp ();
+	}
+
+	void Update (){
+		GoldText.UI. ("Gold: " + Gold);
 	}
 	public void moveStatsUp (){
 		GameObject.Find ("Gold").GetComponent<RectTransform> ().transform.Translate (0, 100000, 0);
