@@ -31,6 +31,14 @@ public class ManagerCivilization : MonoBehaviour {
 	int loops;
 
 	void Start (){
+		SpawnGameNames ();
+	}
+
+	public void SpawnGameNames() {
+		loops = 0;
+		foreach(GameObject name in texts){
+			Destroy (name);
+		}
 		texts = new List<GameObject>();
 		files = new List<string> ();
 		foreach (string file in System.IO.Directory.GetFiles(Application.persistentDataPath)){
@@ -44,7 +52,7 @@ public class ManagerCivilization : MonoBehaviour {
 			loops++;
 			text = Instantiate (newText, Vector3.zero, Quaternion.identity);
 			text.transform.SetParent (GameObject.Find("Canvas").transform);
-			text.GetComponent<RectTransform>().localPosition = new Vector3 ((320 * ((loops) - (files.Count/2f))) - 160, -60, 0);
+			text.GetComponent<RectTransform>().localPosition = new Vector3 ((320 * ((loops) - (files.Count/2f))) - 160, -120, 0);
 			text.GetComponent<Text>().text = file;
 			texts.Add (text);
 		}

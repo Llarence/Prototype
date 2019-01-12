@@ -53,43 +53,50 @@ public class SaveLoadCivilizaton : MonoBehaviour {
 	}
 
 	public void Load (){
-		GetComponent<ManagerCivilization> ().GameName = text.transform.GetChild (1).transform.GetChild(2).GetComponent<Text>().text;
+		if (Application.persistentDataPath + "/~Civilization." + loadName == null) {
+		GetComponent<ManagerCivilization> ().GameName = text.transform.GetChild (1).transform.GetChild (2).GetComponent<Text> ().text;
 		loadName = GetComponent<ManagerCivilization> ().GameName;
 		Destroy (text);
 		Destroy (text2);
-		foreach(GameObject name in GetComponent<ManagerCivilization>().texts){
+		foreach (GameObject name in GetComponent<ManagerCivilization>().texts) {
 			Destroy (name);
 		}
 		GameObject.Find ("Main Camera").GetComponent<Camera> ().clearFlags = CameraClearFlags.Skybox;
-		GameObject.Find ("NextTurn").GetComponent<RectTransform> ().Rotate(0, -90, 0);
-		data = File.ReadAllText (Application.persistentDataPath + "/~Civilization." + loadName);
-		offset2 = float.Parse (data.Split ('/') [0]);
-		x = -xAmount2 * 10;
-		z = -zAmount2 * 10;
-		while (x < (xAmount2 * 10) + 10) {
-			while (z < (zAmount2 * 10) + 10) {
-				if (Mathf.PerlinNoise ((offset2 + ((x + (float)(-xAmount2 * 10)) / (5f * xAmount2))), (offset2 + ((z + (float)(-zAmount2 * 10)) / (5f * zAmount2)))) < 0.5f) {
-					Instantiate (water2, new Vector3 (x, -1f, z), Quaternion.identity);
-				} else {
-					if (Mathf.PerlinNoise ((offset2 + ((x + (float)(-xAmount2 * 10)) / (5f * xAmount2))), (offset2 + ((z + (float)(-zAmount2 * 10)) / (5f * zAmount2)))) < 0.5275f) {
-						Instantiate (beach2, new Vector3 (x, -4.5f, z), Quaternion.identity);
+		GameObject.Find ("NextTurn").GetComponent<RectTransform> ().Rotate (0, -90, 0);
+			data = File.ReadAllText (Application.persistentDataPath + "/~Civilization." + loadName);
+			offset2 = float.Parse (data.Split ('/') [0]);
+			x = -xAmount2 * 10;
+			z = -zAmount2 * 10;
+			while (x < (xAmount2 * 10) + 10) {
+				while (z < (zAmount2 * 10) + 10) {
+					if (Mathf.PerlinNoise ((offset2 + ((x + (float)(-xAmount2 * 10)) / (5f * xAmount2))), (offset2 + ((z + (float)(-zAmount2 * 10)) / (5f * zAmount2)))) < 0.5f) {
+						Instantiate (water2, new Vector3 (x, -1f, z), Quaternion.identity);
 					} else {
-						if (Mathf.PerlinNoise ((offset2 + ((x + (float)(-xAmount2 * 10)) / (5f * xAmount2))), (offset2 + ((z + (float)(-zAmount2 * 10)) / (5f * zAmount2)))) < 0.825f) {
-							Instantiate (grass2, new Vector3 (x, -4.5f, z), Quaternion.identity);
+						if (Mathf.PerlinNoise ((offset2 + ((x + (float)(-xAmount2 * 10)) / (5f * xAmount2))), (offset2 + ((z + (float)(-zAmount2 * 10)) / (5f * zAmount2)))) < 0.5275f) {
+							Instantiate (beach2, new Vector3 (x, -4.5f, z), Quaternion.identity);
 						} else {
-							Instantiate (mountain2, new Vector3 (x, -0.5f, z), Quaternion.identity);
+							if (Mathf.PerlinNoise ((offset2 + ((x + (float)(-xAmount2 * 10)) / (5f * xAmount2))), (offset2 + ((z + (float)(-zAmount2 * 10)) / (5f * zAmount2)))) < 0.825f) {
+								Instantiate (grass2, new Vector3 (x, -4.5f, z), Quaternion.identity);
+							} else {
+								Instantiate (mountain2, new Vector3 (x, -0.5f, z), Quaternion.identity);
+							}
 						}
 					}
+					z += 10;
 				}
-				z += 10;
+				z = -xAmount2 * 10;
+				x += 10;
 			}
-			z = -xAmount2 * 10;
-			x += 10;
+			i = 1;
+			while ((data.Split ('/') [1]).Split ('|') [i] != null) {
+				Instantiate (Resources.Load (JsonUtility.FromJson<GameState> ((data.Split ('/') [1]).Split ('|') [i]).Name.Split ('(') [0]), new Vector3 (float.Parse ((data.Split ('/') [1]).Split ('|') [i].Split (':') [1].Split (',') [0]), float.Parse ((data.Split ('/') [1]).Split ('|') [i].Split (':') [2].Split (',') [0]), float.Parse ((data.Split ('/') [1]).Split ('|') [i].Split (':') [3].Split (',') [0])), Quaternion.identity);
+				i++;
+			}
 		}
-		i = 1;
-		while ((data.Split ('/') [1]).Split('|')[i] != null){
-			Instantiate(Resources.Load(JsonUtility.FromJson<GameState>((data.Split ('/') [1]).Split('|')[i]).Name.Split ('(') [0]), new Vector3(float.Parse ((data.Split ('/') [1]).Split('|')[i].Split(':')[1].Split(',')[0]), float.Parse ((data.Split ('/') [1]).Split('|')[i].Split(':')[2].Split(',')[0]), float.Parse ((data.Split ('/') [1]).Split('|')[i].Split(':')[3].Split(',')[0])), Quaternion.identity);
-			i++;
-		}
+	}
+
+	public void Delete (){
+		File.Delete (Application.persistentDataPath + "/~Civilization." + saveName);
+		GetComponent<ManagerCivilization>().SpawnGameNames ();
 	}
 }
