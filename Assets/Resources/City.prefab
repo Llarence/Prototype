@@ -197,12 +197,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Names:
-  - eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee
-  - 444444444444444444444444444444444444444444444444444444
-  - 55555555555555555555555555555555555555555555555555555
-  - eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee
-  - 222222222222222222222222222222222222222222222222
-  - 333333333333333333333333333333333333333333333333
+  - DOWIN
+  - TARHA
+  - SCARCITY
+  - EDIDERN
+  - REWIK
+  - ZEINTIN
 --- !u!114 &114641235869809744
 MonoBehaviour:
   m_ObjectHideFlags: 1

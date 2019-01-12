@@ -8,11 +8,11 @@ public class CityNameText : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		GetComponent<TextMesh> ().text = Names[Random.Range(0, Names.Length + 1)];
+		GetComponent<TextMesh> ().text = Names[Random.Range(0, Names.Length)];
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		transform.LookAt (GameObject.Find("Main Camera").transform.position);
+		transform.LookAt (2 * transform.position - GameObject.Find("Main Camera").transform.position);
 	}
 }
