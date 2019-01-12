@@ -16,7 +16,7 @@ public class StatsManager : MonoBehaviour {
 	}
 
 	void Update (){
-		GoldText.UI. ("Gold: " + Gold);
+		GoldText.UI ();
 	}
 	public void moveStatsUp (){
 		GameObject.Find ("Gold").GetComponent<RectTransform> ().transform.Translate (0, 100000, 0);
