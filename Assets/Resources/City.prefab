@@ -41,7 +41,7 @@ GameObject:
   - component: {fileID: 23634646635786118}
   - component: {fileID: 102948710527784624}
   - component: {fileID: 114414152938413546}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: CityName
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -184,7 +184,7 @@ TextMesh:
   m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
   m_Color:
     serializedVersion: 2
-    rgba: 4294916608
+    rgba: 4278245119
 --- !u!114 &114414152938413546
 MonoBehaviour:
   m_ObjectHideFlags: 1

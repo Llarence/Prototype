@@ -129,4 +129,4 @@ MonoBehaviour:
   NotClicked: {r: 0.4314835, g: 0.43137255, b: 1, a: 0}
   Clicked: {r: 0, g: 0, b: 1, a: 0}
   CanSettle: 0
-  City: {fileID: 1898350982209666, guid: 44fbf82325d29d7448492b6cfb193b85, type: 2}
+  City: {fileID: 1329032383223910, guid: 44fbf82325d29d7448492b6cfb193b85, type: 2}
