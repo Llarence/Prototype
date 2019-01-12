@@ -13,6 +13,6 @@ public class CityNameText : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
+		transform.LookAt (GameObject.Find("Main Camera").transform.position);
 	}
 }
