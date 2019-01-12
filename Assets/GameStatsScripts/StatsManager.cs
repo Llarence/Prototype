@@ -14,10 +14,7 @@ public class StatsManager : MonoBehaviour {
 	void Start () {
 		moveStatsUp ();
 	}
-
-	void Update (){
-		GoldText.UI ();
-	}
+		
 	public void moveStatsUp (){
 		GameObject.Find ("Gold").GetComponent<RectTransform> ().transform.Translate (0, 100000, 0);
 		GameObject.Find ("Food").GetComponent<RectTransform> ().transform.Translate (0, 100000, 0);

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEditor;
 
 public class ManagerCivilization : MonoBehaviour {
 
@@ -15,6 +16,7 @@ public class ManagerCivilization : MonoBehaviour {
 	int x;
 	int z;
 	public float offset;
+	public float cities;
 	public int xAmount;
 	public int zAmount;
 	bool NoPlayerCity = true;
@@ -27,7 +29,6 @@ public class ManagerCivilization : MonoBehaviour {
 		Destroy (Text);
 		Destroy (Text2);
 		GameObject.Find ("Main Camera").GetComponent<Camera> ().clearFlags = CameraClearFlags.Skybox;
-		GameObject.Find ("NextTurn").GetComponent<RectTransform> ().Rotate(0, -90, 0);
 		offset = Random.Range (-1000f, 1000f);
 		x = -xAmount * 10;
 		z = -zAmount * 10;
@@ -66,7 +67,6 @@ public class ManagerCivilization : MonoBehaviour {
 		}
 	}
 
-
 	void Update(){
 		Units = GameObject.FindGameObjectsWithTag("Unit");
 	}
@@ -76,11 +76,33 @@ public class ManagerCivilization : MonoBehaviour {
 	}
 		
 	public void CallSettle (){
+		cities++;
 		foreach (GameObject Unit in Units) {
 			Unit.GetComponent<Unit> ().Settle ();
 		}
-		SceneManager.LoadScene ("CityBuilding");
+		Scene newScene = SceneManager.CreateScene ("CityBuilding" + cities);
+		SceneManager.LoadScene ("CityBuilding" + cities);
 		DontDestroyOnLoad (GameObject.Find ("GameStats"));
 		//This will make it so we can access the GameStats Game Object throughout the different scenes
+	}
+	public void PutInBuildSettings (){
+		if (GUILayout.Button("Apply To Build Settings")) {
+
+		}
+	}
+
+	public void SetEditorBuildSettingsScenes()
+	{
+		// Find valid Scene paths and make a list of EditorBuildSettingsScene
+		List<EditorBuildSettingsScene> editorBuildSettingsScenes = new List<EditorBuildSettingsScene>();
+		foreach (var sceneAsset in m_SceneAssets)
+		{
+			string scenePath = AssetDatabase.GetAssetPath(sceneAsset);
+			if (!string.IsNullOrEmpty(scenePath))
+				editorBuildSettingsScenes.Add(new EditorBuildSettingsScene(scenePath, true));
+		}
+
+		// Set the Build Settings window Scene list
+		EditorBuildSettings.scenes = editorBuildSettingsScenes.ToArray();
 	}
 }
