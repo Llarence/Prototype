@@ -32,9 +32,11 @@ public class SaveLoadCivilizaton : MonoBehaviour {
 	int i;
 	public GameObject text;
 	public GameObject text2;
+	public GameObject text3;
 	public bool isSaving;
 	string saveName;
 	string loadName;
+	string deleteName;
 
 	public void Save () {
 		saveName = GetComponent<ManagerCivilization> ().GameName;
@@ -53,16 +55,17 @@ public class SaveLoadCivilizaton : MonoBehaviour {
 	}
 
 	public void Load (){
-		if (Application.persistentDataPath + "/~Civilization." + loadName == null) {
 		GetComponent<ManagerCivilization> ().GameName = text.transform.GetChild (1).transform.GetChild (2).GetComponent<Text> ().text;
 		loadName = GetComponent<ManagerCivilization> ().GameName;
-		Destroy (text);
-		Destroy (text2);
-		foreach (GameObject name in GetComponent<ManagerCivilization>().texts) {
-			Destroy (name);
-		}
-		GameObject.Find ("Main Camera").GetComponent<Camera> ().clearFlags = CameraClearFlags.Skybox;
-		GameObject.Find ("NextTurn").GetComponent<RectTransform> ().Rotate (0, -90, 0);
+		if (File.Exists (Application.persistentDataPath + "/~Civilization." + loadName) == true) {
+			Destroy (text);
+			Destroy (text2);
+			Destroy (text3);
+			foreach (GameObject name in GetComponent<ManagerCivilization>().texts) {
+				Destroy (name);
+			}
+			GameObject.Find ("Main Camera").GetComponent<Camera> ().clearFlags = CameraClearFlags.Skybox;
+			GameObject.Find ("NextTurn").GetComponent<RectTransform> ().Rotate (0, -90, 0);
 			data = File.ReadAllText (Application.persistentDataPath + "/~Civilization." + loadName);
 			offset2 = float.Parse (data.Split ('/') [0]);
 			x = -xAmount2 * 10;
@@ -96,7 +99,8 @@ public class SaveLoadCivilizaton : MonoBehaviour {
 	}
 
 	public void Delete (){
-		File.Delete (Application.persistentDataPath + "/~Civilization." + saveName);
+		deleteName = GetComponent<ManagerCivilization> ().Text.transform.GetChild (1).transform.GetChild(2).GetComponent<Text>().text;
+		File.Delete (Application.persistentDataPath + "/~Civilization." + deleteName);
 		GetComponent<ManagerCivilization>().SpawnGameNames ();
 	}
 }
