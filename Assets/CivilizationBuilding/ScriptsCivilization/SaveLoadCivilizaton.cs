@@ -79,7 +79,6 @@ public class SaveLoadCivilizaton : MonoBehaviour {
 						} else {
 							Instantiate (mountain2, new Vector3 (x, -0.5f, z), Quaternion.identity);
 						}
-
 					}
 				}
 				z += 10;
