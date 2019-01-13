@@ -17,6 +17,7 @@ public class ManagerCivilization : MonoBehaviour {
 	int x;
 	int z;
 	public float offset;
+	public float start;
 	public int xAmount;
 	public int zAmount;
 	bool NoPlayerCity = true;
@@ -125,5 +126,10 @@ public class ManagerCivilization : MonoBehaviour {
 		foreach (GameObject Unit in Units) {
 			Unit.GetComponent<Unit> ().Settle ();
 		}
+	}
+
+	public void Start (){
+		RectTransform.Translate (0, 100000, 0);
+		GameObject.Find ("CameraRotator").GetComponent<CameraRotator> ().cameraToCenter = 1;
 	}
 }
