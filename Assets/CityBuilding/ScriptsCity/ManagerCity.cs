@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class ManagerCity : MonoBehaviour {
 
@@ -67,5 +68,9 @@ public class ManagerCity : MonoBehaviour {
 			People = GameObject.FindGameObjectsWithTag ("Person");
 		}
 		StartCoroutine (Tick());
+	}
+
+	public void MainMap (){
+		SceneManager.LoadScene ("Civilization");
 	}
 }	
