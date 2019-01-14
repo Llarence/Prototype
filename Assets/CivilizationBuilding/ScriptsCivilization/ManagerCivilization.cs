@@ -86,7 +86,7 @@ public class ManagerCivilization : MonoBehaviour {
 							if (Mathf.PerlinNoise ((offset + ((x + (float)(-xAmount * 10)) / (5f * xAmount))), (offset + ((z + (float)(-zAmount * 10)) / (5f * zAmount)))) < 0.825f) {
 								Instantiate (Grass, new Vector3 (x, -4.5f, z), Quaternion.identity);
 							} else {
-								if(Random.Range(0f, 1f) >= 0.5f){
+								if(Mathf.PerlinNoise (x/offset, z/offset) >= 0.5f){
 									Instantiate (Mountain, new Vector3 (x, -0.5f, z), Quaternion.identity);
 								}else{
 									Instantiate (Grass, new Vector3 (x, -4.5f, z), Quaternion.identity);
