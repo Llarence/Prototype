@@ -9,7 +9,8 @@ public class GameState {
 	public float x;
 	public float y;
 	public float z;
-	public string Name;
+	public string name;
+	public string cityName;
 }
 
 public class SaveLoadCivilizaton : MonoBehaviour {
@@ -18,6 +19,7 @@ public class SaveLoadCivilizaton : MonoBehaviour {
 	public GameObject grass2;
 	public GameObject water2;
 	public GameObject beach2;
+	public GameObject city2;
 	GameObject[] gameObjects;
 	public float[] position;
 	FileStream stream;
@@ -30,6 +32,7 @@ public class SaveLoadCivilizaton : MonoBehaviour {
 	public int zAmount2;
 	float offset2;
 	int i;
+	GameObject justSpawned;
 	public GameObject text;
 	public GameObject text2;
 	public GameObject text3;
@@ -42,12 +45,17 @@ public class SaveLoadCivilizaton : MonoBehaviour {
 		saveName = GetComponent<ManagerCivilization> ().GameName;
 		json_data = "";
 		gameObjects = FindObjectsOfType<GameObject>();
-		foreach (GameObject CurrentObject in gameObjects) {
-			if(CurrentObject.name != "Grass(Clone)" && CurrentObject.name != "Water(Clone)" && CurrentObject.name != "Mountain(Clone)" && CurrentObject.name != "Beach(Clone)"  && CurrentObject.name != "EventSystem" && CurrentObject.name != "Manager" && CurrentObject.name != "Directional Light"  && CurrentObject.name != "Main Camera" && CurrentObject.layer != 5){
-				gameState.x = CurrentObject.transform.position.x;
-				gameState.y = CurrentObject.transform.position.y;
-				gameState.z = CurrentObject.transform.position.z;
-				gameState.Name = CurrentObject.name;
+		foreach (GameObject currentObject in gameObjects) {
+			if(currentObject.name != "Grass(Clone)" && currentObject.name != "Water(Clone)" && currentObject.name != "Mountain(Clone)" && currentObject.name != "Beach(Clone)"  && currentObject.name != "EventSystem" && currentObject.name != "Manager" && currentObject.name != "Directional Light"  && currentObject.name != "Main Camera" && currentObject.layer != 5){
+				gameState.x = currentObject.transform.position.x;
+				gameState.y = currentObject.transform.position.y;
+				gameState.z = currentObject.transform.position.z;
+				gameState.name = currentObject.name;
+				if(gameState.name == "City(Clone)"){
+					gameState.cityName = currentObject.transform.GetChild (0).GetComponent<TextMesh>().text;
+				}else{
+					gameState.cityName = "";
+				}
 				json_data = json_data + "|" + JsonUtility.ToJson(gameState);
 			}
 		}
@@ -81,7 +89,11 @@ public class SaveLoadCivilizaton : MonoBehaviour {
 							if (Mathf.PerlinNoise ((offset2 + ((x + (float)(-xAmount2 * 10)) / (5f * xAmount2))), (offset2 + ((z + (float)(-zAmount2 * 10)) / (5f * zAmount2)))) < 0.825f) {
 								Instantiate (grass2, new Vector3 (x, -4.5f, z), Quaternion.identity);
 							} else {
-								Instantiate (mountain2, new Vector3 (x, -0.5f, z), Quaternion.identity);
+								if(Mathf.PerlinNoise (x/offset2, z/offset2) >= 0.5f){
+									Instantiate (mountain2, new Vector3 (x, -0.5f, z), Quaternion.identity);
+								}else{
+									Instantiate (grass2, new Vector3 (x, -4.5f, z), Quaternion.identity);
+								}
 							}
 						}
 					}
@@ -92,7 +104,12 @@ public class SaveLoadCivilizaton : MonoBehaviour {
 			}
 			i = 1;
 			while ((data.Split ('/') [1]).Split ('|') [i] != null) {
-				Instantiate (Resources.Load (JsonUtility.FromJson<GameState> ((data.Split ('/') [1]).Split ('|') [i]).Name.Split ('(') [0]), new Vector3 (float.Parse ((data.Split ('/') [1]).Split ('|') [i].Split (':') [1].Split (',') [0]), float.Parse ((data.Split ('/') [1]).Split ('|') [i].Split (':') [2].Split (',') [0]), float.Parse ((data.Split ('/') [1]).Split ('|') [i].Split (':') [3].Split (',') [0])), Quaternion.identity);
+				if (((data.Split ('/') [1]).Split ('|') [i]).Split ('"') [13] != "") {
+					justSpawned = Instantiate (city2, new Vector3 (float.Parse ((data.Split ('/') [1]).Split ('|') [i].Split (':') [1].Split (',') [0]), float.Parse ((data.Split ('/') [1]).Split ('|') [i].Split (':') [2].Split (',') [0]), float.Parse ((data.Split ('/') [1]).Split ('|') [i].Split (':') [3].Split (',') [0])), Quaternion.identity);
+					justSpawned.transform.GetChild (0).GetComponent<CityNameText> ().OverideName = ((data.Split ('/') [1]).Split ('|') [i]).Split ('"') [13];
+				} else {
+					Instantiate (Resources.Load (JsonUtility.FromJson<GameState> ((data.Split ('/') [1]).Split ('|') [i]).name.Split ('(') [0]), new Vector3 (float.Parse ((data.Split ('/') [1]).Split ('|') [i].Split (':') [1].Split (',') [0]), float.Parse ((data.Split ('/') [1]).Split ('|') [i].Split (':') [2].Split (',') [0]), float.Parse ((data.Split ('/') [1]).Split ('|') [i].Split (':') [3].Split (',') [0])), Quaternion.identity);
+				}
 				i++;
 			}
 		}
