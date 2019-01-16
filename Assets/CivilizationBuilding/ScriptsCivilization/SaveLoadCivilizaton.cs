@@ -89,7 +89,7 @@ public class SaveLoadCivilizaton : MonoBehaviour {
 							if (Mathf.PerlinNoise ((offset2 + ((x + (float)(-xAmount2 * 10)) / (5f * xAmount2))), (offset2 + ((z + (float)(-zAmount2 * 10)) / (5f * zAmount2)))) < 0.825f) {
 								Instantiate (grass2, new Vector3 (x, -4.5f, z), Quaternion.identity);
 							} else {
-								if(Mathf.PerlinNoise (x/offset2, z/offset2) >= 0.5f){
+								if(Mathf.PerlinNoise (offset2 + (zAmount2 + xAmount2) * 10, 0) >= 0.5f * offset2 + (zAmount2 + xAmount2) * 10){
 									Instantiate (mountain2, new Vector3 (x, -0.5f, z), Quaternion.identity);
 								}else{
 									Instantiate (grass2, new Vector3 (x, -4.5f, z), Quaternion.identity);
