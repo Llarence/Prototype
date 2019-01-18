@@ -129,12 +129,9 @@ public class ManagerCivilization : MonoBehaviour {
 			Unit.GetComponent<Unit> ().Settle ();
 		}
 	}
-<<<<<<< HEAD
 
 	public void Resume (){
 		GameObject.Find ("Start").GetComponent<RectTransform> ().Translate (0, 100000, 0);
 		GameObject.Find ("CameraRotator").GetComponent<CameraRotator> ().cameraToCenter = 1;
 	}
-=======
->>>>>>> 3cdebbd8cfa0ecbf50dc1c45b82856ed1e92b202
 }
