@@ -487,22 +487,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea7ca2553adbdac4989d4a11d7915b05, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Mountain: {fileID: 1109757292673606, guid: c17752786e7b2be45b357d164f5d6a1c, type: 2}
-  Grass: {fileID: 1886334014106876, guid: bc3719f8ef3618845ba64aa6b54e0785, type: 2}
-  Water: {fileID: 1253534998859838, guid: 13cded6a17286474c90c812a2a3e6d1a, type: 2}
-  Beach: {fileID: 1914847747313352, guid: 4244edef98f42bf4c8d12e43541e4b4d, type: 2}
-  City: {fileID: 1329032383223910, guid: 44fbf82325d29d7448492b6cfb193b85, type: 2}
-  Warrior: {fileID: 1060434830780756, guid: 913f00b08c4c5444789900f4d92f1635, type: 2}
-  Settler: {fileID: 1132498092863848, guid: 6517a9e7393004047a8183aee5332c91, type: 2}
+  mountain: {fileID: 1109757292673606, guid: c17752786e7b2be45b357d164f5d6a1c, type: 2}
+  grass: {fileID: 1886334014106876, guid: bc3719f8ef3618845ba64aa6b54e0785, type: 2}
+  water: {fileID: 1253534998859838, guid: 13cded6a17286474c90c812a2a3e6d1a, type: 2}
+  beach: {fileID: 1914847747313352, guid: 4244edef98f42bf4c8d12e43541e4b4d, type: 2}
+  city: {fileID: 1329032383223910, guid: 44fbf82325d29d7448492b6cfb193b85, type: 2}
+  warrior: {fileID: 1060434830780756, guid: 913f00b08c4c5444789900f4d92f1635, type: 2}
+  settler: {fileID: 1132498092863848, guid: 6517a9e7393004047a8183aee5332c91, type: 2}
   offset: 0
   start: 0
   xAmount: 50
   zAmount: 50
-  Turn: 0
-  Text: {fileID: 1303141131}
-  Text2: {fileID: 282637209}
-  Text3: {fileID: 1616759832}
-  GameName: 
+  turn: 0
+  text: {fileID: 1303141131}
+  text2: {fileID: 282637209}
+  text3: {fileID: 1616759832}
+  gameName: 
   newText: {fileID: 1588952278026000, guid: 5d94fb877925ada4a96edf709059eeac, type: 2}
   texts: []
 --- !u!114 &567940034
