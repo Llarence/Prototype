@@ -17,6 +17,7 @@ public class ManagerCivilization : MonoBehaviour {
 	int x;
 	int z;
 	public float offset;
+	public float start;
 	public int xAmount;
 	public int zAmount;
 	bool NoPlayerCity = true;
@@ -70,6 +71,7 @@ public class ManagerCivilization : MonoBehaviour {
 				Destroy (name);
 			}
 			GameObject.Find ("Main Camera").GetComponent<Camera> ().clearFlags = CameraClearFlags.Skybox;
+			GameObject.Find ("NextTurn").GetComponent<RectTransform> ().Rotate (0, -90, 0);
 			offset = Random.Range (-1000f, 1000f);
 			x = -xAmount * 10;
 			z = -zAmount * 10;
@@ -126,8 +128,8 @@ public class ManagerCivilization : MonoBehaviour {
 		}
 	}
 
-	public void Resume (){
-		GameObject.Find ("Start").GetComponent<RectTransform> ().Translate (0, 100000, 0);
+	public void Start (){
+		RectTransform.Translate (0, 100000, 0);
 		GameObject.Find ("CameraRotator").GetComponent<CameraRotator> ().cameraToCenter = 1;
 	}
 }

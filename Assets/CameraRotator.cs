@@ -9,18 +9,8 @@ public class CameraRotator : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-		if (cameraToCenter == 0) {
+		if (GameObject.Find ("Manager").GetComponent<ManagerCivilization> ().start == 0) {
 			transform.Rotate (0, speed * Time.deltaTime, 0);
-		} else {
-			if (cameraToCenter == 1) {
-				transform.Rotate (0, 0, 0);
-			}
 		}
-
-	}
-
-	void Start (){
-		cameraToCenter = 0;
-
 	}
 }
