@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657868, g: 0.49641263, b: 0.57481706, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -446,7 +446,6 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 282637209}
   m_CullTransparentMesh: 0
-<<<<<<< HEAD
 --- !u!1 &310775292
 GameObject:
   m_ObjectHideFlags: 0
@@ -645,8 +644,6 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 361565946}
   m_CullTransparentMesh: 0
-=======
->>>>>>> 3cdebbd8cfa0ecbf50dc1c45b82856ed1e92b202
 --- !u!1 &567940031
 GameObject:
   m_ObjectHideFlags: 0
@@ -720,7 +717,6 @@ MonoBehaviour:
   grass2: {fileID: 1886334014106876, guid: bc3719f8ef3618845ba64aa6b54e0785, type: 2}
   water2: {fileID: 1253534998859838, guid: 13cded6a17286474c90c812a2a3e6d1a, type: 2}
   beach2: {fileID: 1914847747313352, guid: 4244edef98f42bf4c8d12e43541e4b4d, type: 2}
-  city2: {fileID: 1329032383223910, guid: 44fbf82325d29d7448492b6cfb193b85, type: 2}
   position: []
   xAmount2: 50
   zAmount2: 50
@@ -926,6 +922,49 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 879462254}
   m_CullTransparentMesh: 0
+--- !u!1 &893807299
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 893807301}
+  - component: {fileID: 893807300}
+  m_Layer: 0
+  m_Name: CameraRotator
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &893807300
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 893807299}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fcd9a231bcf9eaf40865e19da503b91c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 10
+  cameraToCenter: 0
+--- !u!4 &893807301
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 893807299}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1801773566}
+  m_Father: {fileID: 0}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1084921607
 GameObject:
   m_ObjectHideFlags: 0
@@ -1540,12 +1579,12 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1801773562}
-  m_LocalRotation: {x: 0.13052616, y: -0, z: -0, w: 0.9914449}
+  m_LocalRotation: {x: 0.13052616, y: 0, z: 0, w: 0.9914449}
   m_LocalPosition: {x: 0, y: 50, z: -400}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_Father: {fileID: 893807301}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 15, y: 0, z: 0}
 --- !u!114 &1801773567
 MonoBehaviour:
@@ -1555,15 +1594,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1801773562}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c10f63ca31a21b14c90c6276b2ae9f90, type: 3}
+  m_Script: {fileID: 11500000, guid: 4b8848fa361a0714faf54bbf8dd03412, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   controlMax: 10
-<<<<<<< HEAD
   maxHeight: 150
-=======
-  maxHeight: 250
->>>>>>> 3cdebbd8cfa0ecbf50dc1c45b82856ed1e92b202
 --- !u!82 &1801773568
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1901,10 +1936,7 @@ RectTransform:
   - {fileID: 629720051}
   - {fileID: 1303141135}
   - {fileID: 282637210}
-<<<<<<< HEAD
   - {fileID: 310775293}
-=======
->>>>>>> 3cdebbd8cfa0ecbf50dc1c45b82856ed1e92b202
   - {fileID: 1616759833}
   m_Father: {fileID: 0}
   m_RootOrder: 2
