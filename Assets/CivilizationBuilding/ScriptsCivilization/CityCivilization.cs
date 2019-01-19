@@ -5,23 +5,23 @@ using UnityEngine.SceneManagement;
 
 public class CityCivilization : MonoBehaviour {
 
-	GameObject Manager;
-	RaycastHit Hit;
-	float ClickTime;
+	GameObject manager;
+	RaycastHit hit;
+	float clickTime;
 
 	// Use this for initialization
 	void Start () {
-		Manager = GameObject.Find ("Manager");
+		manager = GameObject.Find ("Manager");
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		if (Input.GetMouseButton (0)) {
-			if (Physics.Raycast (Camera.main.ScreenPointToRay (Input.mousePosition), out Hit)) {
-				if (Hit.collider.gameObject == gameObject) {
-					ClickTime = ClickTime + Time.deltaTime;
-					if(ClickTime >= 1){
-						Manager.GetComponent<SaveLoadCivilizaton> ().Save ();
+			if (Physics.Raycast (Camera.main.ScreenPointToRay (Input.mousePosition), out hit)) {
+				if (hit.collider.gameObject == gameObject) {
+					clickTime = clickTime + Time.deltaTime;
+					if(clickTime >= 1){
+						manager.GetComponent<SaveLoadCivilizaton> ().Save ();
 						SceneManager.LoadScene ("CityBuilding");
 					}
 				}

@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class CityNameText : MonoBehaviour {
 
-	public string[] Names;
-	public string OverideName;
+	public string[] names;
+	public string overideName;
 
 	// Use this for initialization
 	void Start () {
-		GetComponent<TextMesh> ().text = Names[Random.Range(0, Names.Length)];
-		if(OverideName != ""){
-			GetComponent<TextMesh> ().text = OverideName;
+		GetComponent<TextMesh> ().text = names[Random.Range(0, names.Length)];
+		if(overideName != ""){
+			GetComponent<TextMesh> ().text = overideName;
 		}
 	}
 	

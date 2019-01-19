@@ -7,29 +7,29 @@ using UnityEngine.SceneManagement;
 
 public class ManagerCivilization : MonoBehaviour {
 
-	public GameObject Mountain;
-	public GameObject Grass;
-	public GameObject Water;
-	public GameObject Beach;
-	public GameObject City;
-	public GameObject Warrior;
-	public GameObject Settler;
+	public GameObject mountain;
+	public GameObject grass;
+	public GameObject water;
+	public GameObject beach;
+	public GameObject city;
+	public GameObject warrior;
+	public GameObject settler;
 	int x;
 	int z;
 	public float offset;
 	public float start;
 	public int xAmount;
 	public int zAmount;
-	bool NoPlayerCity = true;
-	public int Turn;
-	GameObject[] Units;
-	public GameObject Text;
-	public GameObject Text2;
-	public GameObject Text3;
-	public string GameName;
+	bool noPlayerCity = true;
+	public int turn;
+	GameObject[] units;
+	public GameObject text;
+	public GameObject text2;
+	public GameObject text3;
+	public string gameName;
 	List<string> files;
 	public GameObject newText;
-	GameObject text;
+	GameObject textGameObject;
 	public List<GameObject> texts;
 	int loops;
 
@@ -53,20 +53,20 @@ public class ManagerCivilization : MonoBehaviour {
 		}
 		foreach (string file in files){
 			loops++;
-			text = Instantiate (newText, Vector3.zero, Quaternion.identity);
-			text.transform.SetParent (GameObject.Find("Canvas").transform);
-			text.GetComponent<RectTransform>().localPosition = new Vector3 ((320 * ((loops) - (files.Count/2f))) - 160, -120, 0);
-			text.GetComponent<Text>().text = file;
-			texts.Add (text);
+			textGameObject = Instantiate (newText, Vector3.zero, Quaternion.identity);
+			textGameObject.transform.SetParent (GameObject.Find("Canvas").transform);
+			textGameObject.GetComponent<RectTransform>().localPosition = new Vector3 ((320 * ((loops) - (files.Count/2f))) - 160, -120, 0);
+			textGameObject.GetComponent<Text>().text = file;
+			texts.Add (textGameObject);
 		}
 	}
 
 	public void GenerateMap () {
-		GameName = Text.transform.GetChild (1).transform.GetChild (2).GetComponent<Text> ().text;
-		if (GameName != "") {
-			Destroy (Text);
-			Destroy (Text2);
-			Destroy (Text3);
+		gameName = text.transform.GetChild (1).transform.GetChild (2).GetComponent<Text> ().text;
+		if (gameName != "") {
+			Destroy (text);
+			Destroy (text2);
+			Destroy (text3);
 			foreach (GameObject name in texts) {
 				Destroy (name);
 			}
@@ -78,15 +78,15 @@ public class ManagerCivilization : MonoBehaviour {
 			while (x < (xAmount * 10) + 10) {
 				while (z < (zAmount * 10) + 10) {
 					if (Mathf.PerlinNoise ((offset + ((x + (float)(-xAmount * 10)) / (5f * xAmount))), (offset + ((z + (float)(-zAmount * 10)) / (5f * zAmount)))) < 0.5f) {
-						Instantiate (Water, new Vector3 (x, -1f, z), Quaternion.identity);
+						Instantiate (water, new Vector3 (x, -1f, z), Quaternion.identity);
 					} else {
 						if (Mathf.PerlinNoise ((offset + ((x + (float)(-xAmount * 10)) / (5f * xAmount))), (offset + ((z + (float)(-zAmount * 10)) / (5f * zAmount)))) < 0.5275f) {
-							Instantiate (Beach, new Vector3 (x, -4.5f, z), Quaternion.identity);
+							Instantiate (beach, new Vector3 (x, -4.5f, z), Quaternion.identity);
 						} else {
 							if (Mathf.PerlinNoise ((offset + ((x + (float)(-xAmount * 10)) / (5f * xAmount))), (offset + ((z + (float)(-zAmount * 10)) / (5f * zAmount)))) < 0.825f) {
-								Instantiate (Grass, new Vector3 (x, -4.5f, z), Quaternion.identity);
+								Instantiate (grass, new Vector3 (x, -4.5f, z), Quaternion.identity);
 							} else {
-								Instantiate (Mountain, new Vector3 (x, -0.5f, z), Quaternion.identity);
+								Instantiate (mountain, new Vector3 (x, -0.5f, z), Quaternion.identity);
 							}
 						}
 					}
@@ -95,35 +95,35 @@ public class ManagerCivilization : MonoBehaviour {
 				z = -xAmount * 10;
 				x += 10;
 			}
-			while (NoPlayerCity == true) {
+			while (noPlayerCity == true) {
 				x = Random.Range (-xAmount, xAmount + 1) * 10;
 				z = Random.Range (-zAmount, zAmount + 1) * 10;
 				if (Mathf.PerlinNoise ((offset + ((x + (float)(-xAmount * 10)) / (5f * xAmount))), (offset + ((z + (float)(-zAmount * 10)) / (5f * zAmount)))) < 0.825f && Mathf.PerlinNoise ((offset + ((x + (float)(-xAmount * 10)) / (5f * xAmount))), (offset + ((z + (float)(-zAmount * 10)) / (5f * zAmount)))) > 0.5f) {
-					Instantiate (City, new Vector3 (x, 2f, z), Quaternion.identity);
-					Instantiate (Settler, new Vector3 (x, 5f, z), Quaternion.identity);
-					Instantiate (Warrior, new Vector3 (x, 5f, z + 10), Quaternion.identity);
-					Instantiate (Warrior, new Vector3 (x, 5f, z - 10), Quaternion.identity);
-					Instantiate (Warrior, new Vector3 (x + 10, 5f, z), Quaternion.identity);
-					Instantiate (Warrior, new Vector3 (x - 10, 5f, z), Quaternion.identity);
-					NoPlayerCity = false;
+					Instantiate (city, new Vector3 (x, 2f, z), Quaternion.identity);
+					Instantiate (settler, new Vector3 (x, 5f, z), Quaternion.identity);
+					Instantiate (warrior, new Vector3 (x, 5f, z + 10), Quaternion.identity);
+					Instantiate (warrior, new Vector3 (x, 5f, z - 10), Quaternion.identity);
+					Instantiate (warrior, new Vector3 (x + 10, 5f, z), Quaternion.identity);
+					Instantiate (warrior, new Vector3 (x - 10, 5f, z), Quaternion.identity);
+					noPlayerCity = false;
 				}
 			}
 		}
 	}
 
 	void Update(){
-		Units = GameObject.FindGameObjectsWithTag("Unit");
+		units = GameObject.FindGameObjectsWithTag("Unit");
 		if(Input.GetMouseButton(0) || Input.GetMouseButton(1)){
 			Camera.main.GetComponent<AudioSource>().Play(0);
 		}
 	}
 
 	public void NextTurn (){
-		Turn++;
+		turn++;
 	}
 		
 	public void CallSettle (){
-		foreach (GameObject Unit in Units) {
+		foreach (GameObject Unit in units) {
 			Unit.GetComponent<Unit> ().Settle ();
 		}
 	}

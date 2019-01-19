@@ -9,7 +9,7 @@ public class GameState {
 	public float x;
 	public float y;
 	public float z;
-	public string Name;
+	public string name;
 }
 
 public class SaveLoadCivilizaton : MonoBehaviour {
@@ -39,7 +39,7 @@ public class SaveLoadCivilizaton : MonoBehaviour {
 	string deleteName;
 
 	public void Save () {
-		saveName = GetComponent<ManagerCivilization> ().GameName;
+		saveName = GetComponent<ManagerCivilization> ().gameName;
 		json_data = "";
 		gameObjects = FindObjectsOfType<GameObject>();
 		foreach (GameObject CurrentObject in gameObjects) {
@@ -47,7 +47,7 @@ public class SaveLoadCivilizaton : MonoBehaviour {
 				gameState.x = CurrentObject.transform.position.x;
 				gameState.y = CurrentObject.transform.position.y;
 				gameState.z = CurrentObject.transform.position.z;
-				gameState.Name = CurrentObject.name;
+				gameState.name = CurrentObject.name;
 				json_data = json_data + "|" + JsonUtility.ToJson(gameState);
 			}
 		}
@@ -55,8 +55,8 @@ public class SaveLoadCivilizaton : MonoBehaviour {
 	}
 
 	public void Load (){
-		GetComponent<ManagerCivilization> ().GameName = text.transform.GetChild (1).transform.GetChild (2).GetComponent<Text> ().text;
-		loadName = GetComponent<ManagerCivilization> ().GameName;
+		GetComponent<ManagerCivilization> ().gameName = text.transform.GetChild (1).transform.GetChild (2).GetComponent<Text> ().text;
+		loadName = GetComponent<ManagerCivilization> ().gameName;
 		if (File.Exists (Application.persistentDataPath + "/~Civilization." + loadName) == true) {
 			Destroy (text);
 			Destroy (text2);
@@ -92,14 +92,14 @@ public class SaveLoadCivilizaton : MonoBehaviour {
 			}
 			i = 1;
 			while ((data.Split ('/') [1]).Split ('|') [i] != null) {
-				Instantiate (Resources.Load (JsonUtility.FromJson<GameState> ((data.Split ('/') [1]).Split ('|') [i]).Name.Split ('(') [0]), new Vector3 (float.Parse ((data.Split ('/') [1]).Split ('|') [i].Split (':') [1].Split (',') [0]), float.Parse ((data.Split ('/') [1]).Split ('|') [i].Split (':') [2].Split (',') [0]), float.Parse ((data.Split ('/') [1]).Split ('|') [i].Split (':') [3].Split (',') [0])), Quaternion.identity);
+				Instantiate (Resources.Load (JsonUtility.FromJson<GameState> ((data.Split ('/') [1]).Split ('|') [i]).name.Split ('(') [0]), new Vector3 (float.Parse ((data.Split ('/') [1]).Split ('|') [i].Split (':') [1].Split (',') [0]), float.Parse ((data.Split ('/') [1]).Split ('|') [i].Split (':') [2].Split (',') [0]), float.Parse ((data.Split ('/') [1]).Split ('|') [i].Split (':') [3].Split (',') [0])), Quaternion.identity);
 				i++;
 			}
 		}
 	}
 
 	public void Delete (){
-		deleteName = GetComponent<ManagerCivilization> ().Text.transform.GetChild (1).transform.GetChild(2).GetComponent<Text>().text;
+		deleteName = GetComponent<ManagerCivilization> ().text.transform.GetChild (1).transform.GetChild(2).GetComponent<Text>().text;
 		File.Delete (Application.persistentDataPath + "/~Civilization." + deleteName);
 		GetComponent<ManagerCivilization>().SpawnGameNames ();
 	}
