@@ -71,7 +71,7 @@ public class ManagerCivilization : MonoBehaviour {
 				Destroy (name);
 			}
 			GameObject.Find ("Main Camera").GetComponent<Camera> ().clearFlags = CameraClearFlags.Skybox;
-			GameObject.Find ("NextTurn").GetComponent<RectTransform> ().Rotate (0, -90, 0);
+			GameObject.Find ("NextStage").GetComponent<RectTransform> ().Rotate (0, -90, 0);
 			offset = Random.Range (-1000f, 1000f);
 			x = -xAmount * 10;
 			z = -zAmount * 10;
