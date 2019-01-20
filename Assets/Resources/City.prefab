@@ -196,13 +196,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34677a2fb7efe5e4cbc15f4452d75420, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Names:
-  - DOWIN
-  - TARHA
-  - SCARCITY
-  - EDIDERN
-  - REWIK
-  - ZEINTIN
+  names:
+  - Scar City
+  - Ifordvil
+  - Walup
+  - Rafywe
+  - Orok
+  - Watarloo
+  - Dowin
+  - Tarha
+  - Eridern
+  - Rewik
+  - Zeintin
+  - Aregir
+  overideName: 
 --- !u!114 &114641235869809744
 MonoBehaviour:
   m_ObjectHideFlags: 1
