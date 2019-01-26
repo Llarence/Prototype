@@ -38,6 +38,7 @@ public class SaveLoadCivilizaton : MonoBehaviour {
 	string saveName;
 	string loadName;
 	string deleteName;
+	GameObject Instantiated;
 
 	public void Save () {
 		saveName = GetComponent<ManagerCivilization> ().gameName;
@@ -50,6 +51,7 @@ public class SaveLoadCivilizaton : MonoBehaviour {
 				gameState.z = CurrentObject.transform.position.z;
 				gameState.name = CurrentObject.name;
 				if(CurrentObject.CompareTag("City")){
+					print (CurrentObject.transform.GetChild(0).gameObject.GetComponent<TextMesh>().text);
 					gameState.cityName = CurrentObject.transform.GetChild(0).gameObject.GetComponent<TextMesh>().text;
 				}
 				json_data = json_data + "|" + JsonUtility.ToJson(gameState);
@@ -96,10 +98,9 @@ public class SaveLoadCivilizaton : MonoBehaviour {
 			}
 			i = 1;
 			while ((data.Split ('/') [1]).Split ('|').Length > i) {
-				GameObject Instantiated = Instantiate (Resources.Load (JsonUtility.FromJson<GameState> ((data.Split ('/') [1]).Split ('|') [i]).name.Split ('(') [0]), new Vector3 (float.Parse ((data.Split ('/') [1]).Split ('|') [i].Split (':') [1].Split (',') [0]), float.Parse ((data.Split ('/') [1]).Split ('|') [i].Split (':') [2].Split (',') [0]), float.Parse ((data.Split ('/') [1]).Split ('|') [i].Split (':') [3].Split (',') [0])), Quaternion.identity) as GameObject;
+				Instantiated = Instantiate (Resources.Load (JsonUtility.FromJson<GameState> ((data.Split ('/') [1]).Split ('|') [i]).name.Split ('(') [0]), new Vector3 (float.Parse ((data.Split ('/') [1]).Split ('|') [i].Split (':') [1].Split (',') [0]), float.Parse ((data.Split ('/') [1]).Split ('|') [i].Split (':') [2].Split (',') [0]), float.Parse ((data.Split ('/') [1]).Split ('|') [i].Split (':') [3].Split (',') [0])), Quaternion.identity) as GameObject;
 				if (Instantiated.name == "City(Clone)") {
-					print (Instantiated.transform.GetChild (0).gameObject.GetComponent<TextMesh> ().text = JsonUtility.FromJson<GameState> ((data.Split ('/') [1]).Split ('|') [i]).cityName);
-					Instantiated.transform.GetChild (0).gameObject.GetComponent<TextMesh> ().text = JsonUtility.FromJson<GameState> ((data.Split ('/') [1]).Split ('|') [i]).cityName;
+					Instantiated.transform.GetChild (0).gameObject.GetComponent<CityNameText> ().overideName = JsonUtility.FromJson<GameState> ((data.Split ('/') [1]).Split ('|') [i]).cityName;
 				}
 				i++;
 			}
