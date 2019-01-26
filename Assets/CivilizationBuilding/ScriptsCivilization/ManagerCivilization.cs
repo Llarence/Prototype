@@ -20,7 +20,7 @@ public class ManagerCivilization : MonoBehaviour {
 	public float start;
 	public int xAmount;
 	public int zAmount;
-	bool noPlayerCity = true;
+	int Cities;
 	public int turn;
 	GameObject[] units;
 	public GameObject text;
@@ -95,7 +95,7 @@ public class ManagerCivilization : MonoBehaviour {
 				z = -xAmount * 10;
 				x += 10;
 			}
-			while (noPlayerCity == true) {
+			while (Cities != 10) {
 				x = Random.Range (-xAmount, xAmount + 1) * 10;
 				z = Random.Range (-zAmount, zAmount + 1) * 10;
 				if (Mathf.PerlinNoise ((offset + ((x + (float)(-xAmount * 10)) / (5f * xAmount))), (offset + ((z + (float)(-zAmount * 10)) / (5f * zAmount)))) < 0.825f && Mathf.PerlinNoise ((offset + ((x + (float)(-xAmount * 10)) / (5f * xAmount))), (offset + ((z + (float)(-zAmount * 10)) / (5f * zAmount)))) > 0.5f) {
@@ -105,7 +105,7 @@ public class ManagerCivilization : MonoBehaviour {
 					Instantiate (warrior, new Vector3 (x, 5f, z - 10), Quaternion.identity);
 					Instantiate (warrior, new Vector3 (x + 10, 5f, z), Quaternion.identity);
 					Instantiate (warrior, new Vector3 (x - 10, 5f, z), Quaternion.identity);
-					noPlayerCity = false;
+					Cities++;
 				}
 			}
 		}
