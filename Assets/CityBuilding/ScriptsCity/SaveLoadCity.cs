@@ -36,7 +36,7 @@ public class SaveLoadCity : MonoBehaviour {
 				json_data = json_data + "|" + JsonUtility.ToJson(GameState);
 			}
 		}
-		File.WriteAllText (Application.persistentDataPath + "/~Player.SaveCity", GetComponent<ManagerCity>().Gold + "/" + GetComponent<ManagerCity>().Food + "/" + GetComponent<ManagerCity>().Population + "/"  + json_data);
+		File.WriteAllText (Application.persistentDataPath + "/~Player." + GameObject.Find ("InfoStorage").GetComponent<InfoStorage>().CityName, GetComponent<ManagerCity>().Gold + "/" + GetComponent<ManagerCity>().Food + "/" + GetComponent<ManagerCity>().Population + "/"  + json_data);
 	}
 
 	public void Load2 (){
