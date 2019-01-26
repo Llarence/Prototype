@@ -19,15 +19,16 @@ public class CityNameText : MonoBehaviour {
 	}
 
 	void GetName(){
+		if(overideName != ""){
+			GetComponent<TextMesh> ().text = overideName;
+			return;
+		}
 		GetComponent<TextMesh> ().text = names[Random.Range(0, names.Length)];
 		foreach(GameObject City in GameObject.FindGameObjectsWithTag("City")){
 			if(City.transform.GetChild(0).gameObject.GetComponent<TextMesh>().text == GetComponent<TextMesh> ().text){
 				GetName ();
 				return;
 			}
-		}
-		if(overideName != ""){
-			GetComponent<TextMesh> ().text = overideName;
 		}
 	}
 }

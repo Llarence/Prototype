@@ -17,7 +17,7 @@ public class CameraMoveCiv : MonoBehaviour {
 		
 	// Update is called once per frame
 	void FixedUpdate () {
-		if (GameObject.Find ("CameraRotator").GetComponent<CameraRotator> ().cameraToCenter == true) {
+		//if (GameObject.Find ("CameraRotator").GetComponent<CameraRotator> ().cameraToCenter == true) {
 		
 			if (Input.GetKeyDown (KeyCode.LeftControl)) {
 				control = controlMax;
@@ -60,6 +60,6 @@ public class CameraMoveCiv : MonoBehaviour {
 			if (Input.GetMouseButtonUp (2)) {
 				Cursor.lockState = CursorLockMode.None;
 			}
-		}
+		//}
 	}
 }
