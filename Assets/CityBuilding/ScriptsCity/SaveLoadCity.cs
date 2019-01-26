@@ -24,7 +24,7 @@ public class SaveLoadCity : MonoBehaviour {
 	float Gold;
 	int I;
 
-	public void Save2 (string SaveName) {
+	public void Save2 () {
 		json_data = "";
 		GameObjects = FindObjectsOfType<GameObject>();
 		foreach (GameObject CurrentObject in GameObjects) {
@@ -40,7 +40,7 @@ public class SaveLoadCity : MonoBehaviour {
 	}
 
 	public void Load2 (){
-		Data = File.ReadAllText (Application.persistentDataPath + "/~Player.SaveCity");
+		Data = File.ReadAllText (Application.persistentDataPath + "/~Player." + GameObject.Find ("InfoStorage").GetComponent<InfoStorage>().CityName);
 		GetComponent<ManagerCity>().Gold = int.Parse (Data.Split ('/') [0]);
 		GetComponent<ManagerCity>().Food = int.Parse (Data.Split ('/') [1]);
 		GetComponent<ManagerCity>().Population = int.Parse (Data.Split ('/') [2]);

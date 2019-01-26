@@ -21,7 +21,7 @@ public class ManagerCity : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		StartCoroutine (Tick());
-		
+		GetComponent<SaveLoadCity> ().Load2();
 	}
 
 	
@@ -71,6 +71,7 @@ public class ManagerCity : MonoBehaviour {
 	}
 
 	public void MainMap (){
+		GetComponent<SaveLoadCity> ().Save2();
 		SceneManager.LoadScene ("Civilization");
 	}
 }	
