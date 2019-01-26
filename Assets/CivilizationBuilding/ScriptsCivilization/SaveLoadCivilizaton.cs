@@ -60,8 +60,13 @@ public class SaveLoadCivilizaton : MonoBehaviour {
 	}
 
 	public void Load (){
-		GetComponent<ManagerCivilization> ().gameName = text.transform.GetChild (1).transform.GetChild (2).GetComponent<Text> ().text;
+		if (GameObject.Find ("InfoStorage").GetComponent<InfoStorage> ().inGameName == "") {
+			GetComponent<ManagerCivilization> ().gameName = text.transform.GetChild (1).transform.GetChild (2).GetComponent<Text> ().text;
+		} else {
+			GetComponent<ManagerCivilization> ().gameName = GameObject.Find ("InfoStorage").GetComponent<InfoStorage> ().inGameName;
+		}
 		loadName = GetComponent<ManagerCivilization> ().gameName;
+		GameObject.Find ("InfoStorage").GetComponent<InfoStorage> ().inGameName = loadName;
 		if (File.Exists (Application.persistentDataPath + "/~Civilization." + loadName) == true) {
 			Destroy (text);
 			Destroy (text2);

@@ -282,6 +282,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CityName: 
+  InGameName: 
 --- !u!4 &1158041751
 Transform:
   m_ObjectHideFlags: 0

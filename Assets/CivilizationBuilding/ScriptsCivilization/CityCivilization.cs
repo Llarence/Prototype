@@ -22,7 +22,7 @@ public class CityCivilization : MonoBehaviour {
 					clickTime = clickTime + Time.deltaTime;
 					if(clickTime >= 1){
 						manager.GetComponent<SaveLoadCivilizaton> ().Save ();
-						GameObject.Find ("InfoStorage").GetComponent<InfoStorage>().CityName = transform.GetChild(0).gameObject.GetComponent<TextMesh>().text;
+						GameObject.Find ("InfoStorage").GetComponent<InfoStorage>().cityName = transform.GetChild(0).gameObject.GetComponent<TextMesh>().text;
 						SceneManager.LoadScene ("CityBuilding");
 					}
 				}

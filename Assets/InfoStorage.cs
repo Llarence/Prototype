@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class InfoStorage : MonoBehaviour {
 
-	public string CityName;
+	public string cityName;
+	public string inGameName;
 
 	// Use this for initialization
 	void Start () {

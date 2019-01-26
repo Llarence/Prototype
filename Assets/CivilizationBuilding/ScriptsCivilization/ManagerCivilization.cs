@@ -35,6 +35,9 @@ public class ManagerCivilization : MonoBehaviour {
 
 	void Start (){
 		SpawnGameNames ();
+		if (GameObject.Find ("InfoStorage").GetComponent<InfoStorage> ().inGameName != "") {
+			GetComponent<SaveLoadCivilizaton> ().Load ();
+		}
 	}
 
 	public void SpawnGameNames() {
@@ -63,6 +66,7 @@ public class ManagerCivilization : MonoBehaviour {
 
 	public void GenerateMap () {
 		gameName = text.transform.GetChild (1).transform.GetChild (2).GetComponent<Text> ().text;
+		GameObject.Find ("InfoStorage").GetComponent<InfoStorage> ().inGameName = gameName;
 		if (gameName != "") {
 			Destroy (text);
 			Destroy (text2);
