@@ -10,6 +10,7 @@ public class GameState {
 	public float y;
 	public float z;
 	public string name;
+	public string cityName;
 }
 
 public class SaveLoadCivilizaton : MonoBehaviour {
@@ -48,6 +49,9 @@ public class SaveLoadCivilizaton : MonoBehaviour {
 				gameState.y = CurrentObject.transform.position.y;
 				gameState.z = CurrentObject.transform.position.z;
 				gameState.name = CurrentObject.name;
+				if(CurrentObject.CompareTag("City")){
+					gameState.cityName = CurrentObject.transform.GetChild(0).gameObject.GetComponent<TextMesh>().text;
+				}
 				json_data = json_data + "|" + JsonUtility.ToJson(gameState);
 			}
 		}
@@ -92,7 +96,10 @@ public class SaveLoadCivilizaton : MonoBehaviour {
 			}
 			i = 1;
 			while ((data.Split ('/') [1]).Split ('|') [i] != null) {
-				Instantiate (Resources.Load (JsonUtility.FromJson<GameState> ((data.Split ('/') [1]).Split ('|') [i]).name.Split ('(') [0]), new Vector3 (float.Parse ((data.Split ('/') [1]).Split ('|') [i].Split (':') [1].Split (',') [0]), float.Parse ((data.Split ('/') [1]).Split ('|') [i].Split (':') [2].Split (',') [0]), float.Parse ((data.Split ('/') [1]).Split ('|') [i].Split (':') [3].Split (',') [0])), Quaternion.identity);
+				GameObject Instantiated = Instantiate (Resources.Load (JsonUtility.FromJson<GameState> ((data.Split ('/') [1]).Split ('|') [i]).name.Split ('(') [0]), new Vector3 (float.Parse ((data.Split ('/') [1]).Split ('|') [i].Split (':') [1].Split (',') [0]), float.Parse ((data.Split ('/') [1]).Split ('|') [i].Split (':') [2].Split (',') [0]), float.Parse ((data.Split ('/') [1]).Split ('|') [i].Split (':') [3].Split (',') [0])), Quaternion.identity) as GameObject;
+				if (Instantiated.name == "City(Clone)") {
+					Instantiated.transform.GetChild (0).gameObject.GetComponent<TextMesh> ().text = JsonUtility.FromJson<GameState> ((data.Split ('/') [1]).Split ('|') [i]).cityName;
+				}
 				i++;
 			}
 		}
