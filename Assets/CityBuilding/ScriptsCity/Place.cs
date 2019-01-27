@@ -29,24 +29,28 @@ public class Place : MonoBehaviour {
 		Destroy (ObjectSpawning);
 		SpawningObject = true;
 		ObjectSpawning = Instantiate (HouseHologram, new Vector3(0, -1000, 0), Quaternion.identity);
+		GameObject.Find ("Manager").GetComponent<ManagerCity> ().Gold -= 2;
 		return;
 	}
 	public void SpawnFarmHologram(){
 		Destroy (ObjectSpawning);
 		SpawningObject = true;
 		ObjectSpawning = Instantiate (FarmHologram, new Vector3(0, -1000, 0), Quaternion.identity);
+		GameObject.Find ("Manager").GetComponent<ManagerCity> ().Gold -= 1;
 		return;
 	}
 	public void SpawnGoldMineHologram(){
 		Destroy (ObjectSpawning);
 		SpawningObject = true;
 		ObjectSpawning = Instantiate (GoldMineHologram, new Vector3(0, -1000, 0), Quaternion.identity);
+		GameObject.Find ("Manager").GetComponent<ManagerCity> ().Gold -= 2;
 		return;
 	}
 	public void SpawnStorageHologram(){
 		Destroy (ObjectSpawning);
 		SpawningObject = true;
 		ObjectSpawning = Instantiate (StorageHologram, new Vector3(0, -1000, 0), Quaternion.identity);
+		GameObject.Find ("Manager").GetComponent<ManagerCity> ().Gold -= 3;
 		return;
 	}
 }
