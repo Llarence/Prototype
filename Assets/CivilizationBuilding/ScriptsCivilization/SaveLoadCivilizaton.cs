@@ -115,11 +115,8 @@ public class SaveLoadCivilizaton : MonoBehaviour {
 		deleteName = GetComponent<ManagerCivilization> ().text.transform.GetChild (1).transform.GetChild(2).GetComponent<Text>().text;
 		File.Delete (Application.persistentDataPath + "/~Civilization." + deleteName);
 		foreach(string filePath in System.IO.Directory.GetFiles(Application.persistentDataPath)){
-			if(filePath.Split ('.')[filePath.Split ('.').Length - 2].Contains(".")){
-				if(filePath.Split ('.')[filePath.Split ('.').Length - 2].Split('.')[2] == deleteName){
-					print ("hi");
-					File.Delete (filePath);
-				}
+			if(filePath.Split ('.')[filePath.Split ('.').Length - 2] == deleteName){
+				File.Delete (filePath);
 			}
 		}
 		GetComponent<ManagerCivilization>().SpawnGameNames ();
