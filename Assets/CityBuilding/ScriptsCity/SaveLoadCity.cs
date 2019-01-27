@@ -40,14 +40,18 @@ public class SaveLoadCity : MonoBehaviour {
 	}
 
 	public void Load2 (){
-		Data = File.ReadAllText (Application.persistentDataPath + "/~Player." + GameObject.Find ("InfoStorage").GetComponent<InfoStorage>().cityName);
-		GetComponent<ManagerCity>().Gold = int.Parse (Data.Split ('/') [0]);
-		GetComponent<ManagerCity>().Food = int.Parse (Data.Split ('/') [1]);
-		GetComponent<ManagerCity>().Population = int.Parse (Data.Split ('/') [2]);
-		I = 1;
-		while ((Data.Split ('/') [3]).Split ('|').Length > I){
-			Instantiate(Resources.Load(JsonUtility.FromJson<gameState2>((Data.Split ('/') [3]).Split('|')[I]).Name2.Split ('(') [0]), new Vector3(float.Parse ((Data.Split ('/') [3]).Split('|')[I].Split(':')[1].Split(',')[0]), float.Parse ((Data.Split ('/') [3]).Split('|')[I].Split(':')[2].Split(',')[0]), float.Parse ((Data.Split ('/') [3]).Split('|')[I].Split(':')[3].Split(',')[0])), Quaternion.identity);
-			I++;
+		if(File.Exists (Application.persistentDataPath + "/~Player." + GameObject.Find ("InfoStorage").GetComponent<InfoStorage>().cityName)){
+			Data = File.ReadAllText (Application.persistentDataPath + "/~Player." + GameObject.Find ("InfoStorage").GetComponent<InfoStorage>().cityName);
+			GetComponent<ManagerCity>().Gold = int.Parse (Data.Split ('/') [0]);
+			GetComponent<ManagerCity>().Food = int.Parse (Data.Split ('/') [1]);
+			GetComponent<ManagerCity>().Population = int.Parse (Data.Split ('/') [2]);
+			I = 1;
+			while ((Data.Split ('/') [3]).Split ('|').Length > I){
+				Instantiate(Resources.Load(JsonUtility.FromJson<gameState2>((Data.Split ('/') [3]).Split('|')[I]).Name2.Split ('(') [0]), new Vector3(float.Parse ((Data.Split ('/') [3]).Split('|')[I].Split(':')[1].Split(',')[0]), float.Parse ((Data.Split ('/') [3]).Split('|')[I].Split(':')[2].Split(',')[0]), float.Parse ((Data.Split ('/') [3]).Split('|')[I].Split(':')[3].Split(',')[0])), Quaternion.identity);
+				I++;
+			}
+		}else{
+			GetComponent<ManagerCity>().Gold = 10;
 		}
 	}
 }

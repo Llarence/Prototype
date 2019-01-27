@@ -57,7 +57,7 @@ public class ManagerCity : MonoBehaviour {
 		Population = Mathf.Clamp (Population, 4, Houses.Length * 3 + 4);
 		Gold += Mathf.FloorToInt(Mathf.Clamp (Mathf.Clamp(Population, 0, Houses.Length * 1000000) - Mathf.Clamp(Population, 0, Farms.Length * 2), 0, GoldMines.Length * 2));
 		Food = Mathf.FloorToInt(Mathf.Clamp (Food, 0, Storages.Length * 12));
-		Gold = Mathf.FloorToInt(Mathf.Clamp (Gold, 0, Storages.Length * 12));
+		Gold = Mathf.FloorToInt(Mathf.Clamp (Gold, 0, (Storages.Length * 12) + 10));
 		Text.text = ("Population: " + Population + ", Food: " + Food + ", Gold: " + Gold + ", TickTime: " + TickTime);
 		while(People.Length < Population){
 			Instantiate (Person, new Vector3(0, 0.5f, 0), Quaternion.identity);
