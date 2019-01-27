@@ -281,8 +281,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 166c831288a1e3a49b984dbc49f7f9e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CityName: 
-  InGameName: 
+  cityName: 
+  inGameName: 
 --- !u!4 &1158041751
 Transform:
   m_ObjectHideFlags: 0
@@ -427,7 +427,7 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 0, g: 1, b: 0.071077585, a: 1}
+    m_NormalColor: {r: 1, g: 0, b: 1, a: 1}
     m_HighlightedColor: {r: 0, g: 0.8207547, b: 0.057935722, a: 1}
     m_PressedColor: {r: 0, g: 0.5754717, b: 0.040621597, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
@@ -708,7 +708,7 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 0, g: 1, b: 0.071077585, a: 1}
+    m_NormalColor: {r: 1, g: 0, b: 0.024559021, a: 1}
     m_HighlightedColor: {r: 0, g: 0.8207547, b: 0.057935722, a: 1}
     m_PressedColor: {r: 0, g: 0.5754717, b: 0.040621597, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
@@ -808,7 +808,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0.3921569, g: 0.5803922, b: 0.86274517, a: 0}
+  m_BackGroundColor: {r: 0.26695108, g: 0.4056604, b: 0.08610717, a: 0}
   m_projectionMatrixMode: 1
   m_SensorSize: {x: 36, y: 24}
   m_LensShift: {x: 0, y: 0}
@@ -1025,7 +1025,7 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 0, g: 1, b: 0.071077585, a: 1}
+    m_NormalColor: {r: 0, g: 0.2830189, b: 0.2687328, a: 1}
     m_HighlightedColor: {r: 0, g: 0.8207547, b: 0.057935722, a: 1}
     m_PressedColor: {r: 0, g: 0.5754717, b: 0.040621597, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
