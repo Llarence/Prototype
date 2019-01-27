@@ -36,12 +36,12 @@ public class SaveLoadCity : MonoBehaviour {
 				json_data = json_data + "|" + JsonUtility.ToJson(GameState);
 			}
 		}
-		File.WriteAllText (Application.persistentDataPath + "/~Player." + GameObject.Find ("InfoStorage").GetComponent<InfoStorage>().cityName, GetComponent<ManagerCity>().Gold + "/" + GetComponent<ManagerCity>().Food + "/" + GetComponent<ManagerCity>().Population + "/"  + json_data);
+		File.WriteAllText (Application.persistentDataPath + "/~Player." + GameObject.Find ("InfoStorage").GetComponent<InfoStorage>().inGameName + "." + GameObject.Find ("InfoStorage").GetComponent<InfoStorage>().cityName, GetComponent<ManagerCity>().Gold + "/" + GetComponent<ManagerCity>().Food + "/" + GetComponent<ManagerCity>().Population + "/"  + json_data);
 	}
 
 	public void Load2 (){
-		if(File.Exists (Application.persistentDataPath + "/~Player." + GameObject.Find ("InfoStorage").GetComponent<InfoStorage>().cityName)){
-			Data = File.ReadAllText (Application.persistentDataPath + "/~Player." + GameObject.Find ("InfoStorage").GetComponent<InfoStorage>().cityName);
+		if(File.Exists (Application.persistentDataPath + "/~Player." + GameObject.Find ("InfoStorage").GetComponent<InfoStorage>().inGameName + "." + GameObject.Find ("InfoStorage").GetComponent<InfoStorage>().cityName)){
+			Data = File.ReadAllText (Application.persistentDataPath + "/~Player." + GameObject.Find ("InfoStorage").GetComponent<InfoStorage>().inGameName + "." + GameObject.Find ("InfoStorage").GetComponent<InfoStorage>().cityName);
 			GetComponent<ManagerCity>().Gold = int.Parse (Data.Split ('/') [0]);
 			GetComponent<ManagerCity>().Food = int.Parse (Data.Split ('/') [1]);
 			GetComponent<ManagerCity>().Population = int.Parse (Data.Split ('/') [2]);
