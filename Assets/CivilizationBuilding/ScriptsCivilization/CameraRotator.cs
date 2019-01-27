@@ -36,6 +36,6 @@ public class CameraRotator : MonoBehaviour {
 	}
 
 	public void startDown (){
-		GameObject.Find ("Start").GetComponent<RectTransform> ().Translate (0, -100000, 0);
+		//GameObject.Find ("Start").GetComponent<RectTransform> ().Translate (0, -100000, 0);
 	}
 }

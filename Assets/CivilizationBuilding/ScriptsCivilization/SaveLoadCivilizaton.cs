@@ -95,9 +95,10 @@ public class SaveLoadCivilizaton : MonoBehaviour {
 				x += 10;
 			}
 			i = 1;
-			while ((data.Split ('/') [1]).Split ('|') [i] != null) {
+			while ((data.Split ('/') [1]).Split ('|').Length > i) {
 				GameObject Instantiated = Instantiate (Resources.Load (JsonUtility.FromJson<GameState> ((data.Split ('/') [1]).Split ('|') [i]).name.Split ('(') [0]), new Vector3 (float.Parse ((data.Split ('/') [1]).Split ('|') [i].Split (':') [1].Split (',') [0]), float.Parse ((data.Split ('/') [1]).Split ('|') [i].Split (':') [2].Split (',') [0]), float.Parse ((data.Split ('/') [1]).Split ('|') [i].Split (':') [3].Split (',') [0])), Quaternion.identity) as GameObject;
 				if (Instantiated.name == "City(Clone)") {
+					print (Instantiated.transform.GetChild (0).gameObject.GetComponent<TextMesh> ().text = JsonUtility.FromJson<GameState> ((data.Split ('/') [1]).Split ('|') [i]).cityName);
 					Instantiated.transform.GetChild (0).gameObject.GetComponent<TextMesh> ().text = JsonUtility.FromJson<GameState> ((data.Split ('/') [1]).Split ('|') [i]).cityName;
 				}
 				i++;
