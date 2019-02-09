@@ -8,10 +8,19 @@ public class CityCivilization : MonoBehaviour {
 	GameObject manager;
 	RaycastHit hit;
 	float clickTime;
+	public GameObject Border;
 
 	// Use this for initialization
 	void Start () {
 		manager = GameObject.Find ("Manager");
+		Instantiate (Border, transform.position + new Vector3(10, -2.45f, 0), Quaternion.identity);
+		Instantiate (Border, transform.position + new Vector3(10, -2.45f, 10), Quaternion.identity);
+		Instantiate (Border, transform.position + new Vector3(0, -2.45f, 10), Quaternion.identity);
+		Instantiate (Border, transform.position + new Vector3(-10, -2.45f, 10), Quaternion.identity);
+		Instantiate (Border, transform.position + new Vector3(-10, -2.45f, 0), Quaternion.identity);
+		Instantiate (Border, transform.position + new Vector3(-10, -2.45f, -10), Quaternion.identity);
+		Instantiate (Border, transform.position + new Vector3(0, -2.45f, -10), Quaternion.identity);
+		Instantiate (Border, transform.position + new Vector3(10, -2.45f, -10), Quaternion.identity);
 	}
 	
 	// Update is called once per frame
