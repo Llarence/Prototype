@@ -11,6 +11,7 @@ public class PlaceHologram : MonoBehaviour {
 	public float SpawnHeight;
 	public Color Red;
 	public Color Green;
+	public int costToBuy;
 
 	// Use this for initialization
 	void Start () {
@@ -25,9 +26,12 @@ public class PlaceHologram : MonoBehaviour {
 			transform.position = new Vector3(hit.point.x, SpawnHeight, hit.point.z);
 		}
 		if (Input.GetMouseButtonDown (1) && Colliding == 0) {
-			Instantiate (SpawnObject, transform.position, Quaternion.identity);
-			GameObject.Find ("MainCamera").GetComponent<Place> ().SpawningObject = false;
-			Destroy (gameObject);
+			if(GameObject.Find ("Manager").GetComponent<ManagerCity> ().Gold >= costToBuy){
+				Instantiate (SpawnObject, transform.position, Quaternion.identity);
+				GameObject.Find ("MainCamera").GetComponent<Place> ().SpawningObject = false;
+				GameObject.Find ("Manager").GetComponent<ManagerCity> ().Gold -= costToBuy;
+				Destroy (gameObject);
+			}
 		}
 		if(Colliding == 0){
 			GetComponent<MeshRenderer>().material.color = Green;

@@ -189,13 +189,13 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 70964108}
   m_TextComponent: {fileID: 1193496071}
   m_Placeholder: {fileID: 1805628145}
-  m_ContentType: 0
+  m_ContentType: 5
   m_InputType: 0
   m_AsteriskChar: 42
-  m_KeyboardType: 0
-  m_LineType: 1
+  m_KeyboardType: 6
+  m_LineType: 0
   m_HideMobileInput: 0
-  m_CharacterValidation: 0
+  m_CharacterValidation: 4
   m_CharacterLimit: 30
   m_OnEndEdit:
     m_PersistentCalls:
@@ -1117,7 +1117,7 @@ MonoBehaviour:
     m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 0
-    m_HorizontalOverflow: 0
+    m_HorizontalOverflow: 1
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: 
