@@ -45,6 +45,6 @@ public class CityCivilization : MonoBehaviour {
 	}
 
 	void AddBorder (){
-		Instantiate (border, transform.position + new Vector3(10, -2.45f, -20), Quaternion.identity);
+		//Instantiate (border, transform.position + new Vector3(10, -2.45f, -20), Quaternion.identity);
 	}
 }
