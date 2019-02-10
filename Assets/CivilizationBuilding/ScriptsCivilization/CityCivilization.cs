@@ -8,19 +8,20 @@ public class CityCivilization : MonoBehaviour {
 	GameObject manager;
 	RaycastHit hit;
 	float clickTime;
-	public GameObject Border;
+	public GameObject border;
+	public int turnIAmOn;
 
 	// Use this for initialization
 	void Start () {
 		manager = GameObject.Find ("Manager");
-		Instantiate (Border, transform.position + new Vector3(10, -2.45f, 0), Quaternion.identity);
-		Instantiate (Border, transform.position + new Vector3(10, -2.45f, 10), Quaternion.identity);
-		Instantiate (Border, transform.position + new Vector3(0, -2.45f, 10), Quaternion.identity);
-		Instantiate (Border, transform.position + new Vector3(-10, -2.45f, 10), Quaternion.identity);
-		Instantiate (Border, transform.position + new Vector3(-10, -2.45f, 0), Quaternion.identity);
-		Instantiate (Border, transform.position + new Vector3(-10, -2.45f, -10), Quaternion.identity);
-		Instantiate (Border, transform.position + new Vector3(0, -2.45f, -10), Quaternion.identity);
-		Instantiate (Border, transform.position + new Vector3(10, -2.45f, -10), Quaternion.identity);
+		Instantiate (border, transform.position + new Vector3(10, -2.45f, 0), Quaternion.identity);
+		Instantiate (border, transform.position + new Vector3(10, -2.45f, 10), Quaternion.identity);
+		Instantiate (border, transform.position + new Vector3(0, -2.45f, 10), Quaternion.identity);
+		Instantiate (border, transform.position + new Vector3(-10, -2.45f, 10), Quaternion.identity);
+		Instantiate (border, transform.position + new Vector3(-10, -2.45f, 0), Quaternion.identity);
+		Instantiate (border, transform.position + new Vector3(-10, -2.45f, -10), Quaternion.identity);
+		Instantiate (border, transform.position + new Vector3(0, -2.45f, -10), Quaternion.identity);
+		Instantiate (border, transform.position + new Vector3(10, -2.45f, -10), Quaternion.identity);
 	}
 	
 	// Update is called once per frame
@@ -37,5 +38,13 @@ public class CityCivilization : MonoBehaviour {
 				}
 			}
 		}
+		if(turnIAmOn < manager.GetComponent<ManagerCivilization>().turn){
+			turnIAmOn++;
+			AddBorder ();
+		}	
+	}
+
+	void AddBorder (){
+		Instantiate (border, transform.position + new Vector3(10, -2.45f, -20), Quaternion.identity);
 	}
 }
