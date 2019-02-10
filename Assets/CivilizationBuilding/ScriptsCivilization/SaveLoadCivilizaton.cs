@@ -18,6 +18,7 @@ public class SaveLoadCivilizaton : MonoBehaviour {
 	public GameObject mountain2;
 	public GameObject grass2;
 	public GameObject water2;
+	public GameObject deepWater2;
 	public GameObject beach2;
 	GameObject[] gameObjects;
 	public float[] position;
@@ -82,16 +83,20 @@ public class SaveLoadCivilizaton : MonoBehaviour {
 			z = -zAmount2 * 10;
 			while (x < (xAmount2 * 10) + 10) {
 				while (z < (zAmount2 * 10) + 10) {
-					if (Mathf.PerlinNoise ((offset2 + ((x + (float)(-xAmount2 * 10)) / (5f * xAmount2))), (offset2 + ((z + (float)(-zAmount2 * 10)) / (5f * zAmount2)))) < 0.5f) {
-						Instantiate (water2, new Vector3 (x, -1f, z), Quaternion.identity);
+					if (Mathf.PerlinNoise ((offset2 + ((x + (float)(-xAmount2 * 10)) / (5f * xAmount2))), (offset2 + ((z + (float)(-zAmount2 * 10)) / (5f * zAmount2)))) < 0.4575f) {
+						Instantiate (deepWater2, new Vector3 (x, -1f, z), Quaternion.identity);
 					} else {
-						if (Mathf.PerlinNoise ((offset2 + ((x + (float)(-xAmount2 * 10)) / (5f * xAmount2))), (offset2 + ((z + (float)(-zAmount2 * 10)) / (5f * zAmount2)))) < 0.5275f) {
-							Instantiate (beach2, new Vector3 (x, -4.5f, z), Quaternion.identity);
+						if (Mathf.PerlinNoise ((offset2 + ((x + (float)(-xAmount2 * 10)) / (5f * xAmount2))), (offset2 + ((z + (float)(-zAmount2 * 10)) / (5f * zAmount2)))) < 0.5f) {
+							Instantiate (water2, new Vector3 (x, -1f, z), Quaternion.identity);
 						} else {
-							if (Mathf.PerlinNoise ((offset2 + ((x + (float)(-xAmount2 * 10)) / (5f * xAmount2))), (offset2 + ((z + (float)(-zAmount2 * 10)) / (5f * zAmount2)))) < 0.825f) {
-								Instantiate (grass2, new Vector3 (x, -4.5f, z), Quaternion.identity);
+							if (Mathf.PerlinNoise ((offset2 + ((x + (float)(-xAmount2 * 10)) / (5f * xAmount2))), (offset2 + ((z + (float)(-zAmount2 * 10)) / (5f * zAmount2)))) < 0.5275f) {
+								Instantiate (beach2, new Vector3 (x, -4.5f, z), Quaternion.identity);
 							} else {
-								Instantiate (mountain2, new Vector3 (x, -0.5f, z), Quaternion.identity);
+								if (Mathf.PerlinNoise ((offset2 + ((x + (float)(-xAmount2 * 10)) / (5f * xAmount2))), (offset2 + ((z + (float)(-zAmount2 * 10)) / (5f * zAmount2)))) < 0.825f) {
+									Instantiate (grass2, new Vector3 (x, -4.5f, z), Quaternion.identity);
+								} else {
+									Instantiate (mountain2, new Vector3 (x, -0.5f, z), Quaternion.identity);
+								}
 							}
 						}
 					}

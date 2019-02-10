@@ -10,6 +10,7 @@ public class ManagerCivilization : MonoBehaviour {
 	public GameObject mountain;
 	public GameObject grass;
 	public GameObject water;
+	public GameObject deepWater;
 	public GameObject beach;
 	public GameObject city;
 	public GameObject warrior;
@@ -81,21 +82,25 @@ public class ManagerCivilization : MonoBehaviour {
 			z = -zAmount * 10;
 			while (x < (xAmount * 10) + 10) {
 				while (z < (zAmount * 10) + 10) {
-					if (Mathf.PerlinNoise ((offset + ((x + (float)(-xAmount * 10)) / (5f * xAmount))), (offset + ((z + (float)(-zAmount * 10)) / (5f * zAmount)))) < 0.5f) {
-						Instantiate (water, new Vector3 (x, -1f, z), Quaternion.identity);
+					if (Mathf.PerlinNoise ((offset + ((x + (float)(-xAmount * 10)) / (5f * xAmount))), (offset + ((z + (float)(-zAmount * 10)) / (5f * zAmount)))) < 0.4575f) {
+						Instantiate (deepWater, new Vector3 (x, -1f, z), Quaternion.identity);
 					} else {
-						if (Mathf.PerlinNoise ((offset + ((x + (float)(-xAmount * 10)) / (5f * xAmount))), (offset + ((z + (float)(-zAmount * 10)) / (5f * zAmount)))) < 0.5275f) {
-							Instantiate (beach, new Vector3 (x, -4.5f, z), Quaternion.identity);
+						if (Mathf.PerlinNoise ((offset + ((x + (float)(-xAmount * 10)) / (5f * xAmount))), (offset + ((z + (float)(-zAmount * 10)) / (5f * zAmount)))) < 0.5f) {
+							Instantiate (water, new Vector3 (x, -1f, z), Quaternion.identity);
 						} else {
-							if (Mathf.PerlinNoise ((offset + ((x + (float)(-xAmount * 10)) / (5f * xAmount))), (offset + ((z + (float)(-zAmount * 10)) / (5f * zAmount)))) < 0.825f) {
-								Instantiate (grass, new Vector3 (x, -4.5f, z), Quaternion.identity);
+							if (Mathf.PerlinNoise ((offset + ((x + (float)(-xAmount * 10)) / (5f * xAmount))), (offset + ((z + (float)(-zAmount * 10)) / (5f * zAmount)))) < 0.5275f) {
+								Instantiate (beach, new Vector3 (x, -4.5f, z), Quaternion.identity);
 							} else {
-								Instantiate (mountain, new Vector3 (x, -0.5f, z), Quaternion.identity);
+								if (Mathf.PerlinNoise ((offset + ((x + (float)(-xAmount * 10)) / (5f * xAmount))), (offset + ((z + (float)(-zAmount * 10)) / (5f * zAmount)))) < 0.825f) {
+									Instantiate (grass, new Vector3 (x, -4.5f, z), Quaternion.identity);
+								} else {
+									Instantiate (mountain, new Vector3 (x, -0.5f, z), Quaternion.identity);
+								}
 							}
 						}
 					}
-					z += 10;
-				}
+						z += 10;
+					}
 				z = -xAmount * 10;
 				x += 10;
 			}

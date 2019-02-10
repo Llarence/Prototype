@@ -624,6 +624,7 @@ MonoBehaviour:
   mountain: {fileID: 1109757292673606, guid: c17752786e7b2be45b357d164f5d6a1c, type: 2}
   grass: {fileID: 1886334014106876, guid: bc3719f8ef3618845ba64aa6b54e0785, type: 2}
   water: {fileID: 1253534998859838, guid: 13cded6a17286474c90c812a2a3e6d1a, type: 2}
+  deepWater: {fileID: 1379000803698430, guid: 13de958d36c2a9e49b5b4e977d8c43e3, type: 2}
   beach: {fileID: 1914847747313352, guid: 4244edef98f42bf4c8d12e43541e4b4d, type: 2}
   city: {fileID: 1329032383223910, guid: 44fbf82325d29d7448492b6cfb193b85, type: 2}
   warrior: {fileID: 1060434830780756, guid: 913f00b08c4c5444789900f4d92f1635, type: 2}
@@ -653,6 +654,7 @@ MonoBehaviour:
   mountain2: {fileID: 1109757292673606, guid: c17752786e7b2be45b357d164f5d6a1c, type: 2}
   grass2: {fileID: 1886334014106876, guid: bc3719f8ef3618845ba64aa6b54e0785, type: 2}
   water2: {fileID: 1253534998859838, guid: 13cded6a17286474c90c812a2a3e6d1a, type: 2}
+  deepWater2: {fileID: 1379000803698430, guid: 13de958d36c2a9e49b5b4e977d8c43e3, type: 2}
   beach2: {fileID: 1914847747313352, guid: 4244edef98f42bf4c8d12e43541e4b4d, type: 2}
   position: []
   xAmount2: 50
