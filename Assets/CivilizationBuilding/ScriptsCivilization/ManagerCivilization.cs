@@ -79,6 +79,7 @@ public class ManagerCivilization : MonoBehaviour {
 			}
 			GameObject.Find ("Main Camera").GetComponent<Camera> ().clearFlags = CameraClearFlags.Skybox;
 			GameObject.Find ("NextStage").GetComponent<RectTransform> ().Rotate (0, -90, 0);
+			GameObject.Find ("CurrentStage").GetComponent<RectTransform> ().Rotate (0, -90, 0);
 			offset = Random.Range (-1000f, 1000f);
 			x = -xAmount * 10;
 			z = -zAmount * 10;
@@ -123,7 +124,6 @@ public class ManagerCivilization : MonoBehaviour {
 	}
 
 	void Update(){
-		//print (stage);
 		units = GameObject.FindGameObjectsWithTag("Unit");
 		if(Input.GetMouseButton(0) || Input.GetMouseButton(1)){
 			Camera.main.GetComponent<AudioSource>().Play(0);
@@ -132,6 +132,7 @@ public class ManagerCivilization : MonoBehaviour {
 
 	public void NextTurn (){
 		stage = "BuildCivilization";
+		GameObject.Find ("CurrentStage").GetComponent<Text> ().text = "Build Civilization";
 		GetComponent<SaveLoadCivilizaton> ().Save();
 		turn++;
 	}
@@ -142,6 +143,7 @@ public class ManagerCivilization : MonoBehaviour {
 			return;
 		}
 		stage = "BuildCities";
+		GameObject.Find ("CurrentStage").GetComponent<Text> ().text = "Build Cities";
 	}
 		
 	public void CallSettle (){
