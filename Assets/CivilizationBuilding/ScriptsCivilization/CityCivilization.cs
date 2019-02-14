@@ -26,14 +26,16 @@ public class CityCivilization : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (Input.GetMouseButton (0)) {
-			if (Physics.Raycast (Camera.main.ScreenPointToRay (Input.mousePosition), out hit)) {
-				if (hit.collider.gameObject == gameObject) {
-					clickTime = clickTime + Time.deltaTime;
-					if(clickTime >= 1){
-						manager.GetComponent<SaveLoadCivilizaton> ().Save ();
-						GameObject.Find ("InfoStorage").GetComponent<InfoStorage>().cityName = transform.GetChild(0).gameObject.GetComponent<TextMesh>().text;
-						SceneManager.LoadScene ("CityBuilding");
+		if(manager.GetComponent<ManagerCivilization>().stage == "BuildCities"){
+			if (Input.GetMouseButton (0)) {
+				if (Physics.Raycast (Camera.main.ScreenPointToRay (Input.mousePosition), out hit)) {
+					if (hit.collider.gameObject == gameObject) {
+						clickTime = clickTime + Time.deltaTime;
+						if(clickTime >= 1){
+							manager.GetComponent<SaveLoadCivilizaton> ().Save ();
+							GameObject.Find ("InfoStorage").GetComponent<InfoStorage>().cityName = transform.GetChild(0).gameObject.GetComponent<TextMesh>().text;
+							SceneManager.LoadScene ("CityBuilding");
+						}
 					}
 				}
 			}

@@ -640,6 +640,7 @@ MonoBehaviour:
   gameName: 
   newText: {fileID: 1588952278026000, guid: 5d94fb877925ada4a96edf709059eeac, type: 2}
   texts: []
+  stage: 
 --- !u!114 &567940034
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2049,18 +2050,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 567940033}
-        m_MethodName: NextTurn
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 567940034}
-        m_MethodName: Save
+        m_MethodName: NextStage
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

@@ -33,8 +33,10 @@ public class ManagerCivilization : MonoBehaviour {
 	GameObject textGameObject;
 	public List<GameObject> texts;
 	int loops;
+	public string stage;
 
 	void Start (){
+		stage = "BuildCivilization";
 		SpawnGameNames ();
 		if (GameObject.Find ("InfoStorage").GetComponent<InfoStorage> ().inGameName != "") {
 			GetComponent<SaveLoadCivilizaton> ().Load ();
@@ -121,6 +123,7 @@ public class ManagerCivilization : MonoBehaviour {
 	}
 
 	void Update(){
+		//print (stage);
 		units = GameObject.FindGameObjectsWithTag("Unit");
 		if(Input.GetMouseButton(0) || Input.GetMouseButton(1)){
 			Camera.main.GetComponent<AudioSource>().Play(0);
@@ -128,7 +131,17 @@ public class ManagerCivilization : MonoBehaviour {
 	}
 
 	public void NextTurn (){
+		stage = "BuildCivilization";
+		GetComponent<SaveLoadCivilizaton> ().Save();
 		turn++;
+	}
+
+	public void NextStage (){
+		if(stage == "BuildCities"){
+			NextTurn();
+			return;
+		}
+		stage = "BuildCities";
 	}
 		
 	public void CallSettle (){
