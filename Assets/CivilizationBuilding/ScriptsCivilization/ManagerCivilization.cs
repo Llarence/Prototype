@@ -133,7 +133,6 @@ public class ManagerCivilization : MonoBehaviour {
 	public void NextTurn (){
 		stage = "BuildCivilization";
 		GameObject.Find ("CurrentStage").GetComponent<Text> ().text = "Build Civilization";
-		GetComponent<SaveLoadCivilizaton> ().Save();
 		turn++;
 	}
 
@@ -142,6 +141,7 @@ public class ManagerCivilization : MonoBehaviour {
 			NextTurn();
 			return;
 		}
+		GetComponent<SaveLoadCivilizaton> ().Save();
 		stage = "BuildCities";
 		GameObject.Find ("CurrentStage").GetComponent<Text> ().text = "Build Cities";
 	}
