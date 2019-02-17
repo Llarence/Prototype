@@ -47,7 +47,7 @@ public class SaveLoadCity : MonoBehaviour {
 			GetComponent<ManagerCity>().Population = int.Parse (Data.Split ('/') [2]);
 			I = 1;
 			while ((Data.Split ('/') [7]).Split ('|').Length > I){
-				Instantiate(Resources.Load(JsonUtility.FromJson<gameState2>((Data.Split ('/') [3]).Split('|')[I]).Name2.Split ('(') [0]), new Vector3(float.Parse ((Data.Split ('/') [3]).Split('|')[I].Split(':')[1].Split(',')[0]), float.Parse ((Data.Split ('/') [3]).Split('|')[I].Split(':')[2].Split(',')[0]), float.Parse ((Data.Split ('/') [3]).Split('|')[I].Split(':')[3].Split(',')[0])), Quaternion.identity);
+				Instantiate(Resources.Load(JsonUtility.FromJson<gameState2>((Data.Split ('/') [7]).Split('|')[I]).Name2.Split ('(') [0]), new Vector3(float.Parse ((Data.Split ('/') [7]).Split('|')[I].Split(':')[1].Split(',')[0]), float.Parse ((Data.Split ('/') [7]).Split('|')[I].Split(':')[2].Split(',')[0]), float.Parse ((Data.Split ('/') [7]).Split('|')[I].Split(':')[3].Split(',')[0])), Quaternion.identity);
 				I++;
 			}
 		}else{
