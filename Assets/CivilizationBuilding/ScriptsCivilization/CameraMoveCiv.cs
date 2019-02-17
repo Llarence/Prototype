@@ -17,6 +17,21 @@ public class CameraMoveCiv : MonoBehaviour {
 		
 	// Update is called once per frame
 	void FixedUpdate () {
+		if (Input.GetKeyUp ("j") && GetComponent<Camera> ().clearFlags == CameraClearFlags.Skybox) {
+			GetComponent<Camera> ().clearFlags = CameraClearFlags.SolidColor;
+			GetComponent<Camera> ().backgroundColor = Color.black;
+		} else {
+			if (Input.GetKeyUp ("j") && GetComponent<Camera> ().clearFlags == CameraClearFlags.SolidColor) {
+				GetComponent<Camera> ().clearFlags = CameraClearFlags.Skybox;
+			}
+		}
+		if (GetComponent<Camera> ().clearFlags == CameraClearFlags.SolidColor && GetComponent<Camera> ().backgroundColor == Color.white) {
+			GetComponent<Camera> ().backgroundColor = Color.black;
+		} else {
+			if (GetComponent<Camera> ().clearFlags == CameraClearFlags.SolidColor && GetComponent<Camera> ().backgroundColor == Color.black) {
+				GetComponent<Camera> ().backgroundColor = Color.white;
+			}
+		}
 		//if (GameObject.Find ("CameraRotator").GetComponent<CameraRotator> ().cameraToCenter == true) {
 		
 			if (Input.GetKeyDown (KeyCode.LeftControl)) {
