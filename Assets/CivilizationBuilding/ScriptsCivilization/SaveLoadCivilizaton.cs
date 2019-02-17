@@ -42,24 +42,22 @@ public class SaveLoadCivilizaton : MonoBehaviour {
 	GameObject instantiated;
 
 	public void Save () {
-		{
-			saveName = GetComponent<ManagerCivilization> ().gameName;
-			json_data = "";
-			gameObjects = FindObjectsOfType<GameObject> ();
-			foreach (GameObject CurrentObject in gameObjects) {
-				if (CurrentObject.name != "Grass(Clone)" && CurrentObject.name != "Water(Clone)" && CurrentObject.name != "Border(Clone)" && CurrentObject.name != "Mountain(Clone)" && CurrentObject.name != "Deep Water(Clone)" && CurrentObject.name != "Beach(Clone)" && CurrentObject.name != "EventSystem" && CurrentObject.name != "Manager" && CurrentObject.name != "Directional Light" && CurrentObject.name != "Main Camera" && CurrentObject.name != "CameraRotator" && CurrentObject.name != "InfoStorage" && CurrentObject.layer != 5) {
-					gameState.x = CurrentObject.transform.position.x;
-					gameState.y = CurrentObject.transform.position.y;
-					gameState.z = CurrentObject.transform.position.z;
-					gameState.name = CurrentObject.name;
-					if (CurrentObject.CompareTag ("City")) {
-						gameState.cityName = CurrentObject.transform.GetChild (0).gameObject.GetComponent<TextMesh> ().text;
-					}
-					json_data = json_data + "|" + JsonUtility.ToJson (gameState);
+		saveName = GetComponent<ManagerCivilization> ().gameName;
+		json_data = "";
+		gameObjects = FindObjectsOfType<GameObject>();
+		foreach (GameObject CurrentObject in gameObjects) {
+			if(CurrentObject.name != "Grass(Clone)" && CurrentObject.name != "Water(Clone)" && CurrentObject.name != "Border(Clone)" && CurrentObject.name != "Mountain(Clone)" && CurrentObject.name != "Deep Water(Clone)" && CurrentObject.name != "Beach(Clone)"  && CurrentObject.name != "EventSystem" && CurrentObject.name != "Manager" && CurrentObject.name != "Directional Light"  && CurrentObject.name != "Main Camera"  && CurrentObject.name != "CameraRotator" && CurrentObject.name != "InfoStorage" && CurrentObject.layer != 5){
+				gameState.x = CurrentObject.transform.position.x;
+				gameState.y = CurrentObject.transform.position.y;
+				gameState.z = CurrentObject.transform.position.z;
+				gameState.name = CurrentObject.name;
+				if(CurrentObject.CompareTag("City")){
+					gameState.cityName = CurrentObject.transform.GetChild(0).gameObject.GetComponent<TextMesh>().text;
 				}
+				json_data = json_data + "|" + JsonUtility.ToJson(gameState);
 			}
-			File.WriteAllText (Application.persistentDataPath + "/~Civilization." + saveName, GetComponent<ManagerCivilization> ().offset + "/" + json_data);
 		}
+		File.WriteAllText (Application.persistentDataPath + "/~Civilization." + saveName, GetComponent<ManagerCivilization>().offset + "/" + json_data);
 	}
 
 	public void Load (){

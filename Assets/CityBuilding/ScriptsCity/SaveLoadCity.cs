@@ -36,7 +36,7 @@ public class SaveLoadCity : MonoBehaviour {
 				json_data = json_data + "|" + JsonUtility.ToJson(GameState);
 			}
 		}
-		File.WriteAllText (Application.persistentDataPath + "/~Player." + GameObject.Find ("InfoStorage").GetComponent<InfoStorage>().inGameName + "." + GameObject.Find ("InfoStorage").GetComponent<InfoStorage>().cityName, GetComponent<ManagerCity>().Gold + "/" + GetComponent<ManagerCity>().Food + "/" + GetComponent<ManagerCity>().Population + "/"  + json_data);
+		File.WriteAllText (Application.persistentDataPath + "/~Player." + GameObject.Find ("InfoStorage").GetComponent<InfoStorage>().inGameName + "." + GameObject.Find ("InfoStorage").GetComponent<InfoStorage>().cityName, GetComponent<ManagerCity>().Gold + "/" + GetComponent<ManagerCity>().Food + "/" + GetComponent<ManagerCity>().Population + "/" + GetComponent<ManagerCity>().Farms.Length + "/" + GetComponent<ManagerCity>().Houses.Length + "/" + GetComponent<ManagerCity>().GoldMines.Length + "/" + GetComponent<ManagerCity>().Storages.Length + "/" + json_data);
 	}
 
 	public void Load2 (){
@@ -46,7 +46,7 @@ public class SaveLoadCity : MonoBehaviour {
 			GetComponent<ManagerCity>().Food = int.Parse (Data.Split ('/') [1]);
 			GetComponent<ManagerCity>().Population = int.Parse (Data.Split ('/') [2]);
 			I = 1;
-			while ((Data.Split ('/') [3]).Split ('|').Length > I){
+			while ((Data.Split ('/') [7]).Split ('|').Length > I){
 				Instantiate(Resources.Load(JsonUtility.FromJson<gameState2>((Data.Split ('/') [3]).Split('|')[I]).Name2.Split ('(') [0]), new Vector3(float.Parse ((Data.Split ('/') [3]).Split('|')[I].Split(':')[1].Split(',')[0]), float.Parse ((Data.Split ('/') [3]).Split('|')[I].Split(':')[2].Split(',')[0]), float.Parse ((Data.Split ('/') [3]).Split('|')[I].Split(':')[3].Split(',')[0])), Quaternion.identity);
 				I++;
 			}

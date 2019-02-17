@@ -6,10 +6,10 @@ using UnityEngine.SceneManagement;
 
 public class ManagerCity : MonoBehaviour {
 
-	GameObject[] Farms;
-	GameObject[] Houses;
-	GameObject[] GoldMines;
-	GameObject[] Storages;
+	public GameObject[] Farms;
+	public GameObject[] Houses;
+	public GameObject[] GoldMines;
+	public GameObject[] Storages;
 	public GameObject[] People;
 	public GameObject Person;
 	public int Food;
@@ -38,15 +38,15 @@ public class ManagerCity : MonoBehaviour {
 		if(Input.GetMouseButton(0) || Input.GetMouseButton(1)){
 			Camera.main.GetComponent<AudioSource>().Play(0);
 		}
-	}
-
-	IEnumerator Tick () {
-		yield return new WaitForSeconds (TickTime);
 		Farms = GameObject.FindGameObjectsWithTag ("Farm");
 		Houses = GameObject.FindGameObjectsWithTag ("House");
 		GoldMines = GameObject.FindGameObjectsWithTag ("GoldMine");
 		Storages = GameObject.FindGameObjectsWithTag ("Storage");
 		People = GameObject.FindGameObjectsWithTag ("Person");
+	}
+
+	IEnumerator Tick () {
+		yield return new WaitForSeconds (TickTime);
 		Food += Mathf.Clamp(Mathf.Clamp (Population, 0, Houses.Length * 1000000), 0, Farms.Length * 2) * 2;
 		Food -= Population;
 		if(Food < 0){
