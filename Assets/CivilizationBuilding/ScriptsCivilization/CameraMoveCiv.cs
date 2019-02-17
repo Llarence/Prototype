@@ -17,6 +17,7 @@ public class CameraMoveCiv : MonoBehaviour {
 		
 	// Update is called once per frame
 	void FixedUpdate () {
+		if(GameObject.Find("Manager").GetComponent<ManagerCivilization>().gameName != ""){
 		if (Input.GetKeyUp ("j") && GetComponent<Camera> ().clearFlags == CameraClearFlags.Skybox) {
 			GetComponent<Camera> ().clearFlags = CameraClearFlags.SolidColor;
 			GetComponent<Camera> ().backgroundColor = Color.black;
@@ -31,6 +32,7 @@ public class CameraMoveCiv : MonoBehaviour {
 			if (GetComponent<Camera> ().clearFlags == CameraClearFlags.SolidColor && GetComponent<Camera> ().backgroundColor == Color.black) {
 				GetComponent<Camera> ().backgroundColor = Color.white;
 			}
+		}
 		}
 		//if (GameObject.Find ("CameraRotator").GetComponent<CameraRotator> ().cameraToCenter == true) {
 		
