@@ -20,19 +20,19 @@ public class ManagerCity : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		StartCoroutine (Tick());
+		//StartCoroutine (Tick());
 		GetComponent<SaveLoadCity> ().Load2();
 	}
 
 	
 	// Update is called once per frame
 	void Update(){
-		if(Input.GetKeyDown("r") && TickTime != Mathf.Infinity){
-			TickTime += 0.5f;
-		}
-		if(Input.GetKeyDown("f") && TickTime != Mathf.Infinity){
-			TickTime -= 0.5f;
-		}
+		//if(Input.GetKeyDown("r") && TickTime != Mathf.Infinity){
+		//	TickTime += 0.5f;
+		//}
+		//if(Input.GetKeyDown("f") && TickTime != Mathf.Infinity){
+		//	TickTime -= 0.5f;
+		//}
 		TickTime = Mathf.Clamp (TickTime, 0.5f, Mathf.Infinity);
 		Text.text = ("Population: " + Population + ", Food: " + Food + ", Gold: " + Gold + ", TickTime: " + TickTime);
 		if(Input.GetMouseButton(0) || Input.GetMouseButton(1)){
@@ -43,6 +43,14 @@ public class ManagerCity : MonoBehaviour {
 		GoldMines = GameObject.FindGameObjectsWithTag ("GoldMine");
 		Storages = GameObject.FindGameObjectsWithTag ("Storage");
 		People = GameObject.FindGameObjectsWithTag ("Person");
+		while(People.Length < Population){
+			Instantiate (Person, new Vector3(0, 0.5f, 0), Quaternion.identity);
+			People = GameObject.FindGameObjectsWithTag ("Person");
+		}
+		if (People.Length > Population){
+			Destroy (GameObject.FindGameObjectWithTag ("Person"));
+			People = GameObject.FindGameObjectsWithTag ("Person");
+		}
 	}
 
 	IEnumerator Tick () {
@@ -67,7 +75,7 @@ public class ManagerCity : MonoBehaviour {
 			Destroy (GameObject.FindGameObjectWithTag ("Person"));
 			People = GameObject.FindGameObjectsWithTag ("Person");
 		}
-		StartCoroutine (Tick());
+		//StartCoroutine (Tick());
 	}
 
 	public void MainMap (){
