@@ -55,7 +55,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1329032383223910}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -12.24, y: 58.52, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 8, y: 5, z: 8}
   m_Children:
   - {fileID: 4531942236633038}
@@ -223,3 +223,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   border: {fileID: 1738663782906914, guid: f439c6c529ca6ab4abbcbae2f135ec20, type: 2}
   turnIAmOn: 0
+  Farms: 0
+  Houses: 0
+  GoldMines: 0
+  Storages: 0
+  People: 0
+  Food: 0
+  Population: 0
+  Gold: 0

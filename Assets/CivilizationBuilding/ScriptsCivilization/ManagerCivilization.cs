@@ -38,7 +38,7 @@ public class ManagerCivilization : MonoBehaviour {
 	void Start (){
 		stage = "BuildCities";
 		SpawnGameNames ();
-		if (GameObject.Find ("InfoStorage").GetComponent<InfoStorage> ().inGameName != "") {
+ 		if (GameObject.Find ("InfoStorage").GetComponent<InfoStorage> ().inGameName != "") {
 			GetComponent<SaveLoadCivilizaton> ().Load ();
 		}
 	}

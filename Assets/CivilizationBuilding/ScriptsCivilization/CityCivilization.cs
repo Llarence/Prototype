@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -50,10 +51,11 @@ public class CityCivilization : MonoBehaviour {
 			}
 		}
 		if(turnIAmOn < manager.GetComponent<ManagerCivilization>().turn){
-			turnIAmOn++;
-			if(){
-				Calculate ();
+			if(File.Exists (Application.persistentDataPath + "/~Civilization." + manager.GetComponent<SaveLoadCivilizaton>().loadName + "." + transform.GetChild(0).GetComponent<TextMesh>().text)){
+				print ("true");
 			}
+			turnIAmOn++;
+			Calculate ();
 			AddBorder ();
 		}	
 	}

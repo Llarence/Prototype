@@ -37,7 +37,7 @@ public class SaveLoadCivilizaton : MonoBehaviour {
 	public GameObject text3;
 	public bool isSaving;
 	string saveName;
-	string loadName;
+	public string loadName;
 	string deleteName;
 	GameObject instantiated;
 
