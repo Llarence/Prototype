@@ -12,14 +12,15 @@ public class CityCivilization : MonoBehaviour {
 	float clickTime;
 	public GameObject border;
 	public int turnIAmOn;
+	public int Gold;
+	public int Food;
+	public int Population;
 	public int Farms;
 	public int Houses;
 	public int GoldMines;
 	public int Storages;
 	public int People;
-	public int Food;
-	public int Population;
-	public int Gold;
+	string filePath;
 
 	// Use this for initialization
 	void Start () {
@@ -51,8 +52,15 @@ public class CityCivilization : MonoBehaviour {
 			}
 		}
 		if(turnIAmOn < manager.GetComponent<ManagerCivilization>().turn){
-			if(File.Exists (Application.persistentDataPath + "/~Civilization." + manager.GetComponent<SaveLoadCivilizaton>().loadName + "." + transform.GetChild(0).GetComponent<TextMesh>().text)){
-				print ("true");
+			if(File.Exists (Application.persistentDataPath + "/~Player." + manager.GetComponent<SaveLoadCivilizaton>().loadName + "." + transform.GetChild(0).GetComponent<TextMesh>().text)){
+				filePath = Application.persistentDataPath + "/~Player." + manager.GetComponent<SaveLoadCivilizaton> ().loadName + "." + transform.GetChild (0).GetComponent<TextMesh> ().text;
+				Gold = int.Parse(File.ReadAllText (filePath).Split ('/') [0]);
+				Food = int.Parse(File.ReadAllText (filePath).Split ('/') [1]);
+				Population = int.Parse(File.ReadAllText (filePath).Split ('/') [2]);
+				Farms = int.Parse(File.ReadAllText (filePath).Split ('/') [3]);
+				Houses = int.Parse(File.ReadAllText (filePath).Split ('/') [4]);
+				GoldMines = int.Parse(File.ReadAllText (filePath).Split ('/') [5]);
+				Storages = int.Parse(File.ReadAllText (filePath).Split ('/') [6]);
 			}
 			turnIAmOn++;
 			Calculate ();
@@ -76,6 +84,5 @@ public class CityCivilization : MonoBehaviour {
 		Gold += Mathf.FloorToInt(Mathf.Clamp (Mathf.Clamp(Population, 0, Houses * 1000000) - Mathf.Clamp(Population, 0, Farms * 2), 0, GoldMines * 2));
 		Food = Mathf.FloorToInt(Mathf.Clamp (Food, 0, Storages * 12));
 		Gold = Mathf.FloorToInt(Mathf.Clamp (Gold, 0, (Storages * 12) + 10));
-		GameObject.Find ("Resources").GetComponent<Text> ().text = "Gold:" + Gold;
 	}
 }

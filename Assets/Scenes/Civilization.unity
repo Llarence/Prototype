@@ -664,6 +664,7 @@ MonoBehaviour:
   text2: {fileID: 282637209}
   text3: {fileID: 1616759832}
   isSaving: 0
+  loadName: 
 --- !u!1 &629720050
 GameObject:
   m_ObjectHideFlags: 0
@@ -797,6 +798,7 @@ GameObject:
   - component: {fileID: 732146695}
   - component: {fileID: 732146697}
   - component: {fileID: 732146696}
+  - component: {fileID: 732146698}
   m_Layer: 5
   m_Name: Resources
   m_TagString: Untagged
@@ -862,6 +864,17 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 732146694}
   m_CullTransparentMesh: 0
+--- !u!114 &732146698
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 732146694}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c960f8dac3fafb94ca1df291e0e7da57, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &855156110
 GameObject:
   m_ObjectHideFlags: 0
@@ -1668,7 +1681,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Build Civilization
+  m_Text: Build Cities
 --- !u!222 &1674954447
 CanvasRenderer:
   m_ObjectHideFlags: 0
