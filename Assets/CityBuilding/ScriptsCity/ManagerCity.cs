@@ -20,7 +20,7 @@ public class ManagerCity : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		//StartCoroutine (Tick());
+		StartCoroutine (Tick());
 		GetComponent<SaveLoadCity> ().Load2();
 	}
 
@@ -75,7 +75,7 @@ public class ManagerCity : MonoBehaviour {
 			Destroy (GameObject.FindGameObjectWithTag ("Person"));
 			People = GameObject.FindGameObjectsWithTag ("Person");
 		}
-		//StartCoroutine (Tick());
+		StartCoroutine (Tick());
 	}
 
 	public void MainMap (){

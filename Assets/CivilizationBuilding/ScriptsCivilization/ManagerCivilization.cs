@@ -107,7 +107,7 @@ public class ManagerCivilization : MonoBehaviour {
 				z = -xAmount * 10;
 				x += 10;
 			}
-			while (Cities != 1) {
+			while (Cities != 10) {
 				x = Random.Range (-xAmount, xAmount + 1) * 10;
 				z = Random.Range (-zAmount, zAmount + 1) * 10;
 				if (Mathf.PerlinNoise ((offset + ((x + (float)(-xAmount * 10)) / (5f * xAmount))), (offset + ((z + (float)(-zAmount * 10)) / (5f * zAmount)))) < 0.825f && Mathf.PerlinNoise ((offset + ((x + (float)(-xAmount * 10)) / (5f * xAmount))), (offset + ((z + (float)(-zAmount * 10)) / (5f * zAmount)))) > 0.5f) {
