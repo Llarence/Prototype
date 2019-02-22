@@ -20,8 +20,9 @@ public class ManagerCity : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		StartCoroutine (Tick());
+		//StartCoroutine (Tick());
 		GetComponent<SaveLoadCity> ().Load2();
+		Population = 4;
 	}
 
 	
@@ -43,6 +44,10 @@ public class ManagerCity : MonoBehaviour {
 		GoldMines = GameObject.FindGameObjectsWithTag ("GoldMine");
 		Storages = GameObject.FindGameObjectsWithTag ("Storage");
 		People = GameObject.FindGameObjectsWithTag ("Person");
+		while(People.Length < Population){
+			Instantiate (Person, new Vector3(0, 0.5f, 0), Quaternion.identity);
+			People = GameObject.FindGameObjectsWithTag ("Person");
+		}
 		while(People.Length < Population){
 			Instantiate (Person, new Vector3(0, 0.5f, 0), Quaternion.identity);
 			People = GameObject.FindGameObjectsWithTag ("Person");

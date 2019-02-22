@@ -65,6 +65,12 @@ public class CityCivilization : MonoBehaviour {
 			turnIAmOn++;
 			Calculate ();
 			AddBorder ();
+			if(File.Exists (Application.persistentDataPath + "/~Player." + manager.GetComponent<SaveLoadCivilizaton>().loadName + "." + transform.GetChild(0).GetComponent<TextMesh>().text)){
+				filePath = Application.persistentDataPath + "/~Player." + manager.GetComponent<SaveLoadCivilizaton> ().loadName + "." + transform.GetChild (0).GetComponent<TextMesh> ().text;
+				File.WriteAllText (filePath, Gold + "/" + File.ReadAllText(filePath).Split ('/') [1]);
+				File.WriteAllText (filePath, Food + "/" + File.ReadAllText(filePath).Split ('/') [2]);
+				File.WriteAllText (filePath, Population + "/" + File.ReadAllText(filePath).Split ('/') [3]);
+			}
 		}	
 	}
 
@@ -84,5 +90,6 @@ public class CityCivilization : MonoBehaviour {
 		Gold += Mathf.FloorToInt(Mathf.Clamp (Mathf.Clamp(Population, 0, Houses * 1000000) - Mathf.Clamp(Population, 0, Farms * 2), 0, GoldMines * 2));
 		Food = Mathf.FloorToInt(Mathf.Clamp (Food, 0, Storages * 12));
 		Gold = Mathf.FloorToInt(Mathf.Clamp (Gold, 0, (Storages * 12) + 10));
+
 	}
 }
