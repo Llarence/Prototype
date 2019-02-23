@@ -134,3 +134,4 @@ MonoBehaviour:
   SpawnHeight: 0.52
   Red: {r: 1, g: 0.12530687, b: 0, a: 0.73333335}
   Green: {r: 0, g: 1, b: 0.09019608, a: 0.43529412}
+  costToBuy: 2
