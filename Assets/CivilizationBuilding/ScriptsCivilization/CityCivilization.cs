@@ -67,9 +67,7 @@ public class CityCivilization : MonoBehaviour {
 			AddBorder ();
 			if(File.Exists (Application.persistentDataPath + "/~Player." + manager.GetComponent<SaveLoadCivilizaton>().loadName + "." + transform.GetChild(0).GetComponent<TextMesh>().text)){
 				filePath = Application.persistentDataPath + "/~Player." + manager.GetComponent<SaveLoadCivilizaton> ().loadName + "." + transform.GetChild (0).GetComponent<TextMesh> ().text;
-				File.WriteAllText (filePath, Gold + "/" + File.ReadAllText(filePath).Split ('/') [1]);
-				File.WriteAllText (filePath, Food + "/" + File.ReadAllText(filePath).Split ('/') [2]);
-				File.WriteAllText (filePath, Population + "/" + File.ReadAllText(filePath).Split ('/') [3]);
+				File.WriteAllText (filePath, Gold + "/" + Food + "/" + Population + "/" + File.ReadAllText(filePath).Split ('/') [3] + "/" + File.ReadAllText(filePath).Split ('/') [4] + "/" + File.ReadAllText(filePath).Split ('/') [5] + "/" + File.ReadAllText(filePath).Split ('/') [6] + "/" + File.ReadAllText(filePath).Split ('/') [7]);
 			}
 		}	
 	}
