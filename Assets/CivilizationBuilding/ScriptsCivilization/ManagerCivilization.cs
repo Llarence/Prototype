@@ -34,6 +34,7 @@ public class ManagerCivilization : MonoBehaviour {
 	public List<GameObject> texts;
 	int loops;
 	public string stage;
+	List<Vector3> CityPositions = new List<Vector3>();
 
 	void Start (){
 		stage = "BuildCities";
@@ -81,7 +82,6 @@ public class ManagerCivilization : MonoBehaviour {
 			GameObject.Find ("NextStage").GetComponent<RectTransform> ().Rotate (0, -90, 0);
 			GameObject.Find ("CurrentStage").GetComponent<RectTransform> ().Rotate (0, -90, 0);
 			offset = Random.Range (-1000f, 1000f);
-			print (offset);
 			x = -xAmount * 10;
 			z = -zAmount * 10;
 			while (x < (xAmount * 10) + 10) {
@@ -112,14 +112,21 @@ public class ManagerCivilization : MonoBehaviour {
 				x = Random.Range (-xAmount, xAmount + 1) * 10;
 				z = Random.Range (-zAmount, zAmount + 1) * 10;
 				if (Mathf.PerlinNoise ((offset + ((x + (float)(-xAmount * 10)) / (5f * xAmount))), (offset + ((z + (float)(-zAmount * 10)) / (5f * zAmount)))) < 0.825f && Mathf.PerlinNoise ((offset + ((x + (float)(-xAmount * 10)) / (5f * xAmount))), (offset + ((z + (float)(-zAmount * 10)) / (5f * zAmount)))) > 0.5f) {
-					Instantiate (city, new Vector3 (x, 2f, z), Quaternion.identity);
-					Instantiate (settler, new Vector3 (x, 5f, z), Quaternion.identity);
-					Instantiate (warrior, new Vector3 (x, 5f, z + 10), Quaternion.identity);
-					Instantiate (warrior, new Vector3 (x, 5f, z - 10), Quaternion.identity);
-					Instantiate (warrior, new Vector3 (x + 10, 5f, z), Quaternion.identity);
-					Instantiate (warrior, new Vector3 (x - 10, 5f, z), Quaternion.identity);
-					Cities++;
+					if(CityPositions.Contains(new Vector3(x, 0, z)) == false){
+						CityPositions.Add (new Vector3(x, 0, z));
+						Cities++;
+					}
 				}
+			}
+			Cities = 0;
+			while (Cities != 10) {
+				Instantiate (city, CityPositions[Cities], Quaternion.identity);
+				Instantiate (settler, new Vector3 (x, 5f, z), Quaternion.identity);
+				Instantiate (warrior, new Vector3 (x, 5f, z + 10), Quaternion.identity);
+				Instantiate (warrior, new Vector3 (x, 5f, z - 10), Quaternion.identity);
+				Instantiate (warrior, new Vector3 (x + 10, 5f, z), Quaternion.identity);
+				Instantiate (warrior, new Vector3 (x - 10, 5f, z), Quaternion.identity);
+				Cities++;
 			}
 		}
 	}
