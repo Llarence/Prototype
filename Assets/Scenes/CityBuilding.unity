@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657868, g: 0.49641263, b: 0.57481706, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -746,6 +746,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef640d2dcde74c14baa82b907aca4545, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Farms: []
+  Houses: []
+  GoldMines: []
+  Storages: []
   People: []
   Person: {fileID: 1259929851248274, guid: 5c4b93de8e05cb344bd6ec9758d60f46, type: 2}
   Food: 0
