@@ -228,7 +228,7 @@ MonoBehaviour:
   SpawningObject: 0
   HouseHologram: {fileID: 1737629289441798, guid: 6aea7553b3d4328488b1e6452aea67ab,
     type: 2}
-  FarmHologram: {fileID: 1129136520418156, guid: 62d68c6f7ff72a54b960707770aee2a1,
+  FarmHologram: {fileID: 1707320100474934, guid: 72a0f8e46c7332745b041def0d497f53,
     type: 2}
   GoldMineHologram: {fileID: 1840292005187158, guid: a8e94151ff30a3a4e8dd4a8cd22b942e,
     type: 2}

@@ -22,7 +22,9 @@ public class ManagerCity : MonoBehaviour {
 	void Start () {
 		//StartCoroutine (Tick());
 		GetComponent<SaveLoadCity> ().Load2();
-		Population = 4;
+		if(Population < 4){
+			Population = 4;
+		}
 	}
 
 	

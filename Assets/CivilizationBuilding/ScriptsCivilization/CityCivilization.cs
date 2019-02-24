@@ -21,6 +21,7 @@ public class CityCivilization : MonoBehaviour {
 	public int Storages;
 	public int People;
 	string filePath;
+	bool expanded;
 
 	// Use this for initialization
 	void Start () {
@@ -61,6 +62,29 @@ public class CityCivilization : MonoBehaviour {
 				Houses = int.Parse(File.ReadAllText (filePath).Split ('/') [4]);
 				GoldMines = int.Parse(File.ReadAllText (filePath).Split ('/') [5]);
 				Storages = int.Parse(File.ReadAllText (filePath).Split ('/') [6]);
+			}
+			if(Population > 40 && expanded == false){
+				expanded = true;
+				Instantiate (border, transform.position + new Vector3(20, -2.45f, 0), Quaternion.identity);
+				Instantiate (border, transform.position + new Vector3(20, -2.45f, 20), Quaternion.identity);
+				Instantiate (border, transform.position + new Vector3(0, -2.45f, 20), Quaternion.identity);
+				Instantiate (border, transform.position + new Vector3(-20, -2.45f, 20), Quaternion.identity);
+				Instantiate (border, transform.position + new Vector3(-20, -2.45f, 0), Quaternion.identity);
+				Instantiate (border, transform.position + new Vector3(-20, -2.45f, -20), Quaternion.identity);
+				Instantiate (border, transform.position + new Vector3(0, -2.45f, -20), Quaternion.identity);
+				Instantiate (border, transform.position + new Vector3(20, -2.45f, -20), Quaternion.identity);
+				Instantiate (border, transform.position + new Vector3(20, -2.45f, 20), Quaternion.identity);
+				Instantiate (border, transform.position + new Vector3(-20, -2.45f, -20), Quaternion.identity);
+				Instantiate (border, transform.position + new Vector3(-20, -2.45f, 20), Quaternion.identity);
+				Instantiate (border, transform.position + new Vector3(20, -2.45f, -20), Quaternion.identity);
+				Instantiate (border, transform.position + new Vector3(10, -2.45f, 20), Quaternion.identity);
+				Instantiate (border, transform.position + new Vector3(-10, -2.45f, -20), Quaternion.identity);
+				Instantiate (border, transform.position + new Vector3(-10, -2.45f, 20), Quaternion.identity);
+				Instantiate (border, transform.position + new Vector3(10, -2.45f, -20), Quaternion.identity);
+				Instantiate (border, transform.position + new Vector3(20, -2.45f, 10), Quaternion.identity);
+				Instantiate (border, transform.position + new Vector3(-20, -2.45f, -10), Quaternion.identity);
+				Instantiate (border, transform.position + new Vector3(-20, -2.45f, 10), Quaternion.identity);
+				Instantiate (border, transform.position + new Vector3(20, -2.45f, -10), Quaternion.identity);
 			}
 			turnIAmOn++;
 			Calculate ();
