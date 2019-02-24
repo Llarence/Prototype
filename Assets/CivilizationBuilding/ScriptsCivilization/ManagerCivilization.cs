@@ -81,6 +81,7 @@ public class ManagerCivilization : MonoBehaviour {
 			GameObject.Find ("NextStage").GetComponent<RectTransform> ().Rotate (0, -90, 0);
 			GameObject.Find ("CurrentStage").GetComponent<RectTransform> ().Rotate (0, -90, 0);
 			offset = Random.Range (-1000f, 1000f);
+			print (offset);
 			x = -xAmount * 10;
 			z = -zAmount * 10;
 			while (x < (xAmount * 10) + 10) {
@@ -102,8 +103,8 @@ public class ManagerCivilization : MonoBehaviour {
 							}
 						}
 					}
-						z += 10;
-					}
+					z += 10;
+				}
 				z = -xAmount * 10;
 				x += 10;
 			}

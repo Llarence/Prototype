@@ -80,6 +80,7 @@ public class SaveLoadCivilizaton : MonoBehaviour {
 			GameObject.Find ("CurrentStage").GetComponent<RectTransform> ().Rotate (0, -90, 0);
 			data = File.ReadAllText (Application.persistentDataPath + "/~Civilization." + loadName);
 			offset2 = float.Parse (data.Split ('/') [0]);
+			GetComponent<ManagerCivilization>().offset = offset2;
 			x = -xAmount2 * 10;
 			z = -zAmount2 * 10;
 			while (x < (xAmount2 * 10) + 10) {
