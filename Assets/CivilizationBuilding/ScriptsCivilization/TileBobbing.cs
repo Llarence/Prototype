@@ -20,6 +20,6 @@ public class TileBobbing : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		transform.position = new Vector3(transform.position.x, (strength * 12 * Mathf.PerlinNoise(Time.time/30 + offset3, 0f) * Mathf.PerlinNoise(Time.time/3 + offset, Time.time/3 + offset2)) - 8, transform.position.z);
+		transform.position = new Vector3(transform.position.x, (strength * 8 * Mathf.PerlinNoise(Time.time/30 + offset3, 0f) * Mathf.PerlinNoise(Time.time/3 + offset, Time.time/3 + offset2)) - 6.5f, transform.position.z);
 	}
 }
