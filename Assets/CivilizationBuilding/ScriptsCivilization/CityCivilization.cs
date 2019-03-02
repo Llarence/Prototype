@@ -85,12 +85,12 @@ public class CityCivilization : MonoBehaviour {
 				if (hit.collider.gameObject == gameObject) {
 					GameObject.Find ("Spawn Settler").transform.Rotate (0, -90, 0);
 					GameObject.Find ("Spawn Warrior").transform.Rotate (0, -90, 0);
-					Selcted = true;
+					Selected = true;
 				}
 			} else {
 				GameObject.Find ("Spawn Settler").transform.Rotate (0, -90, 0);
 				GameObject.Find ("Spawn Warrior").transform.Rotate (0, -90, 0);
-				Selcted = false;
+				Selected = false;
 			}
 		}
 		if (turnIAmOn < manager.GetComponent<ManagerCivilization> ().turn) {
