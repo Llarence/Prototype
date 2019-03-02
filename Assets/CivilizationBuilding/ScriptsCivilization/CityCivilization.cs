@@ -23,7 +23,7 @@ public class CityCivilization : MonoBehaviour {
 	string filePath;
 	bool expanded;
 	public string Name;
-	bool Selcted;
+	bool Selected;
 	public int GoldProduced;
 
 	// Use this for initialization
