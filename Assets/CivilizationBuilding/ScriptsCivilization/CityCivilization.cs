@@ -34,6 +34,33 @@ public class CityCivilization : MonoBehaviour {
 		Instantiate (border, transform.position + new Vector3(-10, -2.45f, -10), Quaternion.identity);
 		Instantiate (border, transform.position + new Vector3(0, -2.45f, -10), Quaternion.identity);
 		Instantiate (border, transform.position + new Vector3(10, -2.45f, -10), Quaternion.identity);
+		if(File.Exists (Application.persistentDataPath + "/~Player." + manager.GetComponent<SaveLoadCivilizaton>().loadName + "." + transform.GetChild(0).GetComponent<TextMesh>().text)){
+			filePath = Application.persistentDataPath + "/~Player." + manager.GetComponent<SaveLoadCivilizaton> ().loadName + "." + transform.GetChild (0).GetComponent<TextMesh> ().text;
+			Population = int.Parse(File.ReadAllText (filePath).Split ('/') [2]);
+		}
+		if(Population > 40 && expanded == false){
+			expanded = true;
+			Instantiate (border, transform.position + new Vector3(20, -2.45f, 0), Quaternion.identity);
+			Instantiate (border, transform.position + new Vector3(20, -2.45f, 20), Quaternion.identity);
+			Instantiate (border, transform.position + new Vector3(0, -2.45f, 20), Quaternion.identity);
+			Instantiate (border, transform.position + new Vector3(-20, -2.45f, 20), Quaternion.identity);
+			Instantiate (border, transform.position + new Vector3(-20, -2.45f, 0), Quaternion.identity);
+			Instantiate (border, transform.position + new Vector3(-20, -2.45f, -20), Quaternion.identity);
+			Instantiate (border, transform.position + new Vector3(0, -2.45f, -20), Quaternion.identity);
+			Instantiate (border, transform.position + new Vector3(20, -2.45f, -20), Quaternion.identity);
+			Instantiate (border, transform.position + new Vector3(20, -2.45f, 20), Quaternion.identity);
+			Instantiate (border, transform.position + new Vector3(-20, -2.45f, -20), Quaternion.identity);
+			Instantiate (border, transform.position + new Vector3(-20, -2.45f, 20), Quaternion.identity);
+			Instantiate (border, transform.position + new Vector3(20, -2.45f, -20), Quaternion.identity);
+			Instantiate (border, transform.position + new Vector3(10, -2.45f, 20), Quaternion.identity);
+			Instantiate (border, transform.position + new Vector3(-10, -2.45f, -20), Quaternion.identity);
+			Instantiate (border, transform.position + new Vector3(-10, -2.45f, 20), Quaternion.identity);
+			Instantiate (border, transform.position + new Vector3(10, -2.45f, -20), Quaternion.identity);
+			Instantiate (border, transform.position + new Vector3(20, -2.45f, 10), Quaternion.identity);
+			Instantiate (border, transform.position + new Vector3(-20, -2.45f, -10), Quaternion.identity);
+			Instantiate (border, transform.position + new Vector3(-20, -2.45f, 10), Quaternion.identity);
+			Instantiate (border, transform.position + new Vector3(20, -2.45f, -10), Quaternion.identity);
+		}
 	}
 	
 	// Update is called once per frame
@@ -88,16 +115,11 @@ public class CityCivilization : MonoBehaviour {
 			}
 			turnIAmOn++;
 			Calculate ();
-			AddBorder ();
 			if(File.Exists (Application.persistentDataPath + "/~Player." + manager.GetComponent<SaveLoadCivilizaton>().loadName + "." + transform.GetChild(0).GetComponent<TextMesh>().text)){
 				filePath = Application.persistentDataPath + "/~Player." + manager.GetComponent<SaveLoadCivilizaton> ().loadName + "." + transform.GetChild (0).GetComponent<TextMesh> ().text;
 				File.WriteAllText (filePath, Gold + "/" + Food + "/" + Population + "/" + File.ReadAllText(filePath).Split ('/') [3] + "/" + File.ReadAllText(filePath).Split ('/') [4] + "/" + File.ReadAllText(filePath).Split ('/') [5] + "/" + File.ReadAllText(filePath).Split ('/') [6] + "/" + File.ReadAllText(filePath).Split ('/') [7]);
 			}
 		}	
-	}
-
-	void AddBorder (){
-		//Instantiate (border, transform.position + new Vector3(10, -2.45f, -20), Quaternion.identity);
 	}
 
 	void Calculate (){
