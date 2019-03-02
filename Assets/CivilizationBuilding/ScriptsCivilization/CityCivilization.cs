@@ -23,6 +23,8 @@ public class CityCivilization : MonoBehaviour {
 	string filePath;
 	bool expanded;
 	public string Name;
+	bool Selcted;
+	public int GoldProduced;
 
 	// Use this for initialization
 	void Start () {
@@ -66,53 +68,34 @@ public class CityCivilization : MonoBehaviour {
 			if (Physics.Raycast (Camera.main.ScreenPointToRay (Input.mousePosition), out hit)) {
 				if (hit.collider.gameObject == gameObject) {
 					clickTime = clickTime + Time.deltaTime;
-					if(clickTime >= 1){
+					if (clickTime >= 1) {
 						if (manager.GetComponent<ManagerCivilization> ().stage == "BuildCities") {
 							manager.GetComponent<SaveLoadCivilizaton> ().Save ();
 							GameObject.Find ("InfoStorage").GetComponent<InfoStorage> ().cityName = transform.GetChild (0).gameObject.GetComponent<TextMesh> ().text;
 							SceneManager.LoadScene ("CityBuilding");
 						}
 					}
+				} else {
+					clickTime = 0;
 				}
 			}
 		}
-		if(turnIAmOn < manager.GetComponent<ManagerCivilization>().turn){
-			if(File.Exists (Application.persistentDataPath + "/~Player." + manager.GetComponent<SaveLoadCivilizaton>().loadName + "." + transform.GetChild(0).GetComponent<TextMesh>().text)){
-				filePath = Application.persistentDataPath + "/~Player." + manager.GetComponent<SaveLoadCivilizaton> ().loadName + "." + transform.GetChild (0).GetComponent<TextMesh> ().text;
-				Gold = int.Parse(File.ReadAllText (filePath).Split ('/') [0]);
-				Food = int.Parse(File.ReadAllText (filePath).Split ('/') [1]);
-				Population = int.Parse(File.ReadAllText (filePath).Split ('/') [2]);
-				Farms = int.Parse(File.ReadAllText (filePath).Split ('/') [3]);
-				Houses = int.Parse(File.ReadAllText (filePath).Split ('/') [4]);
-				GoldMines = int.Parse(File.ReadAllText (filePath).Split ('/') [5]);
-				Storages = int.Parse(File.ReadAllText (filePath).Split ('/') [6]);
+		if (Input.GetMouseButtonDown (1)){
+			if (Physics.Raycast (Camera.main.ScreenPointToRay (Input.mousePosition), out hit)) {
+				if (hit.collider.gameObject == gameObject) {
+					GameObject.Find ("Spawn Settler").transform.Rotate (0, -90, 0);
+					GameObject.Find ("Spawn Warrior").transform.Rotate (0, -90, 0);
+					Selcted = true;
+				}
+			} else {
+				GameObject.Find ("Spawn Settler").transform.Rotate (0, -90, 0);
+				GameObject.Find ("Spawn Warrior").transform.Rotate (0, -90, 0);
+				Selcted = false;
 			}
-			if(Population > 40 && expanded == false){
-				expanded = true;
-				Instantiate (border, transform.position + new Vector3(20, -2.45f, 0), Quaternion.identity);
-				Instantiate (border, transform.position + new Vector3(0, -2.45f, 20), Quaternion.identity);
-				Instantiate (border, transform.position + new Vector3(-20, -2.45f, 0), Quaternion.identity);
-				Instantiate (border, transform.position + new Vector3(0, -2.45f, -20), Quaternion.identity);
-				Instantiate (border, transform.position + new Vector3(20, -2.45f, 20), Quaternion.identity);
-				Instantiate (border, transform.position + new Vector3(-20, -2.45f, -20), Quaternion.identity);
-				Instantiate (border, transform.position + new Vector3(-20, -2.45f, 20), Quaternion.identity);
-				Instantiate (border, transform.position + new Vector3(20, -2.45f, -20), Quaternion.identity);
-				Instantiate (border, transform.position + new Vector3(10, -2.45f, 20), Quaternion.identity);
-				Instantiate (border, transform.position + new Vector3(-10, -2.45f, -20), Quaternion.identity);
-				Instantiate (border, transform.position + new Vector3(-10, -2.45f, 20), Quaternion.identity);
-				Instantiate (border, transform.position + new Vector3(10, -2.45f, -20), Quaternion.identity);
-				Instantiate (border, transform.position + new Vector3(20, -2.45f, 10), Quaternion.identity);
-				Instantiate (border, transform.position + new Vector3(-20, -2.45f, -10), Quaternion.identity);
-				Instantiate (border, transform.position + new Vector3(-20, -2.45f, 10), Quaternion.identity);
-				Instantiate (border, transform.position + new Vector3(20, -2.45f, -10), Quaternion.identity);
-			}
-			turnIAmOn++;
-			Calculate ();
-			if(File.Exists (Application.persistentDataPath + "/~Player." + manager.GetComponent<SaveLoadCivilizaton>().loadName + "." + transform.GetChild(0).GetComponent<TextMesh>().text)){
-				filePath = Application.persistentDataPath + "/~Player." + manager.GetComponent<SaveLoadCivilizaton> ().loadName + "." + transform.GetChild (0).GetComponent<TextMesh> ().text;
-				File.WriteAllText (filePath, Gold + "/" + Food + "/" + Population + "/" + File.ReadAllText(filePath).Split ('/') [3] + "/" + File.ReadAllText(filePath).Split ('/') [4] + "/" + File.ReadAllText(filePath).Split ('/') [5] + "/" + File.ReadAllText(filePath).Split ('/') [6] + "/" + File.ReadAllText(filePath).Split ('/') [7]);
-			}
-		}	
+		}
+		if (turnIAmOn < manager.GetComponent<ManagerCivilization> ().turn) {
+			UpdateTurn();
+		}
 	}
 
 	void Calculate (){
@@ -127,6 +110,44 @@ public class CityCivilization : MonoBehaviour {
 		Gold += Mathf.FloorToInt(Mathf.Clamp (Mathf.Clamp(Population, 0, Houses * 1000000) - Mathf.Clamp(Population, 0, Farms * 2), 0, GoldMines * 2));
 		Food = Mathf.FloorToInt(Mathf.Clamp (Food, 0, Storages * 12));
 		Gold = Mathf.FloorToInt(Mathf.Clamp (Gold, 0, (Storages * 12) + 10));
+		GoldProduced = Mathf.FloorToInt(Mathf.Clamp (Mathf.Clamp(Population, 0, Houses * 1000000) - Mathf.Clamp(Population, 0, Farms * 2), 0, GoldMines * 2));
+	}
 
+	void UpdateTurn (){
+		if(File.Exists (Application.persistentDataPath + "/~Player." + manager.GetComponent<SaveLoadCivilizaton>().loadName + "." + transform.GetChild(0).GetComponent<TextMesh>().text)){
+			filePath = Application.persistentDataPath + "/~Player." + manager.GetComponent<SaveLoadCivilizaton> ().loadName + "." + transform.GetChild (0).GetComponent<TextMesh> ().text;
+			Gold = int.Parse(File.ReadAllText (filePath).Split ('/') [0]);
+			Food = int.Parse(File.ReadAllText (filePath).Split ('/') [1]);
+			Population = int.Parse(File.ReadAllText (filePath).Split ('/') [2]);
+			Farms = int.Parse(File.ReadAllText (filePath).Split ('/') [3]);
+			Houses = int.Parse(File.ReadAllText (filePath).Split ('/') [4]);
+			GoldMines = int.Parse(File.ReadAllText (filePath).Split ('/') [5]);
+			Storages = int.Parse(File.ReadAllText (filePath).Split ('/') [6]);
+		}
+		if(Population > 40 && expanded == false){
+			expanded = true;
+			Instantiate (border, transform.position + new Vector3(20, -2.45f, 0), Quaternion.identity);
+			Instantiate (border, transform.position + new Vector3(0, -2.45f, 20), Quaternion.identity);
+			Instantiate (border, transform.position + new Vector3(-20, -2.45f, 0), Quaternion.identity);
+			Instantiate (border, transform.position + new Vector3(0, -2.45f, -20), Quaternion.identity);
+			Instantiate (border, transform.position + new Vector3(20, -2.45f, 20), Quaternion.identity);
+			Instantiate (border, transform.position + new Vector3(-20, -2.45f, -20), Quaternion.identity);
+			Instantiate (border, transform.position + new Vector3(-20, -2.45f, 20), Quaternion.identity);
+			Instantiate (border, transform.position + new Vector3(20, -2.45f, -20), Quaternion.identity);
+			Instantiate (border, transform.position + new Vector3(10, -2.45f, 20), Quaternion.identity);
+			Instantiate (border, transform.position + new Vector3(-10, -2.45f, -20), Quaternion.identity);
+			Instantiate (border, transform.position + new Vector3(-10, -2.45f, 20), Quaternion.identity);
+			Instantiate (border, transform.position + new Vector3(10, -2.45f, -20), Quaternion.identity);
+			Instantiate (border, transform.position + new Vector3(20, -2.45f, 10), Quaternion.identity);
+			Instantiate (border, transform.position + new Vector3(-20, -2.45f, -10), Quaternion.identity);
+			Instantiate (border, transform.position + new Vector3(-20, -2.45f, 10), Quaternion.identity);
+			Instantiate (border, transform.position + new Vector3(20, -2.45f, -10), Quaternion.identity);
+		}
+		turnIAmOn++;
+		Calculate ();
+		if(File.Exists (Application.persistentDataPath + "/~Player." + manager.GetComponent<SaveLoadCivilizaton>().loadName + "." + transform.GetChild(0).GetComponent<TextMesh>().text)){
+			filePath = Application.persistentDataPath + "/~Player." + manager.GetComponent<SaveLoadCivilizaton> ().loadName + "." + transform.GetChild (0).GetComponent<TextMesh> ().text;
+			File.WriteAllText (filePath, Gold + "/" + Food + "/" + Population + "/" + File.ReadAllText(filePath).Split ('/') [3] + "/" + File.ReadAllText(filePath).Split ('/') [4] + "/" + File.ReadAllText(filePath).Split ('/') [5] + "/" + File.ReadAllText(filePath).Split ('/') [6] + "/" + File.ReadAllText(filePath).Split ('/') [7]);
+		}
 	}
 }
