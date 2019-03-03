@@ -23,8 +23,10 @@ public class CityCivilization : MonoBehaviour {
 	string filePath;
 	bool expanded;
 	public string Name;
-	bool Selected;
+	public bool Selected;
 	public int GoldProduced;
+	public GameObject Settler;
+	public GameObject Warrior;
 
 	// Use this for initialization
 	void Start () {
@@ -82,15 +84,23 @@ public class CityCivilization : MonoBehaviour {
 		}
 		if (Input.GetMouseButtonDown (1)){
 			if (Physics.Raycast (Camera.main.ScreenPointToRay (Input.mousePosition), out hit)) {
-				if (hit.collider.gameObject == gameObject) {
+				if (hit.collider.gameObject == gameObject && Selected == false) {
 					GameObject.Find ("Spawn Settler").transform.Rotate (0, -90, 0);
 					GameObject.Find ("Spawn Warrior").transform.Rotate (0, -90, 0);
 					Selected = true;
+				} else {
+					if (Selected == true) {
+						GameObject.Find ("Spawn Settler").transform.Rotate (0, 90, 0);
+						GameObject.Find ("Spawn Warrior").transform.Rotate (0, 90, 0);
+						Selected = false;
+					}
 				}
 			} else {
-				GameObject.Find ("Spawn Settler").transform.Rotate (0, -90, 0);
-				GameObject.Find ("Spawn Warrior").transform.Rotate (0, -90, 0);
-				Selected = false;
+				if (Selected == true) {
+					GameObject.Find ("Spawn Settler").transform.Rotate (0, 90, 0);
+					GameObject.Find ("Spawn Warrior").transform.Rotate (0, 90, 0);
+					Selected = false;
+				}
 			}
 		}
 		if (turnIAmOn < manager.GetComponent<ManagerCivilization> ().turn) {
@@ -148,6 +158,17 @@ public class CityCivilization : MonoBehaviour {
 		if(File.Exists (Application.persistentDataPath + "/~Player." + manager.GetComponent<SaveLoadCivilizaton>().loadName + "." + transform.GetChild(0).GetComponent<TextMesh>().text)){
 			filePath = Application.persistentDataPath + "/~Player." + manager.GetComponent<SaveLoadCivilizaton> ().loadName + "." + transform.GetChild (0).GetComponent<TextMesh> ().text;
 			File.WriteAllText (filePath, Gold + "/" + Food + "/" + Population + "/" + File.ReadAllText(filePath).Split ('/') [3] + "/" + File.ReadAllText(filePath).Split ('/') [4] + "/" + File.ReadAllText(filePath).Split ('/') [5] + "/" + File.ReadAllText(filePath).Split ('/') [6] + "/" + File.ReadAllText(filePath).Split ('/') [7]);
+		}
+	}
+
+	public void SpawnCity (string UnitName){
+		if(UnitName == "Warrior" && GameObject.Find("Resources").GetComponent<ResourceCounter>().gold >= 10){
+			Instantiate (Warrior, new Vector3 (transform.position.x, 5f, transform.position.z), Quaternion.identity);
+			GameObject.Find ("Resources").GetComponent<ResourceCounter> ().gold -= 10;
+		}
+		if(UnitName == "Settler" && GameObject.Find("Resources").GetComponent<ResourceCounter>().gold >= 20){
+			Instantiate (Settler, new Vector3 (transform.position.x, 5f, transform.position.z), Quaternion.identity);
+			GameObject.Find("Resources").GetComponent<ResourceCounter>().gold -= 20;
 		}
 	}
 }

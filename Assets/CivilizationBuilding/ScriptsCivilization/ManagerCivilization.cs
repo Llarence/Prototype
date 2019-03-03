@@ -113,7 +113,7 @@ public class ManagerCivilization : MonoBehaviour {
 				z = Random.Range (-zAmount, zAmount + 1) * 10;
 				if (Mathf.PerlinNoise ((offset + ((x + (float)(-xAmount * 10)) / (5f * xAmount))), (offset + ((z + (float)(-zAmount * 10)) / (5f * zAmount)))) < 0.825f && Mathf.PerlinNoise ((offset + ((x + (float)(-xAmount * 10)) / (5f * xAmount))), (offset + ((z + (float)(-zAmount * 10)) / (5f * zAmount)))) > 0.5f) {
 					if(CityPositions.Contains(new Vector3(x, 2.5f, z)) == false){
-						CityPositions.Add (new Vector3(x, 2.5f, z));
+						CityPositions.Add (new Vector3(x, 2, z));
 						Cities++;
 					}
 				}
@@ -157,6 +157,15 @@ public class ManagerCivilization : MonoBehaviour {
 	public void CallSettle (){
 		foreach (GameObject Unit in units) {
 			Unit.GetComponent<Unit> ().Settle ();
+		}
+	}
+
+	public void Spawn (string Unit){
+		foreach(GameObject City in GameObject.FindGameObjectsWithTag("City")){
+			if(City.GetComponent<CityCivilization>().Selected){
+				City.GetComponent<CityCivilization>().SpawnCity (Unit);
+				break;
+			}
 		}
 	}
 }

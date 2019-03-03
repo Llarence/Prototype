@@ -57,7 +57,7 @@ public class SaveLoadCivilizaton : MonoBehaviour {
 				json_data = json_data + "|" + JsonUtility.ToJson(gameState);
 			}
 		}
-		File.WriteAllText (Application.persistentDataPath + "/~Civilization." + saveName, GetComponent<ManagerCivilization>().offset + "/" + json_data);
+		File.WriteAllText (Application.persistentDataPath + "/~Civilization." + saveName, GetComponent<ManagerCivilization>().offset + "/" + GameObject.Find("Resources").GetComponent<ResourceCounter>().gold.ToString() + "/" + json_data);
 	}
 
 	public void Load (){
@@ -80,6 +80,7 @@ public class SaveLoadCivilizaton : MonoBehaviour {
 			GameObject.Find ("CurrentStage").GetComponent<RectTransform> ().Rotate (0, -90, 0);
 			data = File.ReadAllText (Application.persistentDataPath + "/~Civilization." + loadName);
 			offset2 = float.Parse (data.Split ('/') [0]);
+			GameObject.Find ("Resources").GetComponent<ResourceCounter> ().gold = int.Parse (data.Split ('/') [1]);
 			GetComponent<ManagerCivilization>().offset = offset2;
 			x = -xAmount2 * 10;
 			z = -zAmount2 * 10;
@@ -108,11 +109,11 @@ public class SaveLoadCivilizaton : MonoBehaviour {
 				x += 10;
 			}
 			i = 1;
-			while ((data.Split ('/') [1]).Split ('|').Length > i) {
-				instantiated = Instantiate (Resources.Load (JsonUtility.FromJson<GameState> ((data.Split ('/') [1]).Split ('|') [i]).name.Split ('(') [0]), new Vector3 (float.Parse ((data.Split ('/') [1]).Split ('|') [i].Split (':') [1].Split (',') [0]), float.Parse ((data.Split ('/') [1]).Split ('|') [i].Split (':') [2].Split (',') [0]), float.Parse ((data.Split ('/') [1]).Split ('|') [i].Split (':') [3].Split (',') [0])), Quaternion.identity) as GameObject;
+			while ((data.Split ('/') [2]).Split ('|').Length > i) {
+				instantiated = Instantiate (Resources.Load (JsonUtility.FromJson<GameState> ((data.Split ('/') [2]).Split ('|') [i]).name.Split ('(') [0]), new Vector3 (float.Parse ((data.Split ('/') [2]).Split ('|') [i].Split (':') [1].Split (',') [0]), float.Parse ((data.Split ('/') [2]).Split ('|') [i].Split (':') [2].Split (',') [0]), float.Parse ((data.Split ('/') [2]).Split ('|') [i].Split (':') [3].Split (',') [0])), Quaternion.identity) as GameObject;
 				if (instantiated.name == "City(Clone)") {
-					instantiated.GetComponent<CityCivilization>().Name = JsonUtility.FromJson<GameState> ((data.Split ('/') [1]).Split ('|') [i]).cityName;
-					instantiated.transform.GetChild (0).gameObject.GetComponent<CityNameText> ().overideName = JsonUtility.FromJson<GameState> ((data.Split ('/') [1]).Split ('|') [i]).cityName;
+					instantiated.GetComponent<CityCivilization>().Name = JsonUtility.FromJson<GameState> ((data.Split ('/') [2]).Split ('|') [i]).cityName;
+					instantiated.transform.GetChild (0).gameObject.GetComponent<CityNameText> ().overideName = JsonUtility.FromJson<GameState> ((data.Split ('/') [2]).Split ('|') [i]).cityName;
 				}
 				i++;
 			}

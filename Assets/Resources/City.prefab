@@ -223,11 +223,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   border: {fileID: 1738663782906914, guid: f439c6c529ca6ab4abbcbae2f135ec20, type: 2}
   turnIAmOn: 0
+  Gold: 0
+  Food: 0
+  Population: 0
   Farms: 0
   Houses: 0
   GoldMines: 0
   Storages: 0
   People: 0
-  Food: 0
-  Population: 0
-  Gold: 0
+  Name: 
+  Selected: 0
+  GoldProduced: 0
+  Settler: {fileID: 1132498092863848, guid: 6517a9e7393004047a8183aee5332c91, type: 2}
+  Warrior: {fileID: 1060434830780756, guid: 913f00b08c4c5444789900f4d92f1635, type: 2}
