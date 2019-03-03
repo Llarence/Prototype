@@ -11,8 +11,9 @@ public class ResourceCounter : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		if(gold == 0){
-			GetComponent<Text> ().text = "Gold:0";
+		GetComponent<Text> ().text = "Gold:0";
+		foreach(GameObject City in GameObject.FindGameObjectsWithTag("City")){
+			TotalStorage += 10 + (12 * City.GetComponent<CityCivilization> ().Storages);
 		}
 	}
 	

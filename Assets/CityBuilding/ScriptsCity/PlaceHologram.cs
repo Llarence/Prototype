@@ -29,10 +29,12 @@ public class PlaceHologram : MonoBehaviour {
 			if(GameObject.Find ("Manager").GetComponent<ManagerCity> ().Gold >= costToBuy){
 				Instantiate (SpawnObject, transform.position, Quaternion.identity);
 				GameObject.Find ("MainCamera").GetComponent<Place> ().SpawningObject = false;
-				if(Input.GetButton("j")){
+				if(Input.GetKey("j") == false){
 					GameObject.Find ("Manager").GetComponent<ManagerCity> ().Gold -= costToBuy;
 				}
-				Destroy (gameObject);
+				if(Input.GetKey("z") == false){
+					Destroy (gameObject);
+				}
 			}
 		}
 		if(Colliding == 0){
