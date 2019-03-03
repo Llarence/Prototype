@@ -30,6 +30,5 @@ public class ResourceCounter : MonoBehaviour {
 			gold = int.Parse (GetComponent<Text> ().text.Split (':') [1]);
 		}
 		GetComponent<Text> ().text = "Gold:" + (Mathf.Clamp (gold, 0, TotalStorage)).ToString ();
-		print (gold);
 	}
 }
