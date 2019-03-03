@@ -12,9 +12,6 @@ public class ResourceCounter : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		GetComponent<Text> ().text = "Gold:0";
-		foreach(GameObject City in GameObject.FindGameObjectsWithTag("City")){
-			TotalStorage += 10 + (12 * City.GetComponent<CityCivilization> ().Storages);
-		}
 	}
 	
 	// Update is called once per frame
@@ -29,6 +26,9 @@ public class ResourceCounter : MonoBehaviour {
 				GetComponent<Text>().text = "Gold:" + (Mathf.Clamp(int.Parse(GetComponent<Text>().text.Split(':')[1]) + City.GetComponent<CityCivilization> ().GoldProduced, 0 , TotalStorage)).ToString();
 			}
 			gold = int.Parse (GetComponent<Text> ().text.Split (':') [1]);
+		}
+		foreach(GameObject City in GameObject.FindGameObjectsWithTag("City")){
+			TotalStorage += 10 + (12 * City.GetComponent<CityCivilization> ().Storages);
 		}
 		GetComponent<Text> ().text = "Gold:" + (Mathf.Clamp (gold, 0, TotalStorage)).ToString ();
 	}
