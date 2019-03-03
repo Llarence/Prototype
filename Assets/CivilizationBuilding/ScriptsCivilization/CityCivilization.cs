@@ -162,13 +162,17 @@ public class CityCivilization : MonoBehaviour {
 	}
 
 	public void SpawnCity (string UnitName){
-		if(UnitName == "Warrior" && GameObject.Find("Resources").GetComponent<ResourceCounter>().gold >= 10){
-			Instantiate (Warrior, new Vector3 (transform.position.x, 5f, transform.position.z), Quaternion.identity);
-			GameObject.Find ("Resources").GetComponent<ResourceCounter> ().gold -= 10;
-		}
-		if(UnitName == "Settler" && GameObject.Find("Resources").GetComponent<ResourceCounter>().gold >= 20){
-			Instantiate (Settler, new Vector3 (transform.position.x, 5f, transform.position.z), Quaternion.identity);
-			GameObject.Find("Resources").GetComponent<ResourceCounter>().gold -= 20;
+		if (Physics.Raycast (transform.position + Vector3.up * 10, Vector3.down, out hit)) {
+			if (hit.collider.gameObject.tag == "Grass" && hit.collider.gameObject.tag != "Unit") {
+				if (UnitName == "Warrior" && GameObject.Find ("Resources").GetComponent<ResourceCounter> ().gold >= 10) {
+					Instantiate (Warrior, new Vector3 (transform.position.x, 5f, transform.position.z), Quaternion.identity);
+					GameObject.Find ("Resources").GetComponent<ResourceCounter> ().gold -= 10;
+				}
+				if (UnitName == "Settler" && GameObject.Find ("Resources").GetComponent<ResourceCounter> ().gold >= 20) {
+					Instantiate (Settler, new Vector3 (transform.position.x, 5f, transform.position.z), Quaternion.identity);
+					GameObject.Find ("Resources").GetComponent<ResourceCounter> ().gold -= 20;
+				}
+			}
 		}
 	}
 }
