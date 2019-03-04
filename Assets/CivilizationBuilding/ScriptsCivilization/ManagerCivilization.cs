@@ -35,6 +35,7 @@ public class ManagerCivilization : MonoBehaviour {
 	int loops;
 	public string stage;
 	List<Vector3> CityPositions = new List<Vector3>();
+	int tries;
 
 	void Start (){
 		stage = "BuildCities";
@@ -108,18 +109,22 @@ public class ManagerCivilization : MonoBehaviour {
 				z = -xAmount * 10;
 				x += 10;
 			}
-			while (Cities != 1) {
-				x = Random.Range (-xAmount, xAmount + 1) * 10;
-				z = Random.Range (-zAmount, zAmount + 1) * 10;
+			while (Cities != 4) {
+				x = Random.Range (-xAmount + 2, xAmount - 1) * 10;
+				z = Random.Range (-zAmount + 2, zAmount - 1) * 10;
 				if (Mathf.PerlinNoise ((offset + ((x + (float)(-xAmount * 10)) / (5f * xAmount))), (offset + ((z + (float)(-zAmount * 10)) / (5f * zAmount)))) < 0.825f && Mathf.PerlinNoise ((offset + ((x + (float)(-xAmount * 10)) / (5f * xAmount))), (offset + ((z + (float)(-zAmount * 10)) / (5f * zAmount)))) > 0.5f) {
-					if(CityPositions.Contains(new Vector3(x, 2.5f, z)) == false){
+					if(isLegalSpawn()){
 						CityPositions.Add (new Vector3(x, 2, z));
 						Cities++;
+					}
+					tries++;
+					if(tries == 500){
+						break;
 					}
 				}
 			}
 			Cities = 0;
-			while (Cities != 10) {
+			while (Cities != CityPositions.Count) {
 				Instantiate (city, CityPositions[Cities], Quaternion.identity);
 				Instantiate (settler, new Vector3 (CityPositions[Cities].x, 5f, CityPositions[Cities].z), Quaternion.identity);
 				Instantiate (warrior, new Vector3 (CityPositions[Cities].x, 5f, CityPositions[Cities].z + 10), Quaternion.identity);
@@ -167,5 +172,16 @@ public class ManagerCivilization : MonoBehaviour {
 				break;
 			}
 		}
+	}
+
+	bool isLegalSpawn (){
+		if(CityPositions.Count != 0){
+			foreach(Vector3 pos in CityPositions){
+				if((pos.x <= 65 && pos.x >= -65) && (pos.z <= 65 && pos.z >= -65)){
+					return false;
+				}
+			}
+		}
+		return true;
 	}
 }

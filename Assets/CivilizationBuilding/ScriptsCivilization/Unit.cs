@@ -113,17 +113,30 @@ public class Unit : MonoBehaviour {
 		}
 		if (GameObject.Find ("Manager").GetComponent<ManagerCivilization> ().stage == "BuildCities") {
 			GetComponent<MeshRenderer> ().material.color = notClicked;
+			GameObject.Find ("Settle").GetComponent<RectTransform> ().eulerAngles = new Vector3 (0, 90, 0);
 		}
 	}
 	public void Settle (){
 		if(canSettle == true && GetComponent<MeshRenderer> ().material.color == clicked && hit.collider.gameObject.tag == "Grass" && hit.collider.gameObject.tag != "City"){
-			Instantiate (city, new Vector3(transform.position.x, 2, transform.position.z), Quaternion.identity);
-			Destroy (gameObject);
+			if(canSettleHere()){
+				Instantiate (city, new Vector3(transform.position.x, 2, transform.position.z), Quaternion.identity);
+				Destroy (gameObject);
+			}
 		}
 	}
 
 	public IEnumerator ShowSettleButton (){
 		yield return new WaitForSeconds (Time.deltaTime * 2 + 0.1f);
 		GameObject.Find ("Settle").GetComponent<RectTransform> ().eulerAngles = new Vector3 (0, 0, 0);
+	}
+
+	bool canSettleHere (){
+		print (GameObject.FindGameObjectsWithTag("City").Length);
+		foreach (GameObject City in GameObject.FindGameObjectsWithTag("City")) {
+			if((City.transform.position.x - transform.position.x <= 65 && City.transform.position.x - transform.position.x >= -65) && (City.transform.position.z - transform.position.z <= 65 && City.transform.position.z - transform.position.z >= -65)){
+				return false;
+			}
+		}
+		return true;
 	}
 }
