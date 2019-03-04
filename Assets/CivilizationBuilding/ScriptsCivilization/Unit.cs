@@ -131,7 +131,6 @@ public class Unit : MonoBehaviour {
 	}
 
 	bool canSettleHere (){
-		print (GameObject.FindGameObjectsWithTag("City").Length);
 		foreach (GameObject City in GameObject.FindGameObjectsWithTag("City")) {
 			if((City.transform.position.x - transform.position.x <= 65 && City.transform.position.x - transform.position.x >= -65) && (City.transform.position.z - transform.position.z <= 65 && City.transform.position.z - transform.position.z >= -65)){
 				return false;
