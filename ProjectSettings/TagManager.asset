@@ -15,6 +15,9 @@ TagManager:
   - City
   - Unit
   - TutorialDeleter
+  - TutorialCity
+  - TutorialWarrior
+  - TutorialSettler
   layers:
   - Default
   - TransparentFX

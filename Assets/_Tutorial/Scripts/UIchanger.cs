@@ -9,6 +9,8 @@ public class UIchanger : MonoBehaviour {
     public Text Instructions;
     public Text EndOfTutorial;
     public GameObject City;
+    public GameObject Warrior;
+    public GameObject Settler;
     public float Stage;
 
     void Start()
@@ -30,24 +32,27 @@ public class UIchanger : MonoBehaviour {
         }
         if (Stage == 3)
         {
-            Instructions.text = "If you want to go faster then hold down the left control button while moving to go faster. Press the right arrow key to continue";
+            Instructions.text = "If you want to go faster then hold down the left control button while moving to go faster. Press the Up arrow key to continue";
             Stage = 4;
         }
-        if (Input.GetKey (KeyCode.RightArrow) && Stage == 4)
+        if (Input.GetKey (KeyCode.UpArrow) && Stage == 4)
         {
             Instantiate(City);
-            Instructions.text = "This is a city. If you longpress on it then you can go into it and edit it. Right now though we won't go into it. Press Space to continue.";
+            Instructions.text = "This is a city. If you longpress on it then you can go into it and edit it. Right now though we won't go into it. Press Right Arrow Key to continue.";
             Stage = 5;
         }
         if (Input.GetKey (KeyCode.RightArrow) && Stage == 5)
         {
-            Instructions.text = "This is a warrior. You can move them and they also help you defend your cities. Click on it to select it.";
+            GameObject.Find("TutorialCity(Clone)").GetComponent<Transform>().Translate(1000, 0, 0);
+            Instantiate(Warrior);
+            Instructions.text = "This is a warrior. You can move them and they also help you defend your cities. Click on it to select it. Press the down arrow key to continue";
             Stage = 6;
         }
-        if (Input.GetKey(KeyCode.RightArrow) && Stage == 6)
+        if (Input.GetKey(KeyCode.DownArrow) && Stage == 6)
         {
+            GameObject.Find("TutorialWarrior(Clone)").GetComponent<Transform>().Translate(1000, 0, 0);
+            Instantiate(Settler);
             Instructions.text = "Finally, this is a settler. These characters make cities. Click the end button to go back to the main menu.";
-            GameObject.Find("MainMenu").GetComponent<RectTransform>().Translate(225, 225, 0);
             EndOfTutorial.text = "End Tutorial";
         }
 	}
