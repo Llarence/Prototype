@@ -25,13 +25,10 @@ public class Unit : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if (team == "Player") {
-			if (SceneManager.GetActiveScene ().name != "Tutorial") {
 				if (GameObject.Find ("Manager").GetComponent<ManagerCivilization> ().turn != myTurn) {
 					doneForTurn = false;
 					myTurn = GameObject.Find ("Manager").GetComponent<ManagerCivilization> ().turn;
 				}
-			}
-			if (SceneManager.GetActiveScene ().name != "Tutorial") {
 				if (GameObject.Find ("Manager").GetComponent<ManagerCivilization> ().stage == "BuildCivilization") {
 					if (Input.mousePosition.x < Screen.width - 350) {
 						if (Input.GetMouseButtonDown (0)) {
@@ -117,7 +114,6 @@ public class Unit : MonoBehaviour {
 							}
 						}
 					}
-				}
 				if (GameObject.Find ("Manager").GetComponent<ManagerCivilization> ().stage == "BuildCities") {
 					GetComponent<MeshRenderer> ().material.color = notClicked;
 					GameObject.Find ("Settle").GetComponent<RectTransform> ().eulerAngles = new Vector3 (0, 90, 0);
@@ -152,6 +148,10 @@ public class Unit : MonoBehaviour {
 			}
 		}
 		return true;
+	}
+
+	void AI(){
+		
 	}
 
 	void TutorialMove(){
