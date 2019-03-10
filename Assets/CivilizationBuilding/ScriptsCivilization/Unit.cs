@@ -13,6 +13,7 @@ public class Unit : MonoBehaviour {
 	int myTurn;
 	public bool canSettle;
 	public GameObject city;
+	public GameObject warrior;
 
 	// Use this for initialization
 	void Start () {
@@ -120,6 +121,7 @@ public class Unit : MonoBehaviour {
 		if(canSettle == true && GetComponent<MeshRenderer> ().material.color == clicked){
 			if(canSettleHere()){
 				Instantiate (city, new Vector3(transform.position.x, 2, transform.position.z), Quaternion.identity);
+				Instantiate (warrior, new Vector3(transform.position.x, 5f, transform.position.z), Quaternion.identity);
 				Destroy (gameObject);
 			}
 		}
