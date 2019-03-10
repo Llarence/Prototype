@@ -69,7 +69,7 @@ public class UIchanger : MonoBehaviour {
     public void NextTurn()
     {
         stage = "BuildCivilization";
-        GameObject.Find("CurrentStage").GetComponent<Text>().text = "Build Civilization";
+        GameObject.Find("CurrentStage").GetComponent<Text>().text = "BuildCivilization";
         turn++;
     }
 }

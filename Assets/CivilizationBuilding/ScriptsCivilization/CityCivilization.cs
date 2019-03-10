@@ -86,6 +86,7 @@ public class CityCivilization : MonoBehaviour {
 		if (Input.GetMouseButtonDown (1)){
 			if (Physics.Raycast (Camera.main.ScreenPointToRay (Input.mousePosition), out hit)) {
 				if (hit.collider.gameObject == gameObject && Selected == false) {
+					print ("HI");
 					GameObject.Find ("Spawn Settler").transform.Rotate (0, -90, 0);
 					GameObject.Find ("Spawn Warrior").transform.Rotate (0, -90, 0);
 					Selected = true;
