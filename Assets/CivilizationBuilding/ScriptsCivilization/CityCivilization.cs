@@ -27,6 +27,7 @@ public class CityCivilization : MonoBehaviour {
 	public int GoldProduced;
 	public GameObject Settler;
 	public GameObject Warrior;
+	public bool capital;
 
 	// Use this for initialization
 	void Start () {

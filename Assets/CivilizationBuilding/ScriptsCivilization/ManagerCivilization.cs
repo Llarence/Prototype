@@ -83,6 +83,7 @@ public class ManagerCivilization : MonoBehaviour {
 			GameObject.Find ("NextStage").GetComponent<RectTransform> ().Rotate (0, -90, 0);
 			GameObject.Find ("CurrentStage").GetComponent<RectTransform> ().Rotate (0, -90, 0);
 			offset = Random.Range (-1000f, 1000f);
+			Random.InitState (Mathf.CeilToInt(offset));
 			x = -xAmount * 10;
 			z = -zAmount * 10;
 			while (x < (xAmount * 10) + 10) {
@@ -99,7 +100,11 @@ public class ManagerCivilization : MonoBehaviour {
 								if (Mathf.PerlinNoise ((offset + ((x + (float)(-xAmount * 10)) / (5f * xAmount))), (offset + ((z + (float)(-zAmount * 10)) / (5f * zAmount)))) < 0.825f) {
 									Instantiate (grass, new Vector3 (x, -4.5f, z), Quaternion.identity);
 								} else {
-									Instantiate (mountain, new Vector3 (x, -0.5f, z), Quaternion.identity);
+									if(Random.Range(0f, 1f) < 0.2f){
+										Instantiate (mountain, new Vector3 (x, -0.5f, z), Quaternion.identity);
+									}else{
+										Instantiate (grass, new Vector3 (x, -4.5f, z), Quaternion.identity);
+									}
 								}
 							}
 						}
@@ -125,7 +130,7 @@ public class ManagerCivilization : MonoBehaviour {
 			}
 			Cities = 0;
 			while (Cities != CityPositions.Count) {
-				Instantiate (city, CityPositions[Cities], Quaternion.identity);
+				(Instantiate (city, CityPositions[Cities], Quaternion.identity) as GameObject).GetComponent<CityCivilization>().capital = true;
 				Instantiate (settler, new Vector3 (CityPositions[Cities].x, 5f, CityPositions[Cities].z), Quaternion.identity);
 				Instantiate (warrior, new Vector3 (CityPositions[Cities].x, 5f, CityPositions[Cities].z + 10), Quaternion.identity);
 				Instantiate (warrior, new Vector3 (CityPositions[Cities].x, 5f, CityPositions[Cities].z - 10), Quaternion.identity);
@@ -177,7 +182,7 @@ public class ManagerCivilization : MonoBehaviour {
 	bool isLegalSpawn (){
 		if(CityPositions.Count != 0){
 			foreach(Vector3 pos in CityPositions){
-				if((pos.x <= 65 && pos.x >= -65) && (pos.z <= 65 && pos.z >= -65)){
+				if((pos.x <= 95 && pos.x >= -95) && (pos.z <= 95 && pos.z >= -95)){
 					return false;
 				}
 			}

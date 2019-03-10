@@ -82,6 +82,7 @@ public class SaveLoadCivilizaton : MonoBehaviour {
 			offset2 = float.Parse (data.Split ('/') [0]);
 			GameObject.Find ("Resources").GetComponent<ResourceCounter> ().gold = int.Parse (data.Split ('/') [1]);
 			GetComponent<ManagerCivilization>().offset = offset2;
+			Random.InitState (Mathf.CeilToInt(offset2));
 			x = -xAmount2 * 10;
 			z = -zAmount2 * 10;
 			while (x < (xAmount2 * 10) + 10) {
@@ -98,7 +99,11 @@ public class SaveLoadCivilizaton : MonoBehaviour {
 								if (Mathf.PerlinNoise ((offset2 + ((x + (float)(-xAmount2 * 10)) / (5f * xAmount2))), (offset2 + ((z + (float)(-zAmount2 * 10)) / (5f * zAmount2)))) < 0.825f) {
 									Instantiate (grass2, new Vector3 (x, -4.5f, z), Quaternion.identity);
 								} else {
-									Instantiate (mountain2, new Vector3 (x, -0.5f, z), Quaternion.identity);
+									if(Random.Range(0f, 1f) < 0.2f){
+										Instantiate (mountain2, new Vector3 (x, -0.5f, z), Quaternion.identity);
+									}else{
+										Instantiate (grass2, new Vector3 (x, -4.5f, z), Quaternion.identity);
+									}
 								}
 							}
 						}
