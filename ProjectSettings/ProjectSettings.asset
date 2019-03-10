@@ -16,11 +16,11 @@ PlayerSettings:
   productName: The Empires of Uwi
   defaultCursor: {fileID: 0}
   cursorHotspot: {x: 0, y: 0}
-  m_SplashScreenBackgroundColor: {r: 0.13725491, g: 0.12156863, b: 0.1254902, a: 1}
+  m_SplashScreenBackgroundColor: {r: 0.21698111, g: 0.21698111, b: 0.21698111, a: 1}
   m_ShowUnitySplashScreen: 1
   m_ShowUnitySplashLogo: 1
   m_SplashScreenOverlayOpacity: 1
-  m_SplashScreenAnimation: 1
+  m_SplashScreenAnimation: 0
   m_SplashScreenLogoStyle: 1
   m_SplashScreenDrawMode: 1
   m_SplashScreenBackgroundAnimationZoom: 1
@@ -42,10 +42,8 @@ PlayerSettings:
   m_SplashScreenLogos:
   - logo: {fileID: 10404, guid: 0000000000000000e000000000000000, type: 0}
     duration: 2
-  - logo: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-    duration: 2
-  - logo: {fileID: 10901, guid: 0000000000000000f000000000000000, type: 0}
-    duration: 2
+  - logo: {fileID: 21300000, guid: 91d7be861dcbed54f990f4b741803f7c, type: 3}
+    duration: 4
   m_VirtualRealitySplashScreen: {fileID: 0}
   m_HolographicTrackingLossScreen: {fileID: 0}
   defaultScreenWidth: 1024
@@ -266,7 +264,7 @@ PlayerSettings:
   - m_BuildTarget: 
     m_Icons:
     - serializedVersion: 2
-      m_Icon: {fileID: 2800000, guid: d2785c20d159be149aa4257326f48421, type: 3}
+      m_Icon: {fileID: 2800000, guid: 91d7be861dcbed54f990f4b741803f7c, type: 3}
       m_Width: 128
       m_Height: 128
       m_Kind: 0
