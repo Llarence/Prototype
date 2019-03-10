@@ -150,7 +150,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4806618406595056, guid: 28aa4de56ef83e944adcb7a214aa09d5, type: 2}
       propertyPath: m_RootOrder
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4159678331740808, guid: 28aa4de56ef83e944adcb7a214aa09d5, type: 2}
       propertyPath: m_LocalPosition.y
@@ -580,7 +580,7 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 25
+    m_FontSize: 15
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 0
@@ -725,6 +725,8 @@ MonoBehaviour:
   Warrior: {fileID: 1190276009374664, guid: 95f64215bb9798246981b54a41e7db04, type: 2}
   Settler: {fileID: 0}
   Stage: 0
+  turn: 0
+  stage: 
 --- !u!4 &1695104798
 Transform:
   m_ObjectHideFlags: 0

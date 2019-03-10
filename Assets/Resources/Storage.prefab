@@ -20,13 +20,13 @@ GameObject:
   m_Component:
   - component: {fileID: 4888324101054096}
   - component: {fileID: 33646607408261174}
-  - component: {fileID: 65735739897852906}
   - component: {fileID: 23697629652391520}
-  - component: {fileID: 54637877814147676}
-  - component: {fileID: 208450881932135728}
+  - component: {fileID: 65575944619670594}
+  - component: {fileID: 208114989655544328}
+  - component: {fileID: 54989829296393070}
   m_Layer: 0
   m_Name: Storage
-  m_TagString: Storage
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -37,9 +37,9 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1822119740190346}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 3, y: 3, z: 3}
+  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0, y: 0, z: 0}
+  m_LocalScale: {x: 0.25, y: 0.25, z: 0.25}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -59,7 +59,9 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: b33efeff22e38bf4d8511730ec9f2b44, type: 2}
+  - {fileID: 2100000, guid: bf46536b6fd2dc94e86f8d9e69c253e6, type: 3}
+  - {fileID: 2100002, guid: bf46536b6fd2dc94e86f8d9e69c253e6, type: 3}
+  - {fileID: 2100004, guid: bf46536b6fd2dc94e86f8d9e69c253e6, type: 3}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -67,7 +69,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
-  m_PreserveUVs: 1
+  m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
   m_StitchLightmapSeams: 0
@@ -85,8 +87,8 @@ MeshFilter:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1822119740190346}
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!54 &54637877814147676
+  m_Mesh: {fileID: 4300000, guid: bf46536b6fd2dc94e86f8d9e69c253e6, type: 3}
+--- !u!54 &54989829296393070
 Rigidbody:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -101,7 +103,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!65 &65735739897852906
+--- !u!65 &65575944619670594
 BoxCollider:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -111,9 +113,9 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!208 &208450881932135728
+  m_Size: {x: 10.946594, y: 8.6033125, z: 10.87775}
+  m_Center: {x: 0.03442216, y: -0.7066784, z: 0}
+--- !u!208 &208114989655544328
 NavMeshObstacle:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -122,7 +124,7 @@ NavMeshObstacle:
   m_Enabled: 1
   serializedVersion: 3
   m_Shape: 1
-  m_Extents: {x: 0.5, y: 0.5, z: 0.5}
+  m_Extents: {x: 5.473, y: 4.302, z: 5.439}
   m_MoveThreshold: 0.1
   m_Carve: 0
   m_CarveOnlyStationary: 1

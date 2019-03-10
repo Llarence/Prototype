@@ -396,7 +396,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: GoldMine - 2 Gold
+  m_Text: GoldMine - 3 Gold
 --- !u!222 &55895342
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -746,6 +746,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef640d2dcde74c14baa82b907aca4545, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Farms: []
+  Houses: []
+  GoldMines: []
+  Storages: []
   People: []
   Person: {fileID: 1259929851248274, guid: 5c4b93de8e05cb344bd6ec9758d60f46, type: 2}
   Food: 0

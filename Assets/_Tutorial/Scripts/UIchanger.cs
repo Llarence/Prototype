@@ -12,15 +12,19 @@ public class UIchanger : MonoBehaviour {
     public GameObject Warrior;
     public GameObject Settler;
     public float Stage;
+    public int turn;
+    public string stage;
 
     void Start()
     {
         Instructions.text = "Use the middle mouse button to move the camera";
       Stage = 1;
+        NextTurn();
     }
 
     // Update is called once per frame
     void Update () {
+
         if (Input.GetMouseButton(2) && Stage == 1)
         {
             Instructions.text = "Use W A S and D to move around";
@@ -45,7 +49,7 @@ public class UIchanger : MonoBehaviour {
         {
             GameObject.Find("TutorialCity(Clone)").GetComponent<Transform>().Translate(1000, 0, 0);
             Instantiate(Warrior);
-            Instructions.text = "This is a warrior. You can move them and they also help you defend your cities. Click on it to select it. Press the down arrow key to continue";
+            Instructions.text = "This is a warrior. You can move them and they also help you defend your cities. You can move them every two turns. Click the next turn button to advance to the next turn. Click on it to select it. Press the down arrow key to continue";
             Stage = 6;
         }
         if (Input.GetKey(KeyCode.DownArrow) && Stage == 6)
@@ -55,10 +59,17 @@ public class UIchanger : MonoBehaviour {
             Instructions.text = "Finally, this is a settler. These characters make cities. Click the end button to go back to the main menu.";
             EndOfTutorial.text = "End Tutorial";
         }
-	}
+    }
 
     public void MainMenu()
     {
         SceneManager.LoadScene("Menu");
+    }
+
+    public void NextTurn()
+    {
+        stage = "BuildCivilization";
+        GameObject.Find("CurrentStage").GetComponent<Text>().text = "Build Civilization";
+        turn++;
     }
 }
