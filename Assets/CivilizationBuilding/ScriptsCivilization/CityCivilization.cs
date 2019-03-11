@@ -28,6 +28,8 @@ public class CityCivilization : MonoBehaviour {
 	public GameObject Settler;
 	public GameObject Warrior;
 	public bool capital;
+	public string team;
+	public Material Player;
 
 	// Use this for initialization
 	void Start () {
@@ -63,33 +65,43 @@ public class CityCivilization : MonoBehaviour {
 			Instantiate (border, transform.position + new Vector3(-20, -2.45f, 10), Quaternion.identity);
 			Instantiate (border, transform.position + new Vector3(20, -2.45f, -10), Quaternion.identity);
 		}
+		if(team == "Player"){
+			GetComponent<MeshRenderer> ().material = Player;
+		}
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		if (Input.GetMouseButton (0)) {
-			if (Physics.Raycast (Camera.main.ScreenPointToRay (Input.mousePosition), out hit)) {
-				if (hit.collider.gameObject == gameObject) {
-					clickTime = clickTime + Time.deltaTime;
-					if (clickTime >= 1) {
-						if (manager.GetComponent<ManagerCivilization> ().stage == "BuildCities") {
-							manager.GetComponent<SaveLoadCivilizaton> ().Save ();
-							GameObject.Find ("InfoStorage").GetComponent<InfoStorage> ().cityName = transform.GetChild (0).gameObject.GetComponent<TextMesh> ().text;
-							SceneManager.LoadScene ("CityBuilding");
+		if (team == "Player") {
+			if (Input.GetMouseButton (0)) {
+				if (Physics.Raycast (Camera.main.ScreenPointToRay (Input.mousePosition), out hit)) {
+					if (hit.collider.gameObject == gameObject) {
+						clickTime = clickTime + Time.deltaTime;
+						if (clickTime >= 1) {
+							if (manager.GetComponent<ManagerCivilization> ().stage == "BuildCities") {
+								manager.GetComponent<SaveLoadCivilizaton> ().Save ();
+								GameObject.Find ("InfoStorage").GetComponent<InfoStorage> ().cityName = transform.GetChild (0).gameObject.GetComponent<TextMesh> ().text;
+								SceneManager.LoadScene ("CityBuilding");
+							}
 						}
+					} else {
+						clickTime = 0;
 					}
-				} else {
-					clickTime = 0;
 				}
 			}
-		}
-		if (Input.GetMouseButtonDown (1)){
-			if (Physics.Raycast (Camera.main.ScreenPointToRay (Input.mousePosition), out hit)) {
-				if (hit.collider.gameObject == gameObject && Selected == false) {
-					print ("HI");
-					GameObject.Find ("Spawn Settler").transform.Rotate (0, -90, 0);
-					GameObject.Find ("Spawn Warrior").transform.Rotate (0, -90, 0);
-					Selected = true;
+			if (Input.GetMouseButtonDown (1)) {
+				if (Physics.Raycast (Camera.main.ScreenPointToRay (Input.mousePosition), out hit)) {
+					if (hit.collider.gameObject == gameObject && Selected == false) {
+						GameObject.Find ("Spawn Settler").transform.Rotate (0, -90, 0);
+						GameObject.Find ("Spawn Warrior").transform.Rotate (0, -90, 0);
+						Selected = true;
+					} else {
+						if (Selected == true) {
+							GameObject.Find ("Spawn Settler").transform.Rotate (0, 90, 0);
+							GameObject.Find ("Spawn Warrior").transform.Rotate (0, 90, 0);
+							Selected = false;
+						}
+					}
 				} else {
 					if (Selected == true) {
 						GameObject.Find ("Spawn Settler").transform.Rotate (0, 90, 0);
@@ -97,16 +109,10 @@ public class CityCivilization : MonoBehaviour {
 						Selected = false;
 					}
 				}
-			} else {
-				if (Selected == true) {
-					GameObject.Find ("Spawn Settler").transform.Rotate (0, 90, 0);
-					GameObject.Find ("Spawn Warrior").transform.Rotate (0, 90, 0);
-					Selected = false;
-				}
 			}
-		}
-		if (turnIAmOn < manager.GetComponent<ManagerCivilization> ().turn) {
-			UpdateTurn();
+			if (turnIAmOn < manager.GetComponent<ManagerCivilization> ().turn) {
+				UpdateTurn ();
+			}
 		}
 	}
 
@@ -164,15 +170,18 @@ public class CityCivilization : MonoBehaviour {
 	}
 
 	public void SpawnCity (string UnitName){
-		if (Physics.Raycast (transform.position + Vector3.up * 10, Vector3.down, out hit)) {
-			if (hit.collider.gameObject.tag == "Grass" && hit.collider.gameObject.tag != "Unit") {
-				if (UnitName == "Warrior" && GameObject.Find ("Resources").GetComponent<ResourceCounter> ().gold >= 10) {
-					Instantiate (Warrior, new Vector3 (transform.position.x, 5f, transform.position.z), Quaternion.identity);
-					GameObject.Find ("Resources").GetComponent<ResourceCounter> ().gold -= 10;
-				}
-				if (UnitName == "Settler" && GameObject.Find ("Resources").GetComponent<ResourceCounter> ().gold >= 20) {
-					Instantiate (Settler, new Vector3 (transform.position.x, 5f, transform.position.z), Quaternion.identity);
-					GameObject.Find ("Resources").GetComponent<ResourceCounter> ().gold -= 20;
+		if (manager.GetComponent<ManagerCivilization> ().stage != "BuildCities") {
+			if (Physics.Raycast (transform.position + Vector3.up * 10, Vector3.down, out hit)) {
+				if (hit.collider.gameObject.tag == "Grass" && hit.collider.gameObject.tag != "Unit") {
+					if (UnitName == "Warrior" && GameObject.Find ("Resources").GetComponent<ResourceCounter> ().gold >= 10) {
+						(Instantiate (Warrior, new Vector3 (transform.position.x, 5f, transform.position.z), Quaternion.identity) as GameObject).GetComponent<Unit> ().team = "Player";
+						;
+						GameObject.Find ("Resources").GetComponent<ResourceCounter> ().gold -= 10;
+					}
+					if (UnitName == "Settler" && GameObject.Find ("Resources").GetComponent<ResourceCounter> ().gold >= 20) {
+						(Instantiate (Settler, new Vector3 (transform.position.x, 5f, transform.position.z), Quaternion.identity) as GameObject).GetComponent<Unit> ().team = "Player";
+						GameObject.Find ("Resources").GetComponent<ResourceCounter> ().gold -= 20;
+					}
 				}
 			}
 		}

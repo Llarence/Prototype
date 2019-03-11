@@ -36,6 +36,7 @@ public class ManagerCivilization : MonoBehaviour {
 	public string stage;
 	List<Vector3> CityPositions = new List<Vector3>();
 	int tries;
+	GameObject NewCity;
 
 	void Start (){
 		stage = "BuildCities";
@@ -123,19 +124,23 @@ public class ManagerCivilization : MonoBehaviour {
 						Cities++;
 					}
 					tries++;
-					if(tries == 500){
+					if(tries == 5000){
 						break;
 					}
 				}
 			}
 			Cities = 0;
 			while (Cities != CityPositions.Count) {
-				(Instantiate (city, CityPositions[Cities], Quaternion.identity) as GameObject).GetComponent<CityCivilization>().capital = true;
-				Instantiate (settler, new Vector3 (CityPositions[Cities].x, 5f, CityPositions[Cities].z), Quaternion.identity);
-				Instantiate (warrior, new Vector3 (CityPositions[Cities].x, 5f, CityPositions[Cities].z + 10), Quaternion.identity);
-				Instantiate (warrior, new Vector3 (CityPositions[Cities].x, 5f, CityPositions[Cities].z - 10), Quaternion.identity);
-				Instantiate (warrior, new Vector3 (CityPositions[Cities].x + 10, 5f, CityPositions[Cities].z), Quaternion.identity);
-				Instantiate (warrior, new Vector3 (CityPositions[Cities].x - 10, 5f, CityPositions[Cities].z), Quaternion.identity);
+				NewCity = (Instantiate (city, CityPositions[Cities], Quaternion.identity) as GameObject);
+				if(Cities == 0){
+					NewCity.GetComponent<CityCivilization> ().team = "Player";
+				}
+				NewCity.GetComponent<CityCivilization> ().capital = true;
+				if(Cities == 0){
+					(Instantiate (warrior, new Vector3 (CityPositions[Cities].x, 5f, CityPositions[Cities].z), Quaternion.identity) as GameObject).GetComponent<Unit>().team = "Player";
+				}else{
+					Instantiate (warrior, new Vector3 (CityPositions[Cities].x, 5f, CityPositions[Cities].z), Quaternion.identity);
+				}
 				Cities++;
 			}
 		}
@@ -182,7 +187,7 @@ public class ManagerCivilization : MonoBehaviour {
 	bool isLegalSpawn (){
 		if(CityPositions.Count != 0){
 			foreach(Vector3 pos in CityPositions){
-				if((pos.x <= 95 && pos.x >= -95) && (pos.z <= 95 && pos.z >= -95)){
+				if((pos.x - x <= 95 && pos.x - x >= -95) && (pos.z - z <= 95 && pos.z - z >= -95)){
 					return false;
 				}
 			}
