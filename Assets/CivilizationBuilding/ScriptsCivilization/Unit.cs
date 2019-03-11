@@ -24,11 +24,16 @@ public class Unit : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (team == "Player") {
-				if (GameObject.Find ("Manager").GetComponent<ManagerCivilization> ().turn != myTurn) {
-					doneForTurn = false;
-					myTurn = GameObject.Find ("Manager").GetComponent<ManagerCivilization> ().turn;
+		if(GameObject.Find("Manager") != null){
+			if (GameObject.Find ("Manager").GetComponent<ManagerCivilization> ().turn != myTurn) {
+				doneForTurn = false;
+				myTurn = GameObject.Find ("Manager").GetComponent<ManagerCivilization> ().turn;
+				if(team != "Player"){
+					AI ();
 				}
+			}
+		}
+		if (team == "Player") {
 				if (GameObject.Find ("Manager").GetComponent<ManagerCivilization> ().stage == "BuildCivilization") {
 					if (Input.mousePosition.x < Screen.width - 350) {
 						if (Input.GetMouseButtonDown (0)) {
@@ -151,7 +156,74 @@ public class Unit : MonoBehaviour {
 	}
 
 	void AI(){
-		
+		if (doneForTurn == false) {
+			transform.eulerAngles = new Vector3 (0, 0, 0);
+			transform.Translate (0, 0, 10);
+			gameObject.layer = 2;
+			doneForTurn = true;
+			if (Physics.Raycast (transform.position + Vector3.up * 5, Vector3.down, out hit)) {
+				if (hit.collider.gameObject.tag != "Grass" && hit.collider.gameObject.tag != "City" || hit.collider.gameObject.tag == "Unit") {
+					transform.Translate (0, 0, -10);
+					doneForTurn = false;
+				}
+			}else{
+				transform.Translate (0, 0, -10);
+				doneForTurn = false;
+			}
+			transform.eulerAngles = new Vector3 (0, 90, 0);
+			gameObject.layer = 0;
+		}
+		if (doneForTurn == false) {
+			transform.eulerAngles = new Vector3 (0, 0, 0);
+			transform.Translate (-10, 0, 0);
+			gameObject.layer = 2;
+			doneForTurn = true;
+			if (Physics.Raycast (transform.position + Vector3.up * 5, Vector3.down, out hit)) {
+				if (hit.collider.gameObject.tag != "Grass" && hit.collider.gameObject.tag != "City" || hit.collider.gameObject.tag == "Unit") {
+					transform.Translate (10, 0, 0);
+					doneForTurn = false;
+				}
+			}else{
+				transform.Translate (10, 0, 0);
+				doneForTurn = false;
+			}
+			transform.eulerAngles = new Vector3 (0, 0, 0);
+			gameObject.layer = 0;
+		}
+		if (doneForTurn == false) {
+			transform.eulerAngles = new Vector3 (0, 0, 0);
+			transform.Translate (10, 0, 0);
+			gameObject.layer = 2;
+			doneForTurn = true;
+			if (Physics.Raycast (transform.position + Vector3.up * 5, Vector3.down, out hit)) {
+				if (hit.collider.gameObject.tag != "Grass" && hit.collider.gameObject.tag != "City" || hit.collider.gameObject.tag == "Unit") {
+					transform.Translate (-10, 0, 0);
+					doneForTurn = false;
+				}
+			}else{
+				transform.Translate (-10, 0, 0);
+				doneForTurn = false;
+			}
+			transform.eulerAngles = new Vector3 (0, 180, 0);
+			gameObject.layer = 0;
+		}
+		if (doneForTurn == false) {
+			transform.eulerAngles = new Vector3 (0, 0, 0);
+			transform.Translate (0, 0, -10);
+			gameObject.layer = 2;
+			doneForTurn = true;
+			if (Physics.Raycast (transform.position + Vector3.up * 5, Vector3.down, out hit)) {
+				if (hit.collider.gameObject.tag != "Grass" && hit.collider.gameObject.tag != "City" || hit.collider.gameObject.tag == "Unit") {
+					transform.Translate (0, 0, 10);
+					doneForTurn = false;
+				}
+			}else{
+				transform.Translate (0, 0, 10);
+				doneForTurn = false;
+			}
+			transform.eulerAngles = new Vector3 (0, 270, 0);
+			gameObject.layer = 0;
+		}
 	}
 
 	void TutorialMove(){

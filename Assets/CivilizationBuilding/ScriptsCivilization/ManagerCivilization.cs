@@ -27,6 +27,7 @@ public class ManagerCivilization : MonoBehaviour {
 	public GameObject text;
 	public GameObject text2;
 	public GameObject text3;
+	public GameObject text4;
 	public string gameName;
 	List<string> files;
 	public GameObject newText;
@@ -77,6 +78,7 @@ public class ManagerCivilization : MonoBehaviour {
 			Destroy (text);
 			Destroy (text2);
 			Destroy (text3);
+			Destroy (text4);
 			foreach (GameObject name in texts) {
 				Destroy (name);
 			}
@@ -193,5 +195,9 @@ public class ManagerCivilization : MonoBehaviour {
 			}
 		}
 		return true;
+	}
+		
+	public void Back (){
+		SceneManager.LoadScene ("Menu");
 	}
 }

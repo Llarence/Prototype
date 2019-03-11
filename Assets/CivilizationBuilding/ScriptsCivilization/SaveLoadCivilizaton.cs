@@ -36,6 +36,7 @@ public class SaveLoadCivilizaton : MonoBehaviour {
 	public GameObject text;
 	public GameObject text2;
 	public GameObject text3;
+	public GameObject text4;
 	public bool isSaving;
 	string saveName;
 	public string loadName;
@@ -79,6 +80,7 @@ public class SaveLoadCivilizaton : MonoBehaviour {
 			Destroy (text);
 			Destroy (text2);
 			Destroy (text3);
+			Destroy (text4);
 			foreach (GameObject name in GetComponent<ManagerCivilization>().texts) {
 				Destroy (name);
 			}
