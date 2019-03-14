@@ -107,6 +107,14 @@ public class SaveLoadCivilizaton : MonoBehaviour {
 							} else {
 								if (Mathf.PerlinNoise ((offset2 + ((x + (float)(-xAmount2 * 10)) / (5f * xAmount2))), (offset2 + ((z + (float)(-zAmount2 * 10)) / (5f * zAmount2)))) < 0.825f) {
 									Instantiate (grass2, new Vector3 (x, -4.5f, z), Quaternion.identity);
+									if (Random.Range (1, 101) == 1) {
+									} else {
+										if(Random.Range(1, 51) == 1){
+										} else {
+											if(Random.Range(1, 26) == 1){
+											}
+										}
+									}
 								} else {
 									if(Random.Range(0f, 1f) < 0.2f){
 										Instantiate (mountain2, new Vector3 (x, -0.5f, z), Quaternion.identity);
