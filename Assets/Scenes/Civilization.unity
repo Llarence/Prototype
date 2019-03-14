@@ -827,6 +827,10 @@ MonoBehaviour:
   city: {fileID: 1329032383223910, guid: 44fbf82325d29d7448492b6cfb193b85, type: 2}
   warrior: {fileID: 1060434830780756, guid: 913f00b08c4c5444789900f4d92f1635, type: 2}
   settler: {fileID: 1132498092863848, guid: 6517a9e7393004047a8183aee5332c91, type: 2}
+  copper: {fileID: 1556088348441058, guid: 2d63c4c5d112e404482d0f4867dd889a, type: 2}
+  iron: {fileID: 1871884362557932, guid: 1b7848d102b2fdf418317c965e6db42a, type: 2}
+  unobtainium: {fileID: 1590977106126164, guid: 760f5ae116398f64a8ad18941442a21d,
+    type: 2}
   offset: 0
   start: 0
   xAmount: 50
@@ -2155,9 +2159,9 @@ RectTransform:
   m_Father: {fileID: 1850506674}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -400, y: -300}
+  m_AnchorMin: {x: 0, y: 0.5}
+  m_AnchorMax: {x: 0, y: 0.5}
+  m_AnchoredPosition: {x: 180, y: -300}
   m_SizeDelta: {x: 320, y: 60}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1732095698

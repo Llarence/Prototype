@@ -15,6 +15,9 @@ public class ManagerCivilization : MonoBehaviour {
 	public GameObject city;
 	public GameObject warrior;
 	public GameObject settler;
+	public GameObject copper;
+	public GameObject iron;
+	public GameObject unobtainium;
 	int x;
 	int z;
 	public float offset;
@@ -102,6 +105,17 @@ public class ManagerCivilization : MonoBehaviour {
 							} else {
 								if (Mathf.PerlinNoise ((offset + ((x + (float)(-xAmount * 10)) / (5f * xAmount))), (offset + ((z + (float)(-zAmount * 10)) / (5f * zAmount)))) < 0.825f) {
 									Instantiate (grass, new Vector3 (x, -4.5f, z), Quaternion.identity);
+									if (Random.Range (1, 101) == 1) {
+										Instantiate (unobtainium, new Vector3 (x, 0, z), Quaternion.identity);
+									} else {
+										if(Random.Range(1, 51) == 1){
+											Instantiate (copper, new Vector3 (x, 0, z), Quaternion.identity);
+										} else {
+											if(Random.Range(1, 26) == 1){
+												Instantiate (iron, new Vector3 (x, 0, z), Quaternion.identity);
+											}
+										}
+									}
 								} else {
 									if(Random.Range(0f, 1f) < 0.2f){
 										Instantiate (mountain, new Vector3 (x, -0.5f, z), Quaternion.identity);
