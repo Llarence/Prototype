@@ -130,3 +130,8 @@ MonoBehaviour:
   clicked: {r: 0, g: 0, b: 1, a: 0}
   canSettle: 0
   city: {fileID: 1329032383223910, guid: 44fbf82325d29d7448492b6cfb193b85, type: 2}
+  warrior: {fileID: 0}
+  team: 
+  UnitClickArea: {fileID: 1146630857050034, guid: 24642f4e591985846bfd78ac82b6f9f7,
+    type: 2}
+  UnitClickAreas: []
