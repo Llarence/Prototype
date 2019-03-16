@@ -37,7 +37,7 @@ public class ManagerCity : MonoBehaviour {
 		//	TickTime -= 0.5f;
 		//}
 		TickTime = Mathf.Clamp (TickTime, 0.5f, Mathf.Infinity);
-		Text.text = ("Population: " + Population + ", Food: " + Food + ", Gold: " + Gold + ", TickTime: " + TickTime);
+		Text.text = ("Population: " + Population + ", Food: " + Food + ", Gold: " + Gold);
 		if(Input.GetMouseButton(0) || Input.GetMouseButton(1)){
 			Camera.main.GetComponent<AudioSource>().Play(0);
 		}
