@@ -21,6 +21,9 @@ public class SaveLoadCivilizaton : MonoBehaviour {
 	public GameObject water2;
 	public GameObject deepWater2;
 	public GameObject beach2;
+	public GameObject copper2;
+	public GameObject iron2;
+	public GameObject unobtainium2;
 	GameObject[] gameObjects;
 	public float[] position;
 	FileStream stream;
@@ -48,7 +51,7 @@ public class SaveLoadCivilizaton : MonoBehaviour {
 		json_data = "";
 		gameObjects = FindObjectsOfType<GameObject>();
 		foreach (GameObject CurrentObject in gameObjects) {
-			if(CurrentObject.name != "Grass(Clone)" && CurrentObject.name != "Water(Clone)" && CurrentObject.name != "Border(Clone)" && CurrentObject.name != "Mountain(Clone)" && CurrentObject.name != "Deep Water(Clone)" && CurrentObject.name != "Beach(Clone)"  && CurrentObject.name != "EventSystem" && CurrentObject.name != "Manager" && CurrentObject.name != "Directional Light"  && CurrentObject.name != "Main Camera"  && CurrentObject.name != "CameraRotator" && CurrentObject.name != "InfoStorage" && CurrentObject.layer != 5){
+			if(CurrentObject.name != "Grass(Clone)" && CurrentObject.name != "Water(Clone)" && CurrentObject.name != "Border(Clone)" && CurrentObject.name != "Mountain(Clone)" && CurrentObject.name != "Deep Water(Clone)" && CurrentObject.name != "Beach(Clone)"  && CurrentObject.name != "Unobtainium(Clone)" && CurrentObject.name != "Copper(Clone)" && CurrentObject.name != "Iron(Clone)" && CurrentObject.name != "EventSystem" && CurrentObject.name != "Manager" && CurrentObject.name != "Directional Light"  && CurrentObject.name != "Main Camera"  && CurrentObject.name != "CameraRotator" && CurrentObject.name != "InfoStorage" && CurrentObject.layer != 5){
 				gameState.x = CurrentObject.transform.position.x;
 				gameState.y = CurrentObject.transform.position.y;
 				gameState.z = CurrentObject.transform.position.z;
@@ -113,11 +116,14 @@ public class SaveLoadCivilizaton : MonoBehaviour {
 							} else {
 								if (Mathf.PerlinNoise ((offset2 + ((x + (float)(-xAmount2 * 10)) / (5f * xAmount2))), (offset2 + ((z + (float)(-zAmount2 * 10)) / (5f * zAmount2)))) < 0.825f) {
 									Instantiate (grass2, new Vector3 (x, -4.5f, z), Quaternion.identity);
-									if (Random.Range (1, 101) == 1) {
+									if (Random.Range (1, 301) == 1) {
+										Instantiate (unobtainium2, new Vector3 (x, 0, z), Quaternion.identity);
 									} else {
-										if(Random.Range(1, 51) == 1){
+										if(Random.Range(1, 151) == 1){
+											Instantiate (copper2, new Vector3 (x, 0, z), Quaternion.identity);
 										} else {
-											if(Random.Range(1, 26) == 1){
+											if(Random.Range(1, 76) == 1){
+												Instantiate (iron2, new Vector3 (x, 0, z), Quaternion.identity);
 											}
 										}
 									}
