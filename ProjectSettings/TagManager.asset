@@ -18,6 +18,7 @@ TagManager:
   - TutorialCity
   - TutorialWarrior
   - TutorialSettler
+  - DeepWater
   layers:
   - Default
   - TransparentFX

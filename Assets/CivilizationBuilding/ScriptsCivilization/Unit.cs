@@ -18,6 +18,7 @@ public class Unit : MonoBehaviour {
 	public string team;
 	public GameObject UnitClickArea;
 	public List<GameObject> UnitClickAreas = new List<GameObject>();
+	public int[,] tiles;
 
 
 	// Use this for initialization
@@ -337,5 +338,20 @@ public class Unit : MonoBehaviour {
 				}
 			}
 		}
+	}
+
+	void CreatePathGraph () {
+		//foreach(){
+			
+		//}
+		//foreach(){
+
+		//}
+		//foreach(){
+			
+		//
+		//foreach(){
+
+		//}
 	}
 }
