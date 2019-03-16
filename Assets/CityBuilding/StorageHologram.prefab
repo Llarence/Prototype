@@ -20,10 +20,10 @@ GameObject:
   m_Component:
   - component: {fileID: 4308169156521756}
   - component: {fileID: 33837288457499310}
-  - component: {fileID: 65216739068188434}
   - component: {fileID: 23139788684302276}
   - component: {fileID: 114260963797657448}
   - component: {fileID: 54904615520853826}
+  - component: {fileID: 64383499289118246}
   m_Layer: 2
   m_Name: StorageHologram
   m_TagString: Untagged
@@ -39,7 +39,7 @@ Transform:
   m_GameObject: {fileID: 1632597090100250}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 3, y: 3, z: 3}
+  m_LocalScale: {x: 0.25, y: 0.25, z: 0.25}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -59,6 +59,8 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
+  - {fileID: 2100000, guid: f31366fd03ae90149bbd8ba68fcbcde7, type: 2}
+  - {fileID: 2100000, guid: f31366fd03ae90149bbd8ba68fcbcde7, type: 2}
   - {fileID: 2100000, guid: f31366fd03ae90149bbd8ba68fcbcde7, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
@@ -85,7 +87,7 @@ MeshFilter:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1632597090100250}
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+  m_Mesh: {fileID: 4300000, guid: bf46536b6fd2dc94e86f8d9e69c253e6, type: 3}
 --- !u!54 &54904615520853826
 Rigidbody:
   m_ObjectHideFlags: 1
@@ -101,8 +103,8 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!65 &65216739068188434
-BoxCollider:
+--- !u!64 &64383499289118246
+MeshCollider:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
@@ -110,9 +112,11 @@ BoxCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  serializedVersion: 3
+  m_Convex: 1
+  m_CookingOptions: 14
+  m_SkinWidth: 0.01
+  m_Mesh: {fileID: 4300000, guid: bf46536b6fd2dc94e86f8d9e69c253e6, type: 3}
 --- !u!114 &114260963797657448
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -129,7 +133,7 @@ MonoBehaviour:
   HitLayers:
     serializedVersion: 2
     m_Bits: 256
-  SpawnHeight: 1
+  SpawnHeight: 0.75
   Red: {r: 1, g: 0.12530687, b: 0, a: 0.73333335}
   Green: {r: 0, g: 1, b: 0.09019608, a: 0.43529412}
   costToBuy: 3

@@ -53,14 +53,20 @@ public class SaveLoadCivilizaton : MonoBehaviour {
 				gameState.y = CurrentObject.transform.position.y;
 				gameState.z = CurrentObject.transform.position.z;
 				gameState.name = CurrentObject.name;
+				if (CurrentObject.CompareTag ("City")) {
+					gameState.cityName = CurrentObject.transform.GetChild (0).gameObject.GetComponent<TextMesh> ().text;
+				}
 				if(CurrentObject.CompareTag("City")){
-					gameState.cityName = CurrentObject.transform.GetChild(0).gameObject.GetComponent<TextMesh>().text;
+					gameState.team = CurrentObject.GetComponent<CityCivilization>().team;
 				}
 				if(CurrentObject.CompareTag("Unit")){
 					gameState.team = CurrentObject.GetComponent<Unit> ().team;
 				}
-				if(CurrentObject.CompareTag("City")){
-					gameState.team = CurrentObject.GetComponent<CityCivilization>().team;
+				if(CurrentObject.tag != "Unit" && CurrentObject.tag != "City"){
+					gameState.team = "";
+				}
+				if (CurrentObject.tag != "City") {
+					gameState.cityName = "";
 				}
 				json_data = json_data + "|" + JsonUtility.ToJson(gameState);
 			}
@@ -136,6 +142,10 @@ public class SaveLoadCivilizaton : MonoBehaviour {
 				if (instantiated.name == "City(Clone)") {
 					instantiated.GetComponent<CityCivilization>().Name = JsonUtility.FromJson<GameState> ((data.Split ('/') [2]).Split ('|') [i]).cityName;
 					instantiated.transform.GetChild (0).gameObject.GetComponent<CityNameText> ().overideName = JsonUtility.FromJson<GameState> ((data.Split ('/') [2]).Split ('|') [i]).cityName;
+					instantiated.GetComponent<CityCivilization> ().team = JsonUtility.FromJson<GameState> ((data.Split ('/') [2]).Split ('|') [i]).team;
+				}
+				if (instantiated.tag == "Unit") {
+					instantiated.GetComponent<Unit> ().team = JsonUtility.FromJson<GameState> ((data.Split ('/') [2]).Split ('|') [i]).team;
 				}
 				i++;
 			}

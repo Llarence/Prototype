@@ -38,10 +38,14 @@ public class PlaceHologram : MonoBehaviour {
 			}
 		}
 		if(Colliding == 0){
-			GetComponent<MeshRenderer>().material.color = Green;
+			foreach(Material material in GetComponent<MeshRenderer>().materials){
+				material.color = Green;
+			}
 		}
 		if(Colliding > 0){
-			GetComponent<MeshRenderer>().material.color = Red;
+			foreach(Material material in GetComponent<MeshRenderer>().materials){
+				material.color = Red;
+			}
 		}
 	}
 
