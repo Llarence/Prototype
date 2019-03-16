@@ -860,6 +860,10 @@ MonoBehaviour:
   water2: {fileID: 1253534998859838, guid: 13cded6a17286474c90c812a2a3e6d1a, type: 2}
   deepWater2: {fileID: 1379000803698430, guid: 13de958d36c2a9e49b5b4e977d8c43e3, type: 2}
   beach2: {fileID: 1914847747313352, guid: 4244edef98f42bf4c8d12e43541e4b4d, type: 2}
+  copper2: {fileID: 1556088348441058, guid: 2d63c4c5d112e404482d0f4867dd889a, type: 2}
+  iron2: {fileID: 1871884362557932, guid: 1b7848d102b2fdf418317c965e6db42a, type: 2}
+  unobtainium2: {fileID: 1590977106126164, guid: 760f5ae116398f64a8ad18941442a21d,
+    type: 2}
   position: []
   xAmount2: 50
   zAmount2: 50
