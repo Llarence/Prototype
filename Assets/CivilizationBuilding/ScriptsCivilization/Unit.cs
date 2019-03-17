@@ -18,12 +18,14 @@ public class Unit : MonoBehaviour {
 	public string team;
 	public GameObject UnitClickArea;
 	public List<GameObject> UnitClickAreas = new List<GameObject>();
-	public int[,] tiles;
+	int[,] tiles;
+	Node[,] graph;
 
 
 	// Use this for initialization
 	void Start () {
 		GetComponent<MeshRenderer> ().material.color = notClicked;
+		CreatePathGraph ();
 	}
 	
 	// Update is called once per frame
@@ -340,18 +342,46 @@ public class Unit : MonoBehaviour {
 		}
 	}
 
+	class Node {
+		public List<Node> neighbours;
+
+		public Node (){
+			neighbours = new List<Node>();
+		}
+	}
+
 	void CreatePathGraph () {
-		//foreach(){
-			
-		//}
-		//foreach(){
+		tiles = new int [101, 101];
+		foreach(GameObject grass in GameObject.FindGameObjectsWithTag("Grass")){
+			tiles [Mathf.CeilToInt(transform.position.x/10 + 50), Mathf.CeilToInt(transform.position.z/10 + 50)] = 0;
+		}
+		foreach(GameObject grass in GameObject.FindGameObjectsWithTag("Water")){
+			tiles [Mathf.CeilToInt(transform.position.x/10 + 50), Mathf.CeilToInt(transform.position.z/10 + 50)] = 1;
+		}
+		foreach(GameObject grass in GameObject.FindGameObjectsWithTag("DeepWater")){
+			tiles [Mathf.CeilToInt(transform.position.x/10 + 50), Mathf.CeilToInt(transform.position.z/10 + 50)] = 2;
+		}
+		foreach(GameObject grass in GameObject.FindGameObjectsWithTag("Mountain")){
+			tiles [Mathf.CeilToInt(transform.position.x/10 + 50), Mathf.CeilToInt(transform.position.z/10 + 50)] = 3;
+		}
+		graph = new Node[101, 101];
+		for(int xpos = 0; xpos < 101; xpos++){
+			for(int zpos = 0; zpos < 101; zpos++){
+				graph [xpos, zpos] = new Node();
+				if (xpos > 0){
+					graph [xpos, zpos].neighbours.Add (graph [xpos - 1, zpos]);
+				}
+				if (xpos < 100) {
+					graph [xpos, zpos].neighbours.Add (graph [xpos + 1, zpos]);
+				}
+				if (zpos > 0) {
+					graph [xpos, zpos].neighbours.Add (graph [xpos, zpos - 1]);
+				}
+				if (zpos < 100) {
+					graph [xpos, zpos].neighbours.Add (graph [xpos, zpos + 1]);
+				}
+			}
+		}
 
-		//}
-		//foreach(){
-			
-		//
-		//foreach(){
-
-		//}
 	}
 }
