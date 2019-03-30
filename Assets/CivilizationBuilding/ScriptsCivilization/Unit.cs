@@ -20,12 +20,11 @@ public class Unit : MonoBehaviour {
 	public List<GameObject> UnitClickAreas = new List<GameObject>();
 	int[,] tiles;
 	Node[,] graph;
-
+	Node p;
 
 	// Use this for initialization
 	void Start () {
 		GetComponent<MeshRenderer> ().material.color = notClicked;
-		CreatePathGraph ();
 	}
 	
 	// Update is called once per frame
@@ -37,6 +36,7 @@ public class Unit : MonoBehaviour {
 				if(team != "Player"){
 					AI ();
 				}
+				CreatePathGraph (50, 50);
 			}
 		}
 		if (team == "Player") {
@@ -344,44 +344,105 @@ public class Unit : MonoBehaviour {
 
 	class Node {
 		public List<Node> neighbours;
+		public int x;
+		public int z;
 
 		public Node (){
 			neighbours = new List<Node>();
 		}
+
+		public float DistanceTo(Node n) {
+			return Vector2.Distance(new Vector2(x, z), new Vector2(n.x, n.z));
+		}
 	}
 
-	void CreatePathGraph () {
+	void CreatePathGraph (int x, int y) {
 		tiles = new int [101, 101];
 		foreach(GameObject grass in GameObject.FindGameObjectsWithTag("Grass")){
-			tiles [Mathf.CeilToInt(transform.position.x/10 + 50), Mathf.CeilToInt(transform.position.z/10 + 50)] = 0;
+			tiles [Mathf.RoundToInt(grass.transform.position.x/10) + 50, Mathf.RoundToInt(grass.transform.position.z/10) + 50] = 0;
 		}
-		foreach(GameObject grass in GameObject.FindGameObjectsWithTag("Water")){
-			tiles [Mathf.CeilToInt(transform.position.x/10 + 50), Mathf.CeilToInt(transform.position.z/10 + 50)] = 1;
+		foreach(GameObject water in GameObject.FindGameObjectsWithTag("Water")){
+			tiles [Mathf.RoundToInt(water.transform.position.x/10) + 50, Mathf.RoundToInt(water.transform.position.z/10) + 50] = 9999;
 		}
-		foreach(GameObject grass in GameObject.FindGameObjectsWithTag("DeepWater")){
-			tiles [Mathf.CeilToInt(transform.position.x/10 + 50), Mathf.CeilToInt(transform.position.z/10 + 50)] = 2;
+		foreach(GameObject deepwater in GameObject.FindGameObjectsWithTag("DeepWater")){
+			tiles [Mathf.RoundToInt(deepwater.transform.position.x/10) + 50, Mathf.RoundToInt(deepwater.transform.position.z/10) + 50] = 9999;
 		}
-		foreach(GameObject grass in GameObject.FindGameObjectsWithTag("Mountain")){
-			tiles [Mathf.CeilToInt(transform.position.x/10 + 50), Mathf.CeilToInt(transform.position.z/10 + 50)] = 3;
+		foreach(GameObject mountain in GameObject.FindGameObjectsWithTag("Mountain")){
+			tiles [Mathf.RoundToInt(mountain.transform.position.x/10) + 50, Mathf.RoundToInt(mountain.transform.position.z/10) + 50] = 9999;
 		}
+		Dictionary<Node, float> dist = new Dictionary<Node, float>();
+		Dictionary<Node, Node> prev = new Dictionary<Node, Node>();
+		List<Node> unvisited = new List<Node>();
 		graph = new Node[101, 101];
-		for(int xpos = 0; xpos < 101; xpos++){
-			for(int zpos = 0; zpos < 101; zpos++){
-				graph [xpos, zpos] = new Node();
-				if (xpos > 0){
-					graph [xpos, zpos].neighbours.Add (graph [xpos - 1, zpos]);
-				}
-				if (xpos < 100) {
-					graph [xpos, zpos].neighbours.Add (graph [xpos + 1, zpos]);
-				}
-				if (zpos > 0) {
-					graph [xpos, zpos].neighbours.Add (graph [xpos, zpos - 1]);
-				}
-				if (zpos < 100) {
-					graph [xpos, zpos].neighbours.Add (graph [xpos, zpos + 1]);
+		for(int x2 = 0; x2 < 101; x2++){
+			for(int z2 = 0; z2 < 101; z2++){
+				graph[x2, z2] = new Node();
+				graph[x2, z2].x = x2;
+				graph[x2, z2].z = z2;
+			}
+		}
+		for (int x2 = 0; x2 < 101; x2++) {
+			for (int z2 = 0; z2 < 101; z2++) {
+				if (tiles [x2, z2] != 9999) {
+					if (x2 > 0 && tiles [x2 - 1, z2] != 9999) {
+						graph [x2, z2].neighbours.Add (graph [x2 - 1, z2]);
+					}
+					if (x2 < 100 && tiles [x2 + 1, z2] != 9999) {
+						graph [x2, z2].neighbours.Add (graph [x2 + 1, z2]);
+					}
+					if (z2 > 0 && tiles [x2, z2 - 1] != 9999) {
+						graph [x2, z2].neighbours.Add (graph [x2, z2 - 1]);
+					}
+					if (z2 < 100 && tiles [x2, z2 + 1] != 9999) {
+						graph [x2, z2].neighbours.Add (graph [x2, z2 + 1]);
+					}
 				}
 			}
 		}
-
+		Node source = graph[Mathf.RoundToInt(transform.position.x/10 + 51), Mathf.RoundToInt(transform.position.z/10 + 51)];
+		Node target = graph[x, y];
+		dist[source] = 0;
+		prev[source] = null;
+		foreach(Node v in graph) {
+			if(v != source) {
+				dist[v] = Mathf.Infinity;
+				prev[v] = null;
+			}
+			unvisited.Add(v);
+		}
+		while(unvisited.Count > 0) {
+			Node u = null;
+			foreach(Node possibleU in unvisited) {
+				if(u == null || dist[possibleU] < dist[u]) {
+					u = possibleU;
+				}
+			}
+			if(u == target) {
+				break;
+			}
+			unvisited.Remove(u);
+			foreach(Node v in u.neighbours) {
+				float alt = dist[u] + u.DistanceTo(v) + tiles[v.x, v.z];
+				if( alt < dist[v] ) {
+					dist[v] = alt;
+					prev[v] = u;
+				}
+			}
+		}
+		if(prev[target] == null) {
+			return;
+		}
+		List<Node> currentPath = new List<Node>();
+		Node curr = target;
+		while(curr != null) {
+			currentPath.Add(curr);
+			curr = prev[curr];
+		}
+		currentPath.Reverse();
+		p = source;
+		foreach(Node node in currentPath){
+			Debug.DrawLine(new Vector3((p.x * 10) - 500, 10, (p.z * 10) - 500),new Vector3((node.x * 10) - 500, 10, (node.z * 10) - 500), Color.black, 100);
+			p = node;
+		}
 	}
 }
