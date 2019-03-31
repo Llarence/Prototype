@@ -35,6 +35,7 @@ public class Unit : MonoBehaviour {
 	int[,] tiles;
 	Node[,] graph;
 	Node p;
+	List<Node> currentPath = new List<Node>();
 
 	// Use this for initialization
 	void Start () {
@@ -47,6 +48,10 @@ public class Unit : MonoBehaviour {
 			if (GameObject.Find ("Manager").GetComponent<ManagerCivilization> ().turn != myTurn) {
 				doneForTurn = false;
 				myTurn = GameObject.Find ("Manager").GetComponent<ManagerCivilization> ().turn;
+				if(currentPath.Count > 0){
+					transform.position = new Vector3((currentPath[0].x * 10) - 500, 5f, (currentPath[0].z * 10) - 500);
+					currentPath.RemoveAt (0);
+				}
 				if(team != "Player"){
 					AI ();
 				}
@@ -163,7 +168,7 @@ public class Unit : MonoBehaviour {
 		if(prev[target] == null) {
 			return;
 		}
-		List<Node> currentPath = new List<Node>();
+		currentPath = new List<Node>();
 		Node curr = target;
 		while(curr != null) {
 			currentPath.Add(curr);
