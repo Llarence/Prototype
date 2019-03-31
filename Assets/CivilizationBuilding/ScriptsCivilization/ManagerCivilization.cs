@@ -41,6 +41,8 @@ public class ManagerCivilization : MonoBehaviour {
 	List<Vector3> CityPositions = new List<Vector3>();
 	int tries;
 	GameObject NewCity;
+	public int [,] tiles2;
+	public Node [,] graph2;
 
 	void Start (){
 		stage = "BuildCities";
@@ -160,6 +162,7 @@ public class ManagerCivilization : MonoBehaviour {
 				Cities++;
 			}
 		}
+		createGraph ();
 	}
 
 	void Update(){
@@ -213,5 +216,50 @@ public class ManagerCivilization : MonoBehaviour {
 		
 	public void Back (){
 		SceneManager.LoadScene ("Menu");
+	}
+
+	public void createGraph(){
+		tiles2 = new int [101, 101];
+		foreach(GameObject grass in GameObject.FindGameObjectsWithTag("Grass")){
+			tiles2 [Mathf.RoundToInt(grass.transform.position.x/10) + 50, Mathf.RoundToInt(grass.transform.position.z/10) + 50] = 0;
+		}
+		foreach(GameObject water in GameObject.FindGameObjectsWithTag("Water")){
+			tiles2 [Mathf.RoundToInt(water.transform.position.x/10) + 50, Mathf.RoundToInt(water.transform.position.z/10) + 50] = 9999;
+		}
+		foreach(GameObject deepwater in GameObject.FindGameObjectsWithTag("DeepWater")){
+			tiles2 [Mathf.RoundToInt(deepwater.transform.position.x/10) + 50, Mathf.RoundToInt(deepwater.transform.position.z/10) + 50] = 9999;
+		}
+		foreach(GameObject mountain in GameObject.FindGameObjectsWithTag("Mountain")){
+			tiles2 [Mathf.RoundToInt(mountain.transform.position.x/10) + 50, Mathf.RoundToInt(mountain.transform.position.z/10) + 50] = 9999;
+		}
+		foreach (GameObject city in GameObject.FindGameObjectsWithTag("City")) {
+			tiles2 [Mathf.RoundToInt(city.transform.position.x/10) + 50, Mathf.RoundToInt(city.transform.position.z/10) + 50] = 9999;
+		}
+		graph2 = new Node[101, 101];
+		for(int x2 = 0; x2 < 101; x2++){
+			for(int z2 = 0; z2 < 101; z2++){
+				graph2[x2, z2] = new Node();
+				graph2[x2, z2].x = x2;
+				graph2[x2, z2].z = z2;
+			}
+		}
+		for (int x2 = 0; x2 < 101; x2++) {
+			for (int z2 = 0; z2 < 101; z2++) {
+				if (tiles2 [x2, z2] != 9999) {
+					if (x2 > 0 && tiles2 [x2 - 1, z2] != 9999) {
+						graph2 [x2, z2].neighbours.Add (graph2 [x2 - 1, z2]);
+					}
+					if (x2 < 100 && tiles2 [x2 + 1, z2] != 9999) {
+						graph2 [x2, z2].neighbours.Add (graph2 [x2 + 1, z2]);
+					}
+					if (z2 > 0 && tiles2 [x2, z2 - 1] != 9999) {
+						graph2 [x2, z2].neighbours.Add (graph2 [x2, z2 - 1]);
+					}
+					if (z2 < 100 && tiles2 [x2, z2 + 1] != 9999) {
+						graph2 [x2, z2].neighbours.Add (graph2 [x2, z2 + 1]);
+					}
+				}
+			}
+		}
 	}
 }

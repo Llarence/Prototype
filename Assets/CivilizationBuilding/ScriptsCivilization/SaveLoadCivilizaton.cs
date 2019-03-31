@@ -155,6 +155,7 @@ public class SaveLoadCivilizaton : MonoBehaviour {
 				}
 				i++;
 			}
+			GetComponent<ManagerCivilization> ().createGraph();
 		}
 	}
 
