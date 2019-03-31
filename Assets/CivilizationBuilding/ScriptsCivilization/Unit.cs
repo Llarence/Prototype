@@ -110,7 +110,7 @@ public class Unit : MonoBehaviour {
 		if(canSettle == true && GetComponent<MeshRenderer> ().material.color == clicked){
 			if(canSettleHere()){
 				Instantiate (city, new Vector3(transform.position.x, 2, transform.position.z), Quaternion.identity);
-				GameObject.Find ("Manager").GetComponent<ManagerCivilization> ().createGraph;
+				GameObject.Find ("Manager").GetComponent<ManagerCivilization> ().createGraph();
 				Instantiate (warrior, new Vector3(transform.position.x, 5f, transform.position.z), Quaternion.identity);
 				Destroy (gameObject);
 			}
