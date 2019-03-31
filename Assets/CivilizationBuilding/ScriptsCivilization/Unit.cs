@@ -175,6 +175,7 @@ public class Unit : MonoBehaviour {
 			curr = prev[curr];
 		}
 		currentPath.Reverse();
+		currentPath.RemoveAt (0);
 		p = source;
 		foreach(Node node in currentPath){
 			Debug.DrawLine(new Vector3((p.x * 10) - 500, 10, (p.z * 10) - 500),new Vector3((node.x * 10) - 500, 10, (node.z * 10) - 500), Color.black, 100);
