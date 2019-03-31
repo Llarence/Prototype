@@ -25,6 +25,7 @@ public class ManagerMenu : MonoBehaviour {
         GameObject.Find("Settings/Tutorial").GetComponent<RectTransform>().Translate(0, 100000, 0);
         GameObject.Find("Quit").GetComponent<RectTransform>().Translate(0, 100000, 0);
         GameObject.Find("Tutorial").GetComponent<RectTransform>().Translate(0, -1000000, 0);
+		GameObject.Find("Camera Move Style").GetComponent<RectTransform>().Translate(0, -1000000, 0);
         GameObject.Find("Back").GetComponent<RectTransform>().Translate(0, 1000000, 0);
     }
 
@@ -38,6 +39,7 @@ public class ManagerMenu : MonoBehaviour {
         GameObject.Find("Settings/Tutorial").GetComponent<RectTransform>().Translate(0, -100000, 0);
         GameObject.Find("Quit").GetComponent<RectTransform>().Translate(0, -100000, 0);
         GameObject.Find("Tutorial").GetComponent<RectTransform>().Translate(0, 1000000, 0);
+		GameObject.Find("Camera Move Style").GetComponent<RectTransform>().Translate(0, -1000000, 0);
         GameObject.Find("Back").GetComponent<RectTransform>().Translate(0, -1000000, 0);
     }
 
@@ -45,4 +47,14 @@ public class ManagerMenu : MonoBehaviour {
     {
         SceneManager.LoadScene("Tutorial");
     }
+
+	public void SwitchCamMode (){
+		if (PlayerPrefs.GetInt ("CameraMove") == 1) {
+			PlayerPrefs.SetInt ("CameraMove", 0);
+			GameObject.Find ("Camera Move Style").GetComponentInChildren<Text> ().text = "Camera Move Style: Iso";
+		} else {
+			PlayerPrefs.SetInt ("CameraMove", 1);
+			GameObject.Find ("Camera Move Style").GetComponentInChildren<Text> ().text = "Camera Move Style: Free";
+		}
+	}
 }
