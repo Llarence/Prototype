@@ -90,6 +90,7 @@ public class ManagerCivilization : MonoBehaviour {
 			GameObject.Find ("Main Camera").GetComponent<Camera> ().clearFlags = CameraClearFlags.Skybox;
 			GameObject.Find ("NextStage").GetComponent<RectTransform> ().Rotate (0, -90, 0);
 			GameObject.Find ("CurrentStage").GetComponent<RectTransform> ().Rotate (0, -90, 0);
+			GameObject.Find ("Mini Map").GetComponent<RectTransform> ().Rotate (0, -90, 0);
 			offset = Random.Range (-1000f, 1000f);
 			Random.InitState (Mathf.CeilToInt(offset));
 			x = -xAmount * 10;

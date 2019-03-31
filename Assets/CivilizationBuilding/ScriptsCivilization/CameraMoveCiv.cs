@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class CameraMoveCiv : MonoBehaviour {
 
-	float pitch;
-	float yaw;
+	float pitch = 90;
+	float yaw = 30;
 	int control;
 	public int controlMax;
 	public int maxHeight;
