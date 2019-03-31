@@ -2352,7 +2352,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f73180335b3c50a45929038b62791869, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  controlMax: 15
+  controlMax: 5
   maxHeight: 500
 --- !u!82 &1801773568
 AudioSource:

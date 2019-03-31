@@ -163,6 +163,12 @@ public class ManagerCivilization : MonoBehaviour {
 			}
 		}
 		createGraph ();
+		foreach(GameObject City in GameObject.FindGameObjectsWithTag("City")){
+			if(City.GetComponent<CityCivilization>().team == "Player"){
+				Camera.main.transform.position = new Vector3 (City.transform.position.x - 150, 100, City.transform.position.z);
+				break;
+			}
+		}
 	}
 
 	void Update(){

@@ -13,6 +13,9 @@ public class CameraMoveCiv : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		control = 1;
+		if (PlayerPrefs.GetInt ("CameraMove") == 0) {
+			transform.eulerAngles = new Vector3 (35, 90, 0);
+		}
 	}
 		
 	// Update is called once per frame
@@ -28,39 +31,32 @@ public class CameraMoveCiv : MonoBehaviour {
 		}
 		if (GetComponent<Camera> ().clearFlags == CameraClearFlags.SolidColor && GetComponent<Camera> ().backgroundColor == Color.white) {
 			GetComponent<Camera> ().backgroundColor = Color.black;
-		} else {
-			if (GetComponent<Camera> ().clearFlags == CameraClearFlags.SolidColor && GetComponent<Camera> ().backgroundColor == Color.black) {
-				GetComponent<Camera> ().backgroundColor = Color.white;
+			} else {
+				if (GetComponent<Camera> ().clearFlags == CameraClearFlags.SolidColor && GetComponent<Camera> ().backgroundColor == Color.black) {
+					GetComponent<Camera> ().backgroundColor = Color.white;
+				}
 			}
 		}
-		}
-		//if (GameObject.Find ("CameraRotator").GetComponent<CameraRotator> ().cameraToCenter == true) {
-		
+		if (PlayerPrefs.GetInt ("CameraMove") == 1) {
 			if (Input.GetKeyDown (KeyCode.LeftControl)) {
 				control = controlMax;
 			}
-		
 			if (Input.GetKeyUp (KeyCode.LeftControl)) {
 				control = 1;
 			}
-			transform.Translate ((Input.GetAxis ("Horizontal") * Time.deltaTime * 10) * control, 0, (Input.GetAxis ("Vertical") * Time.deltaTime * 10) * control);
-		
+			transform.Translate ((Input.GetAxis ("Horizontal") * Time.deltaTime * 40) * control, 0, (Input.GetAxis ("Vertical") * Time.deltaTime * 40) * control);
 			if (Input.GetKey ("space")) {
-				transform.position = new Vector3 (transform.position.x, (transform.position.y + (Time.deltaTime * 10 * control)), transform.position.z);
+				transform.position = new Vector3 (transform.position.x, (transform.position.y + (Time.deltaTime * 40 * control)), transform.position.z);
 			}
-		
 			if (transform.position.y > maxHeight) {
 				transform.position = new Vector3 (transform.position.x, maxHeight, transform.position.z);
 			}
-		
 			if (Input.GetKey (KeyCode.LeftShift)) {
-				transform.position = new Vector3 (transform.position.x, (transform.position.y - (Time.deltaTime * 10 * control)), transform.position.z);
+				transform.position = new Vector3 (transform.position.x, (transform.position.y - (Time.deltaTime * 40 * control)), transform.position.z);
 			}
-		
 			if (transform.position.y < 0) {
 				transform.position = new Vector3 (transform.position.x, 0, transform.position.z);
 			}
-		
 			if (Input.GetMouseButton (2)) {
 				Cursor.lockState = CursorLockMode.Locked;
 				yaw -= Input.GetAxis ("Mouse Y") * 2;
@@ -77,6 +73,14 @@ public class CameraMoveCiv : MonoBehaviour {
 			if (Input.GetMouseButtonUp (2)) {
 				Cursor.lockState = CursorLockMode.None;
 			}
-		//}
+		} else {
+			transform.Translate ((Input.GetAxis ("Vertical") * Time.deltaTime * 40) * control, 0, (Input.GetAxis ("Horizontal") * Time.deltaTime * -40) * control, Space.World);
+			if (Input.GetKeyDown (KeyCode.LeftControl)) {
+				control = controlMax;
+			}
+			if (Input.GetKeyUp (KeyCode.LeftControl)) {
+				control = 1;
+			}
+		}
 	}
 }

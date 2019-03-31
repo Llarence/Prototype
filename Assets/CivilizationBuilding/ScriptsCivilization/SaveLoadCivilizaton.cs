@@ -117,7 +117,7 @@ public class SaveLoadCivilizaton : MonoBehaviour {
 								if (Mathf.PerlinNoise ((offset2 + ((x + (float)(-xAmount2 * 10)) / (5f * xAmount2))), (offset2 + ((z + (float)(-zAmount2 * 10)) / (5f * zAmount2)))) < 0.825f) {
 									Instantiate (grass2, new Vector3 (x, -4.5f, z), Quaternion.identity);
 									if (Random.Range (1, 301) == 1) {
-										Instantiate (unobtainium2, new Vector3 (x, 0, z), Quaternion.identity);
+										Instantiate (unobtainium2, new Vector3 (x, 11, z), Quaternion.identity);
 									} else {
 										if(Random.Range(1, 151) == 1){
 											Instantiate (copper2, new Vector3 (x, 0, z), Quaternion.identity);
@@ -156,6 +156,12 @@ public class SaveLoadCivilizaton : MonoBehaviour {
 				i++;
 			}
 			GetComponent<ManagerCivilization> ().createGraph();
+		}
+		foreach(GameObject City in GameObject.FindGameObjectsWithTag("City")){
+			if(City.GetComponent<CityCivilization>().team == "Player"){
+				Camera.main.transform.position = new Vector3 (City.transform.position.x - 150, 100, City.transform.position.z);
+				break;
+			}
 		}
 	}
 
