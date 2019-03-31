@@ -232,9 +232,9 @@ public class ManagerCivilization : MonoBehaviour {
 		foreach(GameObject mountain in GameObject.FindGameObjectsWithTag("Mountain")){
 			tiles2 [Mathf.RoundToInt(mountain.transform.position.x/10) + 50, Mathf.RoundToInt(mountain.transform.position.z/10) + 50] = 9999;
 		}
-		foreach (GameObject city in GameObject.FindGameObjectsWithTag("City")) {
-			tiles2 [Mathf.RoundToInt(city.transform.position.x/10) + 50, Mathf.RoundToInt(city.transform.position.z/10) + 50] = 9999;
-		}
+		//foreach (GameObject city in GameObject.FindGameObjectsWithTag("City")) {
+			//tiles2 [Mathf.RoundToInt(city.transform.position.x/10) + 50, Mathf.RoundToInt(city.transform.position.z/10) + 50] = 9999;
+		//}
 		graph2 = new Node[101, 101];
 		for(int x2 = 0; x2 < 101; x2++){
 			for(int z2 = 0; z2 < 101; z2++){

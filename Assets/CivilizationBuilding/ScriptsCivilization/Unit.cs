@@ -53,7 +53,7 @@ public class Unit : MonoBehaviour {
 			}
 		}
 		if (team == "Player") {
-			if (GameObject.Find ("Manager").GetComponent<ManagerCivilization> ().stage == "BuildCivilization" || doneForTurn == true) {
+			if (GameObject.Find ("Manager").GetComponent<ManagerCivilization> ().stage == "BuildCivilization" || doneForTurn == false) {
 				if (Input.mousePosition.x < Screen.width - 350) {
 					if (Input.GetMouseButtonDown (0)) {
 						if (Physics.Raycast (Camera.main.ScreenPointToRay (Input.mousePosition), out hit)) {
@@ -65,9 +65,6 @@ public class Unit : MonoBehaviour {
 									}
 								} else {
 									GetComponent<MeshRenderer> ().material.color = notClicked;
-									foreach (GameObject ClickableTile in UnitClickAreas) {
-										Destroy (ClickableTile);
-									}
 									GameObject.Find ("Settle").GetComponent<RectTransform> ().eulerAngles = new Vector3 (0, 90, 0);
 								}
 							} else {
@@ -75,28 +72,20 @@ public class Unit : MonoBehaviour {
 									GameObject.Find ("Settle").GetComponent<RectTransform> ().eulerAngles = new Vector3 (0, 90, 0);
 								}
 								GetComponent<MeshRenderer> ().material.color = notClicked;
-								foreach (GameObject ClickableTile in UnitClickAreas) {
-									Destroy (ClickableTile);
-								}
 							}
 						}
 					}
 				}
-				if (Input.GetMouseButtonDown (1) && GetComponent<MeshRenderer> ().material.color == clicked && doneForTurn == false) {
-					if (Input.GetMouseButtonDown (0)) {
-						if (Physics.Raycast (Camera.main.ScreenPointToRay (Input.mousePosition), out hit)) {
-							if(gameObject.CompareTag("Grass")){
-								CreatePathGraph (Mathf.RoundToInt(transform.position.x/10 + 50), Mathf.RoundToInt(transform.position.z/10 + 50));
-							}
+				if (Input.GetMouseButtonDown (1) && GetComponent<MeshRenderer> ().material.color == clicked) {
+					if (Physics.Raycast (Camera.main.ScreenPointToRay (Input.mousePosition), out hit)) {
+						if (hit.collider.gameObject.CompareTag ("Grass")) {
+							CreatePathGraph (Mathf.RoundToInt (hit.collider.transform.position.x/10 + 50), Mathf.RoundToInt (hit.collider.transform.position.z/10 + 50));
 						}
 					}
-				}	
+				}
 			}
 			if (GameObject.Find ("Manager").GetComponent<ManagerCivilization> ().stage == "BuildCities" || doneForTurn == true) {
 				GetComponent<MeshRenderer> ().material.color = notClicked;
-				foreach (GameObject ClickableTile in UnitClickAreas) {
-					Destroy (ClickableTile);
-				}
 				GameObject.Find ("Settle").GetComponent<RectTransform> ().eulerAngles = new Vector3 (0, 90, 0);
 			}
 		}else{
