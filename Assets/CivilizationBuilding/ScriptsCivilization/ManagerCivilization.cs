@@ -151,8 +151,10 @@ public class ManagerCivilization : MonoBehaviour {
 			Cities = 0;
 			while (Cities != CityPositions.Count) {
 				NewCity = (Instantiate (city, CityPositions[Cities], Quaternion.identity) as GameObject);
-				if(Cities == 0){
+				if (Cities == 0) {
 					NewCity.GetComponent<CityCivilization> ().team = "Player";
+				} else {
+					NewCity.GetComponent<CityCivilization> ().team = Cities.ToString();
 				}
 				NewCity.GetComponent<CityCivilization> ().capital = true;
 				if(Cities == 0){
@@ -176,6 +178,9 @@ public class ManagerCivilization : MonoBehaviour {
 		units = GameObject.FindGameObjectsWithTag("Unit");
 		if(Input.GetMouseButton(0) || Input.GetMouseButton(1)){
 			Camera.main.GetComponent<AudioSource>().Play(0);
+		}
+		if(Input.GetKeyDown(KeyCode.Escape)){
+			SceneManager.LoadScene ("Menu");
 		}
 	}
 

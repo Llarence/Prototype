@@ -34,11 +34,13 @@ public class Unit : MonoBehaviour {
 	public List<GameObject> UnitClickAreas = new List<GameObject>();
 	int[,] tiles;
 	Node[,] graph;
-	Node p;
-	List<Node> currentPath = new List<Node>();
-
+	public List<Node> currentPath = new List<Node>();
+	GameObject instantiated;
+	public int AIStyle;
+	
 	// Use this for initialization
 	void Start () {
+		AIStyle = Random.Range (0, 3);
 		GetComponent<MeshRenderer> ().material.color = notClicked;
 	}
 	
@@ -51,6 +53,11 @@ public class Unit : MonoBehaviour {
 				if(currentPath.Count > 0){
 					transform.position = new Vector3((currentPath[0].x * 10) - 500, 5f, (currentPath[0].z * 10) - 500);
 					currentPath.RemoveAt (0);
+					foreach(GameObject city in GameObject.FindGameObjectsWithTag("City")){
+						if(city.transform.position.x == transform.position.x && city.transform.position.z == transform.position.z){
+							city.GetComponent<CityCivilization> ().team = team;
+						}
+					}
 				}
 				if(team != "Player"){
 					AI ();
@@ -103,9 +110,11 @@ public class Unit : MonoBehaviour {
 	public void Settle (){
 		if(canSettle == true && GetComponent<MeshRenderer> ().material.color == clicked){
 			if(canSettleHere()){
-				Instantiate (city, new Vector3(transform.position.x, 2, transform.position.z), Quaternion.identity);
+				instantiated = Instantiate (city, new Vector3(transform.position.x, 2, transform.position.z), Quaternion.identity);
+				instantiated.GetComponent<CityCivilization> ().team = team;
 				GameObject.Find ("Manager").GetComponent<ManagerCivilization> ().createGraph();
-				Instantiate (warrior, new Vector3(transform.position.x, 5f, transform.position.z), Quaternion.identity);
+				instantiated = Instantiate (warrior, new Vector3(transform.position.x, 5f, transform.position.z), Quaternion.identity);
+				instantiated.GetComponent<Unit> ().team = team;
 				Destroy (gameObject);
 			}
 		}
@@ -126,17 +135,23 @@ public class Unit : MonoBehaviour {
 	}
 
 	void AI(){
-		
+		while(currentPath.Count == 0){
+			int x3 = Random.Range (-3, 3);
+			int z3 = Random.Range(-3, 3);
+			if(GameObject.Find ("Manager").GetComponent<ManagerCivilization>().tiles2[Mathf.RoundToInt(transform.position.x/10 + 50 + x3), Mathf.RoundToInt(transform.position.z/10 + 50 + z3)] == 0){
+				CreatePathGraph (Mathf.RoundToInt(transform.position.x/10 + 50 + x3), Mathf.RoundToInt(transform.position.z/10 + 50 + z3));
+			}
+		}
 	}
 
-	void CreatePathGraph (int x, int y) {
+	void CreatePathGraph (int x, int z) {
 		tiles = GameObject.Find ("Manager").GetComponent<ManagerCivilization>().tiles2;
 		graph = GameObject.Find ("Manager").GetComponent<ManagerCivilization>().graph2;
 		Dictionary<Node, float> dist = new Dictionary<Node, float>();
 		Dictionary<Node, Node> prev = new Dictionary<Node, Node>();
 		List<Node> unvisited = new List<Node>();
 		Node source = graph[Mathf.RoundToInt(transform.position.x/10 + 50), Mathf.RoundToInt(transform.position.z/10 + 50)];
-		Node target = graph[x, y];
+		Node target = graph[x, z];
 		dist[source] = 0;
 		prev[source] = null;
 		foreach(Node v in graph) {
@@ -176,11 +191,6 @@ public class Unit : MonoBehaviour {
 		}
 		currentPath.Reverse();
 		currentPath.RemoveAt (0);
-		p = source;
-		foreach(Node node in currentPath){
-			Debug.DrawLine(new Vector3((p.x * 10) - 500, 10, (p.z * 10) - 500),new Vector3((node.x * 10) - 500, 10, (node.z * 10) - 500), Color.black, 100);
-			p = node;
-		}
 	}
 
 	void TutorialMove(){

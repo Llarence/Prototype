@@ -8,7 +8,11 @@ public class ManagerMenu : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		PlayerPrefs.SetInt ("CameraMove", 0);
+		if (PlayerPrefs.GetInt ("CameraMove") == 0) {
+			GameObject.Find ("Camera Move Style").GetComponentInChildren<Text> ().text = "Camera Move Style: Iso";
+		} else {
+			GameObject.Find ("Camera Move Style").GetComponentInChildren<Text> ().text = "Camera Move Style: Free";
+		}
 	}
 	
 	// Update is called once per frame
@@ -30,6 +34,7 @@ public class ManagerMenu : MonoBehaviour {
     }
 
 	public void Quit () {
+		PlayerPrefs.Save ();
 		Application.Quit();
 	}
 
@@ -39,7 +44,7 @@ public class ManagerMenu : MonoBehaviour {
         GameObject.Find("Settings/Tutorial").GetComponent<RectTransform>().Translate(0, -100000, 0);
         GameObject.Find("Quit").GetComponent<RectTransform>().Translate(0, -100000, 0);
         GameObject.Find("Tutorial").GetComponent<RectTransform>().Translate(0, 1000000, 0);
-		GameObject.Find("Camera Move Style").GetComponent<RectTransform>().Translate(0, -1000000, 0);
+		GameObject.Find("Camera Move Style").GetComponent<RectTransform>().Translate(0, 1000000, 0);
         GameObject.Find("Back").GetComponent<RectTransform>().Translate(0, -1000000, 0);
     }
 

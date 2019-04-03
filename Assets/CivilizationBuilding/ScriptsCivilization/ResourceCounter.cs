@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class ResourceCounter : MonoBehaviour {
 
@@ -30,6 +31,9 @@ public class ResourceCounter : MonoBehaviour {
 				}
 			}
 			gold = int.Parse (GetComponent<Text> ().text.Split (':') [1]);
+			if(gold > 999){
+				SceneManager.LoadScene ("Win");
+			}
 		}
 	}
 }

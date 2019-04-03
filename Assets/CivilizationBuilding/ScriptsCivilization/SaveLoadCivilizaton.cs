@@ -51,7 +51,7 @@ public class SaveLoadCivilizaton : MonoBehaviour {
 		json_data = "";
 		gameObjects = FindObjectsOfType<GameObject>();
 		foreach (GameObject CurrentObject in gameObjects) {
-			if(CurrentObject.name != "Grass(Clone)" && CurrentObject.name != "Water(Clone)" && CurrentObject.name != "Border(Clone)" && CurrentObject.name != "Mountain(Clone)" && CurrentObject.name != "Deep Water(Clone)" && CurrentObject.name != "Beach(Clone)"  && CurrentObject.name != "Unobtainium(Clone)" && CurrentObject.name != "Copper(Clone)" && CurrentObject.name != "Iron(Clone)" && CurrentObject.name != "EventSystem" && CurrentObject.name != "Manager" && CurrentObject.name != "Directional Light"  && CurrentObject.name != "Main Camera"  && CurrentObject.name != "CameraRotator" && CurrentObject.name != "InfoStorage" && CurrentObject.layer != 5){
+			if(CurrentObject.name != "Grass(Clone)" && CurrentObject.name != "Water(Clone)" && CurrentObject.name != "Border(Clone)" && CurrentObject.name != "Mountain(Clone)" && CurrentObject.name != "Deep Water(Clone)" && CurrentObject.name != "Beach(Clone)"  && CurrentObject.name != "Unobtainium(Clone)" && CurrentObject.name != "Copper(Clone)" && CurrentObject.name != "Iron(Clone)" && CurrentObject.name != "EventSystem" && CurrentObject.name != "Manager" && CurrentObject.name != "Directional Light"  && CurrentObject.name != "Main Camera"  && CurrentObject.name != "CameraRotator" && CurrentObject.name != "InfoStorage" && CurrentObject.layer != 5 && CurrentObject.layer != 9){
 				gameState.x = CurrentObject.transform.position.x;
 				gameState.y = CurrentObject.transform.position.y;
 				gameState.z = CurrentObject.transform.position.z;
@@ -96,6 +96,7 @@ public class SaveLoadCivilizaton : MonoBehaviour {
 			GameObject.Find ("Main Camera").GetComponent<Camera> ().clearFlags = CameraClearFlags.Skybox;
 			GameObject.Find ("NextStage").GetComponent<RectTransform> ().Rotate (0, -90, 0);
 			GameObject.Find ("CurrentStage").GetComponent<RectTransform> ().Rotate (0, -90, 0);
+			GameObject.Find ("Mini Map").GetComponent<RectTransform> ().Rotate (0, -90, 0);
 			data = File.ReadAllText (Application.persistentDataPath + "/~Civilization." + loadName);
 			offset2 = float.Parse (data.Split ('/') [0]);
 			GameObject.Find ("Resources").GetComponent<ResourceCounter> ().gold = int.Parse (data.Split ('/') [1]);

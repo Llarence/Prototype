@@ -236,3 +236,6 @@ MonoBehaviour:
   GoldProduced: 0
   Settler: {fileID: 1132498092863848, guid: 6517a9e7393004047a8183aee5332c91, type: 2}
   Warrior: {fileID: 1060434830780756, guid: 913f00b08c4c5444789900f4d92f1635, type: 2}
+  capital: 0
+  team: 
+  Player: {fileID: 0}

@@ -30,6 +30,7 @@ public class CityCivilization : MonoBehaviour {
 	public bool capital;
 	public string team;
 	public Material Player;
+	Dictionary<string, float> Opinions = new Dictionary<string, float>();
 
 	// Use this for initialization
 	void Start () {
@@ -65,14 +66,19 @@ public class CityCivilization : MonoBehaviour {
 			Instantiate (border, transform.position + new Vector3(-20, -2.45f, 10), Quaternion.identity);
 			Instantiate (border, transform.position + new Vector3(20, -2.45f, -10), Quaternion.identity);
 		}
-		if(team == "Player"){
-			GetComponent<MeshRenderer> ().material = Player;
+		if (team != "Player") {
+			foreach(GameObject city in GameObject.FindGameObjectsWithTag("City")){
+				if(city != gameObject){
+				Opinions.Add (city.GetComponent<CityCivilization>().team, Random.Range(0f, 10f));
+				}
+			}
 		}
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		if (team == "Player") {
+			GetComponent<MeshRenderer> ().material = Player;
 			if (Input.GetMouseButton (0)) {
 				if (Physics.Raycast (Camera.main.ScreenPointToRay (Input.mousePosition), out hit)) {
 					if (hit.collider.gameObject == gameObject) {
@@ -110,9 +116,9 @@ public class CityCivilization : MonoBehaviour {
 					}
 				}
 			}
-			if (turnIAmOn < manager.GetComponent<ManagerCivilization> ().turn) {
-				UpdateTurn ();
-			}
+		}
+		if (turnIAmOn < manager.GetComponent<ManagerCivilization> ().turn) {
+			UpdateTurn ();
 		}
 	}
 
@@ -167,20 +173,46 @@ public class CityCivilization : MonoBehaviour {
 			filePath = Application.persistentDataPath + "/~Player." + manager.GetComponent<SaveLoadCivilizaton> ().loadName + "." + transform.GetChild (0).GetComponent<TextMesh> ().text;
 			File.WriteAllText (filePath, Gold + "/" + Food + "/" + Population + "/" + File.ReadAllText(filePath).Split ('/') [3] + "/" + File.ReadAllText(filePath).Split ('/') [4] + "/" + File.ReadAllText(filePath).Split ('/') [5] + "/" + File.ReadAllText(filePath).Split ('/') [6] + "/" + File.ReadAllText(filePath).Split ('/') [7]);
 		}
+		AI ();
 	}
 
 	public void SpawnCity (string UnitName){
-		if (manager.GetComponent<ManagerCivilization> ().stage != "BuildCities") {
-			if (Physics.Raycast (transform.position + Vector3.up * 10, Vector3.down, out hit)) {
-				if (hit.collider.gameObject.tag == "Grass" && hit.collider.gameObject.tag != "Unit") {
-					if (UnitName == "Warrior" && GameObject.Find ("Resources").GetComponent<ResourceCounter> ().gold >= 10) {
-						(Instantiate (Warrior, new Vector3 (transform.position.x, 5f, transform.position.z), Quaternion.identity) as GameObject).GetComponent<Unit> ().team = "Player";
-						;
-						GameObject.Find ("Resources").GetComponent<ResourceCounter> ().gold -= 10;
+		if (Physics.Raycast (transform.position + Vector3.up * 10, Vector3.down, out hit)) {
+			if (hit.collider.gameObject.tag != "Unit") {
+				if (team == "Player") {
+					if (manager.GetComponent<ManagerCivilization> ().stage != "BuildCities") {
+						if (UnitName == "Warrior" && GameObject.Find ("Resources").GetComponent<ResourceCounter> ().gold >= 10) {
+							(Instantiate (Warrior, new Vector3 (transform.position.x, 5f, transform.position.z), Quaternion.identity) as GameObject).GetComponent<Unit> ().team = "Player";
+							GameObject.Find ("Resources").GetComponent<ResourceCounter> ().gold -= 10;
+						}
+						if (UnitName == "Settler" && GameObject.Find ("Resources").GetComponent<ResourceCounter> ().gold >= 20) {
+							(Instantiate (Settler, new Vector3 (transform.position.x, 5f, transform.position.z), Quaternion.identity) as GameObject).GetComponent<Unit> ().team = "Player";
+							GameObject.Find ("Resources").GetComponent<ResourceCounter> ().gold -= 20;
+						}
 					}
-					if (UnitName == "Settler" && GameObject.Find ("Resources").GetComponent<ResourceCounter> ().gold >= 20) {
-						(Instantiate (Settler, new Vector3 (transform.position.x, 5f, transform.position.z), Quaternion.identity) as GameObject).GetComponent<Unit> ().team = "Player";
-						GameObject.Find ("Resources").GetComponent<ResourceCounter> ().gold -= 20;
+				}
+				if (team != "Player") {
+					if (UnitName == "Warrior") {
+						(Instantiate (Warrior, new Vector3 (transform.position.x, 5f, transform.position.z), Quaternion.identity) as GameObject).GetComponent<Unit> ().team = team;
+					}
+					if (UnitName == "Settler") {
+						(Instantiate (Settler, new Vector3 (transform.position.x, 5f, transform.position.z), Quaternion.identity) as GameObject).GetComponent<Unit> ().team = team;
+					}
+				}
+			}
+		}
+	}
+
+	void AI (){
+		if (team != "Player") {
+			SpawnCity ("Warrior");
+			foreach (GameObject unit in GameObject.FindGameObjectsWithTag("Unit")) {
+				if (unit.GetComponent<Unit> ().team == team && unit.GetComponent<Unit> ().currentPath.Count != 0) {
+					if (unit.GetComponent<Unit> ().AIStyle == 0) {
+					
+					}
+					if (unit.GetComponent<Unit> ().AIStyle == 1) {
+					
 					}
 				}
 			}
