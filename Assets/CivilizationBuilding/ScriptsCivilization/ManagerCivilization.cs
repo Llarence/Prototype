@@ -43,6 +43,7 @@ public class ManagerCivilization : MonoBehaviour {
 	GameObject NewCity;
 	public int [,] tiles2;
 	public Node [,] graph2;
+	int UnitsDone;
 
 	void Start (){
 		stage = "BuildCities";
@@ -228,6 +229,21 @@ public class ManagerCivilization : MonoBehaviour {
 		
 	public void Back (){
 		SceneManager.LoadScene ("Menu");
+	}
+
+	public void CountDone(){
+		UnitsDone++;
+		if(UnitsDone == GameObject.FindGameObjectsWithTag("Unit").Length){
+			UnitsDone = 0;
+			StartCoroutine ("i");
+		}
+	}
+
+	IEnumerator i (){
+		yield return new WaitForSeconds (5);
+		foreach(GameObject Unit in GameObject.FindGameObjectsWithTag("Unit")){
+			Unit.GetComponent<Unit> ().CheckPos ();
+		}
 	}
 
 	public void createGraph(){

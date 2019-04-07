@@ -33,6 +33,9 @@ public class ResourceCounter : MonoBehaviour {
 			}
 			gold = int.Parse (GetComponent<Text> ().text.Split (':') [1]);
 			PlayerCities = 0;
+			if(Input.GetKey(KeyCode.F)){
+				gold += 1000;
+			}
 			foreach(GameObject City in GameObject.FindGameObjectsWithTag("City")){
 				if(City.GetComponent<CityCivilization>().team == "Player"){
 					PlayerCities++;

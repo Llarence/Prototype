@@ -116,6 +116,11 @@ public class CityCivilization : MonoBehaviour {
 					}
 				}
 			}
+			if (manager.GetComponent<ManagerCivilization> ().stage == "BuildCities" && GameObject.Find ("Spawn Settler").transform.eulerAngles.y == 0) {
+				GameObject.Find ("Spawn Settler").transform.Rotate (0, 90, 0);
+				GameObject.Find ("Spawn Warrior").transform.Rotate (0, 90, 0);
+				Selected = false;
+			}
 		}
 		if (turnIAmOn < manager.GetComponent<ManagerCivilization> ().turn) {
 			UpdateTurn ();

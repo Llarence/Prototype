@@ -39,6 +39,7 @@ public class Unit : MonoBehaviour {
 	public int Defense;
 	public int Damage;
 	public int Range;
+	int ShouldMove;
 
 	// Use this for initialization
 	void Start () {
@@ -53,33 +54,15 @@ public class Unit : MonoBehaviour {
 		}
 		if(GameObject.Find("Manager") != null){
 			if (GameObject.Find ("Manager").GetComponent<ManagerCivilization> ().turn != myTurn) {
+				if(team != "Player"){
+					AI ();
+				}
 				doneForTurn = false;
 				myTurn = GameObject.Find ("Manager").GetComponent<ManagerCivilization> ().turn;
 				if(currentPath.Count > 0 && doneForTurn == false){
 					transform.position = new Vector3((currentPath[1].x * 10) - 500, 5f, (currentPath[1].z * 10) - 500);
-					gameObject.layer = 2;
-					if (Physics.Raycast (transform.position + Vector3.up * 5, Vector3.down, out hit)) {
-						if (hit.collider.gameObject.tag != "Grass" && hit.collider.gameObject.tag == "Unit") {
-							transform.position = new Vector3 ((currentPath [0].x * 10) - 500, 5f, (currentPath [0].z * 10) - 500);
-							doneForTurn = false;
-						} else {
-							currentPath.RemoveAt (0);	
-							if(currentPath.Count == 1){
-								currentPath.RemoveAt (0);
-							}
-						}
-					}
-					gameObject.layer = 0;
-					foreach(GameObject city in GameObject.FindGameObjectsWithTag("City")){
-						if(city.transform.position.x == transform.position.x && city.transform.position.z == transform.position.z){
-							city.GetComponent<CityCivilization> ().team = team;
-						}
-					}
-					doneForTurn = false;
 				}
-				if(team != "Player"){
-					AI ();
-				}
+				GameObject.Find ("Manager").GetComponent<ManagerCivilization> ().CountDone ();
 			}
 		}
 		if (team == "Player") {
@@ -108,12 +91,14 @@ public class Unit : MonoBehaviour {
 				}
 				if (Input.GetMouseButtonDown (1) && GetComponent<MeshRenderer> ().material.color == clicked) {
 					if (Physics.Raycast (Camera.main.ScreenPointToRay (Input.mousePosition), out hit)) {
-						if (hit.collider.gameObject.CompareTag ("Grass")) {
+						if (hit.collider.gameObject.CompareTag ("Grass") || hit.collider.gameObject.CompareTag ("City")) {
 							CreatePathGraph (Mathf.RoundToInt (hit.collider.transform.position.x/10 + 50), Mathf.RoundToInt (hit.collider.transform.position.z/10 + 50));
 						}
 						if (hit.collider.gameObject.CompareTag ("Unit")) {
 							if(Vector3.Distance(hit.collider.gameObject.transform.position, transform.position) < Range && hit.collider.gameObject.GetComponent<Unit>().team != team){
 								Attack (hit.collider.gameObject);
+								GameObject.Find ("Manager").GetComponent<ManagerCivilization> ().CountDone ();
+								doneForTurn = true;
 							}
 						}
 					}
@@ -157,11 +142,28 @@ public class Unit : MonoBehaviour {
 	}
 
 	void AI(){
+		GameObject Enemy;
+		Enemy = FindClosestEnemy ();
+		int x3;
+		int z3;
+		if (Vector3.Distance (Enemy.transform.position, transform.position) < 51) {
+			x3 = Random.Range (-3, 3);
+			z3 = Random.Range (-3, 3);
+			if (GameObject.Find ("Manager").GetComponent<ManagerCivilization> ().tiles2 [Mathf.RoundToInt (Enemy.transform.position.x / 10 + 50 + x3), Mathf.RoundToInt (Enemy.transform.position.z / 10 + 50 + z3)] == 0) {
+				CreatePathGraph (Mathf.RoundToInt (Enemy.transform.position.x / 10 + 50 + x3), Mathf.RoundToInt (Enemy.transform.position.z / 10 + 50 + z3));
+			}
+		}
 		while(currentPath.Count == 0){
-			int x3 = Random.Range (-3, 3);
-			int z3 = Random.Range(-3, 3);
-			if(GameObject.Find ("Manager").GetComponent<ManagerCivilization>().tiles2[Mathf.RoundToInt(transform.position.x/10 + 50 + x3), Mathf.RoundToInt(transform.position.z/10 + 50 + z3)] == 0){
-				CreatePathGraph (Mathf.RoundToInt(transform.position.x/10 + 50 + x3), Mathf.RoundToInt(transform.position.z/10 + 50 + z3));
+			x3 = Random.Range (-3, 3);
+			z3 = Random.Range (-3, 3);
+			if (Vector3.Distance (Enemy.transform.position, transform.position) < 51) {
+				if (GameObject.Find ("Manager").GetComponent<ManagerCivilization> ().tiles2 [Mathf.RoundToInt (Enemy.transform.position.x / 10 + 50 + x3), Mathf.RoundToInt (Enemy.transform.position.z / 10 + 50 + z3)] == 0) {
+					CreatePathGraph (Mathf.RoundToInt (Enemy.transform.position.x / 10 + 50 + x3), Mathf.RoundToInt (Enemy.transform.position.z / 10 + 50 + z3));
+				}
+			} else {
+				if (GameObject.Find ("Manager").GetComponent<ManagerCivilization> ().tiles2 [Mathf.RoundToInt (transform.position.x / 10 + 50 + x3), Mathf.RoundToInt (transform.position.z / 10 + 50 + z3)] == 0) {
+					CreatePathGraph (Mathf.RoundToInt (transform.position.x / 10 + 50 + x3), Mathf.RoundToInt (transform.position.z / 10 + 50 + z3));
+				}
 			}
 		}
 	}
@@ -216,6 +218,61 @@ public class Unit : MonoBehaviour {
 
 	void Attack (GameObject Target){
 		Target.GetComponent<Unit> ().Health -= Mathf.Clamp (Damage - Target.GetComponent<Unit> ().Defense, 0, 10000);
+	}
+
+	public GameObject FindClosestEnemy()
+	{
+		GameObject[] gos;
+		gos = GameObject.FindGameObjectsWithTag("Unit");
+		GameObject closest = null;
+		float distance = Mathf.Infinity;
+		Vector3 position = transform.position;
+		foreach (GameObject go in gos){
+			if (go.GetComponent<Unit>().team != team){
+			Vector3 diff = go.transform.position - position;
+			float curDistance = diff.sqrMagnitude;
+				if (curDistance < distance) {
+					closest = go;
+					distance = curDistance;
+				}
+			}
+		}
+		return closest;
+	}
+
+	public void CheckPos (){
+		if(ShouldMove == 0){
+		gameObject.layer = 2;
+		ShouldMove = 2;
+		if (Physics.Raycast (transform.position + Vector3.up * 5, Vector3.down, out hit) && currentPath.Count != 0) {
+			if (hit.collider.gameObject.tag != "Grass" && hit.collider.gameObject.tag == "Unit") {
+				ShouldMove = 1;
+				doneForTurn = false;
+			} else {
+				currentPath.RemoveAt (0);	
+				if(currentPath.Count == 1){
+					currentPath.RemoveAt (0);
+				}
+			}
+			GameObject.Find ("Manager").GetComponent<ManagerCivilization> ().CountDone ();
+		}
+		gameObject.layer = 0;
+		}else{
+			if (ShouldMove == 1) {
+				if (currentPath.Count != 0) {
+					transform.position = new Vector3 ((currentPath [0].x * 10) - 500, 5f, (currentPath [0].z * 10) - 500);
+					foreach (GameObject city in GameObject.FindGameObjectsWithTag("City")) {
+						if (city.transform.position.x == transform.position.x && city.transform.position.z == transform.position.z) {
+							city.GetComponent<CityCivilization> ().team = team;
+						}
+					}
+					ShouldMove = 0;
+					doneForTurn = false;
+				}
+			} else {
+				ShouldMove = 0;
+			}
+		}
 	}
 
 	void TutorialMove(){
