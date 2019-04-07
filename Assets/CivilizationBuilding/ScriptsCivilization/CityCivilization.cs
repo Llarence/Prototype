@@ -204,7 +204,7 @@ public class CityCivilization : MonoBehaviour {
 	}
 
 	void AI (){
-		if (team != "Player") {
+		if (team != "Player" && 1 == Random.Range(1, 6)) {
 			SpawnCity ("Warrior");
 			foreach (GameObject unit in GameObject.FindGameObjectsWithTag("Unit")) {
 				if (unit.GetComponent<Unit> ().team == team && unit.GetComponent<Unit> ().currentPath.Count != 0) {

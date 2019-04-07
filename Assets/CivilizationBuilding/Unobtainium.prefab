@@ -23,7 +23,7 @@ GameObject:
   - component: {fileID: 23401967654555440}
   - component: {fileID: 65810691412934584}
   - component: {fileID: 114407300585744944}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Unobtainium
   m_TagString: Untagged
   m_Icon: {fileID: 0}

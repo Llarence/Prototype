@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 33193644620021894}
   - component: {fileID: 23669167936135698}
   - component: {fileID: 65797055864880398}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Iron
   m_TagString: Untagged
   m_Icon: {fileID: 0}

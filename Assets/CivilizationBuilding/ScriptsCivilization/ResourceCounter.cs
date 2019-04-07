@@ -9,6 +9,7 @@ public class ResourceCounter : MonoBehaviour {
 	int turnOn;
 	int TotalStorage;
 	public int gold;
+	int PlayerCities;
 
 	// Use this for initialization
 	void Start () {
@@ -31,7 +32,13 @@ public class ResourceCounter : MonoBehaviour {
 				}
 			}
 			gold = int.Parse (GetComponent<Text> ().text.Split (':') [1]);
-			if(gold > 999){
+			PlayerCities = 0;
+			foreach(GameObject City in GameObject.FindGameObjectsWithTag("City")){
+				if(City.GetComponent<CityCivilization>().team == "Player"){
+					PlayerCities++;
+				}
+			}
+			if(gold > 999 || PlayerCities == GameObject.FindGameObjectsWithTag("City").Length){
 				SceneManager.LoadScene ("Win");
 			}
 		}

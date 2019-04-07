@@ -30,14 +30,16 @@ public class Unit : MonoBehaviour {
 	public GameObject city;
 	public GameObject warrior;
 	public string team;
-	public GameObject UnitClickArea;
-	public List<GameObject> UnitClickAreas = new List<GameObject>();
 	int[,] tiles;
 	Node[,] graph;
 	public List<Node> currentPath = new List<Node>();
 	GameObject instantiated;
 	public int AIStyle;
-	
+	public int Health;
+	public int Defense;
+	public int Damage;
+	public int Range;
+
 	// Use this for initialization
 	void Start () {
 		AIStyle = Random.Range (0, 3);
@@ -46,18 +48,34 @@ public class Unit : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		if(Health <= 0){
+			Destroy (gameObject);
+		}
 		if(GameObject.Find("Manager") != null){
 			if (GameObject.Find ("Manager").GetComponent<ManagerCivilization> ().turn != myTurn) {
 				doneForTurn = false;
 				myTurn = GameObject.Find ("Manager").GetComponent<ManagerCivilization> ().turn;
-				if(currentPath.Count > 0){
-					transform.position = new Vector3((currentPath[0].x * 10) - 500, 5f, (currentPath[0].z * 10) - 500);
-					currentPath.RemoveAt (0);
+				if(currentPath.Count > 0 && doneForTurn == false){
+					transform.position = new Vector3((currentPath[1].x * 10) - 500, 5f, (currentPath[1].z * 10) - 500);
+					gameObject.layer = 2;
+					if (Physics.Raycast (transform.position + Vector3.up * 5, Vector3.down, out hit)) {
+						if (hit.collider.gameObject.tag != "Grass" && hit.collider.gameObject.tag == "Unit") {
+							transform.position = new Vector3 ((currentPath [0].x * 10) - 500, 5f, (currentPath [0].z * 10) - 500);
+							doneForTurn = false;
+						} else {
+							currentPath.RemoveAt (0);	
+							if(currentPath.Count == 1){
+								currentPath.RemoveAt (0);
+							}
+						}
+					}
+					gameObject.layer = 0;
 					foreach(GameObject city in GameObject.FindGameObjectsWithTag("City")){
 						if(city.transform.position.x == transform.position.x && city.transform.position.z == transform.position.z){
 							city.GetComponent<CityCivilization> ().team = team;
 						}
 					}
+					doneForTurn = false;
 				}
 				if(team != "Player"){
 					AI ();
@@ -93,6 +111,11 @@ public class Unit : MonoBehaviour {
 						if (hit.collider.gameObject.CompareTag ("Grass")) {
 							CreatePathGraph (Mathf.RoundToInt (hit.collider.transform.position.x/10 + 50), Mathf.RoundToInt (hit.collider.transform.position.z/10 + 50));
 						}
+						if (hit.collider.gameObject.CompareTag ("Unit")) {
+							if(Vector3.Distance(hit.collider.gameObject.transform.position, transform.position) < Range && hit.collider.gameObject.GetComponent<Unit>().team != team){
+								Attack (hit.collider.gameObject);
+							}
+						}
 					}
 				}
 			}
@@ -112,7 +135,6 @@ public class Unit : MonoBehaviour {
 			if(canSettleHere()){
 				instantiated = Instantiate (city, new Vector3(transform.position.x, 2, transform.position.z), Quaternion.identity);
 				instantiated.GetComponent<CityCivilization> ().team = team;
-				GameObject.Find ("Manager").GetComponent<ManagerCivilization> ().createGraph();
 				instantiated = Instantiate (warrior, new Vector3(transform.position.x, 5f, transform.position.z), Quaternion.identity);
 				instantiated.GetComponent<Unit> ().team = team;
 				Destroy (gameObject);
@@ -190,7 +212,10 @@ public class Unit : MonoBehaviour {
 			curr = prev[curr];
 		}
 		currentPath.Reverse();
-		currentPath.RemoveAt (0);
+	}
+
+	void Attack (GameObject Target){
+		Target.GetComponent<Unit> ().Health -= Mathf.Clamp (Damage - Target.GetComponent<Unit> ().Defense, 0, 10000);
 	}
 
 	void TutorialMove(){
@@ -205,9 +230,6 @@ public class Unit : MonoBehaviour {
 							}
 						} else {
 							GetComponent<MeshRenderer> ().material.color = notClicked;
-							foreach(GameObject ClickableTile in UnitClickAreas){
-								Destroy (ClickableTile);
-							}
 							GameObject.Find ("Settle").GetComponent<RectTransform> ().eulerAngles = new Vector3 (0, 90, 0);
 						}
 					} else {
@@ -215,9 +237,6 @@ public class Unit : MonoBehaviour {
 							GameObject.Find ("Settle").GetComponent<RectTransform> ().eulerAngles = new Vector3 (0, 90, 0);
 						}
 						GetComponent<MeshRenderer> ().material.color = notClicked;
-						foreach(GameObject ClickableTile in UnitClickAreas){
-							Destroy (ClickableTile);
-						}
 					}
 				}
 			}
