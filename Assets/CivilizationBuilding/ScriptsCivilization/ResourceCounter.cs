@@ -16,7 +16,7 @@ public class ResourceCounter : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		GetComponent<Text>().text = "Gold:" + "0" + " Iron:" + Iron + " Copper:" + Copper + " Unobtainium:" + Unobtainium;
+		GetComponent<Text>().text = ("Gold:" + "0" + " Iron:" + Iron + " Copper:" + Copper + " Unobtainium:" + Unobtainium);
 	}
 	
 	// Update is called once per frame
@@ -37,7 +37,7 @@ public class ResourceCounter : MonoBehaviour {
 			}
 			foreach(GameObject City in GameObject.FindGameObjectsWithTag("City")){
 				if(City.GetComponent<CityCivilization>().team == "Player"){
-					GetComponent<Text>().text = "Gold:" + (Mathf.Clamp(int.Parse(GetComponent<Text>().text.Split(':')[1]) + City.GetComponent<CityCivilization> ().GoldProduced, 0 , TotalStorage)).ToString() + " Iron:" + Iron + " Copper:" + Copper + " Unobtainium:" + Unobtainium;
+					GetComponent<Text>().text = ("Gold:" + (Mathf.Clamp(int.Parse(GetComponent<Text>().text.Split(':')[1]) + City.GetComponent<CityCivilization> ().GoldProduced, 0 , TotalStorage)).ToString() + " Iron:" + Iron + " Copper:" + Copper + " Unobtainium:" + Unobtainium);
 				}
 			}
 			gold = int.Parse (GetComponent<Text> ().text.Split (':') [1]);
