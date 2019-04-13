@@ -97,6 +97,7 @@ public class SaveLoadCivilizaton : MonoBehaviour {
 			GameObject.Find ("NextStage").GetComponent<RectTransform> ().Rotate (0, -90, 0);
 			GameObject.Find ("CurrentStage").GetComponent<RectTransform> ().Rotate (0, -90, 0);
 			GameObject.Find ("Mini Map").GetComponent<RectTransform> ().Rotate (0, -90, 0);
+			GameObject.Find ("Resources").GetComponent<RectTransform> ().Rotate (0, -90, 0);
 			data = File.ReadAllText (Application.persistentDataPath + "/~Civilization." + loadName);
 			offset2 = float.Parse (data.Split ('/') [0]);
 			GameObject.Find ("Resources").GetComponent<ResourceCounter> ().gold = int.Parse (data.Split ('/') [1]);

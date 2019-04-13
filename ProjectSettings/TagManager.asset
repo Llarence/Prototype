@@ -19,6 +19,9 @@ TagManager:
   - TutorialWarrior
   - TutorialSettler
   - DeepWater
+  - Copper
+  - Iron
+  - Unobtainium
   layers:
   - Default
   - TransparentFX

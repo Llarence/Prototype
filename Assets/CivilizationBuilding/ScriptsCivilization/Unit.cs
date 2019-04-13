@@ -62,8 +62,6 @@ public class Unit : MonoBehaviour {
 				if(currentPath.Count > 0 && doneForTurn == false){
 					transform.position = new Vector3((currentPath[1].x * 10) - 500, 5f, (currentPath[1].z * 10) - 500);
 				}
-				print ("h");
-				GameObject.Find ("Manager").GetComponent<ManagerCivilization> ().CountDone ();
 			}
 		}
 		if (team == "Player") {
@@ -98,7 +96,6 @@ public class Unit : MonoBehaviour {
 						if (hit.collider.gameObject.CompareTag ("Unit")) {
 							if(Vector3.Distance(hit.collider.gameObject.transform.position, transform.position) < Range && hit.collider.gameObject.GetComponent<Unit>().team != team){
 								Attack (hit.collider.gameObject);
-								GameObject.Find ("Manager").GetComponent<ManagerCivilization> ().CountDone ();
 								doneForTurn = true;
 							}
 						}
