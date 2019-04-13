@@ -20,10 +20,10 @@ GameObject:
   m_Component:
   - component: {fileID: 4665168678858364}
   - component: {fileID: 33664566956385876}
-  - component: {fileID: 65386884659462226}
   - component: {fileID: 23277445644260636}
   - component: {fileID: 54253654432516496}
   - component: {fileID: 114831568573642958}
+  - component: {fileID: 64434840469565896}
   m_Layer: 2
   m_Name: FarmHologram
   m_TagString: Untagged
@@ -39,7 +39,7 @@ Transform:
   m_GameObject: {fileID: 1707320100474934}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 5, y: 1, z: 5}
+  m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -59,6 +59,7 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
+  - {fileID: 2100000, guid: f31366fd03ae90149bbd8ba68fcbcde7, type: 2}
   - {fileID: 2100000, guid: f31366fd03ae90149bbd8ba68fcbcde7, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
@@ -85,7 +86,7 @@ MeshFilter:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1707320100474934}
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+  m_Mesh: {fileID: 4300000, guid: 654c00c7043885f489fa5bcbc4f42414, type: 3}
 --- !u!54 &54253654432516496
 Rigidbody:
   m_ObjectHideFlags: 1
@@ -101,8 +102,8 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!65 &65386884659462226
-BoxCollider:
+--- !u!64 &64434840469565896
+MeshCollider:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
@@ -110,9 +111,11 @@ BoxCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  serializedVersion: 3
+  m_Convex: 1
+  m_CookingOptions: 14
+  m_SkinWidth: 0.01
+  m_Mesh: {fileID: 4300000, guid: 654c00c7043885f489fa5bcbc4f42414, type: 3}
 --- !u!114 &114831568573642958
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -129,7 +132,7 @@ MonoBehaviour:
   HitLayers:
     serializedVersion: 2
     m_Bits: 256
-  SpawnHeight: 0
+  SpawnHeight: -0.25
   Red: {r: 1, g: 0.1254902, b: 0, a: 0.73333335}
   Green: {r: 0, g: 1, b: 0.09019608, a: 0.43529412}
   costToBuy: 1
