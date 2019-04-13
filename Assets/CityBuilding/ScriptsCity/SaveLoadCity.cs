@@ -28,7 +28,7 @@ public class SaveLoadCity : MonoBehaviour {
 		json_data = "";
 		GameObjects = FindObjectsOfType<GameObject>();
 		foreach (GameObject CurrentObject in GameObjects) {
-			if(CurrentObject.name != "Ground" && CurrentObject.name != "EventSystem" && CurrentObject.name != "Manager" && CurrentObject.name != "Directional Light"  && CurrentObject.name != "MainCamera" && CurrentObject.name != "InfoStorage" && CurrentObject.tag != "Person" && CurrentObject.layer!= 5 && CurrentObject.layer != 2){
+			if(CurrentObject.name != "Ground" && CurrentObject.name != "EventSystem" && CurrentObject.name != "Manager" && CurrentObject.name != "Directional Light" && CurrentObject.name != "Quad" && CurrentObject.name != "MainCamera" && CurrentObject.name != "InfoStorage" && CurrentObject.tag != "Person" && CurrentObject.layer!= 5 && CurrentObject.layer != 2){
 				GameState.x2 = CurrentObject.transform.position.x;
 				GameState.y2 = CurrentObject.transform.position.y;
 				GameState.z2 = CurrentObject.transform.position.z;
