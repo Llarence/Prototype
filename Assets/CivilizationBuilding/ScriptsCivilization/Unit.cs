@@ -241,42 +241,6 @@ public class Unit : MonoBehaviour {
 		return closest;
 	}
 
-	public void CheckPos (){
-		print ("hi");
-		if(ShouldMove == 0){
-		gameObject.layer = 2;
-		ShouldMove = 2;
-		if (Physics.Raycast (transform.position + Vector3.up * 5, Vector3.down, out hit)) {
-			if (hit.collider.gameObject.tag != "Grass" && hit.collider.gameObject.tag == "Unit"  && currentPath.Count != 0) {
-				ShouldMove = 1;
-				doneForTurn = false;
-			} else {
-				currentPath.RemoveAt (0);	
-				if(currentPath.Count == 1){
-					currentPath.RemoveAt (0);
-				}
-			}
-			GameObject.Find ("Manager").GetComponent<ManagerCivilization> ().CountDone ();
-		}
-		gameObject.layer = 0;
-		}else{
-			if (ShouldMove == 1) {
-				if (currentPath.Count != 0) {
-					transform.position = new Vector3 ((currentPath [0].x * 10) - 500, 5f, (currentPath [0].z * 10) - 500);
-					foreach (GameObject city in GameObject.FindGameObjectsWithTag("City")) {
-						if (city.transform.position.x == transform.position.x && city.transform.position.z == transform.position.z) {
-							city.GetComponent<CityCivilization> ().team = team;
-						}
-					}
-					ShouldMove = 0;
-					doneForTurn = false;
-				}
-			} else {
-				ShouldMove = 0;
-			}
-		}
-	}
-
 	void TutorialMove(){
 		if (Input.mousePosition.x < Screen.width - 350) {
 			if (Input.GetMouseButtonDown (0)) {

@@ -231,17 +231,6 @@ public class ManagerCivilization : MonoBehaviour {
 		SceneManager.LoadScene ("Menu");
 	}
 
-	public void CountDone(){
-		UnitsDone++;
-		print (UnitsDone);
-		if(UnitsDone == GameObject.FindGameObjectsWithTag("Unit").Length){
-			UnitsDone = 0;
-			foreach(GameObject unit in GameObject.FindGameObjectsWithTag("Unit")){
-				unit.GetComponent<Unit> ().CheckPos ();
-			}
-		}
-	}
-
 	public void createGraph(){
 		tiles2 = new int [101, 101];
 		foreach(GameObject grass in GameObject.FindGameObjectsWithTag("Grass")){
