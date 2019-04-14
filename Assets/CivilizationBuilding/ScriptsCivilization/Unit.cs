@@ -61,6 +61,18 @@ public class Unit : MonoBehaviour {
 				myTurn = GameObject.Find ("Manager").GetComponent<ManagerCivilization> ().turn;
 				if(currentPath.Count > 0 && doneForTurn == false){
 					transform.position = new Vector3((currentPath[1].x * 10) - 500, 5f, (currentPath[1].z * 10) - 500);
+					gameObject.layer = 2;
+					if (Physics.Raycast (transform.position + Vector3.up * 10, Vector3.down, out hit)) {
+						if (hit.collider.gameObject.tag != "Unit") {
+							currentPath.Remove (currentPath [0]);
+							if(currentPath.Count == 1){
+								currentPath.Remove (currentPath [0]);
+							}
+						}else{
+							transform.position = new Vector3((currentPath[0].x * 10) - 500, 5f, (currentPath[0].z * 10) - 500);
+						}
+					}
+					gameObject.layer = 0;
 				}
 			}
 		}
