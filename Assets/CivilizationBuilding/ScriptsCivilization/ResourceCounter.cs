@@ -43,8 +43,8 @@ public class ResourceCounter : MonoBehaviour {
 			gold = int.Parse (GetComponent<Text> ().text.Split (':') [1].Split (',') [0]);
 			PlayerCities = 0;
 			if(Input.GetKey(KeyCode.F)){
-				gold = 999;
-				GetComponent<Text> ().text = ("Gold:" + "999" + ", Iron:" + Iron + ", Copper:" + Copper + ", Unobtainium:" + Unobtainium);
+				gold = 1000;
+				GetComponent<Text> ().text = ("Gold:" + "1000" + ", Iron:" + Iron + ", Copper:" + Copper + ", Unobtainium:" + Unobtainium);
 			}
 			foreach(GameObject City in GameObject.FindGameObjectsWithTag("City")){
 				if(City.GetComponent<CityCivilization>().team == "Player"){

@@ -78,6 +78,11 @@ public class ManagerCivilization : MonoBehaviour {
 	}
 
 	public void GenerateMap () {
+		foreach(GameObject name in texts){
+			if (GameObject.Find ("InputField").transform.GetChild(2).GetComponent<Text>().text == name.GetComponent<Text>().text) {
+				return;
+			}
+		}
 		gameName = text.transform.GetChild (1).transform.GetChild (2).GetComponent<Text> ().text;
 		GameObject.Find ("InfoStorage").GetComponent<InfoStorage> ().inGameName = gameName;
 		if (gameName != "") {
