@@ -62,6 +62,7 @@ public class Unit : MonoBehaviour {
 				if(currentPath.Count > 0 && doneForTurn == false){
 					transform.position = new Vector3((currentPath[1].x * 10) - 500, 5f, (currentPath[1].z * 10) - 500);
 				}
+				print ("h");
 				GameObject.Find ("Manager").GetComponent<ManagerCivilization> ().CountDone ();
 			}
 		}
@@ -241,11 +242,12 @@ public class Unit : MonoBehaviour {
 	}
 
 	public void CheckPos (){
+		print ("hi");
 		if(ShouldMove == 0){
 		gameObject.layer = 2;
 		ShouldMove = 2;
-		if (Physics.Raycast (transform.position + Vector3.up * 5, Vector3.down, out hit) && currentPath.Count != 0) {
-			if (hit.collider.gameObject.tag != "Grass" && hit.collider.gameObject.tag == "Unit") {
+		if (Physics.Raycast (transform.position + Vector3.up * 5, Vector3.down, out hit)) {
+			if (hit.collider.gameObject.tag != "Grass" && hit.collider.gameObject.tag == "Unit"  && currentPath.Count != 0) {
 				ShouldMove = 1;
 				doneForTurn = false;
 			} else {

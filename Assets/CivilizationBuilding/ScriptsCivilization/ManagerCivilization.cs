@@ -233,16 +233,12 @@ public class ManagerCivilization : MonoBehaviour {
 
 	public void CountDone(){
 		UnitsDone++;
+		print (UnitsDone);
 		if(UnitsDone == GameObject.FindGameObjectsWithTag("Unit").Length){
 			UnitsDone = 0;
-			StartCoroutine ("i");
-		}
-	}
-
-	IEnumerator i (){
-		yield return new WaitForSeconds (5);
-		foreach(GameObject Unit in GameObject.FindGameObjectsWithTag("Unit")){
-			Unit.GetComponent<Unit> ().CheckPos ();
+			foreach(GameObject unit in GameObject.FindGameObjectsWithTag("Unit")){
+				unit.GetComponent<Unit> ().CheckPos ();
+			}
 		}
 	}
 
