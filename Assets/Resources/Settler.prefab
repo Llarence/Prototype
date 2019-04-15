@@ -137,3 +137,5 @@ MonoBehaviour:
   Defense: 5
   Damage: 15
   Range: 11
+  BoatLevel: 0
+  boat: {fileID: 4300014, guid: d6eca208c1f8e3c4e819a768389ae8e6, type: 3}

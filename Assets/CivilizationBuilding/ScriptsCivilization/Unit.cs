@@ -40,15 +40,36 @@ public class Unit : MonoBehaviour {
 	public int Damage;
 	public int Range;
 	int ShouldMove;
+	public int BoatLevel;
+	public Mesh boat;
+	Mesh me;
+	float offset;
+	float offset2;
+	float offset3;
+	GameObject manager;
 
 	// Use this for initialization
 	void Start () {
+		manager = GameObject.Find ("Manager");
+		offset3 = manager.GetComponent<ManagerCivilization> ().offset;
 		AIStyle = Random.Range (0, 3);
 		GetComponent<MeshRenderer> ().material.color = notClicked;
+		BoatLevel = 2;
+		me = GetComponent<MeshFilter> ().mesh;
 	}
 	
 	// Update is called once per frame
 	void Update () {
+		//gameObject.layer = 2;
+		//if (Physics.Raycast (transform.position + Vector3.up * 10, Vector3.down, out hit)) {
+			//if (hit.collider.gameObject.CompareTag("Water") || hit.collider.gameObject.CompareTag("DeepWater")) {
+				//GetComponent<MeshFilter> ().mesh = boat;
+				//transform.position = new Vector3(transform.position.x, (8 * Mathf.PerlinNoise(Time.time/30 + offset3, 0f) * Mathf.PerlinNoise(Time.time/3 + offset, Time.time/3 + offset2)) - 6.5f, transform.position.z);
+			//}else{
+				//GetComponent<MeshFilter> ().mesh = me;
+			//}
+		//}
+		//gameObject.layer = 0;
 		if(Health <= 0){
 			Destroy (gameObject);
 		}
@@ -67,12 +88,19 @@ public class Unit : MonoBehaviour {
 							currentPath.Remove (currentPath [0]);
 							if(currentPath.Count == 1){
 								currentPath.Remove (currentPath [0]);
+								if (Physics.Raycast (transform.position + Vector3.up * 10, Vector3.down, out hit)) {
+									if (hit.collider.gameObject.tag == "City") {
+										hit.collider.gameObject.GetComponent<CityCivilization> ().team = team;
+									}
+								}
 							}
 						}else{
 							transform.position = new Vector3((currentPath[0].x * 10) - 500, 5f, (currentPath[0].z * 10) - 500);
 						}
 					}
 					gameObject.layer = 0;
+					offset = transform.position.x / (manager.GetComponent<ManagerCivilization>().xAmount * 2 + 1);
+					offset2 = transform.position.z / (manager.GetComponent<ManagerCivilization>().zAmount * 2 + 1);
 				}
 			}
 		}
@@ -102,7 +130,7 @@ public class Unit : MonoBehaviour {
 				}
 				if (Input.GetMouseButtonDown (1) && GetComponent<MeshRenderer> ().material.color == clicked) {
 					if (Physics.Raycast (Camera.main.ScreenPointToRay (Input.mousePosition), out hit)) {
-						if (hit.collider.gameObject.CompareTag ("Grass") || hit.collider.gameObject.CompareTag ("City")) {
+						if (hit.collider.gameObject.CompareTag ("Grass") || (BoatLevel == 1 && hit.collider.gameObject.CompareTag ("DeepWater")) || hit.collider.gameObject.CompareTag ("City") ||BoatLevel == 2) {
 							CreatePathGraph (Mathf.RoundToInt (hit.collider.transform.position.x/10 + 50), Mathf.RoundToInt (hit.collider.transform.position.z/10 + 50));
 						}
 						if (hit.collider.gameObject.CompareTag ("Unit")) {
@@ -179,8 +207,18 @@ public class Unit : MonoBehaviour {
 	}
 
 	void CreatePathGraph (int x, int z) {
-		tiles = GameObject.Find ("Manager").GetComponent<ManagerCivilization>().tiles2;
-		graph = GameObject.Find ("Manager").GetComponent<ManagerCivilization>().graph2;
+		if (BoatLevel == 0) {
+			tiles = GameObject.Find ("Manager").GetComponent<ManagerCivilization> ().tiles2;
+			graph = GameObject.Find ("Manager").GetComponent<ManagerCivilization> ().graph2;
+		}
+		if(BoatLevel == 1){
+			tiles = GameObject.Find ("Manager").GetComponent<ManagerCivilization> ().tiles3;
+			graph = GameObject.Find ("Manager").GetComponent<ManagerCivilization> ().graph3;
+		}
+		if(BoatLevel == 2){
+			tiles = GameObject.Find ("Manager").GetComponent<ManagerCivilization> ().tiles4;
+			graph = GameObject.Find ("Manager").GetComponent<ManagerCivilization> ().graph4;
+		}
 		Dictionary<Node, float> dist = new Dictionary<Node, float>();
 		Dictionary<Node, Node> prev = new Dictionary<Node, Node>();
 		List<Node> unvisited = new List<Node>();

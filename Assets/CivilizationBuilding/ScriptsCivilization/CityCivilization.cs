@@ -30,6 +30,7 @@ public class CityCivilization : MonoBehaviour {
 	public bool capital;
 	public string team;
 	public Material Player;
+	public Material Old;
 	Dictionary<string, float> Opinions = new Dictionary<string, float>();
 	public List<GameObject> Copper = new List<GameObject>();
 	public List<GameObject> Iron = new List<GameObject>();
@@ -37,6 +38,7 @@ public class CityCivilization : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+		Old = GetComponent<MeshRenderer> ().material;
 		manager = GameObject.Find ("Manager");
 		Instantiate (border, transform.position + new Vector3(10, -2.45f, 0), Quaternion.identity);
 		Instantiate (border, transform.position + new Vector3(10, -2.45f, 10), Quaternion.identity);
@@ -69,7 +71,6 @@ public class CityCivilization : MonoBehaviour {
 			Instantiate (border, transform.position + new Vector3(-20, -2.45f, 10), Quaternion.identity);
 			Instantiate (border, transform.position + new Vector3(20, -2.45f, -10), Quaternion.identity);
 		}
-		if (team != "Player") {
 			foreach(GameObject iron in GameObject.FindGameObjectsWithTag ("Iron")){
 				if (expanded == false) {
 					if ((iron.transform.position.x - transform.position.x <= 10 && iron.transform.position.x - transform.position.x >= -10) && (iron.transform.position.z - transform.position.z <= 10 && iron.transform.position.z - transform.position.z >= -10)) {
@@ -81,38 +82,40 @@ public class CityCivilization : MonoBehaviour {
 					}
 				}
 			}
-			foreach(GameObject copper in GameObject.FindGameObjectsWithTag ("Copper")){
-				if (expanded == false) {
-					if ((copper.transform.position.x - transform.position.x <= 10 && copper.transform.position.x - transform.position.x >= -10) && (copper.transform.position.z - transform.position.z <= 10 && copper.transform.position.z - transform.position.z >= -10)) {
-						Copper.Add (copper);
-					}
-				} else {
-					if ((copper.transform.position.x - transform.position.x <= 20 && copper.transform.position.x - transform.position.x >= -20) && (copper.transform.position.z - transform.position.z <= 20 && copper.transform.position.z - transform.position.z >= -20)) {
-						Copper.Add (copper);
-					}
+		foreach(GameObject copper in GameObject.FindGameObjectsWithTag ("Copper")){
+			if (expanded == false) {
+				if ((copper.transform.position.x - transform.position.x <= 10 && copper.transform.position.x - transform.position.x >= -10) && (copper.transform.position.z - transform.position.z <= 10 && copper.transform.position.z - transform.position.z >= -10)) {
+					Copper.Add (copper);
+				}
+			} else {
+				if ((copper.transform.position.x - transform.position.x <= 20 && copper.transform.position.x - transform.position.x >= -20) && (copper.transform.position.z - transform.position.z <= 20 && copper.transform.position.z - transform.position.z >= -20)) {
+					Copper.Add (copper);
 				}
 			}
-			foreach(GameObject unobtainium in GameObject.FindGameObjectsWithTag ("Unobtainium")){
-				if (expanded == false) {
-					if ((unobtainium.transform.position.x - transform.position.x <= 10 && unobtainium.transform.position.x - transform.position.x >= -10) && (unobtainium.transform.position.z - transform.position.z <= 10 && unobtainium.transform.position.z - transform.position.z >= -10)) {
-						Unobtainium.Add (unobtainium);
-					}
-				} else {
-					if ((unobtainium.transform.position.x - transform.position.x <= 20 && unobtainium.transform.position.x - transform.position.x >= -20) && (unobtainium.transform.position.z - transform.position.z <= 20 && unobtainium.transform.position.z - transform.position.z >= -20)) {
-						Unobtainium.Add (unobtainium);
-					}
+		}
+		foreach(GameObject unobtainium in GameObject.FindGameObjectsWithTag ("Unobtainium")){
+			if (expanded == false) {
+				if ((unobtainium.transform.position.x - transform.position.x <= 10 && unobtainium.transform.position.x - transform.position.x >= -10) && (unobtainium.transform.position.z - transform.position.z <= 10 && unobtainium.transform.position.z - transform.position.z >= -10)) {
+					Unobtainium.Add (unobtainium);
+				}
+			} else {
+				if ((unobtainium.transform.position.x - transform.position.x <= 20 && unobtainium.transform.position.x - transform.position.x >= -20) && (unobtainium.transform.position.z - transform.position.z <= 20 && unobtainium.transform.position.z - transform.position.z >= -20)) {
+					Unobtainium.Add (unobtainium);
 				}
 			}
-			foreach(GameObject city in GameObject.FindGameObjectsWithTag("City")){
-				if(city != gameObject){
-				Opinions.Add (city.GetComponent<CityCivilization>().team, Random.Range(0f, 10f));
-				}
+		}
+		foreach(GameObject city in GameObject.FindGameObjectsWithTag("City")){
+			if(city != gameObject){
+			Opinions.Add (city.GetComponent<CityCivilization>().team, Random.Range(0f, 10f));
 			}
 		}
 	}
 	
 	// Update is called once per frame
 	void Update () {
+		if (team != "Player") {
+			GetComponent<MeshRenderer> ().material = Old;
+		}
 		if (team == "Player") {
 			GetComponent<MeshRenderer> ().material = Player;
 			if (Input.GetMouseButton (0)) {
@@ -164,7 +167,6 @@ public class CityCivilization : MonoBehaviour {
 	}
 
 	void Calculate (){
-		
 		Food += Mathf.Clamp(Mathf.Clamp (Population, 0, Houses * 1000000), 0, Farms * 2) * 2;
 		Food -= Population;
 		if(Food < 0){
