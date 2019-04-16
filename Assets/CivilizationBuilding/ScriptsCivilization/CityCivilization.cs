@@ -31,7 +31,6 @@ public class CityCivilization : MonoBehaviour {
 	public string team;
 	public Material Player;
 	public Material Old;
-	Dictionary<string, float> Opinions = new Dictionary<string, float>();
 	public List<GameObject> Copper = new List<GameObject>();
 	public List<GameObject> Iron = new List<GameObject>();
 	public List<GameObject> Unobtainium = new List<GameObject>();
@@ -102,11 +101,6 @@ public class CityCivilization : MonoBehaviour {
 				if ((unobtainium.transform.position.x - transform.position.x <= 20 && unobtainium.transform.position.x - transform.position.x >= -20) && (unobtainium.transform.position.z - transform.position.z <= 20 && unobtainium.transform.position.z - transform.position.z >= -20)) {
 					Unobtainium.Add (unobtainium);
 				}
-			}
-		}
-		foreach(GameObject city in GameObject.FindGameObjectsWithTag("City")){
-			if(city != gameObject){
-			Opinions.Add (city.GetComponent<CityCivilization>().team, Random.Range(0f, 10f));
 			}
 		}
 	}

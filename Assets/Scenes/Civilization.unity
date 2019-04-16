@@ -1019,6 +1019,7 @@ MonoBehaviour:
   iron: {fileID: 1871884362557932, guid: 1b7848d102b2fdf418317c965e6db42a, type: 2}
   unobtainium: {fileID: 1590977106126164, guid: 760f5ae116398f64a8ad18941442a21d,
     type: 2}
+  AI: {fileID: 1608712533285824, guid: d7aeea962235d3c4b91be357b93690c9, type: 2}
   offset: 0
   start: 0
   xAmount: 50

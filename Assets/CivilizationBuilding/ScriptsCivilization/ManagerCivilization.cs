@@ -18,6 +18,7 @@ public class ManagerCivilization : MonoBehaviour {
 	public GameObject copper;
 	public GameObject iron;
 	public GameObject unobtainium;
+	public GameObject AI;
 	int x;
 	int z;
 	public float offset;
@@ -166,6 +167,7 @@ public class ManagerCivilization : MonoBehaviour {
 					NewCity.GetComponent<CityCivilization> ().team = "Player";
 				} else {
 					NewCity.GetComponent<CityCivilization> ().team = Cities.ToString();
+					(Instantiate (AI, NewCity.transform) as GameObject).GetComponent<AIManager> ().team = NewCity.GetComponent<CityCivilization> ().team;
 				}
 				NewCity.GetComponent<CityCivilization> ().capital = true;
 				if(Cities == 0){

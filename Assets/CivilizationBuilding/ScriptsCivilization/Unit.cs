@@ -40,18 +40,26 @@ public class Unit : MonoBehaviour {
 	public int Damage;
 	public int Range;
 	int ShouldMove;
-	public int BoatLevel;
+	public int BoatLevel = 2;
 	public Mesh boat;
 	Mesh me;
-	float offset;
-	float offset2;
-	float offset3;
+	//float offset;
+	//float offset2;
+	//float offset3;
 	GameObject manager;
+	GameObject myAI;
 
 	// Use this for initialization
 	void Start () {
+		AIStyle = Random.Range (1, 3);
+		foreach(GameObject AI in GameObject.FindGameObjectsWithTag("AI")){
+			if(AI.GetComponent<AIManager>().team == team){
+				myAI = AI;
+				break;
+			}
+		}
 		manager = GameObject.Find ("Manager");
-		offset3 = manager.GetComponent<ManagerCivilization> ().offset;
+		//offset3 = manager.GetComponent<ManagerCivilization> ().offset;
 		AIStyle = Random.Range (0, 3);
 		GetComponent<MeshRenderer> ().material.color = notClicked;
 		BoatLevel = 2;
@@ -99,8 +107,8 @@ public class Unit : MonoBehaviour {
 						}
 					}
 					gameObject.layer = 0;
-					offset = transform.position.x / (manager.GetComponent<ManagerCivilization>().xAmount * 2 + 1);
-					offset2 = transform.position.z / (manager.GetComponent<ManagerCivilization>().zAmount * 2 + 1);
+					//offset = transform.position.x / (manager.GetComponent<ManagerCivilization>().xAmount * 2 + 1);
+					//offset2 = transform.position.z / (manager.GetComponent<ManagerCivilization>().zAmount * 2 + 1);
 				}
 			}
 		}
@@ -191,16 +199,32 @@ public class Unit : MonoBehaviour {
 				CreatePathGraph (Mathf.RoundToInt (Enemy.transform.position.x / 10 + 50 + x3), Mathf.RoundToInt (Enemy.transform.position.z / 10 + 50 + z3));
 			}
 		}
-		while(currentPath.Count == 0){
-			x3 = Random.Range (-3, 3);
-			z3 = Random.Range (-3, 3);
-			if (Vector3.Distance (Enemy.transform.position, transform.position) < 51) {
-				if (GameObject.Find ("Manager").GetComponent<ManagerCivilization> ().tiles2 [Mathf.RoundToInt (Enemy.transform.position.x / 10 + 50 + x3), Mathf.RoundToInt (Enemy.transform.position.z / 10 + 50 + z3)] == 0) {
-					CreatePathGraph (Mathf.RoundToInt (Enemy.transform.position.x / 10 + 50 + x3), Mathf.RoundToInt (Enemy.transform.position.z / 10 + 50 + z3));
+		if (AIStyle == 1) {
+			while (currentPath.Count == 0) {
+				x3 = Random.Range (-3, 3);
+				z3 = Random.Range (-3, 3);
+				if (Vector3.Distance (Enemy.transform.position, transform.position) < 51) {
+					if (GameObject.Find ("Manager").GetComponent<ManagerCivilization> ().tiles2 [Mathf.RoundToInt (Enemy.transform.position.x / 10 + 50 + x3), Mathf.RoundToInt (Enemy.transform.position.z / 10 + 50 + z3)] == 0) {
+						CreatePathGraph (Mathf.RoundToInt (Enemy.transform.position.x / 10 + 50 + x3), Mathf.RoundToInt (Enemy.transform.position.z / 10 + 50 + z3));
+					}
+				} else {
+					if (GameObject.Find ("Manager").GetComponent<ManagerCivilization> ().tiles2 [Mathf.RoundToInt (transform.position.x / 10 + 50 + x3), Mathf.RoundToInt (transform.position.z / 10 + 50 + z3)] == 0) {
+						CreatePathGraph (Mathf.RoundToInt (transform.position.x / 10 + 50 + x3), Mathf.RoundToInt (transform.position.z / 10 + 50 + z3));
+					}
 				}
-			} else {
-				if (GameObject.Find ("Manager").GetComponent<ManagerCivilization> ().tiles2 [Mathf.RoundToInt (transform.position.x / 10 + 50 + x3), Mathf.RoundToInt (transform.position.z / 10 + 50 + z3)] == 0) {
-					CreatePathGraph (Mathf.RoundToInt (transform.position.x / 10 + 50 + x3), Mathf.RoundToInt (transform.position.z / 10 + 50 + z3));
+			}
+		} else {
+			while (currentPath.Count == 0) {
+				x3 = Random.Range (-3, 3);
+				z3 = Random.Range (-3, 3);
+				if (Vector3.Distance (Enemy.transform.position, transform.position) < 51) {
+					if (GameObject.Find ("Manager").GetComponent<ManagerCivilization> ().tiles2 [Mathf.RoundToInt (Enemy.transform.position.x / 10 + 50 + x3), Mathf.RoundToInt (Enemy.transform.position.z / 10 + 50 + z3)] == 0) {
+						CreatePathGraph (Mathf.RoundToInt (Enemy.transform.position.x / 10 + 50 + x3), Mathf.RoundToInt (Enemy.transform.position.z / 10 + 50 + z3));
+					}
+				} else {
+					if (GameObject.Find ("Manager").GetComponent<ManagerCivilization> ().tiles2 [Mathf.RoundToInt (myAI.GetComponent<AIManager>().Target.x / 10 + 50 + x3), Mathf.RoundToInt (myAI.GetComponent<AIManager>().Target.y / 10 + 50 + z3)] == 0) {
+						CreatePathGraph (Mathf.RoundToInt (myAI.GetComponent<AIManager>().Target.x / 10 + 50 + x3), Mathf.RoundToInt (myAI.GetComponent<AIManager>().Target.y / 10 + 50 + z3));
+					}
 				}
 			}
 		}
