@@ -70,7 +70,7 @@ public class ManagerCity : MonoBehaviour {
 		}
 		Population += Mathf.FloorToInt(Mathf.Clamp (Food, 0, Population/4));
 		Population = Mathf.Clamp (Population, 4, Houses.Length * 3 + 4);
-		Gold += Mathf.FloorToInt(Mathf.Clamp (Mathf.Clamp(Population, 0, Houses.Length * 1000000) - Mathf.Clamp(Population, 0, Farms.Length * 2), 0, GoldMines.Length * 2));
+		Gold += Mathf.FloorToInt(Mathf.Clamp (Mathf.Clamp(Population, 0, Houses.Length * 1000000) - Mathf.Clamp(Population, 0, Farms.Length * 2), 0, GoldMines.Length * 2 - (Farms.Length + Houses.Length + Storages.Length)));
 		Food = Mathf.FloorToInt(Mathf.Clamp (Food, 0, Storages.Length * 12));
 		Gold = Mathf.FloorToInt(Mathf.Clamp (Gold, 0, (Storages.Length * 12) + 10));
 		Text.text = ("Population: " + Population + ", Food: " + Food + ", Gold: " + Gold + ", TickTime: " + TickTime);

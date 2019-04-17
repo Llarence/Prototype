@@ -169,9 +169,9 @@ public class CityCivilization : MonoBehaviour {
 		}
 		Population += Mathf.FloorToInt(Mathf.Clamp (Food, 0, Population/4));
 		Population = Mathf.Clamp (Population, 4, Houses * 3 + 4);
-		Gold += Mathf.FloorToInt(Mathf.Clamp (Mathf.Clamp(Population, 0, Houses * 1000000) - Mathf.Clamp(Population, 0, Farms * 2), 0, GoldMines * 2));
+		Gold += Mathf.FloorToInt(Mathf.Clamp (Mathf.Clamp(Population, 0, Houses * 1000000) - Mathf.Clamp(Population, 0, Farms * 2), 0, GoldMines * 2) - (Farms + Houses + Storages));
 		Food = Mathf.FloorToInt(Mathf.Clamp (Food, 0, Storages * 12));
-		Gold = Mathf.FloorToInt(Mathf.Clamp (Gold, 0, (Storages * 12) + 10));
+		Gold = Mathf.FloorToInt(Mathf.Clamp (Gold, -Mathf.Infinity, (Storages * 12) + 10));
 		GoldProduced = Mathf.FloorToInt(Mathf.Clamp (Mathf.Clamp(Population, 0, Houses * 1000000) - Mathf.Clamp(Population, 0, Farms * 2), 0, GoldMines * 2));
 	}
 

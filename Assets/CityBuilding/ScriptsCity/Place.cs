@@ -9,6 +9,7 @@ public class Place : MonoBehaviour {
 	public GameObject FarmHologram;
 	public GameObject GoldMineHologram;
 	public GameObject StorageHologram;
+	public GameObject SeaHologram;
 	GameObject ObjectSpawning;
 
 	// Use this for initialization
@@ -47,6 +48,12 @@ public class Place : MonoBehaviour {
 		Destroy (ObjectSpawning);
 		SpawningObject = true;
 		ObjectSpawning = Instantiate (StorageHologram, new Vector3(0, -1000, 0), Quaternion.identity);
+		return;
+	}
+	public void SpawnSeaHologram(){
+		Destroy (ObjectSpawning);
+		SpawningObject = true;
+		ObjectSpawning = Instantiate (SeaHologram, new Vector3(0, -1000, 0), Quaternion.identity);
 		return;
 	}
 }

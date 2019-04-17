@@ -173,7 +173,7 @@ public class ManagerCivilization : MonoBehaviour {
 				if(Cities == 0){
 					(Instantiate (warrior, new Vector3 (CityPositions[Cities].x, 5f, CityPositions[Cities].z), Quaternion.identity) as GameObject).GetComponent<Unit>().team = "Player";
 				}else{
-					Instantiate (warrior, new Vector3 (CityPositions[Cities].x, 5f, CityPositions[Cities].z), Quaternion.identity);
+					(Instantiate (warrior, new Vector3 (CityPositions[Cities].x, 5f, CityPositions[Cities].z), Quaternion.identity) as GameObject).GetComponent<Unit>().team = Cities.ToString();
 				}
 				Cities++;
 			}

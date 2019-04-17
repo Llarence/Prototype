@@ -10,7 +10,7 @@ public class AIManager : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		Target.x = FindClosestEnemy ().transform.position.x;
-		Target.y = FindClosestEnemy ().transform.position.y;
+		Target.y = FindClosestEnemy ().transform.position.z;
 	}
 	
 	// Update is called once per frame

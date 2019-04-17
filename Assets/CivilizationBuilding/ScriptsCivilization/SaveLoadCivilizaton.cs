@@ -65,7 +65,10 @@ public class SaveLoadCivilizaton : MonoBehaviour {
 				if(CurrentObject.CompareTag("Unit")){
 					gameState.team = CurrentObject.GetComponent<Unit> ().team;
 				}
-				if(CurrentObject.tag != "Unit" && CurrentObject.tag != "City"){
+				if(CurrentObject.CompareTag("AI")){
+					gameState.team = CurrentObject.GetComponent<AIManager> ().team;
+				}
+				if(CurrentObject.tag != "Unit" && CurrentObject.tag != "City" && CurrentObject.tag != "AI"){
 					gameState.team = "";
 				}
 				if (CurrentObject.tag != "City") {
@@ -154,6 +157,9 @@ public class SaveLoadCivilizaton : MonoBehaviour {
 				}
 				if (instantiated.tag == "Unit") {
 					instantiated.GetComponent<Unit> ().team = JsonUtility.FromJson<GameState> ((data.Split ('/') [2]).Split ('|') [i]).team;
+				}
+				if (instantiated.tag == "AI") {
+					instantiated.GetComponent<AIManager> ().team = JsonUtility.FromJson<GameState> ((data.Split ('/') [2]).Split ('|') [i]).team;
 				}
 				i++;
 			}
