@@ -8,6 +8,7 @@ public class ResourceCounter : MonoBehaviour {
 
 	int turnOn;
 	int TotalStorage;
+	int Sea;
 	public int gold;
 	int PlayerCities;
 	public int Iron;
@@ -16,7 +17,7 @@ public class ResourceCounter : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		GetComponent<Text>().text = ("Gold:" + "0" + ", Iron:" + Iron + ", Copper:" + Copper + ", Unobtainium:" + Unobtainium);
+		
 	}
 	
 	// Update is called once per frame
@@ -30,6 +31,7 @@ public class ResourceCounter : MonoBehaviour {
 			foreach(GameObject City in GameObject.FindGameObjectsWithTag("City")){
 				if (City.GetComponent<CityCivilization> ().team == "Player") {
 					TotalStorage += 10 + (12 * City.GetComponent<CityCivilization> ().Storages);
+					Sea += 10 + (12 * City.GetComponent<CityCivilization> ().Sea);
 					Iron += City.GetComponent<CityCivilization> ().Iron.Count;
 					Copper += City.GetComponent<CityCivilization> ().Copper.Count;
 					Unobtainium += City.GetComponent<CityCivilization> ().Unobtainium.Count;

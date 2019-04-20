@@ -104,6 +104,7 @@ public class SaveLoadCivilizaton : MonoBehaviour {
 			data = File.ReadAllText (Application.persistentDataPath + "/~Civilization." + loadName);
 			offset2 = float.Parse (data.Split ('/') [0]);
 			GameObject.Find ("Resources").GetComponent<ResourceCounter> ().gold = int.Parse (data.Split ('/') [1]);
+			GameObject.Find ("Resources").GetComponent<Text>().text = ("Gold:" + int.Parse (data.Split ('/') [1]) + ", Iron:" + 0 + ", Copper:" + 0 + ", Unobtainium:" + 0);
 			GetComponent<ManagerCivilization>().offset = offset2;
 			Random.InitState (Mathf.CeilToInt(offset2));
 			x = -xAmount2 * 10;

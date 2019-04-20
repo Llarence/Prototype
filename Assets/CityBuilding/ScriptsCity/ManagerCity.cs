@@ -11,6 +11,7 @@ public class ManagerCity : MonoBehaviour {
 	public GameObject[] GoldMines;
 	public GameObject[] Storages;
 	public GameObject[] People;
+	public GameObject[] Seas;
 	public GameObject Person;
 	public int Food;
 	public int Population;
@@ -46,6 +47,7 @@ public class ManagerCity : MonoBehaviour {
 		GoldMines = GameObject.FindGameObjectsWithTag ("GoldMine");
 		Storages = GameObject.FindGameObjectsWithTag ("Storage");
 		People = GameObject.FindGameObjectsWithTag ("Person");
+		Seas = GameObject.FindGameObjectsWithTag ("Sea");
 		while(People.Length < Population){
 			Instantiate (Person, new Vector3(0, 0.5f, 0), Quaternion.identity);
 			People = GameObject.FindGameObjectsWithTag ("Person");

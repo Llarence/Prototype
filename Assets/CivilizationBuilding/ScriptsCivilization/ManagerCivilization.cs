@@ -103,6 +103,8 @@ public class ManagerCivilization : MonoBehaviour {
 			GameObject.Find ("CurrentStage").GetComponent<RectTransform> ().Rotate (0, -90, 0);
 			GameObject.Find ("Mini Map").GetComponent<RectTransform> ().Rotate (0, -90, 0);
 			GameObject.Find ("Resources").GetComponent<RectTransform> ().Rotate (0, -90, 0);
+			GameObject.Find ("Resources").GetComponent<ResourceCounter> ().gold = 0;
+			GameObject.Find ("Resources").GetComponent<Text>().text = ("Gold:" + 0 + ", Iron:" + 0 + ", Copper:" + 0 + ", Unobtainium:" + 0);
 			offset = Random.Range (-1000f, 1000f);
 			Random.InitState (Mathf.CeilToInt(offset));
 			x = -xAmount * 10;

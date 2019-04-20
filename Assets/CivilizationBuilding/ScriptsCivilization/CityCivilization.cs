@@ -20,6 +20,7 @@ public class CityCivilization : MonoBehaviour {
 	public int GoldMines;
 	public int Storages;
 	public int People;
+	public int Sea;
 	string filePath;
 	bool expanded;
 	public string Name;
@@ -27,6 +28,7 @@ public class CityCivilization : MonoBehaviour {
 	public int GoldProduced;
 	public GameObject Settler;
 	public GameObject Warrior;
+	public GameObject AxeMan;
 	public bool capital;
 	public string team;
 	public Material Player;
@@ -133,11 +135,13 @@ public class CityCivilization : MonoBehaviour {
 					if (hit.collider.gameObject == gameObject && Selected == false) {
 						GameObject.Find ("Spawn Settler").transform.Rotate (0, -90, 0);
 						GameObject.Find ("Spawn Warrior").transform.Rotate (0, -90, 0);
+						GameObject.Find ("Spawn AxeMan").transform.Rotate (0, -90, 0);
 						Selected = true;
 					} else {
 						if (Selected == true) {
 							GameObject.Find ("Spawn Settler").transform.Rotate (0, 90, 0);
 							GameObject.Find ("Spawn Warrior").transform.Rotate (0, 90, 0);
+							GameObject.Find ("Spawn AxeMan").transform.Rotate (0, 90, 0);
 							Selected = false;
 						}
 					}
@@ -145,6 +149,7 @@ public class CityCivilization : MonoBehaviour {
 					if (Selected == true) {
 						GameObject.Find ("Spawn Settler").transform.Rotate (0, 90, 0);
 						GameObject.Find ("Spawn Warrior").transform.Rotate (0, 90, 0);
+						GameObject.Find ("Spawn AxeMan").transform.Rotate (0, 90, 0);
 						Selected = false;
 					}
 				}
@@ -152,6 +157,7 @@ public class CityCivilization : MonoBehaviour {
 			if (manager.GetComponent<ManagerCivilization> ().stage == "BuildCities" && GameObject.Find ("Spawn Settler").transform.eulerAngles.y == 0) {
 				GameObject.Find ("Spawn Settler").transform.Rotate (0, 90, 0);
 				GameObject.Find ("Spawn Warrior").transform.Rotate (0, 90, 0);
+				GameObject.Find ("Spawn AxeMan").transform.Rotate (0, 90, 0);
 				Selected = false;
 			}
 		}
@@ -169,7 +175,7 @@ public class CityCivilization : MonoBehaviour {
 		}
 		Population += Mathf.FloorToInt(Mathf.Clamp (Food, 0, Population/4));
 		Population = Mathf.Clamp (Population, 4, Houses * 3 + 4);
-		Gold += Mathf.FloorToInt(Mathf.Clamp (Mathf.Clamp(Population, 0, Houses * 1000000) - Mathf.Clamp(Population, 0, Farms * 2), 0, GoldMines * 2) - (Farms + Houses + Storages));
+		Gold += Mathf.FloorToInt(Mathf.Clamp (Mathf.Clamp(Population, 0, Houses * 1000000) - Mathf.Clamp(Population, 0, Farms * 2), 0, GoldMines * 2 - (Farms + Houses + Storages)));
 		Food = Mathf.FloorToInt(Mathf.Clamp (Food, 0, Storages * 12));
 		Gold = Mathf.FloorToInt(Mathf.Clamp (Gold, -Mathf.Infinity, (Storages * 12) + 10));
 		GoldProduced = Mathf.FloorToInt(Mathf.Clamp (Mathf.Clamp(Population, 0, Houses * 1000000) - Mathf.Clamp(Population, 0, Farms * 2), 0, GoldMines * 2));
@@ -185,6 +191,7 @@ public class CityCivilization : MonoBehaviour {
 			Houses = int.Parse(File.ReadAllText (filePath).Split ('/') [4]);
 			GoldMines = int.Parse(File.ReadAllText (filePath).Split ('/') [5]);
 			Storages = int.Parse(File.ReadAllText (filePath).Split ('/') [6]);
+			Sea = int.Parse(File.ReadAllText (filePath).Split ('/') [7]);
 		}
 		if(Population > 40 && expanded == false){
 			expanded = true;
@@ -223,9 +230,13 @@ public class CityCivilization : MonoBehaviour {
 							(Instantiate (Warrior, new Vector3 (transform.position.x, 5f, transform.position.z), Quaternion.identity) as GameObject).GetComponent<Unit> ().team = "Player";
 							GameObject.Find ("Resources").GetComponent<ResourceCounter> ().gold -= 10;
 						}
-						if (UnitName == "Settler" && GameObject.Find ("Resources").GetComponent<ResourceCounter> ().gold >= 20) {
+						if (UnitName == "Settler" && GameObject.Find ("Resources").GetComponent<ResourceCounter> ().gold >= 35) {
 							(Instantiate (Settler, new Vector3 (transform.position.x, 5f, transform.position.z), Quaternion.identity) as GameObject).GetComponent<Unit> ().team = "Player";
-							GameObject.Find ("Resources").GetComponent<ResourceCounter> ().gold -= 20;
+							GameObject.Find ("Resources").GetComponent<ResourceCounter> ().gold -= 15;
+						}
+						if (UnitName == "AxeMan" && GameObject.Find ("Resources").GetComponent<ResourceCounter> ().gold >= 15) {
+							(Instantiate (Settler, new Vector3 (transform.position.x, 5f, transform.position.z), Quaternion.identity) as GameObject).GetComponent<Unit> ().team = "Player";
+							GameObject.Find ("Resources").GetComponent<ResourceCounter> ().gold -= 15;
 						}
 					}
 				}
@@ -236,24 +247,19 @@ public class CityCivilization : MonoBehaviour {
 					if (UnitName == "Settler") {
 						(Instantiate (Settler, new Vector3 (transform.position.x, 5f, transform.position.z), Quaternion.identity) as GameObject).GetComponent<Unit> ().team = team;
 					}
+					if (UnitName == "AxeMan") {
+						(Instantiate (Settler, new Vector3 (transform.position.x, 5f, transform.position.z), Quaternion.identity) as GameObject).GetComponent<Unit> ().team = team;
+					}
 				}
 			}
 		}
 	}
 
 	void AI (){
-		if (team != "Player" && 1 == Random.Range(1, 6)) {
+		if (team != "Player" && 1 == Random.Range (1, 6)) {
 			SpawnCity ("Warrior");
-			foreach (GameObject unit in GameObject.FindGameObjectsWithTag("Unit")) {
-				if (unit.GetComponent<Unit> ().team == team && unit.GetComponent<Unit> ().currentPath.Count != 0) {
-					if (unit.GetComponent<Unit> ().AIStyle == 0) {
-					
-					}
-					if (unit.GetComponent<Unit> ().AIStyle == 1) {
-					
-					}
-				}
-			}
+		}else if (team != "Player" && 1 == Random.Range (1, 10)) {
+			SpawnCity ("AxeMan");
 		}
 	}
 }
