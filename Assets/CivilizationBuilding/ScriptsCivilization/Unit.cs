@@ -49,6 +49,7 @@ public class Unit : MonoBehaviour {
 	//GameObject manager;
 	GameObject myAI;
 	int Times;
+	public AudioClip attack;
 
 	// Use this for initialization
 	void Start () {
@@ -308,6 +309,8 @@ public class Unit : MonoBehaviour {
 	}
 
 	void Attack (GameObject Target){
+		GetComponent<AudioSource> ().clip = attack;
+		GetComponent<AudioSource> ().Play ();
 		Target.GetComponent<Unit> ().Health -= Mathf.Clamp (Damage - Target.GetComponent<Unit> ().Defense, 0, 10000);
 	}
 
