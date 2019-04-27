@@ -30,8 +30,13 @@ public class ResourceCounter : MonoBehaviour {
 			Unobtainium = 0;
 			foreach(GameObject City in GameObject.FindGameObjectsWithTag("City")){
 				if (City.GetComponent<CityCivilization> ().team == "Player") {
-					TotalStorage += 10 + (12 * City.GetComponent<CityCivilization> ().Storages);
-					Sea += 10 + (12 * City.GetComponent<CityCivilization> ().Sea);
+					TotalStorage += 15 + (12 * City.GetComponent<CityCivilization> ().Storages);
+					if(Sea < City.GetComponent<CityCivilization> ().Sea){
+						Sea = City.GetComponent<CityCivilization> ().Sea;
+						foreach(GameObject unit in GameObject.FindGameObjectsWithTag("Unit")){
+							unit.GetComponent<Unit> ().BoatLevel = Sea;
+						}
+					}
 					Iron += City.GetComponent<CityCivilization> ().Iron.Count;
 					Copper += City.GetComponent<CityCivilization> ().Copper.Count;
 					Unobtainium += City.GetComponent<CityCivilization> ().Unobtainium.Count;

@@ -235,7 +235,7 @@ public class CityCivilization : MonoBehaviour {
 							GameObject.Find ("Resources").GetComponent<ResourceCounter> ().gold -= 15;
 						}
 						if (UnitName == "AxeMan" && GameObject.Find ("Resources").GetComponent<ResourceCounter> ().gold >= 15) {
-							(Instantiate (Settler, new Vector3 (transform.position.x, 5f, transform.position.z), Quaternion.identity) as GameObject).GetComponent<Unit> ().team = "Player";
+							(Instantiate (AxeMan, new Vector3 (transform.position.x, 5f, transform.position.z), Quaternion.identity) as GameObject).GetComponent<Unit> ().team = "Player";
 							GameObject.Find ("Resources").GetComponent<ResourceCounter> ().gold -= 15;
 						}
 					}

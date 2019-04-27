@@ -40,7 +40,7 @@ public class Unit : MonoBehaviour {
 	public int Damage;
 	public int Range;
 	int ShouldMove;
-	public int BoatLevel = 2;
+	public int BoatLevel;
 	public Mesh boat;
 	Mesh me;
 	//float offset;
@@ -48,6 +48,7 @@ public class Unit : MonoBehaviour {
 	//float offset3;
 	GameObject manager;
 	GameObject myAI;
+	int Times;
 
 	// Use this for initialization
 	void Start () {
@@ -55,6 +56,7 @@ public class Unit : MonoBehaviour {
 		foreach(GameObject AI in GameObject.FindGameObjectsWithTag("AI")){
 			if(AI.GetComponent<AIManager>().team == team){
 				myAI = AI;
+				BoatLevel = 2;
 				break;
 			}
 		}
@@ -62,7 +64,6 @@ public class Unit : MonoBehaviour {
 		//offset3 = manager.GetComponent<ManagerCivilization> ().offset;
 		AIStyle = Random.Range (0, 3);
 		GetComponent<MeshRenderer> ().material.color = notClicked;
-		BoatLevel = 2;
 		me = GetComponent<MeshFilter> ().mesh;
 	}
 	
@@ -215,6 +216,7 @@ public class Unit : MonoBehaviour {
 			}
 		} else {
 			while (currentPath.Count == 0) {
+				Times++;
 				x3 = Random.Range (-3, 3);
 				z3 = Random.Range (-3, 3);
 				if (Vector3.Distance (Enemy.transform.position, transform.position) < 51) {
@@ -225,6 +227,10 @@ public class Unit : MonoBehaviour {
 					if (GameObject.Find ("Manager").GetComponent<ManagerCivilization> ().tiles2 [Mathf.RoundToInt (myAI.GetComponent<AIManager>().Target.x / 10 + 50 + x3), Mathf.RoundToInt (myAI.GetComponent<AIManager>().Target.y / 10 + 50 + z3)] == 0) {
 						CreatePathGraph (Mathf.RoundToInt (myAI.GetComponent<AIManager>().Target.x / 10 + 50 + x3), Mathf.RoundToInt (myAI.GetComponent<AIManager>().Target.y / 10 + 50 + z3));
 					}
+				}
+				if(Times == 2){
+					AIStyle = 1;
+					break;
 				}
 			}
 		}
