@@ -567,7 +567,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Camera Move Style: Iso'
+  m_Text: 
 --- !u!222 &974711438
 CanvasRenderer:
   m_ObjectHideFlags: 0

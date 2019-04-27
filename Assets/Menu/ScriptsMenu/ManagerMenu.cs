@@ -9,9 +9,9 @@ public class ManagerMenu : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		if (PlayerPrefs.GetInt ("CameraMove") == 0) {
-			GameObject.Find ("Camera Move Style").GetComponentInChildren<Text> ().text = "Camera Move Style: Iso";
+			GameObject.Find ("Camera Move Style").GetComponentInChildren<Text> ().text = "Camera Move Style: Iso, Better Performace";
 		} else {
-			GameObject.Find ("Camera Move Style").GetComponentInChildren<Text> ().text = "Camera Move Style: Free";
+			GameObject.Find ("Camera Move Style").GetComponentInChildren<Text> ().text = "Camera Move Style: Free, Worse Performace";
 		}
 	}
 	
@@ -56,10 +56,10 @@ public class ManagerMenu : MonoBehaviour {
 	public void SwitchCamMode (){
 		if (PlayerPrefs.GetInt ("CameraMove") == 1) {
 			PlayerPrefs.SetInt ("CameraMove", 0);
-			GameObject.Find ("Camera Move Style").GetComponentInChildren<Text> ().text = "Camera Move Style: Iso";
+			GameObject.Find ("Camera Move Style").GetComponentInChildren<Text> ().text = "Camera Move Style: Iso, Better Performace";
 		} else {
 			PlayerPrefs.SetInt ("CameraMove", 1);
-			GameObject.Find ("Camera Move Style").GetComponentInChildren<Text> ().text = "Camera Move Style: Free";
+			GameObject.Find ("Camera Move Style").GetComponentInChildren<Text> ().text = "Camera Move Style: Free, Worse Performace";
 		}
 	}
 }

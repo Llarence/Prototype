@@ -14,7 +14,7 @@ public class CameraMoveCiv : MonoBehaviour {
 	void Start () {
 		control = 1;
 		if (PlayerPrefs.GetInt ("CameraMove") == 0) {
-			transform.eulerAngles = new Vector3 (35, 90, 0);
+			transform.eulerAngles = new Vector3 (55, 90, 0);
 		}
 	}
 		
@@ -38,6 +38,7 @@ public class CameraMoveCiv : MonoBehaviour {
 			}
 		}
 		if (PlayerPrefs.GetInt ("CameraMove") == 1) {
+			Camera.main.GetComponent<Camera> ().farClipPlane = Mathf.Infinity;
 			if (Input.GetKeyDown (KeyCode.LeftControl)) {
 				control = controlMax;
 			}
@@ -83,6 +84,7 @@ public class CameraMoveCiv : MonoBehaviour {
 			}
 			Camera.main.GetComponent<Camera> ().fieldOfView -= Input.GetAxisRaw ("Mouse ScrollWheel") * 15;
 			Camera.main.GetComponent<Camera> ().fieldOfView = Mathf.Clamp (Camera.main.GetComponent<Camera> ().fieldOfView, 10, 180);
+			Camera.main.GetComponent<Camera> ().farClipPlane = 220;
 		}
 	}
 }

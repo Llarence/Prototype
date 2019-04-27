@@ -248,7 +248,7 @@ public class CityCivilization : MonoBehaviour {
 						(Instantiate (Settler, new Vector3 (transform.position.x, 5f, transform.position.z), Quaternion.identity) as GameObject).GetComponent<Unit> ().team = team;
 					}
 					if (UnitName == "AxeMan") {
-						(Instantiate (Settler, new Vector3 (transform.position.x, 5f, transform.position.z), Quaternion.identity) as GameObject).GetComponent<Unit> ().team = team;
+						(Instantiate (AxeMan, new Vector3 (transform.position.x, 5f, transform.position.z), Quaternion.identity) as GameObject).GetComponent<Unit> ().team = team;
 					}
 				}
 			}
@@ -260,6 +260,8 @@ public class CityCivilization : MonoBehaviour {
 			SpawnCity ("Warrior");
 		}else if (team != "Player" && 1 == Random.Range (1, 10)) {
 			SpawnCity ("AxeMan");
+		}else if (team != "Player" && 1 == Random.Range (1, 5)) {
+			SpawnCity ("Settler");
 		}
 	}
 }
