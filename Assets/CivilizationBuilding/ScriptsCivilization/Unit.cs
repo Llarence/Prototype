@@ -50,6 +50,7 @@ public class Unit : MonoBehaviour {
 	GameObject myAI;
 	int Times;
 	public AudioClip attack;
+	public GameObject attackparticles;
 
 	// Use this for initialization
 	void Start () {
@@ -310,6 +311,7 @@ public class Unit : MonoBehaviour {
 
 	void Attack (GameObject Target){
 		GetComponent<AudioSource> ().clip = attack;
+		Instantiate (attackparticles, Target.transform);
 		GetComponent<AudioSource> ().Play ();
 		Target.GetComponent<Unit> ().Health -= Mathf.Clamp (Damage - Target.GetComponent<Unit> ().Defense, 0, 10000);
 	}

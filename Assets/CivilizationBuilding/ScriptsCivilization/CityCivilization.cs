@@ -191,7 +191,7 @@ public class CityCivilization : MonoBehaviour {
 			Houses = int.Parse(File.ReadAllText (filePath).Split ('/') [4]);
 			GoldMines = int.Parse(File.ReadAllText (filePath).Split ('/') [5]);
 			Storages = int.Parse(File.ReadAllText (filePath).Split ('/') [6]);
-			Sea = int.Parse(File.ReadAllText (filePath).Split ('/') [7]);
+			Sea = int.Parse(File.ReadAllText (filePath).Split ('/') [7].Split('|') [0]);
 		}
 		if(Population > 40 && expanded == false){
 			expanded = true;

@@ -168,7 +168,7 @@ public class SaveLoadCivilizaton : MonoBehaviour {
 		}
 		foreach(GameObject City in GameObject.FindGameObjectsWithTag("City")){
 			if(City.GetComponent<CityCivilization>().team == "Player"){
-				Camera.main.transform.position = new Vector3 (City.transform.position.x - 150, 100, City.transform.position.z);
+				Camera.main.transform.position = new Vector3 (City.transform.position.x - 75, 100, City.transform.position.z);
 				break;
 			}
 		}

@@ -13,6 +13,7 @@ public class CameraMoveCiv : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		control = 1;
+		transform.eulerAngles = new Vector3 (55, 90, 0);
 		if (PlayerPrefs.GetInt ("CameraMove") == 0) {
 			transform.eulerAngles = new Vector3 (55, 90, 0);
 		}
@@ -38,7 +39,7 @@ public class CameraMoveCiv : MonoBehaviour {
 			}
 		}
 		if (PlayerPrefs.GetInt ("CameraMove") == 1) {
-			Camera.main.GetComponent<Camera> ().farClipPlane = Mathf.Infinity;
+			Camera.main.GetComponent<Camera> ().farClipPlane = 1000000;
 			if (Input.GetKeyDown (KeyCode.LeftControl)) {
 				control = controlMax;
 			}

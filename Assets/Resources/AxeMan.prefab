@@ -242,3 +242,5 @@ MonoBehaviour:
   BoatLevel: 0
   boat: {fileID: 4300014, guid: d6eca208c1f8e3c4e819a768389ae8e6, type: 3}
   attack: {fileID: 8300000, guid: eaef70f147c762e42b92b2a9938fd03c, type: 3}
+  attackparticles: {fileID: 1737711396242070, guid: 6846f313e0ec1994c9f645b5e35e8f13,
+    type: 2}
