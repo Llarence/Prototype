@@ -126,7 +126,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4012b70639fb35408d1c480f708a461, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SpawnObject: {fileID: 1740146473842476, guid: df2b033ec50c0be4c89586aae2b8459b,
+  SpawnObject: {fileID: 1135660389298608, guid: dbc3efc826412134db56be813f94cd2c,
     type: 2}
   HitLayers:
     serializedVersion: 2

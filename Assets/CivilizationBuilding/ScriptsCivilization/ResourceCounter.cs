@@ -8,7 +8,7 @@ public class ResourceCounter : MonoBehaviour {
 
 	int turnOn;
 	int TotalStorage;
-	int Sea;
+	int Sea = 0;
 	public int gold;
 	int PlayerCities;
 	public int Iron;
@@ -22,44 +22,48 @@ public class ResourceCounter : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if(turnOn != GameObject.Find("Manager").GetComponent<ManagerCivilization>().turn){
+		if (turnOn != GameObject.Find ("Manager").GetComponent<ManagerCivilization> ().turn) {
 			turnOn++;
 			TotalStorage = 0;
 			Iron = 0;
 			Copper = 0;
 			Unobtainium = 0;
-			foreach(GameObject City in GameObject.FindGameObjectsWithTag("City")){
+			Check ();
+			foreach (GameObject City in GameObject.FindGameObjectsWithTag("City")) {
 				if (City.GetComponent<CityCivilization> ().team == "Player") {
-					TotalStorage += 15 + (12 * City.GetComponent<CityCivilization> ().Storages);
-					if(Sea < City.GetComponent<CityCivilization> ().Sea){
-						Sea = City.GetComponent<CityCivilization> ().Sea;
-						foreach(GameObject unit in GameObject.FindGameObjectsWithTag("Unit")){
-							unit.GetComponent<Unit> ().BoatLevel = Sea;
-						}
-					}
-					Iron += City.GetComponent<CityCivilization> ().Iron.Count;
-					Copper += City.GetComponent<CityCivilization> ().Copper.Count;
-					Unobtainium += City.GetComponent<CityCivilization> ().Unobtainium.Count;
-				}
-			}
-			foreach(GameObject City in GameObject.FindGameObjectsWithTag("City")){
-				if(City.GetComponent<CityCivilization>().team == "Player"){
 					GetComponent<Text> ().text = ("Gold:" + ((Mathf.Clamp (int.Parse (GetComponent<Text> ().text.Split (':') [1].Split (',') [0]) + City.GetComponent<CityCivilization> ().GoldProduced, 0, TotalStorage)).ToString ()) + ", Iron:" + Iron + ", Copper:" + Copper + ", Unobtainium:" + Unobtainium);
 				}
 			}
 			gold = int.Parse (GetComponent<Text> ().text.Split (':') [1].Split (',') [0]);
 			PlayerCities = 0;
-			if(Input.GetKey(KeyCode.F)){
+			if (Input.GetKey (KeyCode.F)) {
 				gold = 1000;
 				GetComponent<Text> ().text = ("Gold:" + "1000" + ", Iron:" + Iron + ", Copper:" + Copper + ", Unobtainium:" + Unobtainium);
 			}
-			foreach(GameObject City in GameObject.FindGameObjectsWithTag("City")){
-				if(City.GetComponent<CityCivilization>().team == "Player"){
+			foreach (GameObject City in GameObject.FindGameObjectsWithTag("City")) {
+				if (City.GetComponent<CityCivilization> ().team == "Player") {
 					PlayerCities++;
 				}
 			}
-			if(gold > 999 || PlayerCities == GameObject.FindGameObjectsWithTag("City").Length){
+			if (gold > 999 || PlayerCities == GameObject.FindGameObjectsWithTag ("City").Length) {
 				SceneManager.LoadScene ("Win");
+			}
+		}
+	}
+
+	public void Check (){
+		foreach(GameObject City in GameObject.FindGameObjectsWithTag("City")){
+			if (City.GetComponent<CityCivilization> ().team == "Player") {
+				TotalStorage += 15 + (12 * City.GetComponent<CityCivilization> ().Storages);
+				if(0 < City.GetComponent<CityCivilization> ().Sea){
+					Sea = City.GetComponent<CityCivilization> ().Sea;
+					foreach(GameObject unit in GameObject.FindGameObjectsWithTag("Unit")){
+						unit.GetComponent<Unit> ().BoatLevel = Sea;
+					}
+				}
+				Iron += City.GetComponent<CityCivilization> ().Iron.Count;
+				Copper += City.GetComponent<CityCivilization> ().Copper.Count;
+				Unobtainium += City.GetComponent<CityCivilization> ().Unobtainium.Count;
 			}
 		}
 	}

@@ -172,6 +172,7 @@ public class SaveLoadCivilizaton : MonoBehaviour {
 				break;
 			}
 		}
+		GameObject.Find ("Resources").GetComponent<ResourceCounter> ().Check ();
 	}
 
 	public void Delete (){

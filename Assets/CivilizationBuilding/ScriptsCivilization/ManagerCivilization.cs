@@ -187,6 +187,7 @@ public class ManagerCivilization : MonoBehaviour {
 				break;
 			}
 		}
+		GameObject.Find ("Resources").GetComponent<ResourceCounter> ().Check ();
 	}
 
 	void Update(){

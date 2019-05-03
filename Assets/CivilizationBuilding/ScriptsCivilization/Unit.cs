@@ -141,7 +141,7 @@ public class Unit : MonoBehaviour {
 				}
 				if (Input.GetMouseButtonDown (1) && GetComponent<MeshRenderer> ().material.color == clicked) {
 					if (Physics.Raycast (Camera.main.ScreenPointToRay (Input.mousePosition), out hit)) {
-						if (hit.collider.gameObject.CompareTag ("Grass") || (BoatLevel == 1 && hit.collider.gameObject.CompareTag ("DeepWater")) || hit.collider.gameObject.CompareTag ("City") ||BoatLevel == 2) {
+						if (hit.collider.gameObject.CompareTag ("Grass") || (BoatLevel == 1 && hit.collider.gameObject.CompareTag ("Water")) || hit.collider.gameObject.CompareTag ("City") || BoatLevel == 2) {
 							CreatePathGraph (Mathf.RoundToInt (hit.collider.transform.position.x/10 + 50), Mathf.RoundToInt (hit.collider.transform.position.z/10 + 50));
 						}
 						if (hit.collider.gameObject.CompareTag ("Unit")) {
