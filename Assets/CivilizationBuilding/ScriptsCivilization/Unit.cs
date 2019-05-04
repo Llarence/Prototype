@@ -42,15 +42,17 @@ public class Unit : MonoBehaviour {
 	int ShouldMove;
 	public int BoatLevel;
 	public Mesh boat;
-	//Mesh me;
-	//float offset;
-	//float offset2;
-	//float offset3;
-	//GameObject manager;
+	Mesh me;
+	float offset;
+	float offset2;
+	float offset3;
+	GameObject manager;
 	GameObject myAI;
 	int Times;
 	public AudioClip attack;
 	public GameObject attackparticles;
+	public int OverrideX = 10000;
+	public int OverrideZ;
 
 	// Use this for initialization
 	void Start () {
@@ -62,30 +64,35 @@ public class Unit : MonoBehaviour {
 				break;
 			}
 		}
-		//manager = GameObject.Find ("Manager");
-		//offset3 = manager.GetComponent<ManagerCivilization> ().offset;
+		manager = GameObject.Find ("Manager");
+		offset3 = manager.GetComponent<ManagerCivilization> ().offset;
 		AIStyle = Random.Range (0, 3);
 		GetComponent<MeshRenderer> ().material.color = notClicked;
-		//me = GetComponent<MeshFilter> ().mesh;
+		me = GetComponent<MeshFilter> ().mesh;
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		//gameObject.layer = 2;
-		//if (Physics.Raycast (transform.position + Vector3.up * 10, Vector3.down, out hit)) {
-			//if (hit.collider.gameObject.CompareTag("Water") || hit.collider.gameObject.CompareTag("DeepWater")) {
-				//GetComponent<MeshFilter> ().mesh = boat;
-				//transform.position = new Vector3(transform.position.x, (8 * Mathf.PerlinNoise(Time.time/30 + offset3, 0f) * Mathf.PerlinNoise(Time.time/3 + offset, Time.time/3 + offset2)) - 6.5f, transform.position.z);
-			//}else{
-				//GetComponent<MeshFilter> ().mesh = me;
-			//}
-		//}
-		//gameObject.layer = 0;
+		gameObject.layer = 2;
+		if (Physics.Raycast (transform.position + Vector3.up * 10, Vector3.down, out hit)) {
+			if (hit.collider.gameObject.CompareTag("Water") || hit.collider.gameObject.CompareTag("DeepWater")) {
+				GetComponent<MeshFilter> ().mesh = boat;
+				transform.position = new Vector3(transform.position.x, (8 * Mathf.PerlinNoise(Time.time/30 + offset3, 0f) * Mathf.PerlinNoise(Time.time/3 + offset, Time.time/3 + offset2)) - 6.5f, transform.position.z);
+			}else{
+				GetComponent<MeshFilter> ().mesh = me;
+			}
+		}
+		gameObject.layer = 0;
 		if(Health <= 0){
 			Destroy (gameObject);
 		}
 		if(GameObject.Find("Manager") != null){
 			if (GameObject.Find ("Manager").GetComponent<ManagerCivilization> ().turn != myTurn) {
+				if(OverrideX != 10000){
+					CreatePathGraph (OverrideX, OverrideZ);
+					OverrideX = 0;
+					OverrideZ = 0;
+				}
 				if(team != "Player"){
 					AI ();
 				}
@@ -110,8 +117,8 @@ public class Unit : MonoBehaviour {
 						}
 					}
 					gameObject.layer = 0;
-					//offset = transform.position.x / (manager.GetComponent<ManagerCivilization>().xAmount * 2 + 1);
-					//offset2 = transform.position.z / (manager.GetComponent<ManagerCivilization>().zAmount * 2 + 1);
+					offset = transform.position.x / (manager.GetComponent<ManagerCivilization>().xAmount * 2 + 1);
+					offset2 = transform.position.z / (manager.GetComponent<ManagerCivilization>().zAmount * 2 + 1);
 				}
 			}
 		}

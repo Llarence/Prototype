@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using System.Linq;
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
@@ -12,6 +13,9 @@ public class GameState {
 	public string name;
 	public string cityName;
 	public string team;
+	public int AI;
+	public int PathEndx;
+	public int PathEndz;
 }
 
 public class SaveLoadCivilizaton : MonoBehaviour {
@@ -27,7 +31,7 @@ public class SaveLoadCivilizaton : MonoBehaviour {
 	GameObject[] gameObjects;
 	public float[] position;
 	FileStream stream;
-	GameState gameState = new GameState();
+	GameState gameState = new GameState(); 
 	string json_data;
 	string data;
 	int x;
@@ -64,6 +68,11 @@ public class SaveLoadCivilizaton : MonoBehaviour {
 				}
 				if(CurrentObject.CompareTag("Unit")){
 					gameState.team = CurrentObject.GetComponent<Unit> ().team;
+					if(CurrentObject.GetComponent<Unit> ().currentPath.Count > 0){
+						gameState.PathEndx = (CurrentObject.GetComponent<Unit> ().currentPath.Last().x * 10) - 500;
+						gameState.PathEndz = (CurrentObject.GetComponent<Unit> ().currentPath.Last().z * 10) - 500;
+					}
+					gameState.AI = CurrentObject.GetComponent<Unit> ().AIStyle;
 				}
 				if(CurrentObject.CompareTag("AI")){
 					gameState.team = CurrentObject.GetComponent<AIManager> ().team;
@@ -73,6 +82,9 @@ public class SaveLoadCivilizaton : MonoBehaviour {
 				}
 				if (CurrentObject.tag != "City") {
 					gameState.cityName = "";
+				}
+				if(CurrentObject.tag == "Unit" && CurrentObject.tag == "AI"){
+					gameState.AI = CurrentObject.GetComponent<Unit>().AIStyle;
 				}
 				json_data = json_data + "|" + JsonUtility.ToJson(gameState);
 			}
@@ -158,6 +170,10 @@ public class SaveLoadCivilizaton : MonoBehaviour {
 				}
 				if (instantiated.tag == "Unit") {
 					instantiated.GetComponent<Unit> ().team = JsonUtility.FromJson<GameState> ((data.Split ('/') [2]).Split ('|') [i]).team;
+					instantiated.GetComponent<Unit> ().currentPath = new List<Node>();
+					instantiated.GetComponent<Unit> ().OverrideX = (JsonUtility.FromJson<GameState> ((data.Split ('/') [2]).Split ('|') [i]).PathEndx);
+					instantiated.GetComponent<Unit> ().OverrideZ = (JsonUtility.FromJson<GameState> ((data.Split ('/') [2]).Split ('|') [i]).PathEndz);
+					instantiated.GetComponent<Unit> ().AIStyle = JsonUtility.FromJson<GameState> ((data.Split ('/') [2]).Split ('|') [i]).AI;
 				}
 				if (instantiated.tag == "AI") {
 					instantiated.GetComponent<AIManager> ().team = JsonUtility.FromJson<GameState> ((data.Split ('/') [2]).Split ('|') [i]).team;
