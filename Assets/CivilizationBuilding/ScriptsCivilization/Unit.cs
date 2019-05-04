@@ -53,6 +53,8 @@ public class Unit : MonoBehaviour {
 	public GameObject attackparticles;
 	public int OverrideX = 10000;
 	public int OverrideZ;
+	public GameObject Light;
+	GameObject lightnow;
 
 	// Use this for initialization
 	void Start () {
@@ -68,6 +70,9 @@ public class Unit : MonoBehaviour {
 		offset3 = manager.GetComponent<ManagerCivilization> ().offset;
 		AIStyle = Random.Range (0, 3);
 		GetComponent<MeshRenderer> ().material.color = notClicked;
+		lightnow = (Instantiate(Light, new Vector3(transform.position.x, transform.position.y + 6, transform.position.z), Quaternion.identity) as GameObject);
+		lightnow.transform.eulerAngles = new Vector3 (-90, 0, 0);
+		lightnow.transform.GetChild (0).GetComponent<MeshRenderer> ().enabled = false;
 		me = GetComponent<MeshFilter> ().mesh;
 	}
 	
@@ -89,7 +94,7 @@ public class Unit : MonoBehaviour {
 		if(GameObject.Find("Manager") != null){
 			if (GameObject.Find ("Manager").GetComponent<ManagerCivilization> ().turn != myTurn) {
 				if(OverrideX != 10000){
-					CreatePathGraph (OverrideX, OverrideZ);
+					CreatePathGraph (OverrideX/10 + 50, OverrideZ/10 + 50);
 					OverrideX = 0;
 					OverrideZ = 0;
 				}
@@ -120,6 +125,7 @@ public class Unit : MonoBehaviour {
 					offset = transform.position.x / (manager.GetComponent<ManagerCivilization>().xAmount * 2 + 1);
 					offset2 = transform.position.z / (manager.GetComponent<ManagerCivilization>().zAmount * 2 + 1);
 				}
+				lightnow.transform.position = new Vector3 (transform.position.x, transform.position.y + 6, transform.position.z);
 			}
 		}
 		if (team == "Player") {
@@ -130,11 +136,15 @@ public class Unit : MonoBehaviour {
 							if (hit.collider.gameObject == gameObject) {
 								if (GetComponent<MeshRenderer> ().material.color == notClicked) {
 									GetComponent<MeshRenderer> ().material.color = clicked;
+									lightnow.transform.eulerAngles = new Vector3 (90, 0, 0);
+									lightnow.transform.GetChild (0).GetComponent<MeshRenderer> ().enabled = true;
 									if (canSettle == true) {
 										StartCoroutine (ShowSettleButton ());
 									}
 								} else {
 									GetComponent<MeshRenderer> ().material.color = notClicked;
+									lightnow.transform.eulerAngles = new Vector3 (-90, 0, 0);
+									lightnow.transform.GetChild (0).GetComponent<MeshRenderer> ().enabled = false;
 									GameObject.Find ("Settle").GetComponent<RectTransform> ().eulerAngles = new Vector3 (0, 90, 0);
 								}
 							} else {
@@ -142,6 +152,8 @@ public class Unit : MonoBehaviour {
 									GameObject.Find ("Settle").GetComponent<RectTransform> ().eulerAngles = new Vector3 (0, 90, 0);
 								}
 								GetComponent<MeshRenderer> ().material.color = notClicked;
+								lightnow.transform.eulerAngles = new Vector3 (-90, 0, 0);
+								lightnow.transform.GetChild (0).GetComponent<MeshRenderer> ().enabled = false;
 							}
 						}
 					}
@@ -162,6 +174,8 @@ public class Unit : MonoBehaviour {
 			}
 			if (GameObject.Find ("Manager").GetComponent<ManagerCivilization> ().stage == "BuildCities" || doneForTurn == true) {
 				GetComponent<MeshRenderer> ().material.color = notClicked;
+				lightnow.transform.eulerAngles = new Vector3 (-90, 0, 0);
+				lightnow.transform.GetChild (0).GetComponent<MeshRenderer> ().enabled = false;
 				GameObject.Find ("Settle").GetComponent<RectTransform> ().eulerAngles = new Vector3 (0, 90, 0);
 			}
 		}else{
@@ -350,11 +364,15 @@ public class Unit : MonoBehaviour {
 					if (hit.collider.gameObject == gameObject) {
 						if (GetComponent<MeshRenderer> ().material.color == notClicked) {
 							GetComponent<MeshRenderer> ().material.color = clicked;
+							lightnow.transform.eulerAngles = new Vector3 (90, 0, 0);
+							lightnow.transform.GetChild (0).GetComponent<MeshRenderer> ().enabled = true;
 							if (canSettle == true) {
 								StartCoroutine (ShowSettleButton ());
 							}
 						} else {
 							GetComponent<MeshRenderer> ().material.color = notClicked;
+							lightnow.transform.eulerAngles = new Vector3 (-90, 0, 0);
+							lightnow.transform.GetChild (0).GetComponent<MeshRenderer> ().enabled = false;
 							GameObject.Find ("Settle").GetComponent<RectTransform> ().eulerAngles = new Vector3 (0, 90, 0);
 						}
 					} else {
@@ -362,6 +380,8 @@ public class Unit : MonoBehaviour {
 							GameObject.Find ("Settle").GetComponent<RectTransform> ().eulerAngles = new Vector3 (0, 90, 0);
 						}
 						GetComponent<MeshRenderer> ().material.color = notClicked;
+						lightnow.transform.eulerAngles = new Vector3 (-90, 0, 0);
+						lightnow.transform.GetChild (0).GetComponent<MeshRenderer> ().enabled = false;
 					}
 				}
 			}
