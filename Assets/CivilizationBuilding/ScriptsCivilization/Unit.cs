@@ -125,7 +125,11 @@ public class Unit : MonoBehaviour {
 					offset = transform.position.x / (manager.GetComponent<ManagerCivilization>().xAmount * 2 + 1);
 					offset2 = transform.position.z / (manager.GetComponent<ManagerCivilization>().zAmount * 2 + 1);
 				}
-				lightnow.transform.position = new Vector3 (transform.position.x, transform.position.y + 6, transform.position.z);
+				if(canSettle == false){
+					lightnow.transform.position = new Vector3 (transform.position.x, transform.position.y + 6, transform.position.z);
+				}else{
+					lightnow.transform.position = new Vector3 (transform.position.x, transform.position.y + 8, transform.position.z);
+				}
 			}
 		}
 		if (team == "Player") {

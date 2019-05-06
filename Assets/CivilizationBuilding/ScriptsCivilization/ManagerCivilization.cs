@@ -126,16 +126,17 @@ public class ManagerCivilization : MonoBehaviour {
 										Instantiate (unobtainium, new Vector3 (x, 11, z), Quaternion.identity);
 									} else {
 										if(Random.Range(1, 151) == 1){
-											Instantiate (copper, new Vector3 (x, 0, z), Quaternion.identity);
+											Instantiate (copper, new Vector3 (x, -0.75f, z), Quaternion.identity);
 										} else {
 											if(Random.Range(1, 76) == 1){
-												Instantiate (iron, new Vector3 (x, 0, z), Quaternion.identity);
+												Instantiate (iron, new Vector3 (x, -0.75f, z), Quaternion.identity);
 											}
 										}
 									}
 								} else {
 									if(Random.Range(0f, 1f) < 0.2f){
-										Instantiate (mountain, new Vector3 (x, -0.5f, z), Quaternion.identity);
+										Instantiate (mountain, new Vector3 (x, -0.51f, z), Quaternion.identity);
+										Instantiate (grass, new Vector3 (x, -4.5f, z), Quaternion.identity);
 									}else{
 										Instantiate (grass, new Vector3 (x, -4.5f, z), Quaternion.identity);
 									}
@@ -153,7 +154,7 @@ public class ManagerCivilization : MonoBehaviour {
 				z = Random.Range (-zAmount + 2, zAmount - 1) * 10;
 				if (Mathf.PerlinNoise ((offset + ((x + (float)(-xAmount * 10)) / (5f * xAmount))), (offset + ((z + (float)(-zAmount * 10)) / (5f * zAmount)))) < 0.825f && Mathf.PerlinNoise ((offset + ((x + (float)(-xAmount * 10)) / (5f * xAmount))), (offset + ((z + (float)(-zAmount * 10)) / (5f * zAmount)))) > 0.5f) {
 					if(isLegalSpawn()){
-						CityPositions.Add (new Vector3(x, 2, z));
+						CityPositions.Add (new Vector3(x, -0.55f, z));
 						Cities++;
 					}
 					tries++;

@@ -138,16 +138,17 @@ public class SaveLoadCivilizaton : MonoBehaviour {
 										Instantiate (unobtainium2, new Vector3 (x, 11, z), Quaternion.identity);
 									} else {
 										if(Random.Range(1, 151) == 1){
-											Instantiate (copper2, new Vector3 (x, 0, z), Quaternion.identity);
+											Instantiate (copper2, new Vector3 (x, -0.75f, z), Quaternion.identity);
 										} else {
 											if(Random.Range(1, 76) == 1){
-												Instantiate (iron2, new Vector3 (x, 0, z), Quaternion.identity);
+												Instantiate (iron2, new Vector3 (x, -0.75f, z), Quaternion.identity);
 											}
 										}
 									}
 								} else {
 									if(Random.Range(0f, 1f) < 0.2f){
-										Instantiate (mountain2, new Vector3 (x, -0.5f, z), Quaternion.identity);
+										Instantiate (mountain2, new Vector3 (x, -0.51f, z), Quaternion.identity);
+										Instantiate (grass2, new Vector3 (x, -4.5f, z), Quaternion.identity);
 									}else{
 										Instantiate (grass2, new Vector3 (x, -4.5f, z), Quaternion.identity);
 									}

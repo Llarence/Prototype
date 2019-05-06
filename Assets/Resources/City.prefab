@@ -56,7 +56,7 @@ Transform:
   m_GameObject: {fileID: 1329032383223910}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 8, y: 5, z: 8}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4531942236633038}
   m_Father: {fileID: 0}
@@ -125,7 +125,11 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: c8b94e5ccc9c6ad48ab8d16cf0988803, type: 2}
+  - {fileID: 2100004, guid: c7363307cd688624cae698b9dc5336c2, type: 3}
+  - {fileID: 2100002, guid: c7363307cd688624cae698b9dc5336c2, type: 3}
+  - {fileID: 2100008, guid: c7363307cd688624cae698b9dc5336c2, type: 3}
+  - {fileID: 2100006, guid: c7363307cd688624cae698b9dc5336c2, type: 3}
+  - {fileID: 2100008, guid: c7363307cd688624cae698b9dc5336c2, type: 3}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -151,7 +155,7 @@ MeshFilter:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1329032383223910}
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+  m_Mesh: {fileID: 4300000, guid: c7363307cd688624cae698b9dc5336c2, type: 3}
 --- !u!65 &65432326603822894
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -162,7 +166,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
+  m_Size: {x: 10, y: 1, z: 10}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!102 &102948710527784624
 TextMesh:
@@ -241,8 +245,9 @@ MonoBehaviour:
   Archer: {fileID: 1481567276181654, guid: 0c54e9b0f52311045b2a0f8c5dbd4737, type: 2}
   capital: 0
   team: 
-  Player: {fileID: 0}
+  Player: {fileID: 2100000, guid: 742a7e2a131fdda428e42a090b38d2c0, type: 2}
   Old: {fileID: 0}
+  Big: {fileID: 4300000, guid: f8c3cd50da266194e876df9f0b1d23aa, type: 3}
   Copper: []
   Iron: []
   Unobtainium: []
