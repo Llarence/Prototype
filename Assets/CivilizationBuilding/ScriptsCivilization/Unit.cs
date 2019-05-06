@@ -180,7 +180,7 @@ public class Unit : MonoBehaviour {
 			}
 		}else{
 			if(GameObject.Find("Manager") == null){
-				TutorialMove ();
+				
 			}
 		}
 	}
@@ -204,7 +204,7 @@ public class Unit : MonoBehaviour {
 
 	bool canSettleHere (){
 		foreach (GameObject City in GameObject.FindGameObjectsWithTag("City")) {
-			if((City.transform.position.x - transform.position.x <= 60 && City.transform.position.x - transform.position.x >= -60) && (City.transform.position.z - transform.position.z <= 60 && City.transform.position.z - transform.position.z >= -60)){
+			if((City.transform.position.x - transform.position.x <= 41 && City.transform.position.x - transform.position.x >= -41) && (City.transform.position.z - transform.position.z <= 41 && City.transform.position.z - transform.position.z >= -41)){
 				return false;
 			}
 		}
@@ -355,98 +355,5 @@ public class Unit : MonoBehaviour {
 			}
 		}
 		return closest;
-	}
-
-	void TutorialMove(){
-		if (Input.mousePosition.x < Screen.width - 350) {
-			if (Input.GetMouseButtonDown (0)) {
-				if (Physics.Raycast (Camera.main.ScreenPointToRay (Input.mousePosition), out hit)) {
-					if (hit.collider.gameObject == gameObject) {
-						if (GetComponent<MeshRenderer> ().material.color == notClicked) {
-							GetComponent<MeshRenderer> ().material.color = clicked;
-							lightnow.transform.eulerAngles = new Vector3 (90, 0, 0);
-							lightnow.transform.GetChild (0).GetComponent<MeshRenderer> ().enabled = true;
-							if (canSettle == true) {
-								StartCoroutine (ShowSettleButton ());
-							}
-						} else {
-							GetComponent<MeshRenderer> ().material.color = notClicked;
-							lightnow.transform.eulerAngles = new Vector3 (-90, 0, 0);
-							lightnow.transform.GetChild (0).GetComponent<MeshRenderer> ().enabled = false;
-							GameObject.Find ("Settle").GetComponent<RectTransform> ().eulerAngles = new Vector3 (0, 90, 0);
-						}
-					} else {
-						if (GetComponent<MeshRenderer> ().material.color == clicked) {
-							GameObject.Find ("Settle").GetComponent<RectTransform> ().eulerAngles = new Vector3 (0, 90, 0);
-						}
-						GetComponent<MeshRenderer> ().material.color = notClicked;
-						lightnow.transform.eulerAngles = new Vector3 (-90, 0, 0);
-						lightnow.transform.GetChild (0).GetComponent<MeshRenderer> ().enabled = false;
-					}
-				}
-			}
-		}
-		if (Input.mousePosition.x < Screen.width - 350) {
-			if (Input.GetMouseButtonDown (1) && GetComponent<MeshRenderer> ().material.color == clicked && doneForTurn == false) {
-				if (Physics.Raycast (Camera.main.ScreenPointToRay (Input.mousePosition), out hit)) {
-					if (transform.position.x - hit.point.x > 4 && transform.position.z - hit.point.z > -4 && transform.position.z - hit.point.z < 4) {
-						transform.eulerAngles = new Vector3 (0, 0, 0);
-						transform.Translate (-10, 0, 0);
-						gameObject.layer = 2;
-						doneForTurn = true;
-						if (Physics.Raycast (transform.position + Vector3.up * 5, Vector3.down, out hit)) {
-							if (hit.collider.gameObject.tag != "Grass" && hit.collider.gameObject.tag != "City" || hit.collider.gameObject.tag == "Unit") {
-								transform.Translate (10, 0, 0);
-								doneForTurn = false;
-							}
-						}
-						transform.eulerAngles = new Vector3 (0, 0, 0);
-						gameObject.layer = 0;
-					}
-					if (transform.position.x - hit.point.x < -4 && transform.position.z - hit.point.z > -4 && transform.position.z - hit.point.z < 4) {
-						transform.eulerAngles = new Vector3 (0, 0, 0);
-						transform.Translate (10, 0, 0);
-						gameObject.layer = 2;
-						doneForTurn = true;
-						if (Physics.Raycast (transform.position + Vector3.up * 5, Vector3.down, out hit)) {
-							if (hit.collider.gameObject.tag != "Grass" && hit.collider.gameObject.tag != "City" || hit.collider.gameObject.tag == "Unit") {
-								transform.Translate (-10, 0, 0);
-								doneForTurn = false;
-							}
-						}
-						transform.eulerAngles = new Vector3 (0, 180, 0);
-						gameObject.layer = 0;
-					}
-					if (transform.position.z - hit.point.z > 4 && transform.position.x - hit.point.x > -4 && transform.position.x - hit.point.x < 4) {
-						transform.eulerAngles = new Vector3 (0, 0, 0);
-						transform.Translate (0, 0, -10);
-						gameObject.layer = 2;
-						doneForTurn = true;
-						if (Physics.Raycast (transform.position + Vector3.up * 5, Vector3.down, out hit)) {
-							if (hit.collider.gameObject.tag != "Grass" && hit.collider.gameObject.tag != "City" || hit.collider.gameObject.tag == "Unit") {
-								transform.Translate (0, 0, 10);
-								doneForTurn = false;
-							}
-						}
-						transform.eulerAngles = new Vector3 (0, 270, 0);
-						gameObject.layer = 0;
-					}
-					if (transform.position.z - hit.point.z < -4 && transform.position.x - hit.point.x > -4 && transform.position.x - hit.point.x < 4) {
-						transform.eulerAngles = new Vector3 (0, 0, 0);
-						transform.Translate (0, 0, 10);
-						gameObject.layer = 2;
-						doneForTurn = true;
-						if (Physics.Raycast (transform.position + Vector3.up * 5, Vector3.down, out hit)) {
-							if (hit.collider.gameObject.tag != "Grass" && hit.collider.gameObject.tag != "City" || hit.collider.gameObject.tag == "Unit") {
-								transform.Translate (0, 0, -10);
-								doneForTurn = false;
-							}
-						}
-						transform.eulerAngles = new Vector3 (0, 90, 0);
-						gameObject.layer = 0;
-					}
-				}
-			}
-		}
 	}
 }

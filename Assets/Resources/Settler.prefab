@@ -40,7 +40,7 @@ Transform:
   m_GameObject: {fileID: 1132498092863848}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -60,7 +60,10 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: c8b94e5ccc9c6ad48ab8d16cf0988803, type: 2}
+  - {fileID: 2100006, guid: 2fcc314370442284c99a7b0d02c3c6c2, type: 3}
+  - {fileID: 2100000, guid: 2fcc314370442284c99a7b0d02c3c6c2, type: 3}
+  - {fileID: 2100004, guid: 3e5f376aaa3821942909f29e30e4804f, type: 3}
+  - {fileID: 2100006, guid: 3e5f376aaa3821942909f29e30e4804f, type: 3}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -86,7 +89,7 @@ MeshFilter:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1132498092863848}
-  m_Mesh: {fileID: 4300000, guid: c2c5dabbd052c514c87ba353e38203f7, type: 3}
+  m_Mesh: {fileID: 4300000, guid: 3e5f376aaa3821942909f29e30e4804f, type: 3}
 --- !u!54 &54303640499899714
 Rigidbody:
   m_ObjectHideFlags: 1
@@ -115,7 +118,7 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 14
   m_SkinWidth: 0.01
-  m_Mesh: {fileID: 4300000, guid: c2c5dabbd052c514c87ba353e38203f7, type: 3}
+  m_Mesh: {fileID: 4300000, guid: 3e5f376aaa3821942909f29e30e4804f, type: 3}
 --- !u!82 &82389387532104164
 AudioSource:
   m_ObjectHideFlags: 1
@@ -234,7 +237,7 @@ MonoBehaviour:
   Damage: 15
   Range: 11
   BoatLevel: 0
-  boat: {fileID: 4300000, guid: 2d77b9b4dc790c047a5ae7fd5719471b, type: 3}
+  boat: {fileID: 4300000, guid: d272fe5926d1c0046992f665ffec8810, type: 3}
   attack: {fileID: 8300000, guid: eaef70f147c762e42b92b2a9938fd03c, type: 3}
   attackparticles: {fileID: 1737711396242070, guid: 6846f313e0ec1994c9f645b5e35e8f13,
     type: 2}

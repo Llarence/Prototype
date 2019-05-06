@@ -84,7 +84,7 @@ public class CameraMoveCiv : MonoBehaviour {
 				control = 1;
 			}
 			Camera.main.GetComponent<Camera> ().fieldOfView -= Input.GetAxisRaw ("Mouse ScrollWheel") * 15;
-			Camera.main.GetComponent<Camera> ().fieldOfView = Mathf.Clamp (Camera.main.GetComponent<Camera> ().fieldOfView, 10, 180);
+			Camera.main.GetComponent<Camera> ().fieldOfView = Mathf.Clamp (Camera.main.GetComponent<Camera> ().fieldOfView, 10, 60);
 			Camera.main.GetComponent<Camera> ().farClipPlane = 220;
 		}
 	}

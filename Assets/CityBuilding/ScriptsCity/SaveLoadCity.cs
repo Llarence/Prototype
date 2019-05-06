@@ -22,7 +22,7 @@ public class SaveLoadCity : MonoBehaviour {
 	int x;
 	int z;
 	float Gold;
-	int I;
+	int I = 1;
 
 	public void Save2 () {
 		json_data = "";
@@ -45,12 +45,17 @@ public class SaveLoadCity : MonoBehaviour {
 			GetComponent<ManagerCity>().Gold = int.Parse (Data.Split ('/') [0]);
 			GetComponent<ManagerCity>().Food = int.Parse (Data.Split ('/') [1]);
 			GetComponent<ManagerCity>().Population = int.Parse (Data.Split ('/') [2]);
-			while ((Data.Split ('|') [1]).Split ('|').Length > I){
-				Instantiate(Resources.Load(JsonUtility.FromJson<gameState2>((Data.Split ('|') [1]).Split('|')[I]).Name2.Split ('(') [0]), new Vector3(float.Parse ((Data.Split ('|') [1]).Split('|')[I].Split(':')[1].Split(',')[0]), float.Parse ((Data.Split ('|') [1]).Split('|')[I].Split(':')[2].Split(',')[0]), float.Parse ((Data.Split ('|') [1]).Split('|')[I].Split(':')[3].Split(',')[0])), Quaternion.identity);
+			while ((Data.Split ('/') [7]).Split ('|').Length > I){
+				print (JsonUtility.FromJson<gameState2>((Data.Split ('/') [7]).Split('|')[I]).Name2.Split ('(') [0]);
+				print (float.Parse ((Data.Split ('/') [7]).Split ('|') [I].Split (':') [1].Split (',') [0]));
+				print (float.Parse ((Data.Split ('/') [7]).Split ('|') [I].Split (':') [2].Split (',') [0]));
+				print (float.Parse ((Data.Split ('/') [7]).Split ('|') [I].Split (':') [3].Split (',') [0]));
+				print (Resources.Load (JsonUtility.FromJson<gameState2> ((Data.Split ('/') [7]).Split ('|') [I]).Name2.Split ('(') [0]));
+				Instantiate((Resources.Load(JsonUtility.FromJson<gameState2> ((Data.Split ('/') [7]).Split ('|') [I]).Name2.Split ('(') [0])), new Vector3(float.Parse ((Data.Split ('/') [7]).Split ('|') [I].Split (':') [1].Split (',') [0]), float.Parse ((Data.Split ('/') [7]).Split ('|') [I].Split (':') [2].Split (',') [0]), float.Parse ((Data.Split ('/') [7]).Split ('|') [I].Split (':') [3].Split (',') [0])), Quaternion.identity);
 				I++;
 			}
 		}else{
-			GetComponent<ManagerCity>().Gold = 50;
+			GetComponent<ManagerCity>().Gold = 15;
 		}
 	}
 }

@@ -29,6 +29,7 @@ public class CityCivilization : MonoBehaviour {
 	public GameObject Settler;
 	public GameObject Warrior;
 	public GameObject AxeMan;
+	public GameObject Archer;
 	public bool capital;
 	public string team;
 	public Material Player;
@@ -72,39 +73,6 @@ public class CityCivilization : MonoBehaviour {
 			Instantiate (border, transform.position + new Vector3(-20, -2.45f, 10), Quaternion.identity);
 			Instantiate (border, transform.position + new Vector3(20, -2.45f, -10), Quaternion.identity);
 		}
-			foreach(GameObject iron in GameObject.FindGameObjectsWithTag ("Iron")){
-				if (expanded == false) {
-					if ((iron.transform.position.x - transform.position.x <= 10 && iron.transform.position.x - transform.position.x >= -10) && (iron.transform.position.z - transform.position.z <= 10 && iron.transform.position.z - transform.position.z >= -10)) {
-						Iron.Add (iron);
-					}
-				} else {
-					if ((iron.transform.position.x - transform.position.x <= 20 && iron.transform.position.x - transform.position.x >= -20) && (iron.transform.position.z - transform.position.z <= 20 && iron.transform.position.z - transform.position.z >= -20)) {
-						Iron.Add (iron);
-					}
-				}
-			}
-		foreach(GameObject copper in GameObject.FindGameObjectsWithTag ("Copper")){
-			if (expanded == false) {
-				if ((copper.transform.position.x - transform.position.x <= 10 && copper.transform.position.x - transform.position.x >= -10) && (copper.transform.position.z - transform.position.z <= 10 && copper.transform.position.z - transform.position.z >= -10)) {
-					Copper.Add (copper);
-				}
-			} else {
-				if ((copper.transform.position.x - transform.position.x <= 20 && copper.transform.position.x - transform.position.x >= -20) && (copper.transform.position.z - transform.position.z <= 20 && copper.transform.position.z - transform.position.z >= -20)) {
-					Copper.Add (copper);
-				}
-			}
-		}
-		foreach(GameObject unobtainium in GameObject.FindGameObjectsWithTag ("Unobtainium")){
-			if (expanded == false) {
-				if ((unobtainium.transform.position.x - transform.position.x <= 10 && unobtainium.transform.position.x - transform.position.x >= -10) && (unobtainium.transform.position.z - transform.position.z <= 10 && unobtainium.transform.position.z - transform.position.z >= -10)) {
-					Unobtainium.Add (unobtainium);
-				}
-			} else {
-				if ((unobtainium.transform.position.x - transform.position.x <= 20 && unobtainium.transform.position.x - transform.position.x >= -20) && (unobtainium.transform.position.z - transform.position.z <= 20 && unobtainium.transform.position.z - transform.position.z >= -20)) {
-					Unobtainium.Add (unobtainium);
-				}
-			}
-		}
 	}
 	
 	// Update is called once per frame
@@ -136,12 +104,14 @@ public class CityCivilization : MonoBehaviour {
 						GameObject.Find ("Spawn Settler").transform.Rotate (0, -90, 0);
 						GameObject.Find ("Spawn Warrior").transform.Rotate (0, -90, 0);
 						GameObject.Find ("Spawn AxeMan").transform.Rotate (0, -90, 0);
+						GameObject.Find ("Spawn Archer").transform.Rotate (0, -90, 0);
 						Selected = true;
 					} else {
 						if (Selected == true) {
 							GameObject.Find ("Spawn Settler").transform.Rotate (0, 90, 0);
 							GameObject.Find ("Spawn Warrior").transform.Rotate (0, 90, 0);
 							GameObject.Find ("Spawn AxeMan").transform.Rotate (0, 90, 0);
+							GameObject.Find ("Spawn Archer").transform.Rotate (0, -90, 0);
 							Selected = false;
 						}
 					}
@@ -150,6 +120,7 @@ public class CityCivilization : MonoBehaviour {
 						GameObject.Find ("Spawn Settler").transform.Rotate (0, 90, 0);
 						GameObject.Find ("Spawn Warrior").transform.Rotate (0, 90, 0);
 						GameObject.Find ("Spawn AxeMan").transform.Rotate (0, 90, 0);
+						GameObject.Find ("Spawn Archer").transform.Rotate (0, -90, 0);
 						Selected = false;
 					}
 				}
@@ -158,6 +129,7 @@ public class CityCivilization : MonoBehaviour {
 				GameObject.Find ("Spawn Settler").transform.Rotate (0, 90, 0);
 				GameObject.Find ("Spawn Warrior").transform.Rotate (0, 90, 0);
 				GameObject.Find ("Spawn AxeMan").transform.Rotate (0, 90, 0);
+				GameObject.Find ("Spawn Archer").transform.Rotate (0, -90, 0);
 				Selected = false;
 			}
 		}
@@ -230,12 +202,16 @@ public class CityCivilization : MonoBehaviour {
 							(Instantiate (Warrior, new Vector3 (transform.position.x, 5f, transform.position.z), Quaternion.identity) as GameObject).GetComponent<Unit> ().team = "Player";
 							GameObject.Find ("Resources").GetComponent<ResourceCounter> ().gold -= 10;
 						}
-						if (UnitName == "Settler" && GameObject.Find ("Resources").GetComponent<ResourceCounter> ().gold >= 35) {
-							(Instantiate (Settler, new Vector3 (transform.position.x, 5f, transform.position.z), Quaternion.identity) as GameObject).GetComponent<Unit> ().team = "Player";
+						if (UnitName == "Settler" && GameObject.Find ("Resources").GetComponent<ResourceCounter> ().gold >= 15) {
+							(Instantiate (Settler, new Vector3 (transform.position.x, 0.3f, transform.position.z), Quaternion.identity) as GameObject).GetComponent<Unit> ().team = "Player";
 							GameObject.Find ("Resources").GetComponent<ResourceCounter> ().gold -= 15;
 						}
 						if (UnitName == "AxeMan" && GameObject.Find ("Resources").GetComponent<ResourceCounter> ().gold >= 15) {
 							(Instantiate (AxeMan, new Vector3 (transform.position.x, 5f, transform.position.z), Quaternion.identity) as GameObject).GetComponent<Unit> ().team = "Player";
+							GameObject.Find ("Resources").GetComponent<ResourceCounter> ().gold -= 15;
+						}
+						if (UnitName == "Archer" && GameObject.Find ("Resources").GetComponent<ResourceCounter> ().gold >= 15) {
+							(Instantiate (Archer, new Vector3 (transform.position.x, 5f, transform.position.z), Quaternion.identity) as GameObject).GetComponent<Unit> ().team = "Player";
 							GameObject.Find ("Resources").GetComponent<ResourceCounter> ().gold -= 15;
 						}
 					}
@@ -245,10 +221,13 @@ public class CityCivilization : MonoBehaviour {
 						(Instantiate (Warrior, new Vector3 (transform.position.x, 5f, transform.position.z), Quaternion.identity) as GameObject).GetComponent<Unit> ().team = team;
 					}
 					if (UnitName == "Settler") {
-						(Instantiate (Settler, new Vector3 (transform.position.x, 5f, transform.position.z), Quaternion.identity) as GameObject).GetComponent<Unit> ().team = team;
+						(Instantiate (Settler, new Vector3 (transform.position.x, 0.3f, transform.position.z), Quaternion.identity) as GameObject).GetComponent<Unit> ().team = team;
 					}
 					if (UnitName == "AxeMan") {
 						(Instantiate (AxeMan, new Vector3 (transform.position.x, 5f, transform.position.z), Quaternion.identity) as GameObject).GetComponent<Unit> ().team = team;
+					}
+					if (UnitName == "Archer") {
+						(Instantiate (Archer, new Vector3 (transform.position.x, 5f, transform.position.z), Quaternion.identity) as GameObject).GetComponent<Unit> ().team = team;
 					}
 				}
 			}
@@ -256,12 +235,50 @@ public class CityCivilization : MonoBehaviour {
 	}
 
 	void AI (){
-		if (team != "Player" && 1 == Random.Range (1, 6)) {
+		if (team != "Player" && 1 == Random.Range (1, 17)) {
 			SpawnCity ("Warrior");
-		}else if (team != "Player" && 1 == Random.Range (1, 10)) {
+		}else if (team != "Player" && 1 == Random.Range (1, 20)) {
 			SpawnCity ("AxeMan");
-		}else if (team != "Player" && 1 == Random.Range (1, 5)) {
-			SpawnCity ("Settler");
+		}else if (team != "Player" && 1 == Random.Range (1, 30)) {
+			SpawnCity ("Archer");
+		}else if (team != "Player" && 1 == Random.Range (1, 20)) {
+			SpawnCity ("Archer");
+		}
+	}
+
+	public void CheckResources(){
+		foreach(GameObject iron in GameObject.FindGameObjectsWithTag ("Iron")){
+			if (expanded == false) {
+				if ((iron.transform.position.x - transform.position.x <= 10 && iron.transform.position.x - transform.position.x >= -10) && (iron.transform.position.z - transform.position.z <= 10 && iron.transform.position.z - transform.position.z >= -10)) {
+					Iron.Add (iron);
+				}
+			} else {
+				if ((iron.transform.position.x - transform.position.x <= 20 && iron.transform.position.x - transform.position.x >= -20) && (iron.transform.position.z - transform.position.z <= 20 && iron.transform.position.z - transform.position.z >= -20)) {
+					Iron.Add (iron);
+				}
+			}
+		}
+		foreach(GameObject copper in GameObject.FindGameObjectsWithTag ("Copper")){
+			if (expanded == false) {
+				if ((copper.transform.position.x - transform.position.x <= 10 && copper.transform.position.x - transform.position.x >= -10) && (copper.transform.position.z - transform.position.z <= 10 && copper.transform.position.z - transform.position.z >= -10)) {
+					Copper.Add (copper);
+				}
+			} else {
+				if ((copper.transform.position.x - transform.position.x <= 20 && copper.transform.position.x - transform.position.x >= -20) && (copper.transform.position.z - transform.position.z <= 20 && copper.transform.position.z - transform.position.z >= -20)) {
+					Copper.Add (copper);
+				}
+			}
+		}
+		foreach(GameObject unobtainium in GameObject.FindGameObjectsWithTag ("Unobtainium")){
+			if (expanded == false) {
+				if ((unobtainium.transform.position.x - transform.position.x <= 10 && unobtainium.transform.position.x - transform.position.x >= -10) && (unobtainium.transform.position.z - transform.position.z <= 10 && unobtainium.transform.position.z - transform.position.z >= -10)) {
+					Unobtainium.Add (unobtainium);
+				}
+			} else {
+				if ((unobtainium.transform.position.x - transform.position.x <= 20 && unobtainium.transform.position.x - transform.position.x >= -20) && (unobtainium.transform.position.z - transform.position.z <= 20 && unobtainium.transform.position.z - transform.position.z >= -20)) {
+					Unobtainium.Add (unobtainium);
+				}
+			}
 		}
 	}
 }

@@ -231,12 +231,14 @@ MonoBehaviour:
   GoldMines: 0
   Storages: 0
   People: 0
+  Sea: 0
   Name: 
   Selected: 0
   GoldProduced: 0
   Settler: {fileID: 1132498092863848, guid: 6517a9e7393004047a8183aee5332c91, type: 2}
   Warrior: {fileID: 1060434830780756, guid: 913f00b08c4c5444789900f4d92f1635, type: 2}
   AxeMan: {fileID: 1040944557009724, guid: 6a56952efc15df24ba946c55d3c05cbc, type: 2}
+  Archer: {fileID: 1481567276181654, guid: 0c54e9b0f52311045b2a0f8c5dbd4737, type: 2}
   capital: 0
   team: 
   Player: {fileID: 0}
