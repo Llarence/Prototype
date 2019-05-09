@@ -263,6 +263,9 @@ public class CityCivilization : MonoBehaviour {
 	}
 
 	public void CheckResources(){
+		Iron.Clear ();
+		Copper.Clear ();
+		Unobtainium.Clear ();
 		foreach(GameObject iron in GameObject.FindGameObjectsWithTag ("Iron")){
 			if (expanded == false) {
 				if ((iron.transform.position.x - transform.position.x <= 10 && iron.transform.position.x - transform.position.x >= -10) && (iron.transform.position.z - transform.position.z <= 10 && iron.transform.position.z - transform.position.z >= -10)) {

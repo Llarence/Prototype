@@ -108,11 +108,6 @@ public class Unit : MonoBehaviour {
 				}
 				doneForTurn = false;
 				myTurn = GameObject.Find ("Manager").GetComponent<ManagerCivilization> ().turn;
-				GameObject Enemy;
-				Enemy = FindClosestEnemy ();
-				if (Vector3.Distance (Enemy.transform.position, transform.position) < Range) {
-					doneForTurn = true;
-				}
 				if(currentPath.Count > 0 && doneForTurn == false){
 					transform.position = new Vector3((currentPath[1].x * 10) - 200, 5f, (currentPath[1].z * 10) - 200);
 					transform.eulerAngles = new Vector3 (0, (currentPath[1].x - currentPath[0].x) * 90 + (currentPath[1].z - currentPath[0].z) * 180, 0);
@@ -229,8 +224,9 @@ public class Unit : MonoBehaviour {
 	void AI(){
 		GameObject Enemy;
 		Enemy = FindClosestEnemy ();
-		if (Vector3.Distance (Enemy.transform.position, transform.position) < Range) {
+		if (Vector3.Distance (Enemy.transform.position, transform.position) < Range && doneForTurn == false) {
 			Attack (Enemy);
+			doneForTurn = true;
 		} else {
 			if (canSettle == true && currentPath.Count == 0) {
 				Settle ();
