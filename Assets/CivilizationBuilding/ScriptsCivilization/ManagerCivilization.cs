@@ -248,118 +248,118 @@ public class ManagerCivilization : MonoBehaviour {
 	}
 
 	public void createGraph(){
-		tiles2 = new int [101, 101];
+		tiles2 = new int [41, 41];
 		foreach(GameObject grass in GameObject.FindGameObjectsWithTag("Grass")){
-			tiles2 [Mathf.RoundToInt(grass.transform.position.x/10) + 50, Mathf.RoundToInt(grass.transform.position.z/10) + 50] = 0;
+			tiles2 [Mathf.RoundToInt(grass.transform.position.x/10) + 20, Mathf.RoundToInt(grass.transform.position.z/10) + 20] = 0;
 		}
 		foreach(GameObject water in GameObject.FindGameObjectsWithTag("Water")){
-			tiles2 [Mathf.RoundToInt(water.transform.position.x/10) + 50, Mathf.RoundToInt(water.transform.position.z/10) + 50] = 9999;
+			tiles2 [Mathf.RoundToInt(water.transform.position.x/10) + 20, Mathf.RoundToInt(water.transform.position.z/10) + 20] = 9999;
 		}
 		foreach(GameObject deepwater in GameObject.FindGameObjectsWithTag("DeepWater")){
-			tiles2 [Mathf.RoundToInt(deepwater.transform.position.x/10) + 50, Mathf.RoundToInt(deepwater.transform.position.z/10) + 50] = 9999;
+			tiles2 [Mathf.RoundToInt(deepwater.transform.position.x/10) + 20, Mathf.RoundToInt(deepwater.transform.position.z/10) + 20] = 9999;
 		}
 		foreach(GameObject mountain in GameObject.FindGameObjectsWithTag("Mountain")){
-			tiles2 [Mathf.RoundToInt(mountain.transform.position.x/10) + 50, Mathf.RoundToInt(mountain.transform.position.z/10) + 50] = 9999;
+			tiles2 [Mathf.RoundToInt(mountain.transform.position.x/10) + 20, Mathf.RoundToInt(mountain.transform.position.z/10) + 20] = 9999;
 		}
-		graph2 = new Node[101, 101];
-		for(int x2 = 0; x2 < 101; x2++){
-			for(int z2 = 0; z2 < 101; z2++){
+		graph2 = new Node[41, 41];
+		for(int x2 = 0; x2 < 41; x2++){
+			for(int z2 = 0; z2 < 41; z2++){
 				graph2[x2, z2] = new Node();
 				graph2[x2, z2].x = x2;
 				graph2[x2, z2].z = z2;
 			}
 		}
-		for (int x2 = 0; x2 < 101; x2++) {
-			for (int z2 = 0; z2 < 101; z2++) {
+		for (int x2 = 0; x2 < 41; x2++) {
+			for (int z2 = 0; z2 < 41; z2++) {
 				if (tiles2 [x2, z2] != 9999) {
 					if (x2 > 0 && tiles2 [x2 - 1, z2] != 9999) {
 						graph2 [x2, z2].neighbours.Add (graph2 [x2 - 1, z2]);
 					}
-					if (x2 < 100 && tiles2 [x2 + 1, z2] != 9999) {
+					if (x2 < 40 && tiles2 [x2 + 1, z2] != 9999) {
 						graph2 [x2, z2].neighbours.Add (graph2 [x2 + 1, z2]);
 					}
 					if (z2 > 0 && tiles2 [x2, z2 - 1] != 9999) {
 						graph2 [x2, z2].neighbours.Add (graph2 [x2, z2 - 1]);
 					}
-					if (z2 < 100 && tiles2 [x2, z2 + 1] != 9999) {
+					if (z2 < 40 && tiles2 [x2, z2 + 1] != 9999) {
 						graph2 [x2, z2].neighbours.Add (graph2 [x2, z2 + 1]);
 					}
 				}
 			}
 		}
-		tiles3 = new int [101, 101];
+		tiles3 = new int [41, 41];
 		foreach(GameObject grass in GameObject.FindGameObjectsWithTag("Grass")){
-			tiles3 [Mathf.RoundToInt(grass.transform.position.x/10) + 50, Mathf.RoundToInt(grass.transform.position.z/10) + 50] = 0;
+			tiles3 [Mathf.RoundToInt(grass.transform.position.x/10) + 20, Mathf.RoundToInt(grass.transform.position.z/10) + 20] = 0;
 		}
 		foreach(GameObject water in GameObject.FindGameObjectsWithTag("Water")){
-			tiles3 [Mathf.RoundToInt(water.transform.position.x/10) + 50, Mathf.RoundToInt(water.transform.position.z/10) + 50] = 0;
+			tiles3 [Mathf.RoundToInt(water.transform.position.x/10) + 20, Mathf.RoundToInt(water.transform.position.z/10) + 20] = 0;
 		}
 		foreach(GameObject deepwater in GameObject.FindGameObjectsWithTag("DeepWater")){
-			tiles3 [Mathf.RoundToInt(deepwater.transform.position.x/10) + 50, Mathf.RoundToInt(deepwater.transform.position.z/10) + 50] = 9999;
+			tiles3 [Mathf.RoundToInt(deepwater.transform.position.x/10) + 20, Mathf.RoundToInt(deepwater.transform.position.z/10) + 20] = 9999;
 		}
 		foreach(GameObject mountain in GameObject.FindGameObjectsWithTag("Mountain")){
-			tiles3 [Mathf.RoundToInt(mountain.transform.position.x/10) + 50, Mathf.RoundToInt(mountain.transform.position.z/10) + 50] = 9999;
+			tiles3 [Mathf.RoundToInt(mountain.transform.position.x/10) + 20, Mathf.RoundToInt(mountain.transform.position.z/10) + 20] = 9999;
 		}
-		graph3 = new Node[101, 101];
-		for(int x2 = 0; x2 < 101; x2++){
-			for(int z2 = 0; z2 < 101; z2++){
+		graph3 = new Node[41, 41];
+		for(int x2 = 0; x2 < 41; x2++){
+			for(int z2 = 0; z2 < 41; z2++){
 				graph3[x2, z2] = new Node();
 				graph3[x2, z2].x = x2;
 				graph3[x2, z2].z = z2;
 			}
 		}
-		for (int x2 = 0; x2 < 101; x2++) {
-			for (int z2 = 0; z2 < 101; z2++) {
+		for (int x2 = 0; x2 < 41; x2++) {
+			for (int z2 = 0; z2 < 41; z2++) {
 				if (tiles3 [x2, z2] != 9999) {
 					if (x2 > 0 && tiles3 [x2 - 1, z2] != 9999) {
 						graph3 [x2, z2].neighbours.Add (graph3 [x2 - 1, z2]);
 					}
-					if (x2 < 100 && tiles3 [x2 + 1, z2] != 9999) {
+					if (x2 < 40 && tiles3 [x2 + 1, z2] != 9999) {
 						graph3 [x2, z2].neighbours.Add (graph3 [x2 + 1, z2]);
 					}
 					if (z2 > 0 && tiles3 [x2, z2 - 1] != 9999) {
 						graph3 [x2, z2].neighbours.Add (graph3 [x2, z2 - 1]);
 					}
-					if (z2 < 100 && tiles3 [x2, z2 + 1] != 9999) {
+					if (z2 < 40 && tiles3 [x2, z2 + 1] != 9999) {
 						graph3 [x2, z2].neighbours.Add (graph3 [x2, z2 + 1]);
 					}
 				}
 			}
 		}
-		tiles4 = new int [101, 101];
+		tiles4 = new int [41, 41];
 		foreach(GameObject grass in GameObject.FindGameObjectsWithTag("Grass")){
-			tiles4 [Mathf.RoundToInt(grass.transform.position.x/10) + 50, Mathf.RoundToInt(grass.transform.position.z/10) + 50] = 0;
+			tiles4 [Mathf.RoundToInt(grass.transform.position.x/10) + 20, Mathf.RoundToInt(grass.transform.position.z/10) + 20] = 0;
 		}
 		foreach(GameObject water in GameObject.FindGameObjectsWithTag("Water")){
-			tiles4 [Mathf.RoundToInt(water.transform.position.x/10) + 50, Mathf.RoundToInt(water.transform.position.z/10) + 50] = 0;
+			tiles4 [Mathf.RoundToInt(water.transform.position.x/10) + 20, Mathf.RoundToInt(water.transform.position.z/10) + 20] = 0;
 		}
 		foreach(GameObject deepwater in GameObject.FindGameObjectsWithTag("DeepWater")){
-			tiles4 [Mathf.RoundToInt(deepwater.transform.position.x/10) + 50, Mathf.RoundToInt(deepwater.transform.position.z/10) + 50] = 0;
+			tiles4 [Mathf.RoundToInt(deepwater.transform.position.x/10) + 20, Mathf.RoundToInt(deepwater.transform.position.z/10) + 20] = 0;
 		}
 		foreach(GameObject mountain in GameObject.FindGameObjectsWithTag("Mountain")){
-			tiles4 [Mathf.RoundToInt(mountain.transform.position.x/10) + 50, Mathf.RoundToInt(mountain.transform.position.z/10) + 50] = 9999;
+			tiles4 [Mathf.RoundToInt(mountain.transform.position.x/10) + 20, Mathf.RoundToInt(mountain.transform.position.z/10) + 20] = 9999;
 		}
-		graph4 = new Node[101, 101];
-		for(int x2 = 0; x2 < 101; x2++){
-			for(int z2 = 0; z2 < 101; z2++){
+		graph4 = new Node[41, 41];
+		for(int x2 = 0; x2 < 41; x2++){
+			for(int z2 = 0; z2 < 41; z2++){
 				graph4[x2, z2] = new Node();
 				graph4[x2, z2].x = x2;
 				graph4[x2, z2].z = z2;
 			}
 		}
-		for (int x2 = 0; x2 < 101; x2++) {
-			for (int z2 = 0; z2 < 101; z2++) {
+		for (int x2 = 0; x2 < 41; x2++) {
+			for (int z2 = 0; z2 < 41; z2++) {
 				if (tiles4 [x2, z2] != 9999) {
 					if (x2 > 0 && tiles4 [x2 - 1, z2] != 9999) {
 						graph4 [x2, z2].neighbours.Add (graph4 [x2 - 1, z2]);
 					}
-					if (x2 < 100 && tiles4 [x2 + 1, z2] != 9999) {
+					if (x2 < 40 && tiles4 [x2 + 1, z2] != 9999) {
 						graph4 [x2, z2].neighbours.Add (graph4 [x2 + 1, z2]);
 					}
 					if (z2 > 0 && tiles4 [x2, z2 - 1] != 9999) {
 						graph4 [x2, z2].neighbours.Add (graph4 [x2, z2 - 1]);
 					}
-					if (z2 < 100 && tiles4 [x2, z2 + 1] != 9999) {
+					if (z2 < 40 && tiles4 [x2, z2 + 1] != 9999) {
 						graph4 [x2, z2].neighbours.Add (graph4 [x2, z2 + 1]);
 					}
 				}

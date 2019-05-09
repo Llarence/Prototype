@@ -243,7 +243,7 @@ MonoBehaviour:
   Warrior: {fileID: 1060434830780756, guid: 913f00b08c4c5444789900f4d92f1635, type: 2}
   AxeMan: {fileID: 1040944557009724, guid: 6a56952efc15df24ba946c55d3c05cbc, type: 2}
   Archer: {fileID: 1481567276181654, guid: 0c54e9b0f52311045b2a0f8c5dbd4737, type: 2}
-  Berseker: {fileID: 0}
+  Berseker: {fileID: 1839672327592286, guid: 14e367a812c5c984ab2781b1b7d5f9b0, type: 2}
   capital: 0
   team: 
   Player: {fileID: 2100000, guid: 742a7e2a131fdda428e42a090b38d2c0, type: 2}

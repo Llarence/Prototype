@@ -109,13 +109,15 @@ public class CityCivilization : MonoBehaviour {
 						GameObject.Find ("Spawn Warrior").transform.Rotate (0, -90, 0);
 						GameObject.Find ("Spawn AxeMan").transform.Rotate (0, -90, 0);
 						GameObject.Find ("Spawn Archer").transform.Rotate (0, -90, 0);
+						GameObject.Find ("Spawn Berseker").transform.Rotate (0, -90, 0);
 						Selected = true;
 					} else {
 						if (Selected == true) {
 							GameObject.Find ("Spawn Settler").transform.Rotate (0, 90, 0);
 							GameObject.Find ("Spawn Warrior").transform.Rotate (0, 90, 0);
 							GameObject.Find ("Spawn AxeMan").transform.Rotate (0, 90, 0);
-							GameObject.Find ("Spawn Archer").transform.Rotate (0, -90, 0);
+							GameObject.Find ("Spawn Archer").transform.Rotate (0, 90, 0);
+							GameObject.Find ("Spawn Berseker").transform.Rotate (0, 90, 0);
 							Selected = false;
 						}
 					}
@@ -124,7 +126,8 @@ public class CityCivilization : MonoBehaviour {
 						GameObject.Find ("Spawn Settler").transform.Rotate (0, 90, 0);
 						GameObject.Find ("Spawn Warrior").transform.Rotate (0, 90, 0);
 						GameObject.Find ("Spawn AxeMan").transform.Rotate (0, 90, 0);
-						GameObject.Find ("Spawn Archer").transform.Rotate (0, -90, 0);
+						GameObject.Find ("Spawn Archer").transform.Rotate (0, 90, 0);
+						GameObject.Find ("Spawn Berseker").transform.Rotate (0, 90, 0);
 						Selected = false;
 					}
 				}
@@ -133,7 +136,8 @@ public class CityCivilization : MonoBehaviour {
 				GameObject.Find ("Spawn Settler").transform.Rotate (0, 90, 0);
 				GameObject.Find ("Spawn Warrior").transform.Rotate (0, 90, 0);
 				GameObject.Find ("Spawn AxeMan").transform.Rotate (0, 90, 0);
-				GameObject.Find ("Spawn Archer").transform.Rotate (0, -90, 0);
+				GameObject.Find ("Spawn Archer").transform.Rotate (0, 90, 0);
+				GameObject.Find ("Spawn Berseker").transform.Rotate (0, 90, 0);
 				Selected = false;
 			}
 		}
@@ -239,7 +243,7 @@ public class CityCivilization : MonoBehaviour {
 						(Instantiate (Archer, new Vector3 (transform.position.x, 5f, transform.position.z), Quaternion.identity) as GameObject).GetComponent<Unit> ().team = team;
 					}
 					if (UnitName == "Berseker") {
-						(Instantiate (Archer, new Vector3 (transform.position.x, 5f, transform.position.z), Quaternion.identity) as GameObject).GetComponent<Unit> ().team = team;
+						(Instantiate (Berseker, new Vector3 (transform.position.x, 5f, transform.position.z), Quaternion.identity) as GameObject).GetComponent<Unit> ().team = team;
 					}
 				}
 			}
