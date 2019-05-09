@@ -17,7 +17,6 @@ public class CameraMove : MonoBehaviour {
 	
 	// Update is called once per frame
 	void FixedUpdate () {
-		
 		if (Input.GetKeyDown (KeyCode.LeftControl)) {
 			control = controlMax;
 		}
@@ -30,9 +29,6 @@ public class CameraMove : MonoBehaviour {
 		}
 		if (transform.position.y > maxHeight) {
 			transform.position = new Vector3 (transform.position.x, maxHeight, transform.position.z);
-		}
-		if(Input.GetKey(KeyCode.LeftShift)){
-			transform.position = new Vector3 (transform.position.x, (transform.position.y - (Time.deltaTime * 10  * control)), transform.position.z);
 		}
 		if(transform.position.y < 0){
 			transform.position = new Vector3 (transform.position.x, 0, transform.position.z);
