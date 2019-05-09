@@ -16,6 +16,7 @@ public class GameState {
 	public int AI;
 	public int PathEndx;
 	public int PathEndz;
+	public int Health;
 }
 
 public class SaveLoadCivilizaton : MonoBehaviour {
@@ -71,6 +72,7 @@ public class SaveLoadCivilizaton : MonoBehaviour {
 					if (CurrentObject.GetComponent<Unit> ().currentPath.Count > 0) {
 						gameState.PathEndx = (CurrentObject.GetComponent<Unit> ().currentPath.Last ().x * 10) - 500;
 						gameState.PathEndz = (CurrentObject.GetComponent<Unit> ().currentPath.Last ().z * 10) - 500;
+						gameState.Health = CurrentObject.GetComponent<Unit> ().Health;
 					} else {
 						gameState.PathEndx = 10000;
 					}
@@ -177,6 +179,7 @@ public class SaveLoadCivilizaton : MonoBehaviour {
 					instantiated.GetComponent<Unit> ().OverrideX = (JsonUtility.FromJson<GameState> ((data.Split ('/') [2]).Split ('|') [i]).PathEndx);
 					instantiated.GetComponent<Unit> ().OverrideZ = (JsonUtility.FromJson<GameState> ((data.Split ('/') [2]).Split ('|') [i]).PathEndz);
 					instantiated.GetComponent<Unit> ().AIStyle = JsonUtility.FromJson<GameState> ((data.Split ('/') [2]).Split ('|') [i]).AI;
+					instantiated.GetComponent<Unit> ().Health = JsonUtility.FromJson<GameState> ((data.Split ('/') [2]).Split ('|') [i]).Health;
 				}
 				if (instantiated.tag == "AI") {
 					instantiated.GetComponent<AIManager> ().team = JsonUtility.FromJson<GameState> ((data.Split ('/') [2]).Split ('|') [i]).team;
