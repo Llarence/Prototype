@@ -122,13 +122,13 @@ public class ManagerCivilization : MonoBehaviour {
 							} else {
 								if (Mathf.PerlinNoise ((offset + ((x + (float)(-xAmount * 10)) / (5f * xAmount))), (offset + ((z + (float)(-zAmount * 10)) / (5f * zAmount)))) < 0.825f) {
 									Instantiate (grass, new Vector3 (x, -4.5f, z), Quaternion.identity);
-									if (Random.Range (1, 301) == 1) {
+									if (Random.Range (1, 151) == 1) {
 										Instantiate (unobtainium, new Vector3 (x, 11, z), Quaternion.identity);
 									} else {
-										if(Random.Range(1, 151) == 1){
+										if(Random.Range(1, 76) == 1){
 											Instantiate (copper, new Vector3 (x, -0.75f, z), Quaternion.identity);
 										} else {
-											if(Random.Range(1, 76) == 1){
+											if(Random.Range(1, 37) == 1){
 												Instantiate (iron, new Vector3 (x, -0.75f, z), Quaternion.identity);
 											}
 										}

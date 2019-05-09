@@ -59,6 +59,17 @@ public class ResourceCounter : MonoBehaviour {
 					Sea = City.GetComponent<CityCivilization> ().Sea;
 					foreach(GameObject unit in GameObject.FindGameObjectsWithTag("Unit")){
 						unit.GetComponent<Unit> ().BoatLevel = Sea;
+						if(unit.GetComponent<Unit> ().team == "Player"){
+							if(unit.name == "AxeMan(Clone)"){
+								Iron--;
+							}
+							if(unit.name == "Archer(Clone)"){
+								Copper--;
+							}
+							if(unit.name == "Berseker(Clone)"){
+								Unobtainium--;
+							}
+						}
 					}
 				}
 				City.GetComponent<CityCivilization> ().CheckResources ();

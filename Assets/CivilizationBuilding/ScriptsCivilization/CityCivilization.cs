@@ -30,6 +30,7 @@ public class CityCivilization : MonoBehaviour {
 	public GameObject Warrior;
 	public GameObject AxeMan;
 	public GameObject Archer;
+	public GameObject Berseker;
 	public bool capital;
 	public string team;
 	public Material Player;
@@ -54,8 +55,9 @@ public class CityCivilization : MonoBehaviour {
 		if(File.Exists (Application.persistentDataPath + "/~Player." + manager.GetComponent<SaveLoadCivilizaton>().loadName + "." + Name)){
 			filePath = Application.persistentDataPath + "/~Player." + manager.GetComponent<SaveLoadCivilizaton> ().loadName + "." + Name;
 			Population = int.Parse(File.ReadAllText (filePath).Split ('/') [2]);
+			Farms = int.Parse(File.ReadAllText (filePath).Split ('/') [2]);
 		}
-		if(Population > 40){
+		if(Farms > 20){
 			expanded = true;
 			Instantiate (border, transform.position + new Vector3(20, 0.2f, 0), Quaternion.identity);
 			Instantiate (border, transform.position + new Vector3(0, 0.2f, 20), Quaternion.identity);
@@ -149,10 +151,10 @@ public class CityCivilization : MonoBehaviour {
 		}
 		Population += Mathf.FloorToInt(Mathf.Clamp (Food, 0, Population/4));
 		Population = Mathf.Clamp (Population, 4, Houses * 3 + 4);
-		Gold += Mathf.FloorToInt(Mathf.Clamp (Mathf.Clamp(Population, 0, Houses * 1000000) - Mathf.Clamp(Population, 0, Farms * 2), 0, GoldMines * 2 - (Farms + Houses + Storages)));
+		Gold += Mathf.FloorToInt(Mathf.Clamp (Mathf.Clamp(Population, 0, Houses * 1000000) - Mathf.Clamp(Population, 0, Farms * 2), 0, GoldMines * 2 -(Farms + Houses + Storages) / 2));
 		Food = Mathf.FloorToInt(Mathf.Clamp (Food, 0, Storages * 12));
-		Gold = Mathf.FloorToInt(Mathf.Clamp (Gold, -Mathf.Infinity, (Storages * 12) + 10));
-		GoldProduced = Mathf.FloorToInt(Mathf.Clamp (Mathf.Clamp(Population, 0, Houses * 1000000) - Mathf.Clamp(Population, 0, Farms * 2), 0, GoldMines * 2));
+		Gold = Mathf.FloorToInt(Mathf.Clamp (Gold, 0, (Storages * 12) + 10));
+		GoldProduced = Mathf.FloorToInt(Mathf.Clamp (Mathf.Clamp(Population, 0, Houses * 1000000) - Mathf.Clamp(Population, 0, Farms * 2), 0, GoldMines * 2 - (Farms + Houses + Storages) / 2));
 	}
 
 	void UpdateTurn (){
@@ -167,7 +169,7 @@ public class CityCivilization : MonoBehaviour {
 			Storages = int.Parse(File.ReadAllText (filePath).Split ('/') [6]);
 			Sea = int.Parse(File.ReadAllText (filePath).Split ('/') [7].Split('|') [0]);
 		}
-		if(Population > 40 && expanded == false){
+		if(Farms > 20 && expanded == false){
 			expanded = true;
 			Instantiate (border, transform.position + new Vector3(20, 0.2f, 0), Quaternion.identity);
 			Instantiate (border, transform.position + new Vector3(0, 0.2f, 20), Quaternion.identity);
@@ -205,17 +207,21 @@ public class CityCivilization : MonoBehaviour {
 							(Instantiate (Warrior, new Vector3 (transform.position.x, 5f, transform.position.z), Quaternion.identity) as GameObject).GetComponent<Unit> ().team = "Player";
 							GameObject.Find ("Resources").GetComponent<ResourceCounter> ().gold -= 10;
 						}
-						if (UnitName == "Settler" && GameObject.Find ("Resources").GetComponent<ResourceCounter> ().gold >= 15) {
+						if (UnitName == "Settler" && GameObject.Find ("Resources").GetComponent<ResourceCounter> ().gold >= 25) {
 							(Instantiate (Settler, new Vector3 (transform.position.x, 0.3f, transform.position.z), Quaternion.identity) as GameObject).GetComponent<Unit> ().team = "Player";
-							GameObject.Find ("Resources").GetComponent<ResourceCounter> ().gold -= 15;
+							GameObject.Find ("Resources").GetComponent<ResourceCounter> ().gold -= 20;
 						}
-						if (UnitName == "AxeMan" && GameObject.Find ("Resources").GetComponent<ResourceCounter> ().gold >= 15) {
+						if (UnitName == "AxeMan" && GameObject.Find ("Resources").GetComponent<ResourceCounter> ().gold >= 15 && GameObject.Find ("Resources").GetComponent<ResourceCounter> ().Iron > 0) {
 							(Instantiate (AxeMan, new Vector3 (transform.position.x, 5f, transform.position.z), Quaternion.identity) as GameObject).GetComponent<Unit> ().team = "Player";
 							GameObject.Find ("Resources").GetComponent<ResourceCounter> ().gold -= 15;
 						}
-						if (UnitName == "Archer" && GameObject.Find ("Resources").GetComponent<ResourceCounter> ().gold >= 15) {
+						if (UnitName == "Archer" && GameObject.Find ("Resources").GetComponent<ResourceCounter> ().gold >= 20 && GameObject.Find ("Resources").GetComponent<ResourceCounter> ().Copper > 0) {
 							(Instantiate (Archer, new Vector3 (transform.position.x, 5f, transform.position.z), Quaternion.identity) as GameObject).GetComponent<Unit> ().team = "Player";
-							GameObject.Find ("Resources").GetComponent<ResourceCounter> ().gold -= 15;
+							GameObject.Find ("Resources").GetComponent<ResourceCounter> ().gold -= 20;
+						}
+						if (UnitName == "Berseker" && GameObject.Find ("Resources").GetComponent<ResourceCounter> ().gold >= 30 && GameObject.Find ("Resources").GetComponent<ResourceCounter> ().Unobtainium > 0) {
+							(Instantiate (Archer, new Vector3 (transform.position.x, 5f, transform.position.z), Quaternion.identity) as GameObject).GetComponent<Unit> ().team = "Player";
+							GameObject.Find ("Resources").GetComponent<ResourceCounter> ().gold -= 30;
 						}
 					}
 				}
@@ -232,20 +238,23 @@ public class CityCivilization : MonoBehaviour {
 					if (UnitName == "Archer") {
 						(Instantiate (Archer, new Vector3 (transform.position.x, 5f, transform.position.z), Quaternion.identity) as GameObject).GetComponent<Unit> ().team = team;
 					}
+					if (UnitName == "Berseker") {
+						(Instantiate (Archer, new Vector3 (transform.position.x, 5f, transform.position.z), Quaternion.identity) as GameObject).GetComponent<Unit> ().team = team;
+					}
 				}
 			}
 		}
 	}
 
 	void AI (){
-		if (team != "Player" && 1 == Random.Range (1, 17)) {
+		if (team != "Player" && 1 == Random.Range (1, 30)) {
 			SpawnCity ("Warrior");
-		}else if (team != "Player" && 1 == Random.Range (1, 20)) {
+		}else if (team != "Player" && 1 == Random.Range (1, 40)) {
 			SpawnCity ("AxeMan");
-		}else if (team != "Player" && 1 == Random.Range (1, 30)) {
+		}else if (team != "Player" && 1 == Random.Range (1, 60)) {
 			SpawnCity ("Archer");
-		}else if (team != "Player" && 1 == Random.Range (1, 20)) {
-			SpawnCity ("Archer");
+		}else if (team != "Player" && 1 == Random.Range (1, 80)) {
+			SpawnCity ("Berseker");
 		}
 	}
 

@@ -24,6 +24,7 @@ GameObject:
   - component: {fileID: 114633493384625886}
   - component: {fileID: 54897894341649396}
   - component: {fileID: 64940284612199660}
+  - component: {fileID: 208489796052737870}
   m_Layer: 2
   m_Name: GoldMineHologram
   m_TagString: Untagged
@@ -137,3 +138,18 @@ MonoBehaviour:
   Red: {r: 1, g: 0.12530687, b: 0, a: 0.73333335}
   Green: {r: 0, g: 1, b: 0.09019608, a: 0.43529412}
   costToBuy: 3
+--- !u!208 &208489796052737870
+NavMeshObstacle:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1840292005187158}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 3.0820003, y: 2.025, z: 2.0730002}
+  m_MoveThreshold: 0.1
+  m_Carve: 0
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 1.154, y: 1.3010001, z: -0.030000001}
+  m_TimeToStationary: 0.5

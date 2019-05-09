@@ -1220,8 +1220,8 @@ MonoBehaviour:
   AI: {fileID: 1608712533285824, guid: d7aeea962235d3c4b91be357b93690c9, type: 2}
   offset: 0
   start: 0
-  xAmount: 50
-  zAmount: 50
+  xAmount: 20
+  zAmount: 20
   turn: 0
   text: {fileID: 1303141131}
   text2: {fileID: 282637209}
@@ -1252,8 +1252,8 @@ MonoBehaviour:
   unobtainium2: {fileID: 1590977106126164, guid: 760f5ae116398f64a8ad18941442a21d,
     type: 2}
   position: []
-  xAmount2: 50
-  zAmount2: 50
+  xAmount2: 20
+  zAmount2: 20
   text: {fileID: 1303141131}
   text2: {fileID: 282637209}
   text3: {fileID: 1616759832}
@@ -1514,7 +1514,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.032397747, g: 0, b: 1, a: 1}
+  m_Color: {r: 1, g: 0, b: 0.26345158, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -3712,7 +3712,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 525
+  orthographic size: 225
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2

@@ -68,9 +68,11 @@ public class SaveLoadCivilizaton : MonoBehaviour {
 				}
 				if(CurrentObject.CompareTag("Unit")){
 					gameState.team = CurrentObject.GetComponent<Unit> ().team;
-					if(CurrentObject.GetComponent<Unit> ().currentPath.Count > 0){
-						gameState.PathEndx = (CurrentObject.GetComponent<Unit> ().currentPath.Last().x * 10) - 500;
-						gameState.PathEndz = (CurrentObject.GetComponent<Unit> ().currentPath.Last().z * 10) - 500;
+					if (CurrentObject.GetComponent<Unit> ().currentPath.Count > 0) {
+						gameState.PathEndx = (CurrentObject.GetComponent<Unit> ().currentPath.Last ().x * 10) - 500;
+						gameState.PathEndz = (CurrentObject.GetComponent<Unit> ().currentPath.Last ().z * 10) - 500;
+					} else {
+						gameState.PathEndx = 10000;
 					}
 					gameState.AI = CurrentObject.GetComponent<Unit> ().AIStyle;
 				}
@@ -134,13 +136,13 @@ public class SaveLoadCivilizaton : MonoBehaviour {
 							} else {
 								if (Mathf.PerlinNoise ((offset2 + ((x + (float)(-xAmount2 * 10)) / (5f * xAmount2))), (offset2 + ((z + (float)(-zAmount2 * 10)) / (5f * zAmount2)))) < 0.825f) {
 									Instantiate (grass2, new Vector3 (x, -4.5f, z), Quaternion.identity);
-									if (Random.Range (1, 301) == 1) {
+									if (Random.Range (1, 151) == 1) {
 										Instantiate (unobtainium2, new Vector3 (x, 11, z), Quaternion.identity);
 									} else {
-										if(Random.Range(1, 151) == 1){
+										if(Random.Range(1, 76) == 1){
 											Instantiate (copper2, new Vector3 (x, -0.75f, z), Quaternion.identity);
 										} else {
-											if(Random.Range(1, 76) == 1){
+											if(Random.Range(1, 37) == 1){
 												Instantiate (iron2, new Vector3 (x, -0.75f, z), Quaternion.identity);
 											}
 										}

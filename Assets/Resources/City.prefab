@@ -69,8 +69,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1897631145176668}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 2, z: 0}
-  m_LocalScale: {x: 0.25, y: 0.4, z: 0.125}
+  m_LocalPosition: {x: 0, y: 5, z: 0}
+  m_LocalScale: {x: 2, y: 1.6, z: 0.5}
   m_Children: []
   m_Father: {fileID: 4390784125304432}
   m_RootOrder: 0
@@ -243,6 +243,7 @@ MonoBehaviour:
   Warrior: {fileID: 1060434830780756, guid: 913f00b08c4c5444789900f4d92f1635, type: 2}
   AxeMan: {fileID: 1040944557009724, guid: 6a56952efc15df24ba946c55d3c05cbc, type: 2}
   Archer: {fileID: 1481567276181654, guid: 0c54e9b0f52311045b2a0f8c5dbd4737, type: 2}
+  Berseker: {fileID: 0}
   capital: 0
   team: 
   Player: {fileID: 2100000, guid: 742a7e2a131fdda428e42a090b38d2c0, type: 2}
