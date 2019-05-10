@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 33782120028963892}
   - component: {fileID: 23076020145703584}
   - component: {fileID: 54932878309982878}
+  - component: {fileID: 114972619891070048}
   - component: {fileID: 208183406164089488}
   - component: {fileID: 64347260339769734}
   m_Layer: 0
@@ -117,6 +118,18 @@ MeshCollider:
   m_CookingOptions: 14
   m_SkinWidth: 0.01
   m_Mesh: {fileID: 4300000, guid: bf46536b6fd2dc94e86f8d9e69c253e6, type: 3}
+--- !u!114 &114972619891070048
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1731087179244612}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5eda276ab7f31d43833eecf444bc86a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Worth: 3
 --- !u!208 &208183406164089488
 NavMeshObstacle:
   m_ObjectHideFlags: 1

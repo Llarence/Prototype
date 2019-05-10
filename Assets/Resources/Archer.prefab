@@ -232,8 +232,8 @@ MonoBehaviour:
   warrior: {fileID: 0}
   team: 
   AIStyle: 0
-  Health: 60
-  Defense: 10
+  Health: 100
+  Defense: 0
   Damage: 40
   Range: 51
   BoatLevel: 0

@@ -234,8 +234,8 @@ MonoBehaviour:
   team: 
   AIStyle: 0
   Health: 200
-  Defense: 20
-  Damage: 70
+  Defense: 40
+  Damage: 110
   Range: 11
   BoatLevel: 0
   boat: {fileID: 4300000, guid: d272fe5926d1c0046992f665ffec8810, type: 3}
