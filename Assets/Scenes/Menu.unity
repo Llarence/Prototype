@@ -334,10 +334,10 @@ RectTransform:
   m_Father: {fileID: 1802931700}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -250, y: -1000250}
-  m_SizeDelta: {x: 320, y: 60}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 320, y: -999940}
+  m_SizeDelta: {x: 160, y: 60}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &254067152
 MonoBehaviour:
@@ -1206,10 +1206,10 @@ RectTransform:
   m_Father: {fileID: 1802931700}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 1000000}
-  m_SizeDelta: {x: 320, y: 60}
+  m_AnchorMin: {x: 0, y: 0.5}
+  m_AnchorMax: {x: 1, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 999680}
+  m_SizeDelta: {x: 0, y: 640}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1989661072
 MonoBehaviour:
@@ -1237,15 +1237,18 @@ MonoBehaviour:
     m_BestFit: 0
     m_MinSize: 10
     m_MaxSize: 40
-    m_Alignment: 4
+    m_Alignment: 1
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Story
-
-'
+  m_Text: "Long ago in the land of Uwi, civilization flourished.\r Boundless resources
+    sustained great cities, copper and iron helping to construct great monuments and
+    arm powerful armies.\r But then,\r disaster struck! \rPlague, famine and drought
+    devastated the land.\r The once abundant resources became the most coveted of
+    commodities.\r You now must compete with other civilizations for the increasingly
+    scarce resources.\r Grow your domain and become the dominant Empire of Uwi!"
 --- !u!222 &1989661073
 CanvasRenderer:
   m_ObjectHideFlags: 0
