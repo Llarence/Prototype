@@ -57,7 +57,7 @@ public class CityCivilization : MonoBehaviour {
 			Population = int.Parse(File.ReadAllText (filePath).Split ('/') [2]);
 			Farms = int.Parse(File.ReadAllText (filePath).Split ('/') [2]);
 		}
-		if(Farms > 20){
+		if(Farms > 10){
 			expanded = true;
 			Instantiate (border, transform.position + new Vector3(20, 0.2f, 0), Quaternion.identity);
 			Instantiate (border, transform.position + new Vector3(0, 0.2f, 20), Quaternion.identity);
@@ -173,7 +173,7 @@ public class CityCivilization : MonoBehaviour {
 			Storages = int.Parse(File.ReadAllText (filePath).Split ('/') [6]);
 			Sea = int.Parse(File.ReadAllText (filePath).Split ('/') [7].Split('|') [0]);
 		}
-		if(Farms > 20 && expanded == false){
+		if(Farms > 10 && expanded == false){
 			expanded = true;
 			Instantiate (border, transform.position + new Vector3(20, 0.2f, 0), Quaternion.identity);
 			Instantiate (border, transform.position + new Vector3(0, 0.2f, 20), Quaternion.identity);
@@ -203,9 +203,10 @@ public class CityCivilization : MonoBehaviour {
 	}
 
 	public void SpawnCity (string UnitName){
-		if (Physics.Raycast (transform.position + Vector3.up * 10, Vector3.down, out hit)) {
+		if (Physics.Raycast (transform.position + Vector3.up * 25, Vector3.down, out hit)) {
 			if (hit.collider.gameObject.tag != "Unit") {
 				if (team == "Player") {
+					print (hit.collider.gameObject.tag);
 					if (manager.GetComponent<ManagerCivilization> ().stage != "BuildCities") {
 						if (UnitName == "Warrior" && GameObject.Find ("Resources").GetComponent<ResourceCounter> ().gold >= 10) {
 							(Instantiate (Warrior, new Vector3 (transform.position.x, 5f, transform.position.z), Quaternion.identity) as GameObject).GetComponent<Unit> ().team = "Player";

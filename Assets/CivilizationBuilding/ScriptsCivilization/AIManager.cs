@@ -6,16 +6,20 @@ public class AIManager : MonoBehaviour {
 
 	public string team;
 	public Vector2 Target;
+	int turnOn;
 
 	// Use this for initialization
 	void Start () {
-		Target.x = FindClosestEnemy ().transform.position.x;
-		Target.y = FindClosestEnemy ().transform.position.z;
+		
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		
+		if(turnOn != GameObject.Find ("Manager").GetComponent<ManagerCivilization> ().turn){
+			turnOn++;
+			Target.x = FindClosestEnemy ().transform.position.x;
+			Target.y = FindClosestEnemy ().transform.position.z;
+		}
 	}
 
 	public GameObject FindClosestEnemy(){

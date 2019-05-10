@@ -132,7 +132,7 @@ MonoBehaviour:
   HitLayers:
     serializedVersion: 2
     m_Bits: 256
-  SpawnHeight: -0.25
+  SpawnHeight: -0.45
   Red: {r: 1, g: 0.1254902, b: 0, a: 0.73333335}
   Green: {r: 0, g: 1, b: 0.09019608, a: 0.43529412}
   costToBuy: 1

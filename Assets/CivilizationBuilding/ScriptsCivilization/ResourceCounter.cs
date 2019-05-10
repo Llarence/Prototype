@@ -22,6 +22,7 @@ public class ResourceCounter : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		GetComponent<Text> ().text = ("Gold:" + gold + ", Iron:" + Iron + ", Copper:" + Copper + ", Unobtainium:" + Unobtainium);
 		if (turnOn != GameObject.Find ("Manager").GetComponent<ManagerCivilization> ().turn) {
 			turnOn++;
 			TotalStorage = 0;
@@ -31,7 +32,7 @@ public class ResourceCounter : MonoBehaviour {
 			Check ();
 			foreach (GameObject City in GameObject.FindGameObjectsWithTag("City")) {
 				if (City.GetComponent<CityCivilization> ().team == "Player") {
-					GetComponent<Text> ().text = ("Gold:" + ((Mathf.Clamp (int.Parse (GetComponent<Text> ().text.Split (':') [1].Split (',') [0]) + City.GetComponent<CityCivilization> ().GoldProduced, 0, TotalStorage)).ToString ()) + ", Iron:" + Iron + ", Copper:" + Copper + ", Unobtainium:" + Unobtainium);
+					GetComponent<Text> ().text = ("Gold:" + Mathf.Clamp (gold + City.GetComponent<CityCivilization> ().GoldProduced, 0, TotalStorage).ToString () + ", Iron:" + Iron + ", Copper:" + Copper + ", Unobtainium:" + Unobtainium);
 				}
 			}
 			gold = int.Parse (GetComponent<Text> ().text.Split (':') [1].Split (',') [0]);

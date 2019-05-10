@@ -79,7 +79,7 @@ public class Unit : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		gameObject.layer = 2;
-		if (Physics.Raycast (transform.position + Vector3.up * 10, Vector3.down, out hit)) {
+		if (Physics.Raycast (transform.position + Vector3.up * 25, Vector3.down, out hit)) {
 			if (hit.collider.gameObject.CompareTag("Water")) {
 				GetComponent<MeshFilter> ().mesh = boat;
 				transform.position = new Vector3(transform.position.x, (8 * Mathf.PerlinNoise(Time.time/30 + offset3, 0f) * Mathf.PerlinNoise(Time.time/3 + offset, Time.time/3 + offset2)) - 2.5f, transform.position.z);
@@ -112,12 +112,12 @@ public class Unit : MonoBehaviour {
 					transform.position = new Vector3((currentPath[1].x * 10) - 200, 5f, (currentPath[1].z * 10) - 200);
 					transform.eulerAngles = new Vector3 (0, (currentPath[1].x - currentPath[0].x) * 90 + ((currentPath[1].z - currentPath[0].z) * 90 + Mathf.Abs(currentPath[1].z - currentPath[0].z) * -90), 0);
 					gameObject.layer = 2;
-					if (Physics.Raycast (transform.position + Vector3.up * 10, Vector3.down, out hit)) {
+					if (Physics.Raycast (transform.position + Vector3.up * 25, Vector3.down, out hit)) {
 						if (hit.collider.gameObject.tag != "Unit") {
 							currentPath.Remove (currentPath [0]);
 							if(currentPath.Count == 1){
 								currentPath.Remove (currentPath [0]);
-								if (Physics.Raycast (transform.position + Vector3.up * 10, Vector3.down, out hit)) {
+								if (Physics.Raycast (transform.position + Vector3.up * 25, Vector3.down, out hit)) {
 									if (hit.collider.gameObject.tag == "City") {
 										hit.collider.gameObject.GetComponent<CityCivilization> ().team = team;
 									}
