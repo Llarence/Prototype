@@ -50,6 +50,7 @@ public class SaveLoadCivilizaton : MonoBehaviour {
 	public string loadName;
 	string deleteName;
 	GameObject instantiated;
+	public Material Light;
 
 	public void Save () {
 		saveName = GetComponent<ManagerCivilization> ().gameName;
@@ -138,6 +139,9 @@ public class SaveLoadCivilizaton : MonoBehaviour {
 							} else {
 								if (Mathf.PerlinNoise ((offset2 + ((x + (float)(-xAmount2 * 10)) / (5f * xAmount2))), (offset2 + ((z + (float)(-zAmount2 * 10)) / (5f * zAmount2)))) < 0.825f) {
 									Instantiate (grass2, new Vector3 (x, -4.5f, z), Quaternion.identity);
+									if(PlayerPrefs.GetInt("Lighting") == 1){
+										grass2.GetComponent<MeshRenderer>().material = Light;
+									}
 									if (Random.Range (1, 151) == 1) {
 										Instantiate (unobtainium2, new Vector3 (x, 11, z), Quaternion.identity);
 									} else {
@@ -153,8 +157,14 @@ public class SaveLoadCivilizaton : MonoBehaviour {
 									if(Random.Range(0f, 1f) < 0.2f){
 										Instantiate (mountain2, new Vector3 (x, -0.51f, z), Quaternion.identity);
 										Instantiate (grass2, new Vector3 (x, -4.5f, z), Quaternion.identity);
+										if(PlayerPrefs.GetInt("Lighting") == 1){
+											grass2.GetComponent<MeshRenderer>().material = Light;
+										}
 									}else{
 										Instantiate (grass2, new Vector3 (x, -4.5f, z), Quaternion.identity);
+										if(PlayerPrefs.GetInt("Lighting") == 1){
+											grass2.GetComponent<MeshRenderer>().material = Light;
+										}
 									}
 								}
 							}

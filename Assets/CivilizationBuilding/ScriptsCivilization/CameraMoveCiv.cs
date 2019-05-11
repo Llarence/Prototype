@@ -9,9 +9,12 @@ public class CameraMoveCiv : MonoBehaviour {
 	int control;
 	public int controlMax;
 	public int maxHeight;
+	public Material Robbie;
+	Material Default;
 
 	// Use this for initialization
 	void Start () {
+		Default = RenderSettings.skybox;
 		control = 1;
 		transform.eulerAngles = new Vector3 (55, 90, 0);
 		if (PlayerPrefs.GetInt ("CameraMove") == 0) {
@@ -21,21 +24,12 @@ public class CameraMoveCiv : MonoBehaviour {
 		
 	// Update is called once per frame
 	void FixedUpdate () {
-		if(GameObject.Find("Manager").GetComponent<ManagerCivilization>().gameName != ""){
-		if (Input.GetKeyUp ("j") && GetComponent<Camera> ().clearFlags == CameraClearFlags.Skybox) {
-			GetComponent<Camera> ().clearFlags = CameraClearFlags.SolidColor;
-			GetComponent<Camera> ().backgroundColor = Color.black;
-		} else {
-			if (Input.GetKeyUp ("j") && GetComponent<Camera> ().clearFlags == CameraClearFlags.SolidColor) {
-				GetComponent<Camera> ().clearFlags = CameraClearFlags.Skybox;
+		if (GameObject.Find ("Manager").GetComponent<ManagerCivilization> ().gameName != "") {
+			if (Input.GetKeyDown ("j")) {
+				RenderSettings.skybox = Robbie;
 			}
-		}
-		if (GetComponent<Camera> ().clearFlags == CameraClearFlags.SolidColor && GetComponent<Camera> ().backgroundColor == Color.white) {
-			GetComponent<Camera> ().backgroundColor = Color.black;
-			} else {
-				if (GetComponent<Camera> ().clearFlags == CameraClearFlags.SolidColor && GetComponent<Camera> ().backgroundColor == Color.black) {
-					GetComponent<Camera> ().backgroundColor = Color.white;
-				}
+			if (Input.GetKeyUp ("j")) {
+				RenderSettings.skybox = Default;
 			}
 		}
 		if (PlayerPrefs.GetInt ("CameraMove") == 1) {

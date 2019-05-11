@@ -13,6 +13,11 @@ public class ManagerMenu : MonoBehaviour {
 		} else {
 			GameObject.Find ("Camera Move Style").GetComponentInChildren<Text> ().text = "Camera Move Style: Free, Worse Performace";
 		}
+		if (PlayerPrefs.GetInt ("Lighting") == 0) {
+			GameObject.Find ("Happy Or Sad").GetComponentInChildren<Text> ().text = "Dark";
+		} else {
+			GameObject.Find ("Happy Or Sad").GetComponentInChildren<Text> ().text = "Light";
+		}
 	}
 	
 	// Update is called once per frame
@@ -30,6 +35,7 @@ public class ManagerMenu : MonoBehaviour {
         GameObject.Find("Quit").GetComponent<RectTransform>().Translate(0, 100000, 0);
         GameObject.Find("Tutorial").GetComponent<RectTransform>().Translate(0, -1000000, 0);
 		GameObject.Find("Camera Move Style").GetComponent<RectTransform>().Translate(0, -1000000, 0);
+		GameObject.Find("Happy Or Sad").GetComponent<RectTransform>().Translate(0, -1000000, 0);
         GameObject.Find("Back").GetComponent<RectTransform>().Translate(0, 1000000, 0);
 		GameObject.Find("Story").GetComponent<RectTransform>().Translate(0, -1000000, 0);
     }
@@ -46,6 +52,7 @@ public class ManagerMenu : MonoBehaviour {
         GameObject.Find("Quit").GetComponent<RectTransform>().Translate(0, -100000, 0);
         GameObject.Find("Tutorial").GetComponent<RectTransform>().Translate(0, 1000000, 0);
 		GameObject.Find("Camera Move Style").GetComponent<RectTransform>().Translate(0, 1000000, 0);
+		GameObject.Find("Happy Or Sad").GetComponent<RectTransform>().Translate(0, 1000000, 0);
         GameObject.Find("Back").GetComponent<RectTransform>().Translate(0, -1000000, 0);
 		GameObject.Find("Story").GetComponent<RectTransform>().Translate(0, 1000000, 0);
     }
@@ -62,6 +69,15 @@ public class ManagerMenu : MonoBehaviour {
 		} else {
 			PlayerPrefs.SetInt ("CameraMove", 1);
 			GameObject.Find ("Camera Move Style").GetComponentInChildren<Text> ().text = "Camera Move Style: Free, Worse Performace";
+		}
+	}
+	public void SwitchLightMode (){
+		if (PlayerPrefs.GetInt ("Lighting") == 1) {
+			PlayerPrefs.SetInt ("Lighting", 0);
+			GameObject.Find ("Happy Or Sad").GetComponentInChildren<Text> ().text = "Dark";
+		} else {
+			PlayerPrefs.SetInt ("Lighting", 1);
+			GameObject.Find ("Happy Or Sad").GetComponentInChildren<Text> ().text = "Light";
 		}
 	}
 }

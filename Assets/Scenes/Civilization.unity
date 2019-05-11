@@ -1354,6 +1354,8 @@ MonoBehaviour:
   newText: {fileID: 1588952278026000, guid: 5d94fb877925ada4a96edf709059eeac, type: 2}
   texts: []
   stage: 
+  Light: {fileID: 2100000, guid: e69aec3893722aa4c8ab7e55feece06f, type: 2}
+  Dark: {fileID: 2100000, guid: 61a13aeae4be2f64aaf81a9aa8ec85fa, type: 2}
 --- !u!114 &567940034
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1383,6 +1385,8 @@ MonoBehaviour:
   text4: {fileID: 1732095696}
   isSaving: 0
   loadName: 
+  Light: {fileID: 2100000, guid: e69aec3893722aa4c8ab7e55feece06f, type: 2}
+  Dark: {fileID: 2100000, guid: 61a13aeae4be2f64aaf81a9aa8ec85fa, type: 2}
 --- !u!114 &567940035
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3680,6 +3684,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   controlMax: 5
   maxHeight: 500
+  Robbie: {fileID: 2100000, guid: ce0aa9f039dd5e0428836b3d7996a4aa, type: 2}
 --- !u!82 &1801773568
 AudioSource:
   m_ObjectHideFlags: 0

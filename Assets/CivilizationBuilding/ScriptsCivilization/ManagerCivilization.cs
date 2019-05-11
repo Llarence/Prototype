@@ -49,6 +49,7 @@ public class ManagerCivilization : MonoBehaviour {
 	public int [,] tiles4;
 	public Node [,] graph4;
 	int UnitsDone;
+	public Material Light;
 
 	void Start (){
 		stage = "BuildCities";
@@ -122,6 +123,9 @@ public class ManagerCivilization : MonoBehaviour {
 							} else {
 								if (Mathf.PerlinNoise ((offset + ((x + (float)(-xAmount * 10)) / (5f * xAmount))), (offset + ((z + (float)(-zAmount * 10)) / (5f * zAmount)))) < 0.825f) {
 									Instantiate (grass, new Vector3 (x, -4.5f, z), Quaternion.identity);
+									if(PlayerPrefs.GetInt("Lighting") == 1){
+										grass.GetComponent<MeshRenderer>().material = Light;
+									}
 									if (Random.Range (1, 151) == 1) {
 										Instantiate (unobtainium, new Vector3 (x, 11, z), Quaternion.identity);
 									} else {
@@ -137,8 +141,14 @@ public class ManagerCivilization : MonoBehaviour {
 									if(Random.Range(0f, 1f) < 0.2f){
 										Instantiate (mountain, new Vector3 (x, -0.51f, z), Quaternion.identity);
 										Instantiate (grass, new Vector3 (x, -4.5f, z), Quaternion.identity);
+										if(PlayerPrefs.GetInt("Lighting") == 1){
+											grass.GetComponent<MeshRenderer>().material = Light;
+										}
 									}else{
 										Instantiate (grass, new Vector3 (x, -4.5f, z), Quaternion.identity);
+										if(PlayerPrefs.GetInt("Lighting") == 1){
+											grass.GetComponent<MeshRenderer>().material = Light;
+										}
 									}
 								}
 							}
